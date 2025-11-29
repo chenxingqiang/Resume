@@ -1,119 +1,317 @@
-YiRage Persistent Kernel: Compiling LLMs into a MegaKernel
+# YiRage - Yield Revolutionary AGile Engine
 
-About
-YiRage Persistent Kernel (MPK) is a compiler and runtime system that automatically transforms LLM inference into a single megakernel—a fused GPU kernel that performs all necessary computation and communication within a single kernel launch. This end-to-end GPU fusion approach reduces LLM inference latency by 1.2× to 6.7×, all while requiring minimal developer effort.
+<div align="center">
 
-Quick Installation
-The fastest way to try MPK is to install it directly from source:
+**Multi-Backend LLM Inference Optimization**
 
-git clone --recursive  http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage.git
-cd yirage
-pip install -e . -v
-export YIRAGE_HOME=$(pwd)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-YiRage-blue)](https://github.com/chenxingqiang/YiRage)
 
+*Based on [Mirage](https://github.com/mirage-project/mirage) by CMU*
 
+</div>
 
-Quickstart
-YiRage allows you to compile LLMs from the Hugging Face model zoo into a megakernel using just a few dozen lines of Python—mainly to define the kernel’s inputs and outputs. See this demo script that compiles the Qwen3-8B model into a megakernel.
-We start by running the demo with native Triton and FlashInfer kernels:
+---
 
-python demo/qwen3/demo.py
+## 🎯 About YiRage
 
+**YiRage** (Yield Revolutionary AGile Engine) extends Mirage with comprehensive **multi-backend support**, enabling LLM inference optimization across diverse hardware platforms.
 
-To compile and execute the megakernel using MPK:
+### YiRage = Mirage + Multi-Backend Architecture
 
-python demo/qwen3/demo.py --use-yirage
+- **Original Mirage** (CMU): Superoptimizer framework for tensor programs
+- **YiRage Extensions** (Chen Xingqiang, 2025): Multi-backend support with hardware-aware optimizations
 
+---
 
-To enable profiling (which visualizes the execution timeline of each task):
+## 🏗️ Architecture
 
-python demo/qwen3/demo.py --use-yirage --profiling
+<div align="center">
+  <img src="img/architecture.drawio.svg" alt="YiRage Architecture" width="900"/>
+</div>
 
+### Three-Layer Design
 
+**Layer 1: Python API**
+- Backend query and selection
+- Kernel graph creation
+- Hardware-specific optimizers
+- Search strategy access
 
-How MPK Works
-Once you've imported the YiRage package, you can instantiate a persistent kernel using the following API:
+**Layer 2: Backend Manager (C++)**
+- BackendRegistry (singleton, thread-safe)
+- Factory patterns for backends and strategies
+- Automatic initialization on import
 
+**Layer 3: Backend Implementations**
+- 7 complete backends with hardware-specific optimizations
+- Each backend includes optimizer and search strategy
+- Direct hardware mapping for maximum performance
+
+---
+
+## ✨ Key Features
+
+### 🚀 8 Complete Backend Implementations
+
+| Backend | Hardware | Key Features | Status |
+|---------|----------|--------------|--------|
+| **CUDA** | NVIDIA GPU | Tensor Core, Warp, Bank Conflict Avoidance | ✅ |
+| **CPU** | x86/ARM | SIMD (AVX512), Cache Blocking, OpenMP | ✅ |
+| **MPS** | Apple Silicon | Metal, Threadgroup, Unified Memory | ✅ |
+| **Ascend** | Huawei NPU | AI Core, Cube Unit, L1 Buffer, BiSheng | ✅ NEW |
+| **Triton** | Compiler | Auto-tuning, Pipelining, Split-K | ✅ |
+| **NKI** | AWS Neuron | SBUF, DMA, BF16 Native | ✅ |
+| **cuDNN** | CUDA Accel | Algorithm Selection, Tensor Op | ✅ |
+| **MKL** | Intel Accel | Threading, BLAS, Fast MM | ✅ |
+
+### 🎯 Hardware-Aware Kernel Optimizers
+
+- **42+ Optimization Methods** across all backends
+- **Automatic Configuration** based on hardware capabilities
+- **Performance Modeling** for each backend
+
+#### Example: CUDA Optimizer
+```python
+from yirage.kernel.cuda import CUDAOptimizer, CUDAKernelConfig
+
+config = CUDAKernelConfig()
+CUDAOptimizer.optimize_grid_block_dims(1024, 1024, 1024, 
+                                        compute_capability=80, 
+                                        config=config)
+# Auto-configured: Tensor Core, Warps, Shared Memory, Occupancy
+```
+
+#### Example: MPS Optimizer (Apple Silicon)
+```python
+from yirage.kernel.mps import MPSOptimizer, MPSKernelConfig
+
+config = MPSKernelConfig()
+MPSOptimizer.optimize_for_apple_silicon(1024, 1024, 1024, config)
+# Auto-detects: M1/M2/M3, GPU cores, Threadgroup size
+```
+
+#### Example: Ascend Optimizer (Huawei NPU) 🆕
+```python
 import yirage as yr
+
+# Create and optimize for Ascend NPU
+graph = yr.new_kernel_graph()
+X = graph.new_input(dims=(8, 4096), dtype=yr.float16)
+W = graph.new_input(dims=(4096, 4096), dtype=yr.float16)
+O = graph.matmul(X, W)
+graph.mark_output(O)
+
+# Optimize using Ascend backend (via BiSheng + Triton)
+optimized = graph.superoptimize(backend='ascend')
+# Auto-configures: AI Core blocks, Cube unit tiles, L1 buffer
+```
+
+### 🔍 Backend-Specific Search Strategies
+
+- **5 Independent Search Strategies** with hardware-specific optimization
+- **15 Candidate Generation Dimensions**
+- **13 Performance Evaluation Metrics**
+- Auto-tuning and performance modeling
+
+---
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# From GitHub
+git clone https://github.com/chenxingqiang/YiRage.git
+cd YiRage
+pip install -e .
+export YIRAGE_HOME=$(pwd)
+```
+
+### Basic Usage
+
+```python
+import yirage as yr
+
+# Query available backends
+backends = yr.get_available_backends()
+print(f"Available backends: {backends}")
+# Output: ['cuda', 'cpu', 'mps']  # depends on your hardware
+
+# Check specific backend
+if yr.is_backend_available('mps'):
+    print("Apple Silicon GPU ready!")
+
+# Create kernel with backend selection
 mpk = yr.PersistentKernel(
-    world_size=world_size,
-    mpi_rank=rank,
-    num_workers=96,
-    num_local_schedulers=48,
-    num_remote_schedulers=0,
-    meta_tensors=[step, tokens],
-    profiler_tensor=profiler_tensor,
+    mode="decode",
+    backend="mps",              # Specify backend
+    fallback_backends=["cpu"],  # Auto fallback
+    world_size=1,
+    mpi_rank=0,
+    # ... other parameters
+)
+```
+
+### Using Hardware-Specific Optimizers
+
+```python
+# CUDA optimization
+from yirage.kernel.cuda import CUDAOptimizer, CUDAKernelConfig
+
+cuda_config = CUDAKernelConfig()
+CUDAOptimizer.optimize_grid_block_dims(m=1024, n=1024, k=1024, 
+                                        compute_capability=80, 
+                                        config=cuda_config)
+
+# CPU optimization
+from yirage.kernel.cpu import CPUOptimizer, CPUKernelConfig
+
+cpu_config = CPUKernelConfig()
+CPUOptimizer.optimize_for_cpu(m=1024, n=1024, k=1024, config=cpu_config)
+# Auto-detects: SIMD type, CPU cores, cache sizes
+
+# MPS optimization (Apple Silicon)
+from yirage.kernel.mps import MPSOptimizer, MPSKernelConfig
+
+mps_config = MPSKernelConfig()
+MPSOptimizer.optimize_for_apple_silicon(m=1024, n=1024, k=1024, config=mps_config)
+# Auto-detects: GPU family (M1/M2/M3), cores, memory
+```
+
+---
+
+## 📊 Performance
+
+### M3 Mac Benchmarks
+
+| Benchmark | MPS (ms) | CPU (ms) |
+|-----------|----------|----------|
+| gated_mlp | 0.677 | 1.268 |
+| rms_norm | 0.463 | 0.115 |
+| lora | 0.637 | 0.590 |
+| gqa | 0.554 | - |
+| norm_transformer | 1.195 | - |
+
+*All benchmarks support CUDA, MPS, and CPU backends*
+
+---
+
+## 📚 Documentation
+
+- **[Quick Start](docs/quickstart.md)** - Get started in 5 minutes
+- **[API Reference](docs/api.md)** - Complete API documentation
+- **[Backend Guide](docs/mpk/backend_usage.md)** - Backend usage and configuration
+- **[Architecture Design](docs/mpk/multi_backend_design.md)** - System design
+- **[Ascend NPU Guide](docs/ascend_quick_start.md)** - Huawei Ascend integration 🆕
+- **[Contributing](CONTRIBUTING.md)** - Contribution guidelines
+
+---
+
+## 🎓 Examples
+
+### Run Benchmarks
+
+```bash
+# MPS backend (Apple Silicon)
+python benchmark/baselines/pytorch/gated_mlp.py -b 8 --backend mps
+
+# CUDA backend (NVIDIA GPU)
+python benchmark/baselines/pytorch/gated_mlp.py -b 8 --backend cuda
+
+# CPU backend
+python benchmark/baselines/pytorch/gated_mlp.py -b 8 --backend cpu
+
+# Ascend backend (Huawei NPU) - requires CANN + torch_npu
+python benchmark/baselines/pytorch/gated_mlp.py -b 8 --backend ascend
+```
+
+### Backend Selection
+
+```python
+import yirage as yr
+
+# Method 1: Direct specification
+mpk = yr.PersistentKernel(backend="mps", ...)
+
+# Method 2: With fallback
+mpk = yr.PersistentKernel(
+    backend="cuda",
+    fallback_backends=["mps", "cpu"],  # Auto fallback
+    ...
 )
 
+# Method 3: Query and select
+backends = yr.get_available_backends()
+best_backend = backends[0]  # Use first available
+```
 
+---
 
+## 🤝 Contributing
 
-world_size and mpi_rank: number of GPUs and current GPU rank.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-num_workers, num_local_schedulers, num_remote_schedulers: the number of workers, local schedulers, and remote schedulers. They must match the number of physical SMs (num_workers + (num_local_schedulers + num_remote_schedulers) / 4).
-The megakernel currently requires two meta tensors: step is an array of integer tracking the current decoding step, and is incremented by MPK after each decoding iteration; tokens is a tensor of shape [num_requests, seq_length] storing prompts and MPK generated tokens.
+### Adding a New Backend
 
-To attach an existing PyTorch.Tensor:
+1. Implement `BackendInterface`
+2. Create `{Backend}KernelConfig`
+3. Implement `{Backend}Optimizer`
+4. Create `{Backend}SearchStrategy` (optional)
+5. Update CMake configuration
 
-x = mpk.attach_input(torch_tensor=torch_tensor, name="torch_tensor_name")
+See [Ascend Implementation Guide](docs/ascend_implementation_guide.md) for a complete example.
 
+---
 
+## 📄 License
 
+YiRage is licensed under the Apache License 2.0.
 
-name is used by MPK to refer to the tensor in the generated megakernel in CUDA.
+**Copyright**:
+- YiRage Multi-Backend Extensions: Copyright 2025 Chen Xingqiang
+- Original Mirage: Copyright 2023-2024 Carnegie Mellon University
 
-To allocate a new tensor:
+See [LICENSE](LICENSE), [NOTICE](NOTICE), and [ATTRIBUTION](status/ATTRIBUTION.md) for details.
 
-y = mpk.new_tensor(
-    dims=(batch_size, hidden_size),
-    dtype=yr.bfloat16,
-    name="embed_out",
-    io_category="cuda_tensor",
-)
+---
 
+## 📚 Citation
 
+```bibtex
+@software{yirage2025,
+  title={YiRage: Yield Revolutionary AGile Engine for Multi-Backend LLM Inference},
+  author={Chen, Xingqiang},
+  year={2025},
+  note={A derivative work based on Mirage},
+  url={https://github.com/chenxingqiang/YiRage}
+}
 
+@inproceedings{wu2024mirage,
+  title={Mirage: A Multi-Level Superoptimizer for Tensor Programs}, 
+  author={Mengdi Wu and Xinhao Cheng and Shengyu Liu and others},
+  booktitle={OSDI 2025},
+  year={2025}
+}
+```
 
-dims and dtype specify the dimensions and data type of the tensor.
+---
 
-name is used by MPK to refer to this new tensor in the megakernel.
+## 🙏 Acknowledgments
 
-io_category indicates how the tensor is allocated and must be cuda_tensor or nvshmem_tensor (the latter is required for remote GPU access, e.g., during all-reduce).
+YiRage builds upon the excellent work of the Mirage team at Carnegie Mellon University.
 
+---
 
-Defining the Computation Graph
-You can compose the LLM’s computation graph by chaining fused operations. For example: rmsnorm_linear_layer fuses an RMSNorm layer and a Linear layer in the megakernel.
+## 📞 Contact
 
-mpk.rmsnorm_linear_layer(
-    input=x,
-    weight_norm=w_norm,
-    weight_linear=w_qkv,
-    output=attn_in,
-    grid_dim=(96, 1, 1),
-    block_dim=(128, 1, 1),
-)
+- **Issues**: [GitHub Issues](https://github.com/chenxingqiang/YiRage/issues)
+- **Author**: Chen Xingqiang
+- **Email**: joy6677@outlook.com
 
+---
 
+**YiRage** - Yielding Maximum Performance Across All Hardware 🚀
 
-
-weight_norm and weight_linear are the weight tensors for RMSNorm and Linear.
-
-input and output are the input and output tensors of this fused layer.
-
-grid_dim and block_dim specifies the number of thread blocks (i.e., number of tasks in the task graph) and number of thread within each thread block. To minimize latency, it is suggested that the total number of thread blocks is a multiplier of the number of workers to avoid outliers.
-
-
-Compilation & Execution
-Once the computation graph is defined, compile it with:
-
-mpk.compile()
-
-
-Then, run the optimized megakernel as:
-
-mpk()
-
-
-
-License
-YiRage uses Apache License 2.0.
+Copyright 2025 Chen Xingqiang | Based on Mirage (CMU) | Apache License 2.0
