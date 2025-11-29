@@ -1,0 +1,220 @@
+% PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage{enumitem}
+\usepackage{gensymb}
+\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+\usepackage{xeCJK} % 中文支持（XeLaTeX）
+\setCJKmainfont{PingFang SC}[BoldFont=PingFang SC, BoldFeatures={FakeBold=2.5}]
+\usepackage{url}
+\newcommand{\link}[1]{\url{#1}}
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}} 
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\renewcommand{\baselinestretch}{1}
+\name{CHEN XINGQIANG} % Your name
+\address{杭州，中国} % Your secondary addess (optional)
+\address{+86 150-0133-4125 \\ joy6677@outlook.com }  % Your phone number and email
+
+\begin{document}
+
+% OBJECTIVE
+
+\begin{rSection}{求职意向}
+{寻求{\bf 全职}职位：
+{\bf 大语言模型推理系统  \/ AI Agent \/ AI编译器} \/
+{\bf 基础模型应用方向} \/
+{\bf 推荐系统}。}
+\end{rSection}
+
+% EDUCATION SECTION
+%---------------------------------------------------------------------
+
+\begin{rSection}{教育背景}
+
+{\bf 生物物理学与凝聚态物理博士} \hfill {2014年9月 - 2018年7月 }\\ 
+厦门大学，物理与机电工程学院 GPA : 3.5/4.0
+\\
+\\
+{\bf 理论物理学学士} \hfill {2010年9月 - 2014年7月}\\
+厦门大学，物理与机电工程学院 GPA : 3.0/4.0
+
+\end{rSection}
+
+
+% TECHNICAL STRENGTHS SECTION
+%---------------------------------------------------------------------
+
+\begin{rSection}{技能与项目}
+
+ \item {\bf 编程语言}：精通 Python、Java、Scala、Go。
+
+ \item {\bf MLOps工具}：熟练使用Hadoop、Flink、Spark、Kubernetes、KubeFlow、TensorFlow、PyTorch等。
+ 
+ \item {\bf 大语言模型 \/ 推理系统}：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、运行时分析。
+
+ \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；拥有构建LLM编译器与运行时(YiRage MPK)的经验。
+
+ \item {\bf 深度学习模型}：熟悉 Transformers、RL、GNN、DNN、CNN 等。
+
+\item {\bf 跨学科专长}：具有物理学、计算生物学、计算化学、分子动力学、量子力学仿真和计算机科学背景。
+
+\item{\bf 开源亮点}：
+
+\begin{itemize}
+  \item {\bf Research CLI} — 具有学术研究功能的命令行 AI 工作流工具；支持多模型提供商和 MCP 工具。
+  
+  \link {https://github.com/iechor-research/research-cli}
+  
+  \item {\bf JAX-sklearn} — 具有自动 JAX 加速功能的 scikit-learn 替代方案（{\textit{13{,}058 项测试通过；PyPI 发布}}）。 
+  
+  \link {https://github.com/chenxingqiang/jax-sklearn}
+  
+  \item {\bf YouTube-DNN-RecSys} — YouTube 风格推荐模型的简洁 TensorFlow 与 Spark 实现（Python+Scala）。 
+  
+  \link {https://github.com/chenxingqiang/YouTube-DNN-RecSys}
+  
+  \item {\bf Questions-Gen} — 数学竞赛题目生成器（ Qwen3-14B、RL GRPO、KD；CLI 与 HF 模型）。 
+  
+  \link {https://github.com/chenxingqiang/GenQuestion}
+
+  \item {\bf DeepMicroPath} — 多模式研究 Agent，提供微生物学专业模式；以非侵入式包装器实现 auto/default/microbiology Prompt，支持 Docker/SLURM 部署。
+  
+  \link {https://github.com/chenxingqiang/DeepMicroPath}
+  
+  \item {\bf Medical-NER-Qwen-4B-Thinking} — 通过LoRA微调的Qwen3-4B-Thinking用于医疗实体与关系抽取（英语）。
+  
+  \link {https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking}
+  
+  \item {\bf QuestionsGen-Qwen3-14B-Final (FP)} — 使用Unsloth训练的全精度合并最终模型；部署就绪的HF权重。 
+  
+  \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
+  
+  \item {\bf YiRage持久化内核(MPK)} — LLM超级内核编译器。
+  
+  \link {http://github.com/chenxingqiang/YiRage}
+\end{itemize}
+
+\end{rSection}
+
+
+\begin{rSection}{工作经历}
+
+\begin{rSubsection}{高级AI编译器工程师，亿铸智能}{杭州，中国}
+{\textbf{研发部门}}{2022年9月 - 2025年10月}
+\item {主导开发{\textbf{YiRage 持久化内核(MPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
+\item {设计并实现融合算子架构（RMSNorm + Linear 等），消除{\textbf{85\%}}的内核启动开销，单次推理延迟从{\textbf{120ms 降至 18ms}}（批大小=1）。}\\
+\item {构建自适应调度系统，整合 Triton 与 FlashInfer 内核，支持多GPU扩展至{\textbf{8卡并行}}，吞吐量达到{\textbf{15,000 tokens/秒}}。}\\
+\item {开发图编译优化器，实现自动内核参数调优和KV-cache内存布局优化，内存访问效率提升{\textbf{60\%}}，缓存命中率达到{\textbf{92\%}}。}\\
+\item {技术成果转化：产品已部署到{\textbf{2个}}数据中心客户。}\\
+\item {在 ReRAM 芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的 LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。}\\
+\item {承担 AI 模型（含 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs 等）与计算效率；集成 TVM、ONNX、MLCommons、TensorFlow/PyTorch 于 YZlite，对多种模型运行时进行算子级指标统计并输出各类芯片上的 benchmark。}\\
+\item {YiRage 持久化内核 (MPK) — LLM 超级内核编译器与运行时，实现 1.5×–6.8× 延迟缩减。}\\
+\link{http://github.com/chenxingqiang/YiRage}\\
+\item {ReRAM-YZLite — 亿铸科技 ReRAM 芯片的机器学习模型开发工具包，提供命令行接口、Python API、模型分析器、训练评估、量化等功能，支持嵌入式平台的 ML 模型开发。}\\
+\link{https://github.com/ReRAM-Labs/yzlite}\\
+\link{https://reram-labs.github.io/yzlite}\\
+\end{rSubsection}
+\vspace{0.5em}
+
+\begin{rSubsection}{隐私保护算法工程师，蓝象智联}{杭州，中国}
+{\textbf{IT Group}}{2022年1月 - 2022年9月}
+\item {构建基于同态加密的联邦学习平台，支持{\textbf{20+}}金融机构数据协作，在保护隐私前提下模型精度提升{\textbf{15\%}}，训练时间缩短{\textbf{40\%}}。}\\
+\item {设计多方安全计算协议，为{\textbf{8家}}银行提供风控模型联合训练服务，欺诈检测准确率达到{\textbf{96.7\%}}，误报率降低{\textbf{30\%}}。}\\
+\item {开源贡献：开发{\textbf{Secret-Learn}}隐私保护机器学习库，实现{\textbf{573个}}算法（191算法 × FL/SS/SL三种隐私模式），100\% sklearn API兼容，集成JAX加速（{\textbf{5×+}}性能提升）和SecretFlow隐私计算框架，支持联邦学习、秘密分享、分割学习等多种隐私保护场景（{\textbf{PyPI发布，150,000+行代码}}）。}\\
+\link{https://github.com/chenxingqiang/Secret-Learn}\\
+\item {技术创新产出：申请{\textbf{3项}}核心算法专利，核心技术被{\textbf{5个}}商业产品采用，创造营收{\textbf{800万}}人民币。}\\
+\item {基于秘密分享的纵向联邦线性支持向量分类方法（CN114925786A）。}\\
+\link{https://patents.google.com/patent/CN114925786A/en}\\
+\item {随机森林训练方法及装置（CN114997345A）。}\\
+\link{https://patents.google.com/patent/CN114997345A/en}\\
+\item {用于联邦学习的数据处理方法及装置（CN115130681A）。}\\
+\link{https://patents.google.com/patent/CN115130681A/en}\\
+\end{rSubsection}
+\vspace{0.5em}
+\begin{rSubsection}{T7 算法工程专家，百图生科}{北京，中国}
+{\textbf{算法工程组}}{2021年9月 - 2021年12月}
+\item {疫情期间加入AI制药公司，负责构建生物信息学工具链平台，整合多种生物信息学算法和工具，支持蛋白质序列分析、结构预测、功能注释等核心流程。}\\
+\item {设计并实现生物算法数据平台，建立统一的数据管理和处理框架，支持大规模生物数据的存储、检索和分析，提升算法研发效率。}\\
+\item {开发蛋白质结构预测模型分析系统，集成AlphaFold等先进模型，构建端到端的蛋白质结构预测与验证流程，为药物设计提供结构基础。}\\
+\item {技术产出：开源AlphaFold2代码库与学习资源（{\textbf{26 stars}}），包含源代码分析、算法实现、应用案例和论文分享PPT，为AlphaFold2研究提供完整参考。}\\
+\link{https://github.com/chenxingqiang/alphafold2-codecs}\\
+\item {获得{\textbf{2项}}软件著作权：}\\
+\item {百图生科生信工具自动化平台（登记号：2021SR2004464）。}\\
+\item {Biomap生物医药信息平台（登记号：2021SR1862397）。}\\
+\end{rSubsection}
+\vspace{0.5em}
+\begin{rSubsection}{高级算法工程师，Yalla 集团(纽交所: YALA)}{杭州，中国}
+{\textbf{数据中心工程组}}{2020年9月 - 2021年9月}
+\item {重构Yalla聊天室推荐系统，采用多目标优化算法，用户日活跃时长增加{\textbf{35\%}}，7日留存率从{\textbf{42\%}}提升至{\textbf{61\%}}，月收入增长{\textbf{1200万}}美元。}\\
+\item {构建Ludo智能风控系统，结合实时行为分析和机器学习模型，恶意用户识别准确率达{\textbf{94\%}}，退款率降低{\textbf{45\%}}，挽回损失约{\textbf{500万}}美元。}\\
+\item {开发德州扑克AI机器人，基于深度强化学习，胜率达到{\textbf{78\%}}，驱动用户游戏时长增加{\textbf{25\%}}，付费转化率提升{\textbf{18\%}}。}\\
+\end{rSubsection}
+\vspace{0.5em}
+\begin{rSubsection}{高级算法工程师，格家网络科技}{杭州，中国}
+{\textbf{搜索推荐工程组}}{2019年4月 - 2020年9月}
+\item {设计多场景推荐算法架构，整合协同过滤、深度学习和知识图谱技术，商品点击率(CTR)提升{\textbf{28\%}}，转化率(CVR)增长{\textbf{35\%}}，GMV增长{\textbf{4200万}}人民币。}\\
+\item {优化实时推荐引擎，支持{\textbf{100万}}QPS并发，响应延迟控制在{\textbf{50ms}}以内，推荐覆盖率达到{\textbf{95\%}}，用户满意度评分从{\textbf{3.2}}提升至{\textbf{4.6}}。}\\
+\item {YouTube-DNN-RecSys — YouTube 风格推荐模型的简洁 TensorFlow 与 Spark 实现（Python+Scala）（{\textbf{60 stars}}）。}\\
+\link{https://github.com/chenxingqiang/YouTube-DNN-RecSys}\\
+\end{rSubsection}
+\vspace{0.5em}
+\begin{rSubsection}{机器学习工程师，便利蜂 \& 心知科技}{北京，中国}
+  {\textbf{数据工程组}}{2018年3月 - 2019年3月}
+  \item {因便利蜂销量预测需要格点气象数据涉密，合同迁入心知天气。基于格点级别数据进行便利蜂零售预测，构建高精度时空预测模型，提升销售预测准确性。}\\
+  \end{rSubsection}
+  \vspace{0.5em}
+\begin{rSubsection}{机器学习工程师，便利蜂 \ 虫极科技}{北京，中国}
+{\textbf{数据工程组}}{2017年6月 - 2018年2月}
+\item {构建智能销售预测系统，覆盖{\textbf{50+}}门店，预测精度达到{\textbf{92\%}}，库存周转率提升{\textbf{30\%}}，减少缺货损失{\textbf{600万}}人民币，降低滞销损失{\textbf{400万}}人民币。}\\
+\item {开发用户画像与商品关联分析系统，处理{\textbf{1000万+}}用户行为数据，客户身份识别准确率{\textbf{89\%}}，个性化推荐带来销售增长{\textbf{22\%}}。}\\
+\item {设计计算机视觉商品识别系统，支持{\textbf{500+}}SKU自动识别，识别准确率{\textbf{96\%}}，收银效率提升{\textbf{60\%}}，顾客排队时间减少{\textbf{40\%}}。}\\
+\end{rSubsection}
+
+
+
+\end{rSection}
+
+\begin{rSection}{本科研究项目}
+\begin{rSubsection}{\bf 蛋白质分子动力学仿真与QM/MM模型  }{厦门大学，中国}
+{\bf (国家自然科学基金项目) }{2014年9月 - 2017年3月}
+  \item {利用量子力学进行蛋白质动力学仿真研究，分析蛋白质生物信息。涉及理论物理、结构生物学、计算化学和计算机科学等跨学科知识。}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\bf 液体活检ct-DNA试剂盒开发与DNA甲基化数据分析  }{乐普医疗，中国}
+{\bf (研发工程师实习) }{2016年3月 - 2017年3月}
+  \item {从事液体活检试剂盒开发，需要特定的癌症筛查生物标志物。利用现有基因芯片数据(TCGA\&GEO)，分析10,000个样本以定位人类Septin9基因上的甲基化位点，这是结肠癌的早期指标。这为开发更准确的结肠癌临床诊断试剂盒提供了信息。}\\
+\end{rSubsection}
+
+\end{rSection}
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{获奖情况}
+
+\begin{rSubsection}{}{}
+{}{}
+  \item {评委，应用算法最佳实践初审，2021年。}\\
+  \item {第57名和第32名，共1739队，IEEE ICDM全球气象AI挑战赛，2018年。}\\
+  \item {一等奖，北美大学生数学建模竞赛，2013年。}\\
+  \item {第6名，国际太阳能十项全能竞赛，2013年。}\\
+  \item {国家一等奖，全国大学生数学建模竞赛，2012年。}\\
+\end{rSubsection}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+\begin{rSection}{发表论文}
+\begin{rSubsection}{}{}
+{}{}
+  \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. {\textit{Acta Crystallographica Section D: Structural Biology.}} 2017 Oct 1;73(10):793-803.}\\
+  \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. {\textit{Sensors and Actuators B: Chemical}}. 2018 Jan 1;254:44-51.}\\
+  \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. {\textit{PloS one}}. 2015 Jul 22;10(7):e0133389.}\\
+  \item {Chen Y, Qi H, Li X, Cai M, Chen X, Liu W, Shuai J. Suppressing effect of C a 2+ blips on puff amplitudes by inhibiting channels to prevent recovery. {\textit{Physical Review E}}. 2016 Aug 15;94(2):022411.}\\
+\end{rSubsection}
+\end{rSection}
+
+
+%----------------------------------------------------------------------------------------
+
+% end CJK env removed; using xeCJK
+\end{document}

@@ -1,0 +1,165 @@
+
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage{enumitem}
+\usepackage{gensymb}
+\usepackage{url}
+\newcommand{\link}[1]{\url{#1}}
+\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}} 
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\renewcommand{\baselinestretch}{1}
+\name{Xingqiang Chen} % Your name
+\address{Hangzhou, China} % Your secondary addess (optional)
+\address{+86 150-0133-4125 \\ joy6677@outlook.com }  % Your phone number and email
+
+\begin{document}
+
+%	OBJECTIVE
+
+\begin{rSection}{OBJECTIVE}
+{Looking for {\bf FULL TIME} roles in
+{\bf LLM Systems \/ AI Compiler for Inference} \/
+{\bf Applied Foundation Models} \/
+{\bf Recommendation Systems}.}
+\end{rSection}
+
+%	EDUCATION SECTION
+%---------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+{\bf PhD's in Biophysics and Condensed Matter} \hfill {Sep. 2014 - Jul. 2017 (Suspension) }\\ 
+Xiamen University, Department of Physics and Engineering GPA : 3.5/4.0
+\\
+\\
+{\bf B.S. in Theoretical Physics} \hfill {Sep. 2010 - Jul. 2014}\\
+Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
+
+\end{rSection}
+
+
+%	TECHNICAL STRENGTHS SECTION
+%---------------------------------------------------------------------
+
+\begin{rSection}{Skills and Projects}
+
+ \item {\bf Programming Languages}: Proficient in Python, Java, Scala, Go.
+
+ \item {\bf MLOps Tools}: Experienced with Hadoop, Flink, Spark, Kubernetes, KubeFlow, TensorFlow, PyTorch, and more.
+ 
+ \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, runtime profiling.
+
+ \item {\bf AI Compiler \/ Kernel}: Graph compilation, persistent megakernel, operator fusion, cost modeling; experience with building LLM compiler \& runtime (YiRage MPK).
+
+ \item {\bf Deep Learning Models}: Knowledgeable in Transformers, RL, GNN, DNN, CNN, and more.
+
+\item {\bf Interdisciplinary Expertise}: Background in Physics, Computational Biology, Computational Chemistry, Molecular Dynamics, Quantum Mechanics simulations, and Computer Science.
+
+\item{\bf Open Source Highlights}:
+
+\begin{itemize}
+  \item {\bf Research CLI} — Command-line AI workflow tool with academic research features; multi-model providers and MCP tooling. \link {https://github.com/iechor-research/research-cli}
+  \item {\bf JAX-sklearn} — Drop-in scikit-learn replacement with automatic JAX acceleration (\textit{13{,}058 tests passed; PyPI release}). \link {https://github.com/chenxingqiang/jax-sklearn}
+  \item {\bf YouTube-DNN-RecSys} — Clean TensorFlow \& Spark implementations for YouTube-style recommendation models (Python+Scala). \link {https://github.com/chenxingqiang/YouTube-DNN-RecSys}
+  \item {\bf Questions-Gen} — Math competition problem generator (Qwen3-14B, RL GRPO, KD; CLI \& HF models). \link {https://github.com/chenxingqiang/GenQuestion}
+  \item {\bf DeepMicroPath} — Multi-mode research agent with microbiology specialization; non-intrusive wrapper enabling auto/default/microbiology prompts; Docker/SLURM deployment. \link {https://github.com/chenxingqiang/DeepMicroPath}
+  \item {\bf Medical-NER-Qwen-4B-Thinking} — Qwen3-4B-Thinking fine-tune via LoRA for medical entity \& relation extraction (English). \link {https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking}
+  \item {\bf QuestionsGen-Qwen3-14B-Final (FP)} — Full-precision merged final model trained with Unsloth; deployment-ready HF weights. \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
+  \item {\bf YiRage Persistent Kernel (MPK)} — LLM megakernel compiler \& runtime achieving 1.2×–6.7× latency reduction. \link {http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage}
+\end{itemize}
+
+\end{rSection}
+
+
+\begin{rSection}{Experience}
+
+\begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
+{\textbf{R\&D Department}}{Sep. 2022 - Present}
+\item {Led development of \textbf{YiRage Persistent Kernel (MPK)} — an LLM compiler \& runtime that compiles end-to-end inference into a single \textbf{megakernel}, reducing latency by \textbf{1.2×–6.7×}.}\\
+\item {Implemented fused operators (e.g., RMSNorm+Linear), optimized scheduling (workers \& local schedulers), and persistent execution model to minimize launch overhead.}\\
+\item {Integrated Triton \& FlashInfer kernels; added runtime profiling and cost models; enabled multi-GPU scaling and NVSHMEM-backed tensors.}\\
+\item {Contributed to graph compilation, kernel parameter auto-tuning, and KV-cache friendly memory layout for decoder-only LLMs.}\\
+\item {Published findings and filed patents on LLM inference acceleration for data center \& edge deployments.}\\
+\item {At a ReRAM chip company, owned backend compiler adaptation and software ecosystem; focused on LLVM backend Target for the in-house SoC, driving code standardization and complex ISA development.}\\
+\item {Led AI model (incl. LLMs) conversion and fine-grained analysis to support multiple runtimes; evaluated operator-level metrics during inference (Cycles/MACs, etc.) and compute efficiency; integrated TVM, ONNX, MLCommons, TensorFlow/PyTorch into YZlite to collect operator metrics across runtimes and produce benchmarks on various chips.}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\textbf{Privacy-preserving Algorithms Engineer, Trustbe.cn}}{Hangzhou, China}
+{\textbf{IT Group}}{Sep. 2021 - Sep. 2022}
+\item {Led research in privacy and security, focusing on homomorphic encryption, federated learning, and secure multi-party computation.}\\
+\item {Designed secure, privacy-preserving systems for AI applications in finance.}\\
+\item {Open Source Contribution: Developed \textbf{Secret-Learn}, a privacy-preserving ML library with \textbf{573 implementations} (191 algorithms × FL/SS/SL modes), 100\% sklearn API compatible, JAX-accelerated (\textbf{5×+ speedup}), and integrated with SecretFlow for federated learning, secret sharing, and split learning (\textbf{PyPI release, 150,000+ lines of code}).}\\
+\link{https://github.com/chenxingqiang/Secret-Learn}\\
+\item {Published research outcomes and patented innovative work.}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\textbf{Senior Algorithms Engineer, Yalla Group (NYSE: YALA)}}{Hangzhou, China}
+{\textbf{Data Center Engineering Group}}{Sep. 2020 - Sep. 2021}
+\item {Developed and improved the ChatRooms Recommendation System for Yalla App, enhancing user retention and activation time.}\\
+\item {Created a User Risk Control System for Ludo App, reducing users’ refund rate.}\\
+\item {Built a GAME AI Robot for card games, improving user engagement.}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\textbf{Senior Algorithms Engineer, Gejia Network Tech}}{Hangzhou, China}
+{\textbf{Searching\&Recommendation Engineering Group}}{Mar. 2019 - Sep. 2020}
+\item {Developed recommendation modules for e-commerce scenarios, enhancing CTR and CVR.}\\
+\item {Improved recommendation system performance through multi-objective models and strategy optimization.}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\textbf{Machine Learning Engineer, Bianlifeng Tech}}{Beijing, China}
+{\textbf{Data Engineering Group}}{Mar. 2017 - Mar. 2019}
+\item {Managed the Sales Forecasting Project, achieving precise demand and supply outcomes for 50 stores.}\\
+\item {Established the Customers\&Products Recognition Project, linking customer IDs with purchases.}\\
+\item {Developed a model to detect and recognize goods, assisting in express checkout.}\\
+\end{rSubsection}
+
+\end{rSection}
+
+\begin{rSection}{Undergraduate Project}
+\begin{rSubsection}{\bf Molecular Dynamics Simulation of Proteins with QM/MM model  }{Xiamen university, China}
+{\bf (China National Funds) }{Sep. 2014 - Mar. 2017}
+  \item {Conducted research on protein dynamics simulations using quantum mechanics, and analyzed biological information of proteins. This involved interdisciplinary knowledge in theoretical physics, structural biology, computational chemistry, and computer science.}\\
+\end{rSubsection}
+
+\begin{rSubsection}{\bf Development of Liquid Biopsy ct-DNA Kit and DNA Methylation Data Analysis  }{Lepu Medical, China}
+{\bf (R\&D Engineer Intern) }{Mar. 2016 - Mar. 2017}
+  \item {Worked on the development of liquid biopsy kits, which required specific biomarkers for cancer screening. Using existing gene chip data (TCGA\&GEO), we analyzed 10,000 samples to locate the methylation site on the Septin9 human gene, an early indicator of colon cancer. This informed the development of a more accurate clinical diagnostic kit for colon cancer.}\\
+\end{rSubsection}
+
+\end{rSection}
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Awards}
+
+\begin{rSubsection}{}{}
+{}{}
+  \item {Judge, First Screening on Best Practices of Applied Algorithms, 2021.}\\
+  \item {Ranks 57 and 32 out of 1739, IEEE ICDM Global Meteorological AI Challenge, 2018.}\\
+  \item {Meritorious Winner, Mathematical Contest in Modeling, North American College Students, 2013.}\\
+  \item {6th place, International Solar Energy Decathlon Competition, 2013.}\\
+  \item {Outstanding Prize, Contemporary Undergraduate Mathematical Contest in Modeling, 2012.}\\
+\end{rSubsection}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+\begin{rSection}{Publications}
+\begin{rSubsection}{}{}
+{}{}
+  \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. \textit{Acta Crystallographica Section D: Structural Biology.} 2017 Oct 1;73(10):793-803.}\\
+  \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. \textit{Sensors and Actuators B: Chemical}. 2018 Jan 1;254:44-51.}\\
+  \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. \textit{PloS one}. 2015 Jul 22;10(7):e0133389.}\\
+  \item {Chen Y, Qi H, Li X, Cai M, Chen X, Liu W, Shuai J. Suppressing effect of C a 2+ blips on puff amplitudes by inhibiting channels to prevent recovery. \textit{Physical Review E}. 2016 Aug 15;94(2):022411.}\\
+\end{rSubsection}
+\end{rSection}
+
+
+%----------------------------------------------------------------------------------------
+
+
+
+\end{document}
+
