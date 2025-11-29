@@ -53,7 +53,7 @@
  
  \item {\bf 大语言模型 \/ 推理系统}：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、运行时分析。
 
- \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；拥有构建LLM编译器与运行时(YiRage MPK)的经验。
+ \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；拥有构建LLM编译器与运行时(YiRage YPK)的经验。
 
  \item {\bf 深度学习模型}：精通Transformers、RL、GNN、DNN、CNN 等。
 
@@ -90,7 +90,7 @@
   
   \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
   
-  \item {\bf YiRage持久化内核(MPK)} — LLM超级内核编译器与运行时，实现1.2×–6.7×延迟缩减。 
+  \item {\bf YiRage持久化内核(YPK)} — LLM超级内核编译器与运行时，实现1.2×–6.7×延迟缩减。 
   
   \link {http://github.com/chenxingqiang/YiRage}
 \end{itemize}
@@ -102,7 +102,7 @@
 
 \begin{rSubsection}{\textbf{高级AI编译器工程师，亿铸智能}}{杭州，中国}
 {\textbf{研发部门}}{2022年9月 - 至今}
-\item {主导开发{\textbf{YiRage 持久化内核(MPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
+\item {主导开发{\textbf{YiRage 持久化内核(YPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
 \item {设计并实现融合算子架构（RMSNorm + Linear 等），消除{\textbf{85\%}}的内核启动开销，单次推理延迟从{\textbf{120ms 降至 18ms}}（批大小=1）。}\\
 \item {构建自适应调度系统，整合 Triton 与 FlashInfer 内核，支持多GPU扩展至{\textbf{8卡并行}}，吞吐量达到{\textbf{15,000 tokens/秒}}。}\\
 \item {开发图编译优化器，实现自动内核参数调优和KV-cache内存布局优化，内存访问效率提升{\textbf{60\%}}，缓存命中率达到{\textbf{92\%}}。}\\

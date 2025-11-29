@@ -52,7 +52,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
  
  \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, runtime profiling.
 
- \item {\bf AI Compiler \/ Kernel}: Graph compilation, persistent megakernel, operator fusion, cost modeling; experience with building LLM compiler \& runtime (YiRage MPK).
+ \item {\bf AI Compiler \/ Kernel}: Graph compilation, persistent megakernel, operator fusion, cost modeling; experience with building LLM compiler \& runtime (YiRage YPK).
 
  \item {\bf Deep Learning Models}: Knowledgeable in Transformers, RL, GNN, DNN, CNN, and more.
 
@@ -68,7 +68,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
   \item {\bf DeepMicroPath} — Multi-mode research agent with microbiology specialization; non-intrusive wrapper enabling auto/default/microbiology prompts; Docker/SLURM deployment. \link {https://github.com/chenxingqiang/DeepMicroPath}
   \item {\bf Medical-NER-Qwen-4B-Thinking} — Qwen3-4B-Thinking fine-tune via LoRA for medical entity \& relation extraction (English). \link {https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking}
   \item {\bf QuestionsGen-Qwen3-14B-Final (FP)} — Full-precision merged final model trained with Unsloth; deployment-ready HF weights. \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
-  \item {\bf YiRage Persistent Kernel (MPK)} — LLM megakernel compiler \& runtime achieving 1.2×–6.7× latency reduction. \link {http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage}
+  \item {\bf YiRage Persistent Kernel (YPK)} — LLM megakernel compiler \& runtime achieving 1.2×–6.7× latency reduction. \link {http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage}
 \end{itemize}
 
 \end{rSection}
@@ -78,7 +78,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
 {\textbf{R\&D Department}}{Sep. 2022 - Present}
-\item {Led development of \textbf{YiRage Persistent Kernel (MPK)} — an LLM compiler \& runtime that compiles end-to-end inference into a single \textbf{megakernel}, reducing latency by \textbf{1.2×–6.7×}.}\\
+\item {Led development of \textbf{YiRage Persistent Kernel (YPK)} — an LLM compiler \& runtime that compiles end-to-end inference into a single \textbf{megakernel}, reducing latency by \textbf{1.2×–6.7×}.}\\
 \item {Implemented fused operators (e.g., RMSNorm+Linear), optimized scheduling (workers \& local schedulers), and persistent execution model to minimize launch overhead.}\\
 \item {Integrated Triton \& FlashInfer kernels; added runtime profiling and cost models; enabled multi-GPU scaling and NVSHMEM-backed tensors.}\\
 \item {Contributed to graph compilation, kernel parameter auto-tuning, and KV-cache friendly memory layout for decoder-only LLMs.}\\

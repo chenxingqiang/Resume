@@ -53,7 +53,7 @@
  
  \item {\bf 大语言模型 \/ 推理系统}：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、运行时分析。
 
- \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；拥有构建LLM编译器与运行时(YiRage MPK)的经验。
+ \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；拥有构建LLM编译器与运行时(YiRage YPK)的经验。
 
  \item {\bf 深度学习模型}：熟悉 Transformers、RL、GNN、DNN、CNN 等。
 
@@ -90,7 +90,7 @@
   
   \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
   
-  \item {\bf YiRage持久化内核(MPK)} — LLM超级内核编译器。
+  \item {\bf YiRage持久化内核(YPK)} — LLM超级内核编译器。
   
   \link {http://github.com/chenxingqiang/YiRage}
 \end{itemize}
@@ -102,14 +102,14 @@
 
 \begin{rSubsection}{高级AI编译器工程师，亿铸智能}{杭州，中国}
 {\textbf{研发部门}}{2022年9月 - 2025年10月}
-\item {主导开发{\textbf{YiRage 持久化内核(MPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
+\item {主导开发{\textbf{YiRage 持久化内核(YPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
 \item {设计并实现融合算子架构（RMSNorm + Linear 等），消除{\textbf{85\%}}的内核启动开销，单次推理延迟从{\textbf{120ms 降至 18ms}}（批大小=1）。}\\
 \item {构建自适应调度系统，整合 Triton 与 FlashInfer 内核，支持多GPU扩展至{\textbf{8卡并行}}，吞吐量达到{\textbf{15,000 tokens/秒}}。}\\
 \item {开发图编译优化器，实现自动内核参数调优和KV-cache内存布局优化，内存访问效率提升{\textbf{60\%}}，缓存命中率达到{\textbf{92\%}}。}\\
 \item {技术成果转化：产品已部署到{\textbf{2个}}数据中心客户。}\\
 \item {在 ReRAM 芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的 LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。}\\
 \item {承担 AI 模型（含 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs 等）与计算效率；集成 TVM、ONNX、MLCommons、TensorFlow/PyTorch 于 YZlite，对多种模型运行时进行算子级指标统计并输出各类芯片上的 benchmark。}\\
-\item {YiRage 持久化内核 (MPK) — LLM 超级内核编译器与运行时，实现 1.5×–6.8× 延迟缩减。}\\
+\item {YiRage 持久化内核 (YPK) — LLM 超级内核编译器与运行时，实现 1.5×–6.8× 延迟缩减。}\\
 \link{http://github.com/chenxingqiang/YiRage}\\
 \item {ReRAM-YZLite — 亿铸科技 ReRAM 芯片的机器学习模型开发工具包，提供命令行接口、Python API、模型分析器、训练评估、量化等功能，支持嵌入式平台的 ML 模型开发。}\\
 \link{https://github.com/ReRAM-Labs/yzlite}\\
