@@ -106,6 +106,7 @@ This resume showcases:
 
 ## 📫 Contact / 联系方式
 
+- **Name**: Chen Xingqiang (陈星强)
 - **Location**: Hangzhou, China / 杭州，中国
 - **Phone**: +86 150-0133-4125
 - **Email**: joy6677@outlook.com
@@ -119,5 +120,5 @@ This repository is for personal use. All rights reserved.
 
 ---
 
-© 2025 Chen Xingqiang. All rights reserved.
+© 2025 Chen Xingqiang (陈星强). All rights reserved.
 
