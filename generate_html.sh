@@ -128,19 +128,19 @@ cat > docs/index.html << 'EOF'
             <div class="version-card">
                 <h3>📄 English Resume</h3>
                 <a href="en.html" class="btn">View HTML</a>
-                <a href="../xingqiangchen-en.pdf" class="btn btn-secondary">Download PDF</a>
+                <a href="xingqiangchen-en.pdf" class="btn btn-secondary" download>Download PDF</a>
             </div>
             
             <div class="version-card">
                 <h3>📄 中文简历</h3>
                 <a href="zn.html" class="btn">查看 HTML</a>
-                <a href="../xingqiangchen-zn.pdf" class="btn btn-secondary">下载 PDF</a>
+                <a href="xingqiangchen-zn.pdf" class="btn btn-secondary" download>下载 PDF</a>
             </div>
             
             <div class="version-card">
                 <h3>📄 中文简历 (调整版)</h3>
                 <a href="zn-adjust.html" class="btn">查看 HTML</a>
-                <a href="../xingqiangchen-zn-adjust.pdf" class="btn btn-secondary">下载 PDF</a>
+                <a href="xingqiangchen-zn-adjust.pdf" class="btn btn-secondary" download>下载 PDF</a>
             </div>
         </div>
         
@@ -163,10 +163,10 @@ cat > docs/style.css << 'EOF'
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     line-height: 1.6;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px;
-    background: #f7fafc;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: #333;
 }
 
@@ -180,36 +180,80 @@ h1 {
     font-size: 2.5em;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 h2 {
     font-size: 1.8em;
     color: #667eea;
     border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
+    margin-top: 2em;
 }
 
-a {
-    color: #667eea;
-    text-decoration: none;
+h3 {
+    font-size: 1.4em;
+    color: #4a5568;
+    margin-top: 1.5em;
+    padding: 10px 0;
+    border-left: 4px solid #667eea;
+    padding-left: 15px;
+    background: #f7fafc;
 }
 
-a:hover {
-    text-decoration: underline;
+/* 工作经历样式优化 */
+.work-experience {
+    margin-bottom: 2.5em;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #667eea;
 }
 
+/* 列表样式 */
 ul {
-    list-style-type: disc;
-    padding-left: 25px;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+li::before {
+    content: "▸";
+    color: #667eea;
+    font-weight: bold;
+    position: absolute;
+    left: 5px;
+}
+
+/* 链接样式 */
+a {
+    color: #667eea;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    border-bottom: 1px solid #667eea;
 }
 
 strong, b {
     color: #2d3748;
     font-weight: 600;
+    background: linear-gradient(to right, #ffd89b 0%, #19547b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 code {
@@ -217,17 +261,57 @@ code {
     padding: 2px 6px;
     border-radius: 3px;
     font-family: "Monaco", "Menlo", "Courier New", monospace;
+    color: #e53e3e;
 }
 
+/* 段落间距 */
+p {
+    margin-bottom: 1em;
+    line-height: 1.8;
+}
+
+/* 水平线 */
+hr {
+    border: none;
+    border-top: 2px solid #e2e8f0;
+    margin: 2em 0;
+}
+
+/* 打印样式 */
 @media print {
     body {
         background: white;
         max-width: 100%;
         padding: 0;
     }
+    
+    .work-experience {
+        page-break-inside: avoid;
+        box-shadow: none;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
 }
 EOF
 
+# Copy PDF files to docs directory
+echo "Copying PDF files to docs directory..."
+cp *.pdf docs/ 2>/dev/null || true
+
+echo ""
 echo "HTML files generated successfully!"
 echo ""
 echo "Generated files:"
@@ -236,6 +320,7 @@ echo "  - docs/en.html (English resume)"
 echo "  - docs/zn.html (Chinese resume)"
 echo "  - docs/zn-adjust.html (Chinese adjusted resume)"
 echo "  - docs/style.css (Stylesheet)"
+echo "  - docs/*.pdf (PDF files)"
 echo ""
 echo "To enable GitHub Pages:"
 echo "  1. Push these changes to GitHub"
