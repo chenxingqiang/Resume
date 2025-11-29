@@ -19,7 +19,7 @@ pandoc xingqiangchen-en.tex -o docs/en.html \
 echo "Converting Chinese resume to HTML..."
 pandoc xingqiangchen-zn.tex -o docs/zn.html \
   --standalone \
-  --metadata title="陈兴强 - 简历" \
+  --metadata title="陈星强 - 简历" \
   --css=style.css \
   -V lang=zh
 
@@ -27,7 +27,7 @@ pandoc xingqiangchen-zn.tex -o docs/zn.html \
 echo "Converting Chinese adjusted resume to HTML..."
 pandoc xingqiangchen-zn-adjust.tex -o docs/zn-adjust.html \
   --standalone \
-  --metadata title="陈兴强 - 简历 (调整版)" \
+  --metadata title="陈星强 - 简历 (调整版)" \
   --css=style.css \
   -V lang=zh
 
@@ -121,7 +121,7 @@ cat > docs/index.html << 'EOF'
 </head>
 <body>
     <div class="container">
-        <h1>Chen Xingqiang (陈兴强)</h1>
+        <h1>Chen Xingqiang (陈星强)</h1>
         <p class="subtitle">Senior AI Compiler Engineer | LLM Systems | Privacy-Preserving ML</p>
         
         <div class="versions">
