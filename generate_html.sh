@@ -9,27 +9,135 @@ mkdir -p docs
 
 # Generate English resume HTML
 echo "Converting English resume to HTML..."
-pandoc xingqiangchen-en.tex -o docs/en.html \
+pandoc xingqiangchen-en.tex -o docs/en-temp.html \
   --standalone \
   --metadata title="Xingqiang Chen - Resume" \
   --css=style.css \
   -V lang=en
 
+# Add professional header to English resume
+cat > docs/en.html << 'ENEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xingqiang Chen - Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Professional Header -->
+    <div class="resume-header">
+        <div class="resume-photo">
+            <img src="img/face.jpg" alt="Chen Xingqiang">
+        </div>
+        <div class="resume-info">
+            <h1 style="margin: 0; border: none;">CHEN XINGQIANG</h1>
+            <div class="subtitle">陈星强</div>
+            <div class="resume-meta">
+                <div class="resume-meta-item"><strong>Title:</strong> Senior AI Compiler Engineer</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / Privacy-Preserving ML</div>
+                <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
+                <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
+                <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
+                <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
+            </div>
+        </div>
+    </div>
+ENEOF
+
+# Append the content (skip the header part)
+tail -n +28 docs/en-temp.html | head -n -2 >> docs/en.html
+echo "</body></html>" >> docs/en.html
+rm docs/en-temp.html
+
 # Generate Chinese resume HTML
 echo "Converting Chinese resume to HTML..."
-pandoc xingqiangchen-zn.tex -o docs/zn.html \
+pandoc xingqiangchen-zn.tex -o docs/zn-temp.html \
   --standalone \
   --metadata title="陈星强 - 简历" \
   --css=style.css \
   -V lang=zh
 
+# Add professional header to Chinese resume
+cat > docs/zn.html << 'ZNEOF'
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈星强 - 简历</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Professional Header -->
+    <div class="resume-header">
+        <div class="resume-photo">
+            <img src="img/face.jpg" alt="陈星强">
+        </div>
+        <div class="resume-info">
+            <h1 style="margin: 0; border: none;">陈星强</h1>
+            <div class="subtitle">CHEN XINGQIANG</div>
+            <div class="resume-meta">
+                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
+                <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
+                <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
+                <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
+            </div>
+        </div>
+    </div>
+ZNEOF
+
+# Append the content (skip the header part)
+tail -n +28 docs/zn-temp.html | head -n -2 >> docs/zn.html
+echo "</body></html>" >> docs/zn.html
+rm docs/zn-temp.html
+
 # Generate Chinese adjusted resume HTML
 echo "Converting Chinese adjusted resume to HTML..."
-pandoc xingqiangchen-zn-adjust.tex -o docs/zn-adjust.html \
+pandoc xingqiangchen-zn-adjust.tex -o docs/zn-adjust-temp.html \
   --standalone \
   --metadata title="陈星强 - 简历 (调整版)" \
   --css=style.css \
   -V lang=zh
+
+# Add professional header to Chinese adjusted resume
+cat > docs/zn-adjust.html << 'ZNAEOF'
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈星强 - 简历 (调整版)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Professional Header -->
+    <div class="resume-header">
+        <div class="resume-photo">
+            <img src="img/face.jpg" alt="陈星强">
+        </div>
+        <div class="resume-info">
+            <h1 style="margin: 0; border: none;">陈星强</h1>
+            <div class="subtitle">CHEN XINGQIANG</div>
+            <div class="resume-meta">
+                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
+                <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
+                <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
+                <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
+            </div>
+        </div>
+    </div>
+ZNAEOF
+
+# Append the content (skip the header part)
+tail -n +28 docs/zn-adjust-temp.html | head -n -2 >> docs/zn-adjust.html
+echo "</body></html>" >> docs/zn-adjust.html
+rm docs/zn-adjust-temp.html
 
 # Create landing page
 cat > docs/index.html << 'EOF'
@@ -291,150 +399,361 @@ EOF
 
 # Create CSS file
 cat > docs/style.css << 'EOF'
+/* ============================================
+   Academic Professional Style CSS
+   Inspired by Tsinghua University Faculty Pages
+   ============================================ */
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    line-height: 1.6;
-    max-width: 1000px;
+    line-height: 1.8;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #333;
+    padding: 50px 30px;
+    background: #f8f9fa;
+    color: #2c3e50;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Professional Header with Photo */
+.resume-header {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #2c5aa0;
+}
+
+.resume-photo {
+    flex-shrink: 0;
+}
+
+.resume-photo img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 3px solid #2c5aa0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resume-info {
+    flex: 1;
+}
+
+.resume-info h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.2em;
+    color: #1a365d;
+    font-weight: 600;
+}
+
+.resume-info .subtitle {
+    font-size: 1.1em;
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.resume-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 15px;
+    background: #f7fafc;
+    border-radius: 6px;
+    border-left: 3px solid #4299e1;
+}
+
+.resume-meta-item {
+    color: #4a5568;
+    font-size: 0.95em;
+}
+
+.resume-meta-item strong {
     color: #2d3748;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    font-weight: 600;
+    margin-right: 8px;
 }
 
+/* Section Headers */
 h1 {
-    font-size: 2.5em;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 10px;
-    text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2.2em;
+    color: #1a365d;
+    border-bottom: 3px solid #2c5aa0;
+    padding-bottom: 12px;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+    font-weight: 600;
 }
 
 h2 {
-    font-size: 1.8em;
-    color: #667eea;
+    font-size: 1.6em;
+    color: #2c5aa0;
     border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 8px;
-    margin-top: 2em;
+    padding-bottom: 10px;
+    margin-top: 2.2em;
+    margin-bottom: 1em;
+    font-weight: 600;
 }
 
 h3 {
-    font-size: 1.4em;
-    color: #4a5568;
-    margin-top: 1.5em;
-    padding: 10px 0;
-    border-left: 4px solid #667eea;
-    padding-left: 15px;
+    font-size: 1.3em;
+    color: #2d3748;
+    margin-top: 1.8em;
+    margin-bottom: 0.8em;
+    padding: 12px 0 12px 18px;
+    border-left: 4px solid #4299e1;
     background: #f7fafc;
+    font-weight: 600;
 }
 
-/* 工作经历样式优化 */
-.work-experience {
+h4 {
+    font-size: 1.1em;
+    color: #4a5568;
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+}
+
+/* Section Containers */
+.rSection, div[class*="Section"] {
     margin-bottom: 2.5em;
-    padding: 20px;
+    padding: 25px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #2c5aa0;
 }
 
-/* 列表样式 */
-ul {
-    list-style-type: none;
-    padding-left: 0;
+/* Work Experience / Project Cards */
+.rSubsection, div[class*="Subsection"] {
+    margin-bottom: 2em;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #4299e1;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
 }
 
-li {
-    margin-bottom: 12px;
-    padding-left: 25px;
-    position: relative;
-}
-
-li::before {
-    content: "▸";
-    color: #667eea;
-    font-weight: bold;
-    position: absolute;
-    left: 5px;
-}
-
-/* 链接样式 */
-a {
-    color: #667eea;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
+.rSubsection:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
     transition: all 0.3s ease;
 }
 
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+
+li {
+    margin-bottom: 14px;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.7;
+    color: #4a5568;
+}
+
+li::before {
+    content: "■";
+    color: #4299e1;
+    font-size: 0.7em;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+/* Links */
+a {
+    color: #2c5aa0;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
 a:hover {
-    border-bottom: 1px solid #667eea;
+    color: #1a365d;
+    border-bottom: 1px solid #2c5aa0;
 }
 
+/* Text Emphasis */
 strong, b {
-    color: #2d3748;
+    color: #1a365d;
     font-weight: 600;
-    background: linear-gradient(to right, #ffd89b 0%, #19547b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
+em, i {
+    color: #2d3748;
+    font-style: italic;
+}
+
+/* Code Blocks */
 code {
     background: #edf2f7;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: "Monaco", "Menlo", "Courier New", monospace;
-    color: #e53e3e;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+    color: #c7254e;
+    font-size: 0.9em;
 }
 
-/* 段落间距 */
+/* Paragraphs */
 p {
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
     line-height: 1.8;
+    color: #4a5568;
 }
 
-/* 水平线 */
+/* Tables (Academic Style) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    background: white;
+}
+
+table th {
+    background: #2c5aa0;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+table tr:hover {
+    background: #f7fafc;
+}
+
+/* Horizontal Rules */
 hr {
     border: none;
     border-top: 2px solid #e2e8f0;
-    margin: 2em 0;
+    margin: 2.5em 0;
 }
 
-/* 打印样式 */
+/* Blockquotes */
+blockquote {
+    margin: 1.5em 0;
+    padding: 15px 20px;
+    background: #f7fafc;
+    border-left: 4px solid #4299e1;
+    color: #4a5568;
+    font-style: italic;
+}
+
+/* Print Styles */
 @media print {
     body {
         background: white;
         max-width: 100%;
         padding: 0;
+        font-size: 11pt;
     }
     
-    .work-experience {
+    .resume-header {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .rSection, .rSubsection {
         page-break-inside: avoid;
         box-shadow: none;
     }
+    
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
 }
 
-/* 响应式设计 */
+/* Responsive Design */
 @media (max-width: 768px) {
     body {
-        padding: 20px 10px;
+        padding: 25px 15px;
+    }
+    
+    .resume-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .resume-photo img {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .resume-info h1 {
+        font-size: 1.8em;
+    }
+    
+    .resume-meta {
+        grid-template-columns: 1fr;
     }
     
     h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     
     h2 {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
+    
+    h3 {
+        font-size: 1.2em;
+    }
+    
+    .rSection, .rSubsection {
+        padding: 15px;
+    }
+}
+
+/* Title Block (Pandoc Generated) */
+#title-block-header {
+    text-align: center;
+    margin-bottom: 2em;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+#title-block-header .title {
+    font-size: 2.5em;
+    color: #1a365d;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #718096;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mt-0 {
+    margin-top: 0;
 }
 EOF
 
