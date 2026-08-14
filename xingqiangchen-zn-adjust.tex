@@ -14,7 +14,7 @@
 \renewcommand{\baselinestretch}{1}
 \name{CHEN XINGQIANG} % Your name
 \address{杭州，中国} % Your secondary addess (optional)
-\address{+86 150-0133-4125 \\ joy6677@outlook.com }  % Your phone number and email
+\address{+86 150-0133-4125 \\ joy6677@outlook.com \\ github.com/chenxingqiang}
 
 \begin{document}
 
@@ -47,9 +47,9 @@
 
 \begin{rSection}{技能与项目}
 
- \item {\bf 编程语言}：精通 Python、Java、Scala、Go。
+ \item {\bf 编程语言}：精通 C++、Python，熟悉 Java、Scala、Go、CUDA。
 
- \item {\bf MLOps工具}：熟练使用Hadoop、Flink、Spark、Kubernetes、KubeFlow、TensorFlow、PyTorch等。
+ \item {\bf MLOps工具}：熟练使用 PyTorch、TensorFlow、Triton、TVM、Kubernetes；Hadoop、Flink、Spark 等。
  
  \item {\bf 大语言模型 \/ 推理系统}：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、GPU Profiling 与 Replay。
 
@@ -96,7 +96,7 @@
   
   \item {\bf YiRage持久化内核(YPK)} — LLM超级内核编译器。
   
-  \link {http://github.com/chenxingqiang/YiRage}
+  \link {https://github.com/chenxingqiang/YiRage}
 \end{itemize}
 
 \end{rSection}
@@ -105,7 +105,7 @@
 \begin{rSection}{工作经历}
 
 \begin{rSubsection}{高级AI编译器工程师，亿铸智能}{杭州，中国}
-{\textbf{研发部门}}{2022年9月 - 2025年10月}
+{\textbf{研发部门}}{2022年9月 - 至今}
 \item {主导开发{\textbf{YiRage 持久化内核(YPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
 \item {设计并实现融合算子架构（RMSNorm + Linear 等），消除{\textbf{85\%}}的内核启动开销，单次推理延迟从{\textbf{120ms 降至 18ms}}（批大小=1）。}\\
 \item {构建自适应调度系统，整合 Triton 与 FlashInfer 内核，支持多GPU扩展至{\textbf{8卡并行}}，吞吐量达到{\textbf{15,000 tokens/秒}}。}\\
@@ -113,8 +113,8 @@
 \item {技术成果转化：产品已部署到{\textbf{2个}}数据中心客户。}\\
 \item {在 ReRAM 芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的 LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。}\\
 \item {承担 AI 模型（含 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs 等）与计算效率；集成 TVM、ONNX、MLCommons、TensorFlow/PyTorch 于 YZlite，对多种模型运行时进行算子级指标统计并输出各类芯片上的 benchmark。}\\
-\item {YiRage 持久化内核 (YPK) — LLM 超级内核编译器与运行时，实现 1.5×–6.8× 延迟缩减。}\\
-\link{http://github.com/chenxingqiang/YiRage}\\
+\item {YiRage 持久化内核 (YPK) — LLM 超级内核编译器与运行时，实现 1.2×–6.7× 延迟缩减。}\\
+\link{https://github.com/chenxingqiang/YiRage}\\
 \item {ReRAM-YZLite — 亿铸科技 ReRAM 芯片的机器学习模型开发工具包，提供命令行接口、Python API、模型分析器、训练评估、量化等功能，支持嵌入式平台的 ML 模型开发。}\\
 \link{https://github.com/ReRAM-Labs/yzlite}\\
 \link{https://reram-labs.github.io/yzlite}\\
@@ -156,20 +156,15 @@
 \end{rSubsection}
 \vspace{0.5em}
 \begin{rSubsection}{高级算法工程师，格家网络科技}{杭州，中国}
-{\textbf{搜索推荐工程组}}{2019年4月 - 2020年9月}
+{\textbf{搜索推荐工程组}}{2019年3月 - 2020年9月}
 \item {设计多场景推荐算法架构，整合协同过滤、深度学习和知识图谱技术，商品点击率(CTR)提升{\textbf{28\%}}，转化率(CVR)增长{\textbf{35\%}}，GMV增长{\textbf{4200万}}人民币。}\\
 \item {优化实时推荐引擎，支持{\textbf{100万}}QPS并发，响应延迟控制在{\textbf{50ms}}以内，推荐覆盖率达到{\textbf{95\%}}，用户满意度评分从{\textbf{3.2}}提升至{\textbf{4.6}}。}\\
 \item {YouTube-DNN-RecSys — YouTube 风格推荐模型的简洁 TensorFlow 与 Spark 实现（Python+Scala）（{\textbf{60 stars}}）。}\\
 \link{https://github.com/chenxingqiang/YouTube-DNN-RecSys}\\
 \end{rSubsection}
 \vspace{0.5em}
-\begin{rSubsection}{机器学习工程师，便利蜂 \& 心知科技}{北京，中国}
-  {\textbf{数据工程组}}{2018年3月 - 2019年3月}
-  \item {因便利蜂销量预测需要格点气象数据涉密，合同迁入心知天气。基于格点级别数据进行便利蜂零售预测，构建高精度时空预测模型，提升销售预测准确性。}\\
-  \end{rSubsection}
-  \vspace{0.5em}
-\begin{rSubsection}{机器学习工程师，便利蜂 \ 虫极科技}{北京，中国}
-{\textbf{数据工程组}}{2017年6月 - 2018年2月}
+\begin{rSubsection}{机器学习工程师，便利蜂科技}{北京，中国}
+{\textbf{数据工程组}}{2017年3月 - 2019年3月}
 \item {构建智能销售预测系统，覆盖{\textbf{50+}}门店，预测精度达到{\textbf{92\%}}，库存周转率提升{\textbf{30\%}}，减少缺货损失{\textbf{600万}}人民币，降低滞销损失{\textbf{400万}}人民币。}\\
 \item {开发用户画像与商品关联分析系统，处理{\textbf{1000万+}}用户行为数据，客户身份识别准确率{\textbf{89\%}}，个性化推荐带来销售增长{\textbf{22\%}}。}\\
 \item {设计计算机视觉商品识别系统，支持{\textbf{500+}}SKU自动识别，识别准确率{\textbf{96\%}}，收银效率提升{\textbf{60\%}}，顾客排队时间减少{\textbf{40\%}}。}\\
@@ -179,7 +174,7 @@
 
 \end{rSection}
 
-\begin{rSection}{本科研究项目}
+\begin{rSection}{研究与实习}
 \begin{rSubsection}{\bf 蛋白质分子动力学仿真与QM/MM模型  }{厦门大学，中国}
 {\bf (国家自然科学基金项目) }{2014年9月 - 2017年3月}
   \item {利用量子力学进行蛋白质动力学仿真研究，分析蛋白质生物信息。涉及理论物理、结构生物学、计算化学和计算机科学等跨学科知识。}\\

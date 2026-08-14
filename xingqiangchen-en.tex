@@ -13,7 +13,7 @@
 \renewcommand{\baselinestretch}{1}
 \name{Xingqiang Chen} % Your name
 \address{Hangzhou, China} % Your secondary addess (optional)
-\address{+86 150-0133-4125 \\ joy6677@outlook.com }  % Your phone number and email
+\address{+86 150-0133-4125 \\ joy6677@outlook.com \\ github.com/chenxingqiang}
 
 \begin{document}
 
@@ -21,7 +21,7 @@
 
 \begin{rSection}{OBJECTIVE}
 {Looking for {\bf FULL TIME} roles in
-{\bf LLM Systems \/ AI Compiler for Inference} \/
+{\bf LLM Inference Systems \/ AI Agent \/ AI Compiler} \/
 {\bf Applied Foundation Models} \/
 {\bf Recommendation Systems}.}
 \end{rSection}
@@ -31,7 +31,7 @@
 
 \begin{rSection}{Education}
 
-{\bf PhD's in Biophysics and Condensed Matter} \hfill {Sep. 2014 - Jul. 2017 (Suspension) }\\ 
+{\bf Ph.D. in Biophysics and Condensed Matter} \hfill {Sep. 2014 - Jul. 2018}\\ 
 Xiamen University, Department of Physics and Engineering GPA : 3.5/4.0
 \\
 \\
@@ -46,9 +46,9 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSection}{Skills and Projects}
 
- \item {\bf Programming Languages}: Proficient in Python, Java, Scala, Go.
+ \item {\bf Programming Languages}: C++, Python; Java, Scala, Go, CUDA.
 
- \item {\bf MLOps Tools}: Experienced with Hadoop, Flink, Spark, Kubernetes, KubeFlow, TensorFlow, PyTorch, and more.
+ \item {\bf MLOps Tools}: PyTorch, TensorFlow, Triton, TVM, Kubernetes; Hadoop, Flink, Spark.
  
  \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, GPU profiling \& replay.
 
@@ -69,7 +69,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
   \item {\bf DeepMicroPath} — Multi-mode research agent with microbiology specialization; non-intrusive wrapper enabling auto/default/microbiology prompts; Docker/SLURM deployment. \link {https://github.com/chenxingqiang/DeepMicroPath}
   \item {\bf Medical-NER-Qwen-4B-Thinking} — Qwen3-4B-Thinking fine-tune via LoRA for medical entity \& relation extraction (English). \link {https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking}
   \item {\bf QuestionsGen-Qwen3-14B-Final (FP)} — Full-precision merged final model trained with Unsloth; deployment-ready HF weights. \link {https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged}
-  \item {\bf YiRage Persistent Kernel (YPK)} — LLM megakernel compiler \& runtime achieving 1.2×–6.7× latency reduction. \link {http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage}
+  \item {\bf YiRage Persistent Kernel (YPK)} — LLM megakernel compiler \& runtime achieving 1.2×–6.7× latency reduction. \link {https://github.com/chenxingqiang/YiRage}
 \end{itemize}
 
 \end{rSection}
@@ -79,47 +79,47 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
 {\textbf{R\&D Department}}{Sep. 2022 - Present}
-\item {Led development of \textbf{YiRage Persistent Kernel (YPK)} — an LLM compiler \& runtime that compiles end-to-end inference into a single \textbf{megakernel}, reducing latency by \textbf{1.2×–6.7×}.}\\
-\item {Implemented fused operators (e.g., RMSNorm+Linear), optimized scheduling (workers \& local schedulers), and persistent execution model to minimize launch overhead.}\\
-\item {Integrated Triton \& FlashInfer kernels; added runtime profiling and cost models; enabled multi-GPU scaling and NVSHMEM-backed tensors.}\\
-\item {Contributed to graph compilation, kernel parameter auto-tuning, and KV-cache friendly memory layout for decoder-only LLMs.}\\
-\item {Published findings and filed patents on LLM inference acceleration for data center \& edge deployments.}\\
-\item {At a ReRAM chip company, owned backend compiler adaptation and software ecosystem; focused on LLVM backend Target for the in-house SoC, driving code standardization and complex ISA development.}\\
-\item {Led AI model (incl. LLMs) conversion and fine-grained analysis to support multiple runtimes; evaluated operator-level metrics during inference (Cycles/MACs, etc.) and compute efficiency; integrated TVM, ONNX, MLCommons, TensorFlow/PyTorch into YZlite to collect operator metrics across runtimes and produce benchmarks on various chips.}\\
+\item {Led development of \textbf{YiRage Persistent Kernel (YPK)}, compiling end-to-end LLM inference into a single megakernel; on Llama2-7B achieved \textbf{1.2×–6.7×} latency reduction, \textbf{40\%} higher GPU utilization, and \textbf{25\%} lower memory use.}\\
+\item {Designed fused operators (RMSNorm+Linear, etc.), cutting \textbf{85\%} of kernel-launch overhead; single-request latency from \textbf{120ms to 18ms} (batch size=1).}\\
+\item {Built adaptive scheduling with Triton and FlashInfer; scaled to \textbf{8 GPUs} at \textbf{15,000 tokens/s}.}\\
+\item {Developed a graph compiler with kernel auto-tuning and KV-cache layout; memory-access efficiency \textbf{+60\%}, cache hit rate \textbf{92\%}.}\\
+\item {Filed \textbf{2} patents; deployed to \textbf{2} datacenter customers.}\\
+\item {Owned ReRAM SoC compiler backend and software ecosystem: LLVM Target, ISA bring-up, and code standardization.}\\
+\item {Led model conversion and operator-level analysis (Cycles/MACs) across runtimes; integrated TVM, ONNX, MLCommons, TensorFlow/PyTorch into YZlite for chip benchmarks.}\\
 \end{rSubsection}
 
-\begin{rSubsection}{\textbf{Privacy-preserving Algorithms Engineer, Trustbe.cn}}{Hangzhou, China}
+\begin{rSubsection}{\textbf{Privacy-preserving Algorithms Engineer, Trustbe (蓝象智联)}}{Hangzhou, China}
 {\textbf{IT Group}}{Sep. 2021 - Sep. 2022}
-\item {Led research in privacy and security, focusing on homomorphic encryption, federated learning, and secure multi-party computation.}\\
-\item {Designed secure, privacy-preserving systems for AI applications in finance.}\\
-\item {Open Source Contribution: Developed \textbf{Secret-Learn}, a privacy-preserving ML library with \textbf{573 implementations} (191 algorithms × FL/SS/SL modes), 100\% sklearn API compatible, JAX-accelerated (\textbf{5×+ speedup}), and integrated with SecretFlow for federated learning, secret sharing, and split learning (\textbf{PyPI release, 150,000+ lines of code}).}\\
+\item {Built a homomorphic-encryption federated learning platform for \textbf{20+} financial institutions; \textbf{15\%} higher accuracy with privacy preserved, \textbf{40\%} shorter training time.}\\
+\item {Designed MPC protocols for joint risk models at \textbf{8} banks; fraud detection \textbf{96.7\%} accuracy, \textbf{30\%} lower false positives.}\\
+\item {Open source: \textbf{Secret-Learn}, \textbf{573} implementations (191 algorithms × FL/SS/SL), 100\% sklearn-compatible, JAX \textbf{5×+} speedup, SecretFlow integration (\textbf{PyPI, 150,000+ LOC}).}\\
 \link{https://github.com/chenxingqiang/Secret-Learn}\\
-\item {Published research outcomes and patented innovative work.}\\
+\item {Published \textbf{2} papers and filed \textbf{3} patents; core tech adopted by \textbf{5} products.}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Senior Algorithms Engineer, Yalla Group (NYSE: YALA)}}{Hangzhou, China}
 {\textbf{Data Center Engineering Group}}{Sep. 2020 - Sep. 2021}
-\item {Developed and improved the ChatRooms Recommendation System for Yalla App, enhancing user retention and activation time.}\\
-\item {Created a User Risk Control System for Ludo App, reducing users’ refund rate.}\\
-\item {Built a GAME AI Robot for card games, improving user engagement.}\\
+\item {Rebuilt the ChatRooms recommender with multi-objective optimization; daily active time \textbf{+35\%}, 7-day retention \textbf{42\% → 61\%}.}\\
+\item {Built Ludo risk control with real-time behavior models; malicious-user detection \textbf{94\%}, refund rate \textbf{−45\%}.}\\
+\item {Developed a Texas Hold'em game AI with deep RL; \textbf{78\%} win rate, play time \textbf{+25\%}, paid conversion \textbf{+18\%}.}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Senior Algorithms Engineer, Gejia Network Tech}}{Hangzhou, China}
-{\textbf{Searching\&Recommendation Engineering Group}}{Mar. 2019 - Sep. 2020}
-\item {Developed recommendation modules for e-commerce scenarios, enhancing CTR and CVR.}\\
-\item {Improved recommendation system performance through multi-objective models and strategy optimization.}\\
+{\textbf{Search \& Recommendation Engineering Group}}{Mar. 2019 - Sep. 2020}
+\item {Designed multi-scenario ranking with CF, deep models, and knowledge graphs; CTR \textbf{+28\%}, CVR \textbf{+35\%}.}\\
+\item {Optimized the real-time recommender to \textbf{1M} QPS with \textbf{$<$50ms} latency, \textbf{95\%} coverage, satisfaction \textbf{3.2 → 4.6}.}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Machine Learning Engineer, Bianlifeng Tech}}{Beijing, China}
 {\textbf{Data Engineering Group}}{Mar. 2017 - Mar. 2019}
-\item {Managed the Sales Forecasting Project, achieving precise demand and supply outcomes for 50 stores.}\\
-\item {Established the Customers\&Products Recognition Project, linking customer IDs with purchases.}\\
-\item {Developed a model to detect and recognize goods, assisting in express checkout.}\\
+\item {Built sales forecasting for \textbf{50+} stores; \textbf{92\%} accuracy, inventory turnover \textbf{+30\%}.}\\
+\item {Linked customer IDs to purchases over \textbf{10M+} events; identity accuracy \textbf{89\%}, personalized sales \textbf{+22\%}.}\\
+\item {Shipped a CV checkout model for \textbf{500+} SKUs; \textbf{96\%} accuracy, checkout speed \textbf{+60\%}.}\\
 \end{rSubsection}
 
 \end{rSection}
 
-\begin{rSection}{Undergraduate Project}
+\begin{rSection}{Research \& Internships}
 \begin{rSubsection}{\bf Molecular Dynamics Simulation of Proteins with QM/MM model  }{Xiamen university, China}
 {\bf (China National Funds) }{Sep. 2014 - Mar. 2017}
   \item {Conducted research on protein dynamics simulations using quantum mechanics, and analyzed biological information of proteins. This involved interdisciplinary knowledge in theoretical physics, structural biology, computational chemistry, and computer science.}\\
