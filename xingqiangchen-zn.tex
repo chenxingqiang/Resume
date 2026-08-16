@@ -108,14 +108,14 @@
 
 \begin{rSection}{工作经历}
 
-\begin{rSubsection}{\textbf{产品线编译器负责人，知存算力（Witmem）}}{杭州，中国}
-{\textbf{产品线 Compiler / Palladium 硬件仿真验证}}{2025年12月10日 - 至今}
-\item {负责一条存算产品线的{\textbf{Compiler 全栈交付}}，并同时负责{\textbf{Palladium}}硬件仿真验证：覆盖工作负载 $\rightarrow$ 图编译/CodeGen $\rightarrow$ 芯片执行 $\rightarrow$ Emulation $\rightarrow$ 问题定位的闭环，能把软件栈问题追到硬件行为。}\\
-\item {主导 Palladium Emulation 环境上的软件 Bring-up：Compiler 生成程序在仿真器上执行、HW/SW 协同 Debug（GDB + 仿真模型/芯片/系统软件），完成功能与性能问题的验证闭环，而非只做机械回归。}\\
-\item {自研{\textbf{CIM-MLIR}} AI Graph Compiler（非仅传统 ISA/LLVM Backend）：前端导入 PyTorch/TensorFlow/ONNX，经 TOSA/StableHLO 到 CPU/GPU/CIM 三后端，补齐产品线缺失的 AI 编译能力。}\\
-\item {代价驱动最小割图划分 + CIMHigh/Mid/Low 三级 IR：CIM 承接矩阵算子、GPU 承接非线性、CPU 承接控制流；OR-Tools 分配 Die/L2/L0，生成可烧录{\textbf{config.bin}}/{\textbf{map.bin}}及 PTX/LLVM 主机代码。}\\
-\item {交付跨设备 Runtime/Firmware 栈：独立执行器、统一内存、计算/传输流水线重叠与三级缓冲；C++/Python API 输出延迟、利用率、传输开销，支撑大模型与 CNN 在 CIM 异构平台部署。}\\
-\item {技术产出：{\textbf{GRC-PIM}}——面向存算一体的 drift-gated、GEMV 复用残差校准与软判决纠错，投稿 {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中）。}\\
+\begin{rSubsection}{\textbf{编译器\&工具链专家，知存算力（Witmem）}}{杭州，中国}
+{\textbf{编译器 / Palladium 验证}}{2025年12月10日 - 至今}
+\item {负责存算芯片产品线编译器与 Palladium 仿真验证，覆盖模型编译、指令生成、芯片执行及 Emulation 缺陷定位。}\\
+\item {完成 Palladium 软件 Bring-up：Compiler 输出在仿真器上运行，结合 GDB 在仿真模型、芯片与系统软件层做联合调试。}\\
+\item {实现{\textbf{CIM-MLIR}}异构编译器：PyTorch/TensorFlow/ONNX 经 TOSA/StableHLO 映射至 CPU、GPU 与 CIM，含前端、图划分、硬件后端与运行时。}\\
+\item {实现代价驱动图划分与 CIMHigh/Mid/Low 三级 IR；用 OR-Tools 分配 Die/L2/L0 资源，生成可烧录{\textbf{config.bin}}、权重{\textbf{map.bin}}，以及 GPU PTX 与 LLVM 主机代码。}\\
+\item {实现跨设备运行时：分设备执行器、统一内存、计算与传输重叠及三级缓冲；提供 C++/Python 接口及延迟、利用率、传输开销统计。}\\
+\item {实现{\textbf{GRC-PIM}}：PIM 上基于 drift gating 与 GEMV 复用的残差校准及软判决纠错，投稿 {\textit{npj Unconventional Computing}}。}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{高级AI编译器工程师，亿铸智能}}{杭州，中国}
@@ -191,7 +191,7 @@
 \begin{rSection}{发表论文}
 \begin{rSubsection}{}{}
 {}{}
-  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中；知存算力产品线工作）。}\\
+  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（投稿中）。}\\
   \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. {\textit{Acta Crystallographica Section D: Structural Biology.}} 2017 Oct 1;73(10):793-803.}\\
   \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. {\textit{Sensors and Actuators B: Chemical}}. 2018 Jan 1;254:44-51.}\\
   \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. {\textit{PloS one}}. 2015 Jul 22;10(7):e0133389.}\\
