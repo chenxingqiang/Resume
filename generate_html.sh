@@ -37,7 +37,7 @@ cat > docs/en.html << 'ENEOF'
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>Title:</strong> Compiler &amp; Toolchain Expert</div>
                 <div class="resume-meta-item"><strong>Focus:</strong> Compiler / Palladium Verification / CIM-MLIR</div>
-                <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
+                <div class="resume-meta-item"><strong>Education:</strong> Doctoral studies in Biophysics &amp; Condensed Matter (certificate of completion; defense in progress)</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
                 <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
@@ -81,7 +81,7 @@ cat > docs/zn.html << 'ZNEOF'
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
                 <div class="resume-meta-item"><strong>专业方向:</strong> 编译器 / Palladium 验证 / CIM-MLIR</div>
-                <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
+                <div class="resume-meta-item"><strong>学历:</strong> 生物物理学与凝聚态物理博士研究生（结业，学位答辩中）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
                 <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
@@ -125,7 +125,7 @@ cat > docs/zn-adjust.html << 'ZNAEOF'
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
                 <div class="resume-meta-item"><strong>专业方向:</strong> 编译器 / Palladium 验证 / CIM-MLIR</div>
-                <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
+                <div class="resume-meta-item"><strong>学历:</strong> 生物物理学与凝聚态物理博士研究生（结业，学位答辩中）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
                 <div class="resume-meta-item"><strong>GitHub:</strong> <a href="https://github.com/chenxingqiang" target="_blank">@chenxingqiang</a></div>
@@ -343,8 +343,8 @@ cat > docs/index.html << 'EOF'
                             <td>编译器 / Palladium 验证 / CIM-MLIR</td>
                         </tr>
                         <tr>
-                            <td>学位 Degree:</td>
-                            <td>博士 Ph.D. (生物物理学与凝聚态物理)</td>
+                            <td>学历 Education:</td>
+                            <td>生物物理学与凝聚态物理博士研究生（结业，学位答辩中）</td>
                         </tr>
                         <tr>
                             <td>位置 Location:</td>
