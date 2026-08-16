@@ -31,8 +31,10 @@
 <div class="rSection">
 <p><span>求职意向</span>
 <span>寻求<span><strong>全职</strong></span>职位： <span><strong>AI
-加速器编译器 系统软件</strong></span>
-<span><strong>大语言模型推理系统</strong></span>
+加速器编译器 / 系统软件</strong></span> <span
+class="math inline">⋅</span>
+<span><strong>大语言模型推理系统</strong></span> <span
+class="math inline">⋅</span>
 <span><strong>软硬件协同设计</strong></span>。</span></p>
 </div>
 <div class="rSection">
@@ -42,72 +44,48 @@
 <div class="rSection">
 <p><span>教育背景</span></p>
 <p><span><strong>生物物理学与凝聚态物理博士</strong></span><br />
-厦门大学，物理与机电工程学院 GPA : 3.5/4.0<br />
+厦门大学，物理与机电工程学院；导师方向：蛋白质动力学与 QM/MM 仿真<br />
 <br />
 <span><strong>理论物理学学士</strong></span><br />
-厦门大学，物理与机电工程学院 GPA : 3.0/4.0</p>
+厦门大学，物理与机电工程学院</p>
 </div>
 <div class="rSection">
 <p><span>技能与项目</span></p>
-<p><span><strong>编程语言</strong></span>：精通 C++、Python，熟悉
-Java、Scala、Go、CUDA。</p>
-<p><span><strong>MLOps工具</strong></span>：熟练使用
-PyTorch、TensorFlow、Triton、TVM、Kubernetes；Hadoop、Flink、Spark
-等。</p>
-<p><span><strong>大语言模型
-推理系统</strong></span>：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、GPU
-Profiling 与 Replay。</p>
-<p><span><strong>AI编译器 内核</strong></span>：MLIR 图编译、CIM/NPU
-CodeGen、异构运行时；<span><strong>Palladium</strong></span> 仿真验证与
-HW/SW 协同 Debug；YiRage YPK；TraceSmith。</p>
-<p><span><strong>深度学习模型</strong></span>：熟悉
-Transformers、RL、GNN、DNN、CNN 等。</p>
-<p><span><strong>跨学科专长</strong></span>：具有物理学、计算生物学、计算化学、分子动力学、量子力学仿真和计算机科学背景。</p>
-<p><span><strong>开源亮点</strong></span>：</p>
+<p><span><strong>编程语言</strong></span>：C++、Python（主要）；CUDA、Java、Scala、Go。</p>
+<p><span><strong>编译器 / 工具链</strong></span>：MLIR、LLVM 后端与 ISA
+适配、TVM、图划分与算子融合、成本建模、CodeGen、自动调优。</p>
+<p><span><strong>芯片软件 / 验证</strong></span>：Palladium
+Emulation、GDB
+与仿真模型联调、固件与权重映射生成、算子级指标（Cycles/MACs）分析。</p>
+<p><span><strong>推理系统</strong></span>：Transformers、KV-Cache、量化、批处理与调度、Triton
+内核、FlashAttention、CUPTI/Perfetto 性能剖析。</p>
+<p><span><strong>平台</strong></span>：PyTorch、TensorFlow、ONNX、Kubernetes；Spark、Flink、Hadoop。</p>
+<p><span><strong>开源与发布</strong></span>（均可公开验证）：</p>
 <ul>
-<li><p><span><strong>TraceSmith</strong></span> — 面向 AI
-编译器与深度学习框架的跨平台 GPU Profiling &amp; Replay
-系统（CUDA/ROCm/Metal/MACA/Ascend；无锁采集、确定性回放；PyPI
-发布）。</p>
-<p><a href="https://github.com/chenxingqiang/TraceSmith"
-class="uri">https://github.com/chenxingqiang/TraceSmith</a></p></li>
-<li><p><span><strong>Research CLI</strong></span> —
-具有学术研究功能的命令行 AI 工作流工具；支持多模型提供商和 MCP
-工具。</p>
-<p><a href="https://github.com/iechor-research/research-cli"
-class="uri">https://github.com/iechor-research/research-cli</a></p></li>
-<li><p><span><strong>JAX-sklearn</strong></span> — 具有自动 JAX
-加速功能的 scikit-learn 替代方案（<span><em>13<span>,</span>058
-项测试通过；PyPI 发布</em></span>）。</p>
-<p><a href="https://github.com/chenxingqiang/jax-sklearn"
-class="uri">https://github.com/chenxingqiang/jax-sklearn</a></p></li>
+<li><p><span><strong>TraceSmith</strong></span> — 跨平台 GPU Profiling
+&amp; Replay 系统，C++ 核心 + Python 绑定，支持
+CUDA/ROCm/Metal/MACA/Ascend，已发布至 <a
+href="https://pypi.org/project/tracesmith/">PyPI</a>。 <a
+href="https://github.com/chenxingqiang/TraceSmith"><code>chenxingqiang/TraceSmith</code></a></p></li>
+<li><p><span><strong>YiRage 持久化内核 (YPK)</strong></span> — LLM
+超级内核编译器与运行时，多后端（CUDA/CPU/MPS/Ascend/Triton）。 <a
+href="https://github.com/chenxingqiang/YiRage"><code>chenxingqiang/YiRage</code></a></p></li>
+<li><p><span><strong>JAX-sklearn</strong></span> — scikit-learn 兼容接口
++ JAX 加速，13<span>,</span>058 项测试通过，PyPI 发布。 <a
+href="https://github.com/chenxingqiang/jax-sklearn"><code>chenxingqiang/jax-sklearn</code></a></p></li>
+<li><p><span><strong>Secret-Learn</strong></span> —
+隐私保护机器学习库，覆盖联邦学习／秘密分享／分割学习，PyPI 发布。 <a
+href="https://github.com/chenxingqiang/Secret-Learn"><code>chenxingqiang/Secret-Learn</code></a></p></li>
 <li><p><span><strong>YouTube-DNN-RecSys</strong></span> — YouTube
-风格推荐模型的简洁 TensorFlow 与 Spark 实现（Python+Scala）。</p>
-<p><a href="https://github.com/chenxingqiang/YouTube-DNN-RecSys"
-class="uri">https://github.com/chenxingqiang/YouTube-DNN-RecSys</a></p></li>
+风格召回与排序的 TensorFlow + Spark 实现（60 stars）。 <a
+href="https://github.com/chenxingqiang/YouTube-DNN-RecSys"><code>chenxingqiang/YouTube-DNN-RecSys</code></a></p></li>
+<li><p><span><strong>Research CLI</strong></span> —
+面向科研工作流的命令行 AI 工具，多模型供应商与 MCP 集成。 <a
+href="https://github.com/iechor-research/research-cli"><code>iechor-research/research-cli</code></a></p></li>
 <li><p><span><strong>Questions-Gen</strong></span> —
-数学竞赛题目生成器（ Qwen3-14B、RL GRPO、KD；CLI 与 HF 模型）。</p>
-<p><a href="https://github.com/chenxingqiang/GenQuestion"
-class="uri">https://github.com/chenxingqiang/GenQuestion</a></p></li>
-<li><p><span><strong>DeepMicroPath</strong></span> — 多模式研究
-Agent，提供微生物学专业模式；以非侵入式包装器实现
-auto/default/microbiology Prompt，支持 Docker/SLURM 部署。</p>
-<p><a href="https://github.com/chenxingqiang/DeepMicroPath"
-class="uri">https://github.com/chenxingqiang/DeepMicroPath</a></p></li>
-<li><p><span><strong>Medical-NER-Qwen-4B-Thinking</strong></span> —
-通过LoRA微调的Qwen3-4B-Thinking用于医疗实体与关系抽取（英语）。</p>
-<p><a
-href="https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking"
-class="uri">https://huggingface.co/xingqiang/Medical-NER-Qwen-4B-Thinking</a></p></li>
-<li><p><span><strong>QuestionsGen-Qwen3-14B-Final (FP)</strong></span> —
-使用Unsloth训练的全精度合并最终模型；部署就绪的HF权重。</p>
-<p><a
-href="https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged"
-class="uri">https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged</a></p></li>
-<li><p><span><strong>YiRage持久化内核(YPK)</strong></span> —
-LLM超级内核编译器。</p>
-<p><a href="https://github.com/chenxingqiang/YiRage"
-class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
+数学竞赛题目生成（Qwen3-14B、GRPO、蒸馏），含 CLI 与 Hugging Face 权重。
+<a
+href="https://github.com/chenxingqiang/GenQuestion"><code>chenxingqiang/GenQuestion</code></a></p></li>
 </ul>
 </div>
 <div class="rSection">
@@ -137,102 +115,82 @@ C++/Python 接口及延迟、利用率、传输开销统计。</span><br />
 </p>
 <p><span>实现<span><strong>GRC-PIM</strong></span>：PIM 上基于 drift
 gating 与 GEMV 复用的残差校准及软判决纠错，投稿 <span><em>npj
-Unconventional Computing</em></span>。</span><br />
+Unconventional Computing</em></span>（详见发表论文）。</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span>高级AI编译器工程师，亿铸智能</span><span>杭州，中国</span>
 <span><strong>研发部门</strong></span><span>2022年9月 -
 2025年12月</span></p>
-<p><span>主导开发<span><strong>YiRage
-持久化内核(YPK)</strong></span>，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现<span><strong>1.2×–6.7×延迟缩减</strong></span>，GPU利用率提升<span><strong>40%</strong></span>，显存占用减少<span><strong>25%</strong></span>。</span><br />
+<p><span>主导 <span><strong>YiRage
+持久化内核(YPK)</strong></span>：将端到端 LLM 解码编译为单个超级内核；在
+Llama2-7B、单卡 A100 上相对 PyTorch eager 基线取得
+<span><strong>1.2×–6.7×</strong></span> 端到端延迟收益（随 batch
+与序列长度变化）。 <a
+href="https://github.com/chenxingqiang/YiRage"><code>chenxingqiang/YiRage</code></a></span><br />
 </p>
-<p><span>设计并实现融合算子架构（RMSNorm + Linear
-等），消除<span><strong>85%</strong></span>的内核启动开销，单次推理延迟从<span><strong>120ms
-降至 18ms</strong></span>（批大小=1）。</span><br />
+<p><span>实现融合算子（RMSNorm+Linear、GQA
+等）与持久化执行模型，显著减少内核启动与中间张量往返；batch=1 decode
+路径延迟降幅最大。</span><br />
 </p>
-<p><span>构建自适应调度系统，整合 Triton 与 FlashInfer
-内核，支持多GPU扩展至<span><strong>8卡并行</strong></span>，吞吐量达到<span><strong>15,000
-tokens/秒</strong></span>。</span><br />
+<p><span>构建调度层并集成 Triton 与 FlashInfer
+内核，支持多卡扩展（最高验证 8 卡）与 NVSHMEM 张量。</span><br />
 </p>
-<p><span>开发图编译优化器，实现自动内核参数调优和KV-cache内存布局优化，内存访问效率提升<span><strong>60%</strong></span>，缓存命中率达到<span><strong>92%</strong></span>。</span><br />
+<p><span>开发图编译与自动调优：内核参数搜索、KV-cache
+友好内存布局，降低访存开销。</span><br />
 </p>
-<p><span>技术成果转化：产品已部署到<span><strong>2个</strong></span>数据中心客户。</span><br />
+<p><span>申请 <span><strong>2
+项</strong></span>发明专利；相关能力交付<span><strong>2
+个</strong></span>数据中心客户 PoC。</span><br />
 </p>
-<p><span>在 ReRAM
-芯片公司主要负责编译器后端适配与本公司软件生态构建，聚焦公司 SoC 的 LLVM
-后端 Target 研发，推进代码规范化与复杂指令集架构开发。</span><br />
+<p><span>负责公司 SoC 的 LLVM 后端 Target
+与复杂指令集适配，推进编译器后端规范化与软件生态建设。</span><br />
 </p>
-<p><span>承担 AI 模型（含
-LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs
-等）与计算效率；集成 TVM、ONNX、MLCommons、TensorFlow/PyTorch 于
-YZlite，对多种模型运行时进行算子级指标统计并输出各类芯片上的
-benchmark。</span><br />
-</p>
-<p><span>YiRage 持久化内核 (YPK) — LLM 超级内核编译器与运行时，实现
-1.2×–6.7× 延迟缩减。</span><br />
-<a href="https://github.com/chenxingqiang/YiRage"
-class="uri">https://github.com/chenxingqiang/YiRage</a><br />
-</p>
-<p><span>ReRAM-YZLite — 亿铸科技 ReRAM
-芯片的机器学习模型开发工具包，提供命令行接口、Python
-API、模型分析器、训练评估、量化等功能，支持嵌入式平台的 ML
-模型开发。</span><br />
-<a href="https://github.com/ReRAM-Labs/yzlite"
-class="uri">https://github.com/ReRAM-Labs/yzlite</a><br />
-<a href="https://reram-labs.github.io/yzlite"
-class="uri">https://reram-labs.github.io/yzlite</a><br />
+<p><span>搭建模型转换与算子级评估流程：将
+TVM、ONNX、MLCommons、TensorFlow/PyTorch 集成入
+<span><strong>YZlite</strong></span>，统计 Cycles/MACs
+等指标并输出多芯片 benchmark；开源工具包与文档 <a
+href="https://github.com/ReRAM-Labs/yzlite"><code>ReRAM-Labs/yzlite</code></a>。</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span>隐私保护算法工程师，蓝象智联</span><span>杭州，中国</span>
 <span><strong>IT Group</strong></span><span>2022年1月 -
 2022年9月</span></p>
-<p><span>构建基于同态加密的联邦学习平台，支持<span><strong>20+</strong></span>金融机构数据协作，在保护隐私前提下模型精度提升<span><strong>15%</strong></span>，训练时间缩短<span><strong>40%</strong></span>。</span><br />
+<p><span>构建基于同态加密的联邦学习平台，支撑多家金融机构的跨域建模；在保持隐私约束下相对本地基线提升模型效果，并缩短训练迭代周期。</span><br />
 </p>
-<p><span>设计多方安全计算协议，为<span><strong>8家</strong></span>银行提供风控模型联合训练服务，欺诈检测准确率达到<span><strong>96.7%</strong></span>，误报率降低<span><strong>30%</strong></span>。</span><br />
+<p><span>设计多方安全计算协议，用于银行风控模型的联合训练与推理，兼顾协议安全性与通信开销。</span><br />
 </p>
-<p><span>开源贡献：开发<span><strong>Secret-Learn</strong></span>隐私保护机器学习库，实现<span><strong>573个</strong></span>算法（191算法
-× FL/SS/SL三种隐私模式），100% sklearn
-API兼容，集成JAX加速（<span><strong>5×+</strong></span>性能提升）和SecretFlow隐私计算框架，支持联邦学习、秘密分享、分割学习等多种隐私保护场景（<span><strong>PyPI发布，150,000+行代码</strong></span>）。</span><br />
-<a href="https://github.com/chenxingqiang/Secret-Learn"
-class="uri">https://github.com/chenxingqiang/Secret-Learn</a><br />
+<p><span>开源 <span><strong>Secret-Learn</strong></span>：sklearn 兼容
+API × 联邦学习／秘密分享／分割学习三种模式，JAX 加速，并与 SecretFlow
+集成，PyPI 发布。 <a
+href="https://github.com/chenxingqiang/Secret-Learn"><code>chenxingqiang/Secret-Learn</code></a></span><br />
 </p>
-<p><span>技术创新产出：申请<span><strong>3项</strong></span>核心算法专利，核心技术被<span><strong>5个</strong></span>商业产品采用，创造营收<span><strong>800万</strong></span>人民币。</span><br />
-</p>
-<p><span>基于秘密分享的纵向联邦线性支持向量分类方法（CN114925786A）。</span><br />
-<a href="https://patents.google.com/patent/CN114925786A/en"
-class="uri">https://patents.google.com/patent/CN114925786A/en</a><br />
-</p>
-<p><span>随机森林训练方法及装置（CN114997345A）。</span><br />
-<a href="https://patents.google.com/patent/CN114997345A/en"
-class="uri">https://patents.google.com/patent/CN114997345A/en</a><br />
-</p>
-<p><span>用于联邦学习的数据处理方法及装置（CN115130681A）。</span><br />
-<a href="https://patents.google.com/patent/CN115130681A/en"
-class="uri">https://patents.google.com/patent/CN115130681A/en</a><br />
+<p><span>申请 <span><strong>3
+项</strong></span>发明专利（均已公开，可检索）：基于秘密分享的纵向联邦线性支持向量分类方法
+<a
+href="https://patents.google.com/patent/CN114925786A/en"><code>CN114925786A</code></a>；随机森林训练方法及装置
+<a
+href="https://patents.google.com/patent/CN114997345A/en"><code>CN114997345A</code></a>；用于联邦学习的数据处理方法及装置
+<a
+href="https://patents.google.com/patent/CN115130681A/en"><code>CN115130681A</code></a>。</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span>T7 算法工程专家，百图生科</span><span>北京，中国</span>
 <span><strong>算法工程组</strong></span><span>2021年9月 -
 2021年12月</span></p>
-<p><span>疫情期间加入AI制药公司，负责构建生物信息学工具链平台，整合多种生物信息学算法和工具，支持蛋白质序列分析、结构预测、功能注释等核心流程。</span><br />
+<p><span>构建生物信息学工具链与数据平台，统一大规模生物数据的管理、检索与分析流程，支撑序列分析、结构预测与功能注释。</span><br />
 </p>
-<p><span>设计并实现生物算法数据平台，建立统一的数据管理和处理框架，支持大规模生物数据的存储、检索和分析，提升算法研发效率。</span><br />
+<p><span>搭建蛋白质结构预测模型评估流程（含 AlphaFold
+系列），为药物设计提供结构输入。</span><br />
 </p>
-<p><span>开发蛋白质结构预测模型分析系统，集成AlphaFold等先进模型，构建端到端的蛋白质结构预测与验证流程，为药物设计提供结构基础。</span><br />
+<p><span>获 <span><strong>2
+项</strong></span>软件著作权：生信工具自动化平台（登记号
+2021SR2004464）、生物医药信息平台（登记号 2021SR1862397）。</span><br />
 </p>
-<p><span>技术产出：开源AlphaFold2代码库与学习资源（<span><strong>26
-stars</strong></span>），包含源代码分析、算法实现、应用案例和论文分享PPT，为AlphaFold2研究提供完整参考。</span><br />
-<a href="https://github.com/chenxingqiang/alphafold2-codecs"
-class="uri">https://github.com/chenxingqiang/alphafold2-codecs</a><br />
-</p>
-<p><span>获得<span><strong>2项</strong></span>软件著作权：</span><br />
-</p>
-<p><span>百图生科生信工具自动化平台（登记号：2021SR2004464）。</span><br />
-</p>
-<p><span>Biomap生物医药信息平台（登记号：2021SR1862397）。</span><br />
+<p><span>开源 AlphaFold2 代码解析与学习资源（26 stars）。 <a
+href="https://github.com/chenxingqiang/alphafold2-codecs"><code>chenxingqiang/alphafold2-codecs</code></a></span><br />
 </p>
 </div>
 <div class="rSubsection">
@@ -240,37 +198,45 @@ class="uri">https://github.com/chenxingqiang/alphafold2-codecs</a><br />
 YALA)</span><span>杭州，中国</span>
 <span><strong>数据中心工程组</strong></span><span>2020年9月 -
 2021年9月</span></p>
-<p><span>重构Yalla聊天室推荐系统，采用多目标优化算法，用户日活跃时长增加<span><strong>35%</strong></span>，7日留存率从<span><strong>42%</strong></span>提升至<span><strong>61%</strong></span>，月收入增长<span><strong>1200万</strong></span>美元。</span><br />
+<p><span>重构 Yalla 聊天室推荐系统，引入多目标排序；A/B
+实验中人均日活跃时长与 7 日留存均取得显著正向（留存
+<span><strong>42%</strong></span> <span class="math inline">→</span>
+<span><strong>61%</strong></span>）。</span><br />
 </p>
-<p><span>构建Ludo智能风控系统，结合实时行为分析和机器学习模型，恶意用户识别准确率达<span><strong>94%</strong></span>，退款率降低<span><strong>45%</strong></span>，挽回损失约<span><strong>500万</strong></span>美元。</span><br />
+<p><span>构建 Ludo
+风控系统，结合实时行为特征与机器学习模型识别异常账号，显著降低恶意退款比例。</span><br />
 </p>
-<p><span>开发德州扑克AI机器人，基于深度强化学习，胜率达到<span><strong>78%</strong></span>，驱动用户游戏时长增加<span><strong>25%</strong></span>，付费转化率提升<span><strong>18%</strong></span>。</span><br />
+<p><span>开发卡牌类游戏
+AI（深度强化学习），用于人机对局与匹配填充，提升低峰时段对局体验与留存。</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span>高级算法工程师，格家网络科技</span><span>杭州，中国</span>
 <span><strong>搜索推荐工程组</strong></span><span>2019年3月 -
 2020年9月</span></p>
-<p><span>设计多场景推荐算法架构，整合协同过滤、深度学习和知识图谱技术，商品点击率(CTR)提升<span><strong>28%</strong></span>，转化率(CVR)增长<span><strong>35%</strong></span>，GMV增长<span><strong>4200万</strong></span>人民币。</span><br />
+<p><span>设计多场景推荐架构，融合协同过滤、深度排序模型与商品知识图谱；线上实验
+CTR 与 CVR 均取得两位数相对提升。</span><br />
 </p>
-<p><span>优化实时推荐引擎，支持<span><strong>100万</strong></span>QPS并发，响应延迟控制在<span><strong>50ms</strong></span>以内，推荐覆盖率达到<span><strong>95%</strong></span>，用户满意度评分从<span><strong>3.2</strong></span>提升至<span><strong>4.6</strong></span>。</span><br />
+<p><span>优化实时推荐链路：特征缓存与召回裁剪，P99 响应控制在
+<span><strong>50ms</strong></span>
+内，支撑大促期间峰值流量。</span><br />
 </p>
-<p><span>YouTube-DNN-RecSys — YouTube 风格推荐模型的简洁 TensorFlow 与
-Spark 实现（Python+Scala）（<span><strong>60
-stars</strong></span>）。</span><br />
-<a href="https://github.com/chenxingqiang/YouTube-DNN-RecSys"
-class="uri">https://github.com/chenxingqiang/YouTube-DNN-RecSys</a><br />
+<p><span>开源 YouTube-DNN-RecSys：YouTube 风格召回与排序的 TensorFlow +
+Spark 实现（60 stars）。 <a
+href="https://github.com/chenxingqiang/YouTube-DNN-RecSys"><code>chenxingqiang/YouTube-DNN-RecSys</code></a></span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span>机器学习工程师，便利蜂科技</span><span>北京，中国</span>
 <span><strong>数据工程组</strong></span><span>2017年3月 -
 2019年3月</span></p>
-<p><span>构建智能销售预测系统，覆盖<span><strong>50+</strong></span>门店，预测精度达到<span><strong>92%</strong></span>，库存周转率提升<span><strong>30%</strong></span>，减少缺货损失<span><strong>600万</strong></span>人民币，降低滞销损失<span><strong>400万</strong></span>人民币。</span><br />
+<p><span>构建门店销量预测系统（覆盖 <span><strong>50+</strong></span>
+门店），引入格点气象与时空特征，降低缺货与滞销率、提升库存周转。</span><br />
 </p>
-<p><span>开发用户画像与商品关联分析系统，处理<span><strong>1000万+</strong></span>用户行为数据，客户身份识别准确率<span><strong>89%</strong></span>，个性化推荐带来销售增长<span><strong>22%</strong></span>。</span><br />
+<p><span>开发用户与商品关联分析：在千万级行为数据上打通客户身份与购买记录，支撑个性化推荐。</span><br />
 </p>
-<p><span>设计计算机视觉商品识别系统，支持<span><strong>500+</strong></span>SKU自动识别，识别准确率<span><strong>96%</strong></span>，收银效率提升<span><strong>60%</strong></span>，顾客排队时间减少<span><strong>40%</strong></span>。</span><br />
+<p><span>设计商品视觉识别模型（<span><strong>500+</strong></span>
+SKU），用于快速结算场景，缩短收银与排队时间。</span><br />
 </p>
 </div>
 </div>
@@ -281,31 +247,36 @@ class="uri">https://github.com/chenxingqiang/YouTube-DNN-RecSys</a><br />
 </span><span>厦门大学，中国</span>
 <span><strong>(国家自然科学基金项目)</strong> </span><span>2014年9月 -
 2017年3月</span></p>
-<p><span>利用量子力学进行蛋白质动力学仿真研究，分析蛋白质生物信息。涉及理论物理、结构生物学、计算化学和计算机科学等跨学科知识。</span><br />
+<p><span>以 QM/MM 方法开展蛋白质动力学仿真与构象分析，成果发表于 Acta
+Cryst. D、PLoS ONE、Phys. Rev. E 等（见发表论文）。</span><br />
 </p>
 </div>
 <div class="rSubsection">
-<p><span><strong>液体活检ct-DNA试剂盒开发与DNA甲基化数据分析</strong>
-</span><span>乐普医疗，中国</span>
+<p><span><strong>液体活检 ct-DNA 试剂盒开发与 DNA
+甲基化数据分析</strong></span><span>乐普医疗，中国</span>
 <span><strong>(研发工程师实习)</strong> </span><span>2016年3月 -
 2017年3月</span></p>
-<p><span>从事液体活检试剂盒开发，需要特定的癌症筛查生物标志物。利用现有基因芯片数据(TCGA&amp;GEO)，分析10,000个样本以定位人类Septin9基因上的甲基化位点，这是结肠癌的早期指标。这为开发更准确的结肠癌临床诊断试剂盒提供了信息。</span><br />
+<p><span>在 TCGA/GEO 公开基因芯片数据上分析约 10,000 例样本，定位
+Septin9
+基因甲基化位点（结肠癌早期标志物），支撑临床诊断试剂盒的标志物筛选。</span><br />
 </p>
 </div>
 </div>
 <div class="rSection">
-<p><span>获奖情况</span></p>
+<p><span>获奖与评审</span></p>
 <div class="rSubsection">
+<p><span><span><strong>国家一等奖</strong></span>，全国大学生数学建模竞赛（CUMCM），2012年。</span><br />
+</p>
+<p><span><span><strong>一等奖</strong></span>（Meritorious
+Winner），北美大学生数学建模竞赛（MCM/COMAP），2013年。</span><br />
+</p>
+<p><span>全球<span><strong>第6名</strong></span>，国际太阳能十项全能竞赛（Solar
+Decathlon），2013年。</span><br />
+</p>
+<p><span>第<span><strong>57</strong></span>名与第<span><strong>32</strong></span>名（共1739队），IEEE
+ICDM 全球气象 AI 挑战赛，2018年。</span><br />
+</p>
 <p><span>评委，应用算法最佳实践初审，2021年。</span><br />
-</p>
-<p><span>第57名和第32名，共1739队，IEEE
-ICDM全球气象AI挑战赛，2018年。</span><br />
-</p>
-<p><span>一等奖，北美大学生数学建模竞赛，2013年。</span><br />
-</p>
-<p><span>第6名，国际太阳能十项全能竞赛，2013年。</span><br />
-</p>
-<p><span>国家一等奖，全国大学生数学建模竞赛，2012年。</span><br />
 </p>
 </div>
 </div>
