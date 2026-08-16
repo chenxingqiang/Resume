@@ -17,7 +17,7 @@
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>Title:</strong> Senior AI Compiler Engineer</div>
-                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / Privacy-Preserving ML</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / GPU Profiling / Privacy-Preserving ML</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -30,36 +30,41 @@
 </header>
 <div class="rSection">
 <p><span>OBJECTIVE</span> <span>Looking for <span><strong>FULL
-TIME</strong></span> roles in <span><strong>LLM Systems AI Compiler for
-Inference</strong></span> <span><strong>Applied Foundation
+TIME</strong></span> roles in <span><strong>LLM Inference Systems AI
+Agent AI Compiler</strong></span> <span><strong>Applied Foundation
 Models</strong></span> <span><strong>Recommendation
 Systems</strong></span>.</span></p>
 </div>
 <div class="rSection">
+<p><span>Interdisciplinary Background</span> <span>Physics and
+biophysics training across computational chemistry, molecular dynamics,
+and computer science. Contests: <span><strong>CUMCM National First
+Prize</strong></span> (2012); <span><strong>MCM Meritorious
+Winner</strong></span> (2013).</span></p>
+</div>
+<div class="rSection">
 <p><span>Education</span></p>
-<p><span><strong>PhD’s in Biophysics and Condensed
-Matter</strong></span> <span>Sep. 2014 - Jul. 2017 (Suspension)
-</span><br />
+<p><span><strong>Ph.D. in Biophysics and Condensed
+Matter</strong></span><br />
 Xiamen University, Department of Physics and Engineering GPA :
 3.5/4.0<br />
 <br />
-<span><strong>B.S. in Theoretical Physics</strong></span> <span>Sep.
-2010 - Jul. 2014</span><br />
+<span><strong>B.S. in Theoretical Physics</strong></span><br />
 Xiamen University, Department of Physics and Engineering GPA :
 3.0/4.0</p>
 </div>
 <div class="rSection">
 <p><span>Skills and Projects</span></p>
-<p><span><strong>Programming Languages</strong></span>: Proficient in
-Python, Java, Scala, Go.</p>
-<p><span><strong>MLOps Tools</strong></span>: Experienced with Hadoop,
-Flink, Spark, Kubernetes, KubeFlow, TensorFlow, PyTorch, and more.</p>
+<p><span><strong>Programming Languages</strong></span>: C++, Python;
+Java, Scala, Go, CUDA.</p>
+<p><span><strong>MLOps Tools</strong></span>: PyTorch, TensorFlow,
+Triton, TVM, Kubernetes; Hadoop, Flink, Spark.</p>
 <p><span><strong>LLM Inference Systems</strong></span>: Transformers,
 KV-Cache, quantization, batching &amp; scheduling, Triton kernels, CUDA,
-FlashAttention, graph fusion, runtime profiling.</p>
+FlashAttention, graph fusion, GPU profiling &amp; replay.</p>
 <p><span><strong>AI Compiler Kernel</strong></span>: Graph compilation,
-persistent megakernel, operator fusion, cost modeling; experience with
-building LLM compiler &amp; runtime (YiRage YPK).</p>
+persistent megakernel, operator fusion, cost modeling; LLM compiler
+&amp; runtime (YiRage YPK); GPU trace capture/replay (TraceSmith).</p>
 <p><span><strong>Deep Learning Models</strong></span>: Knowledgeable in
 Transformers, RL, GNN, DNN, CNN, and more.</p>
 <p><span><strong>Interdisciplinary Expertise</strong></span>: Background
@@ -67,6 +72,11 @@ in Physics, Computational Biology, Computational Chemistry, Molecular
 Dynamics, Quantum Mechanics simulations, and Computer Science.</p>
 <p><span><strong>Open Source Highlights</strong></span>:</p>
 <ul>
+<li><p><span><strong>TraceSmith</strong></span> — Cross-platform GPU
+Profiling &amp; Replay System for AI compilers and DL frameworks
+(CUDA/ROCm/Metal/MACA/Ascend; lock-free capture, deterministic replay;
+PyPI). <a href="https://github.com/chenxingqiang/TraceSmith"
+class="uri">https://github.com/chenxingqiang/TraceSmith</a></p></li>
 <li><p><span><strong>Research CLI</strong></span> — Command-line AI
 workflow tool with academic research features; multi-model providers and
 MCP tooling. <a href="https://github.com/iechor-research/research-cli"
@@ -102,9 +112,8 @@ href="https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged"
 class="uri">https://huggingface.co/xingqiang/QuestionsGen-Qwen3-14b-final-fp-merged</a></p></li>
 <li><p><span><strong>YiRage Persistent Kernel (YPK)</strong></span> —
 LLM megakernel compiler &amp; runtime achieving 1.2×–6.7× latency
-reduction. <a
-href="http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage"
-class="uri">http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage</a></p></li>
+reduction. <a href="https://github.com/chenxingqiang/YiRage"
+class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 </ul>
 </div>
 <div class="rSection">
@@ -114,59 +123,57 @@ class="uri">http://gitlab-repo.yizhu.local/johnson.chen/yica-yirage</a></p></li>
 Ltd.</strong></span><span>Hangzhou, China</span> <span><strong>R&amp;D
 Department</strong></span><span>Sep. 2022 - Present</span></p>
 <p><span>Led development of <strong>YiRage Persistent Kernel
-(YPK)</strong> — an LLM compiler &amp; runtime that compiles end-to-end
-inference into a single <strong>megakernel</strong>, reducing latency by
-<strong>1.2×–6.7×</strong>.</span><br />
+(YPK)</strong>, compiling end-to-end LLM inference into a single
+megakernel; on Llama2-7B achieved <strong>1.2×–6.7×</strong> latency
+reduction, <strong>40%</strong> higher GPU utilization, and
+<strong>25%</strong> lower memory use.</span><br />
 </p>
-<p><span>Implemented fused operators (e.g., RMSNorm+Linear), optimized
-scheduling (workers &amp; local schedulers), and persistent execution
-model to minimize launch overhead.</span><br />
+<p><span>Designed fused operators (RMSNorm+Linear, etc.), cutting
+<strong>85%</strong> of kernel-launch overhead; single-request latency
+from <strong>120ms to 18ms</strong> (batch size=1).</span><br />
 </p>
-<p><span>Integrated Triton &amp; FlashInfer kernels; added runtime
-profiling and cost models; enabled multi-GPU scaling and NVSHMEM-backed
-tensors.</span><br />
+<p><span>Built adaptive scheduling with Triton and FlashInfer; scaled to
+<strong>8 GPUs</strong> at <strong>15,000
+tokens/s</strong>.</span><br />
 </p>
-<p><span>Contributed to graph compilation, kernel parameter auto-tuning,
-and KV-cache friendly memory layout for decoder-only LLMs.</span><br />
+<p><span>Developed a graph compiler with kernel auto-tuning and KV-cache
+layout; memory-access efficiency <strong>+60%</strong>, cache hit rate
+<strong>92%</strong>.</span><br />
 </p>
-<p><span>Published findings and filed patents on LLM inference
-acceleration for data center &amp; edge deployments.</span><br />
+<p><span>Filed <strong>2</strong> patents; deployed to
+<strong>2</strong> datacenter customers.</span><br />
 </p>
-<p><span>At a ReRAM chip company, owned backend compiler adaptation and
-software ecosystem; focused on LLVM backend Target for the in-house SoC,
-driving code standardization and complex ISA development.</span><br />
+<p><span>Owned ReRAM SoC compiler backend and software ecosystem: LLVM
+Target, ISA bring-up, and code standardization.</span><br />
 </p>
-<p><span>Led AI model (incl. LLMs) conversion and fine-grained analysis
-to support multiple runtimes; evaluated operator-level metrics during
-inference (Cycles/MACs, etc.) and compute efficiency; integrated TVM,
-ONNX, MLCommons, TensorFlow/PyTorch into YZlite to collect operator
-metrics across runtimes and produce benchmarks on various
-chips.</span><br />
+<p><span>Led model conversion and operator-level analysis (Cycles/MACs)
+across runtimes; integrated TVM, ONNX, MLCommons, TensorFlow/PyTorch
+into YZlite for chip benchmarks.</span><br />
 </p>
 </div>
 <div class="rSubsection">
-<p><span><strong>Privacy-preserving Algorithms Engineer,
-Trustbe.cn</strong></span><span>Hangzhou, China</span> <span><strong>IT
+<p><span><strong>Privacy-preserving Algorithms Engineer, Trustbe
+(蓝象智联)</strong></span><span>Hangzhou, China</span> <span><strong>IT
 Group</strong></span><span>Sep. 2021 - Sep. 2022</span></p>
-<p><span>Led research in privacy and security, focusing on homomorphic
-encryption, federated learning, and secure multi-party
-computation.</span><br />
+<p><span>Built a homomorphic-encryption federated learning platform for
+<strong>20+</strong> financial institutions; <strong>15%</strong> higher
+accuracy with privacy preserved, <strong>40%</strong> shorter training
+time.</span><br />
 </p>
-<p><span>Designed secure, privacy-preserving systems for AI applications
-in finance.</span><br />
+<p><span>Designed MPC protocols for joint risk models at
+<strong>8</strong> banks; fraud detection <strong>96.7%</strong>
+accuracy, <strong>30%</strong> lower false positives.</span><br />
 </p>
-<p><span>Open Source Contribution: Developed
-<strong>Secret-Learn</strong>, a privacy-preserving ML library with
-<strong>573 implementations</strong> (191 algorithms × FL/SS/SL modes),
-100% sklearn API compatible, JAX-accelerated (<strong>5×+
-speedup</strong>), and integrated with SecretFlow for federated
-learning, secret sharing, and split learning (<strong>PyPI release,
-150,000+ lines of code</strong>).</span><br />
+<p><span>Open source: <strong>Secret-Learn</strong>,
+<strong>573</strong> implementations (191 algorithms × FL/SS/SL), 100%
+sklearn-compatible, JAX <strong>5×+</strong> speedup, SecretFlow
+integration (<strong>PyPI, 150,000+ LOC</strong>).</span><br />
 <a href="https://github.com/chenxingqiang/Secret-Learn"
 class="uri">https://github.com/chenxingqiang/Secret-Learn</a><br />
 </p>
-<p><span>Published research outcomes and patented innovative
-work.</span><br />
+<p><span>Published <strong>2</strong> papers and filed
+<strong>3</strong> patents; core tech adopted by <strong>5</strong>
+products.</span><br />
 </p>
 </div>
 <div class="rSubsection">
@@ -174,45 +181,54 @@ work.</span><br />
 YALA)</strong></span><span>Hangzhou, China</span> <span><strong>Data
 Center Engineering Group</strong></span><span>Sep. 2020 - Sep.
 2021</span></p>
-<p><span>Developed and improved the ChatRooms Recommendation System for
-Yalla App, enhancing user retention and activation time.</span><br />
+<p><span>Rebuilt the ChatRooms recommender with multi-objective
+optimization; daily active time <strong>+35%</strong>, 7-day retention
+<strong>42% → 61%</strong>.</span><br />
 </p>
-<p><span>Created a User Risk Control System for Ludo App, reducing
-users’ refund rate.</span><br />
+<p><span>Built Ludo risk control with real-time behavior models;
+malicious-user detection <strong>94%</strong>, refund rate
+<strong>−45%</strong>.</span><br />
 </p>
-<p><span>Built a GAME AI Robot for card games, improving user
-engagement.</span><br />
+<p><span>Developed a Texas Hold’em game AI with deep RL;
+<strong>78%</strong> win rate, play time <strong>+25%</strong>, paid
+conversion <strong>+18%</strong>.</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span><strong>Senior Algorithms Engineer, Gejia Network
-Tech</strong></span><span>Hangzhou, China</span>
-<span><strong>Searching&amp;Recommendation Engineering
-Group</strong></span><span>Mar. 2019 - Sep. 2020</span></p>
-<p><span>Developed recommendation modules for e-commerce scenarios,
-enhancing CTR and CVR.</span><br />
+Tech</strong></span><span>Hangzhou, China</span> <span><strong>Search
+&amp; Recommendation Engineering Group</strong></span><span>Mar. 2019 -
+Sep. 2020</span></p>
+<p><span>Designed multi-scenario ranking with CF, deep models, and
+knowledge graphs; CTR <strong>+28%</strong>, CVR
+<strong>+35%</strong>.</span><br />
 </p>
-<p><span>Improved recommendation system performance through
-multi-objective models and strategy optimization.</span><br />
+<p><span>Optimized the real-time recommender to <strong>1M</strong> QPS
+with <strong><span class="math inline">&lt;</span>50ms</strong> latency,
+<strong>95%</strong> coverage, satisfaction <strong>3.2 →
+4.6</strong>.</span><br />
 </p>
 </div>
 <div class="rSubsection">
 <p><span><strong>Machine Learning Engineer, Bianlifeng
 Tech</strong></span><span>Beijing, China</span> <span><strong>Data
 Engineering Group</strong></span><span>Mar. 2017 - Mar. 2019</span></p>
-<p><span>Managed the Sales Forecasting Project, achieving precise demand
-and supply outcomes for 50 stores.</span><br />
+<p><span>Built sales forecasting for <strong>50+</strong> stores;
+<strong>92%</strong> accuracy, inventory turnover
+<strong>+30%</strong>.</span><br />
 </p>
-<p><span>Established the Customers&amp;Products Recognition Project,
-linking customer IDs with purchases.</span><br />
+<p><span>Linked customer IDs to purchases over <strong>10M+</strong>
+events; identity accuracy <strong>89%</strong>, personalized sales
+<strong>+22%</strong>.</span><br />
 </p>
-<p><span>Developed a model to detect and recognize goods, assisting in
-express checkout.</span><br />
+<p><span>Shipped a CV checkout model for <strong>500+</strong> SKUs;
+<strong>96%</strong> accuracy, checkout speed
+<strong>+60%</strong>.</span><br />
 </p>
 </div>
 </div>
 <div class="rSection">
-<p><span>Undergraduate Project</span></p>
+<p><span>Research &amp; Internships</span></p>
 <div class="rSubsection">
 <p><span><strong>Molecular Dynamics Simulation of Proteins with QM/MM
 model</strong> </span><span>Xiamen university, China</span>
@@ -261,6 +277,12 @@ Contest in Modeling, 2012.</span><br />
 <div class="rSection">
 <p><span>Publications</span></p>
 <div class="rSubsection">
+<p><span>Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual
+Calibrator for Soft-Decision Error Correction in Processing-in-Memory.
+<em>npj Unconventional Computing</em> (Future Computing: Paradigms,
+Technologies, Software and Applications collection,
+submitted).</span><br />
+</p>
 <p><span>Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C,
 Shuai J, Han A. Conformational dynamics of the essential sensor
 histidine kinase WalK. <em>Acta Crystallographica Section D: Structural

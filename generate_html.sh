@@ -36,7 +36,7 @@ cat > docs/en.html << 'ENEOF'
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>Title:</strong> Senior AI Compiler Engineer</div>
-                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / Privacy-Preserving ML</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / GPU Profiling / Privacy-Preserving ML</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -80,7 +80,7 @@ cat > docs/zn.html << 'ZNEOF'
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -124,7 +124,7 @@ cat > docs/zn-adjust.html << 'ZNAEOF'
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
                 <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -340,7 +340,7 @@ cat > docs/index.html << 'EOF'
                         </tr>
                         <tr>
                             <td>专业方向:</td>
-                            <td>大语言模型推理系统 / AI编译器 / 隐私保护机器学习</td>
+                            <td>大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</td>
                         </tr>
                         <tr>
                             <td>学位 Degree:</td>
@@ -359,7 +359,7 @@ cat > docs/index.html << 'EOF'
             </div>
         </div>
         
-        <p class="subtitle">🚀 LLM Inference Systems | AI Compiler | Privacy-Preserving ML | Recommendation Systems</p>
+        <p class="subtitle">🚀 LLM Inference Systems | AI Compiler | GPU Profiling | Privacy-Preserving ML | Recommendation Systems</p>
         
         <h2>📄 简历版本 Resume Versions</h2>
         

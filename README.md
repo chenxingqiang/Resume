@@ -54,6 +54,7 @@ Resume/
 └── project-docs/                  # Project documentation
     ├── secret-learn.md           # Secret-Learn project
     ├── jax-learn.md              # JAX-sklearn project
+    ├── tracesmith.md              # TraceSmith GPU profiling & replay
     ├── yirage.md                 # YiRage project
     ├── youtube.md                # YouTube-DNN-RecSys
     ├── deepmicropath.md          # DeepMicroPath
@@ -81,6 +82,7 @@ xelatex xingqiangchen-zn-adjust.tex
 
 This resume showcases:
 - **LLM Inference Systems** & **AI Compiler** experience
+- **GPU Profiling & Replay** (TraceSmith)
 - **Privacy-Preserving ML** expertise
 - **Recommendation Systems** development
 - **Open Source** contributions
@@ -88,6 +90,7 @@ This resume showcases:
 
 本简历展示：
 - **大语言模型推理系统** 与 **AI编译器** 经验
+- **GPU Profiling \& Replay**（TraceSmith）
 - **隐私保护机器学习** 专业技能
 - **推荐系统** 开发经验
 - **开源** 贡献
@@ -95,6 +98,7 @@ This resume showcases:
 
 ## 🔗 Key Projects / 核心项目
 
+- **TraceSmith**: Cross-platform GPU Profiling & Replay System (CUDA/ROCm/Metal/MACA/Ascend; PyPI)
 - **YiRage YPK**: LLM megakernel compiler (1.2×–6.7× latency reduction)
 - **Secret-Learn**: Privacy-preserving ML library (573 implementations)
 - **JAX-sklearn**: scikit-learn with JAX acceleration (13,058 tests passed)
