@@ -56,7 +56,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
  
  \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, GPU profiling \& replay.
 
- \item {\bf AI Compiler \/ Kernel}: Graph compilation, persistent megakernel, operator fusion, cost modeling; LLM compiler \& runtime (YiRage YPK); GPU trace capture/replay (TraceSmith).
+ \item {\bf AI Compiler \/ Kernel}: MLIR, graph partition, CIM/NPU backends, heterogeneous runtime; persistent megakernel, operator fusion, cost modeling; LLM compiler (YiRage YPK); GPU trace capture/replay (TraceSmith).
 
  \item {\bf Deep Learning Models}: Knowledgeable in Transformers, RL, GNN, DNN, CNN, and more.
 
@@ -81,8 +81,18 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSection}{Experience}
 
+\begin{rSubsection}{\textbf{Compiler \& Toolchain Expert, Witmem (知存算力)}}{Hangzhou, China}
+{\textbf{Compiler / Toolchain}}{Dec. 10, 2025 - Present}
+\item {Own end-to-end {\textbf{MLIR}} compiler optimization and Palladium CIM-chip toolchain bring-up; full-stack GDB debug across simulation models, silicon, and system software, with log triage and fix closure.}\\
+\item {Built {\textbf{CIM-MLIR}}, a multi-level heterogeneous compiler for a NOR-Flash analog CIM NPU: frontend, graph partition, hardware backend, and unified runtime, mapping PyTorch/TensorFlow/ONNX onto CPU/GPU/CIM.}\\
+\item {Designed cost-driven min-cut partitioning that places GEMM-like ops on CIM, nonlinear ops on GPU, and control flow on CPU; inserts PCIe/SPI async transfers and fusion to cut movement and emit pipeline schedules.}\\
+\item {Custom CIMHigh/CIMMid/CIMLow IR and Pass pipeline; OR-Tools allocation of Die/L2/L0 arrays with PN split, LS tiling, DAC/TIA/RAS mapping; emit burnable {\textbf{config.bin}} and weight {\textbf{map.bin}}, plus GPU PTX and LLVM CPU backends.}\\
+\item {Shipped a unified runtime with per-device executors, shared memory, and triple buffering (compute/transfer overlap); C++/Python APIs and profiling for latency, utilization, and transfer cost.}\\
+\item {Applied Mirage-style multi-level superopt: graph fusion, hardware-aware tiling, RF/SPM/DRAM dataflow, and mixed precision for LLM/CNN deployment on CIM heterogeneous platforms.}\\
+\end{rSubsection}
+
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
-{\textbf{R\&D Department}}{Sep. 2022 - Present}
+{\textbf{R\&D Department}}{Sep. 2022 - Dec. 2025}
 \item {Led development of \textbf{YiRage Persistent Kernel (YPK)}, compiling end-to-end LLM inference into a single megakernel; on Llama2-7B achieved \textbf{1.2×–6.7×} latency reduction, \textbf{40\%} higher GPU utilization, and \textbf{25\%} lower memory use.}\\
 \item {Designed fused operators (RMSNorm+Linear, etc.), cutting \textbf{85\%} of kernel-launch overhead; single-request latency from \textbf{120ms to 18ms} (batch size=1).}\\
 \item {Built adaptive scheduling with Triton and FlashInfer; scaled to \textbf{8 GPUs} at \textbf{15,000 tokens/s}.}\\

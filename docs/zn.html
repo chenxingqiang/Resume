@@ -16,7 +16,7 @@
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
                 <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
@@ -57,8 +57,8 @@ PyTorch、TensorFlow、Triton、TVM、Kubernetes；Hadoop、Flink、Spark
 <p><span><strong>大语言模型
 推理系统</strong></span>：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、GPU
 Profiling 与 Replay。</p>
-<p><span><strong>AI编译器
-内核</strong></span>：图编译、持久化超级内核、算子融合、成本建模；LLM编译器与运行时(YiRage
+<p><span><strong>AI编译器 内核</strong></span>：MLIR、图划分、CIM/NPU
+后端、异构运行时；持久化超级内核、算子融合、成本建模；LLM编译器(YiRage
 YPK)；GPU 轨迹采集与回放(TraceSmith)。</p>
 <p><span><strong>深度学习模型</strong></span>：精通Transformers、RL、GNN、DNN、CNN
 等。</p>
@@ -113,8 +113,40 @@ class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 <div class="rSection">
 <p><span>工作经历</span></p>
 <div class="rSubsection">
+<p><span><strong>编译器&amp;工具链专家，知存算力（Witmem）</strong></span><span>杭州，中国</span>
+<span><strong>编译器 / 工具链</strong></span><span>2025年12月10日 -
+至今</span></p>
+<p><span>全面负责<span><strong>MLIR</strong></span>编译器全流程优化，主导
+Palladium 存算芯片编译工具链验证；依托 GDB
+在仿真模型、芯片与系统软件层开展全链路
+Debug、日志排查与问题闭环。</span><br />
+</p>
+<p><span>自研面向 NOR Flash 模拟存算一体 CIM NPU
+的<span><strong>CIM-MLIR</strong></span>多级异构编译系统，搭建前端、图划分、硬件后端、统一运行时四层链路，打通
+PyTorch/TensorFlow/ONNX 到 CPU/GPU/CIM 协同推理。</span><br />
+</p>
+<p><span>自研代价驱动最小割图划分：按算力/带宽区分 CIM 矩阵算子、GPU
+非线性算子与 CPU 控制流，切分跨设备子图并插入 PCIe/SPI
+异步传输与算子融合，输出流水线调度。</span><br />
+</p>
+<p><span>定制 CIMHigh/CIMMid/CIMLow 三级 IR 与 Pass 流水线，用 OR-Tools
+完成 Die/L2/L0 阵列资源分配及 PN 拆分、LS 分片、DAC/TIA/RAS
+等硬件适配，生成可烧录<span><strong>config.bin</strong></span>与权重<span><strong>map.bin</strong></span>；配套
+GPU PTX 与 LLVM CPU 后端。</span><br />
+</p>
+<p><span>自研跨设备统一运行时：CPU/GPU/CIM
+独立执行器、统一内存与三级缓冲，支持计算/传输重叠与双/三缓冲；提供
+C++/Python API 及延迟、利用率、传输开销剖析。</span><br />
+</p>
+<p><span>借鉴 Mirage 多层次超优化，在编译器层做图融合、Tile
+硬件感知分块、RF/SPM/DRAM 数据流与混合精度，支撑大模型与 CNN
+在存算异构平台部署。</span><br />
+</p>
+</div>
+<div class="rSubsection">
 <p><span><strong>高级AI编译器工程师，亿铸智能</strong></span><span>杭州，中国</span>
-<span><strong>研发部门</strong></span><span>2022年9月 - 至今</span></p>
+<span><strong>研发部门</strong></span><span>2022年9月 -
+2025年12月</span></p>
 <p><span>主导开发<span><strong>YiRage
 持久化内核(YPK)</strong></span>，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现<span><strong>1.2×–6.7×延迟缩减</strong></span>，GPU利用率提升<span><strong>40%</strong></span>，显存占用减少<span><strong>25%</strong></span>。</span><br />
 </p>
@@ -131,8 +163,8 @@ tokens/秒</strong></span>。</span><br />
 <p><span>技术成果转化：申请<span><strong>2项</strong></span>发明专利，产品已部署到<span><strong>2个</strong></span>数据中心客户。</span><br />
 </p>
 <p><span>在 ReRAM
-芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的
-LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。</span><br />
+芯片公司主要负责编译器后端适配与本公司软件生态构建，聚焦公司 SoC 的 LLVM
+后端 Target 研发，推进代码规范化与复杂指令集架构开发。</span><br />
 </p>
 <p><span>承担 AI 模型（含
 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs

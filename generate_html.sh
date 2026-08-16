@@ -35,7 +35,7 @@ cat > docs/en.html << 'ENEOF'
             <h1 style="margin: 0; border: none;">CHEN XINGQIANG</h1>
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>Title:</strong> Senior AI Compiler Engineer</div>
+                <div class="resume-meta-item"><strong>Title:</strong> Compiler &amp; Toolchain Expert</div>
                 <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / GPU Profiling / Privacy-Preserving ML</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
@@ -79,7 +79,7 @@ cat > docs/zn.html << 'ZNEOF'
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
                 <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
@@ -123,7 +123,7 @@ cat > docs/zn-adjust.html << 'ZNAEOF'
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
                 <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
@@ -336,7 +336,7 @@ cat > docs/index.html << 'EOF'
                     <table>
                         <tr>
                             <td>职称 Title:</td>
-                            <td>高级AI编译器工程师 Senior AI Compiler Engineer</td>
+                            <td>编译器&amp;工具链专家 Compiler &amp; Toolchain Expert</td>
                         </tr>
                         <tr>
                             <td>专业方向:</td>
