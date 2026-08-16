@@ -35,8 +35,8 @@ cat > docs/en.html << 'ENEOF'
             <h1 style="margin: 0; border: none;">CHEN XINGQIANG</h1>
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>Title:</strong> Compiler &amp; Toolchain Expert</div>
-                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / GPU Profiling / Privacy-Preserving ML</div>
+                <div class="resume-meta-item"><strong>Title:</strong> Product-Line Compiler Lead</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> AI Graph Compiler / Palladium Emulation / HW-SW Co-design</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -79,8 +79,8 @@ cat > docs/zn.html << 'ZNEOF'
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 产品线编译器负责人</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> AI 图编译器 / Palladium 仿真验证 / 软硬件协同</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -123,8 +123,8 @@ cat > docs/zn-adjust.html << 'ZNAEOF'
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 产品线编译器负责人</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> AI 图编译器 / Palladium 仿真验证 / 软硬件协同</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -336,11 +336,11 @@ cat > docs/index.html << 'EOF'
                     <table>
                         <tr>
                             <td>职称 Title:</td>
-                            <td>编译器&amp;工具链专家 Compiler &amp; Toolchain Expert</td>
+                            <td>产品线编译器负责人 Product-Line Compiler Lead</td>
                         </tr>
                         <tr>
                             <td>专业方向:</td>
-                            <td>大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</td>
+                            <td>AI 图编译器 / Palladium 仿真验证 / 软硬件协同</td>
                         </tr>
                         <tr>
                             <td>学位 Degree:</td>
@@ -359,7 +359,7 @@ cat > docs/index.html << 'EOF'
             </div>
         </div>
         
-        <p class="subtitle">🚀 LLM Inference Systems | AI Compiler | GPU Profiling | Privacy-Preserving ML | Recommendation Systems</p>
+        <p class="subtitle">🚀 AI Graph Compiler | Palladium Emulation | HW/SW Co-design | LLM Inference</p>
         
         <h2>📄 简历版本 Resume Versions</h2>
         

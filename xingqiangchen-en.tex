@@ -21,9 +21,9 @@
 
 \begin{rSection}{OBJECTIVE}
 {Looking for {\bf FULL TIME} roles in
-{\bf LLM Inference Systems \/ AI Agent \/ AI Compiler} \/
-{\bf Applied Foundation Models} \/
-{\bf Recommendation Systems}.}
+{\bf AI Accelerator Compiler \/ System Software} \/
+{\bf LLM Inference Systems} \/
+{\bf HW/SW Co-design}.}
 \end{rSection}
 
 \begin{rSection}{Interdisciplinary Background}
@@ -56,7 +56,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
  
  \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, GPU profiling \& replay.
 
- \item {\bf AI Compiler \/ Kernel}: MLIR, graph partition, CIM/NPU backends, heterogeneous runtime; persistent megakernel, operator fusion, cost modeling; LLM compiler (YiRage YPK); GPU trace capture/replay (TraceSmith).
+ \item {\bf AI Compiler \/ Kernel}: MLIR graph compiler, CIM/NPU codegen, heterogeneous runtime; {\bf Palladium} emulation and HW/SW co-debug; YiRage YPK; TraceSmith.
 
  \item {\bf Deep Learning Models}: Knowledgeable in Transformers, RL, GNN, DNN, CNN, and more.
 
@@ -81,14 +81,13 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSection}{Experience}
 
-\begin{rSubsection}{\textbf{Compiler \& Toolchain Expert, Witmem (知存算力)}}{Hangzhou, China}
-{\textbf{Compiler / Toolchain}}{Dec. 10, 2025 - Present}
-\item {Own end-to-end {\textbf{MLIR}} compiler optimization and Palladium CIM-chip toolchain bring-up; full-stack GDB debug across simulation models, silicon, and system software, with log triage and fix closure.}\\
-\item {Built {\textbf{CIM-MLIR}}, a multi-level heterogeneous compiler for a NOR-Flash analog CIM NPU: frontend, graph partition, hardware backend, and unified runtime, mapping PyTorch/TensorFlow/ONNX onto CPU/GPU/CIM.}\\
-\item {Designed cost-driven min-cut partitioning that places GEMM-like ops on CIM, nonlinear ops on GPU, and control flow on CPU; inserts PCIe/SPI async transfers and fusion to cut movement and emit pipeline schedules.}\\
-\item {Custom CIMHigh/CIMMid/CIMLow IR and Pass pipeline; OR-Tools allocation of Die/L2/L0 arrays with PN split, LS tiling, DAC/TIA/RAS mapping; emit burnable {\textbf{config.bin}} and weight {\textbf{map.bin}}, plus GPU PTX and LLVM CPU backends.}\\
-\item {Shipped a unified runtime with per-device executors, shared memory, and triple buffering (compute/transfer overlap); C++/Python APIs and profiling for latency, utilization, and transfer cost.}\\
-\item {Applied Mirage-style multi-level superopt: graph fusion, hardware-aware tiling, RF/SPM/DRAM dataflow, and mixed precision for LLM/CNN deployment on CIM heterogeneous platforms.}\\
+\begin{rSubsection}{\textbf{Product-Line Compiler Lead, Witmem (知存算力)}}{Hangzhou, China}
+{\textbf{Product-line Compiler / Palladium Emulation}}{Dec. 10, 2025 - Present}
+\item {Own a CIM product line's {\textbf{compiler stack}} and {\textbf{Palladium}} hardware emulation: close the loop from workload $\rightarrow$ graph compile/codegen $\rightarrow$ on-chip execution $\rightarrow$ emulation $\rightarrow$ root-cause, tracing software-stack bugs to hardware behavior.}\\
+\item {Lead software bring-up on Palladium: run compiler-generated programs on the emulator, HW/SW co-debug (GDB + model/silicon/system software), and close functional/perf issues---not just mechanical regression.}\\
+\item {Built {\textbf{CIM-MLIR}}, an {\textbf{AI graph compiler}} (not ISA/LLVM-backend only): PyTorch/TensorFlow/ONNX via TOSA/StableHLO onto CPU/GPU/CIM, filling the product line's missing AI-compiler capability.}\\
+\item {Cost-driven min-cut partition plus CIMHigh/Mid/Low IR: GEMM-like ops on CIM, nonlinear on GPU, control on CPU; OR-Tools Die/L2/L0 allocation; emit burnable {\textbf{config.bin}}/{\textbf{map.bin}} plus PTX and LLVM host code.}\\
+\item {Shipped the Runtime/Firmware stack: per-device executors, unified memory, compute/transfer overlap and triple buffering; C++/Python APIs for latency, utilization, and transfer cost on LLM/CNN CIM deployments.}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
