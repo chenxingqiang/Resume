@@ -81,14 +81,14 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSection}{Experience}
 
-\begin{rSubsection}{\textbf{Product-Line Compiler Lead, Witmem (知存算力)}}{Hangzhou, China}
-{\textbf{Product-line Compiler / Palladium Emulation}}{Dec. 10, 2025 - Present}
-\item {Own a CIM product line's {\textbf{compiler stack}} and {\textbf{Palladium}} hardware emulation: close the loop from workload $\rightarrow$ graph compile/codegen $\rightarrow$ on-chip execution $\rightarrow$ emulation $\rightarrow$ root-cause, tracing software-stack bugs to hardware behavior.}\\
-\item {Lead software bring-up on Palladium: run compiler-generated programs on the emulator, HW/SW co-debug (GDB + model/silicon/system software), and close functional/perf issues---not just mechanical regression.}\\
-\item {Built {\textbf{CIM-MLIR}}, an {\textbf{AI graph compiler}} (not ISA/LLVM-backend only): PyTorch/TensorFlow/ONNX via TOSA/StableHLO onto CPU/GPU/CIM, filling the product line's missing AI-compiler capability.}\\
-\item {Cost-driven min-cut partition plus CIMHigh/Mid/Low IR: GEMM-like ops on CIM, nonlinear on GPU, control on CPU; OR-Tools Die/L2/L0 allocation; emit burnable {\textbf{config.bin}}/{\textbf{map.bin}} plus PTX and LLVM host code.}\\
-\item {Shipped the Runtime/Firmware stack: per-device executors, unified memory, compute/transfer overlap and triple buffering; C++/Python APIs for latency, utilization, and transfer cost on LLM/CNN CIM deployments.}\\
-\item {Research from this role: {\textbf{GRC-PIM}}, a drift-gated, GEMV-reusing residual calibrator for soft-decision error correction in PIM; submitted to \textit{npj Unconventional Computing} (Future Computing collection).}\\
+\begin{rSubsection}{\textbf{Compiler \& Toolchain Expert, Witmem (知存算力)}}{Hangzhou, China}
+{\textbf{Compiler / Palladium Verification}}{Dec. 10, 2025 - Present}
+\item {Owned the product-line compiler and Palladium emulation for a CIM chip: model compile, codegen, on-chip execution, and defect isolation on the emulator.}\\
+\item {Brought up software on Palladium: ran compiler output on the emulator and jointly debugged with GDB across the simulation model, silicon, and system software.}\\
+\item {Implemented {\textbf{CIM-MLIR}}: PyTorch/TensorFlow/ONNX lowered via TOSA/StableHLO to CPU, GPU, and CIM, covering frontend, graph partition, hardware backend, and runtime.}\\
+\item {Implemented cost-driven graph partition and CIMHigh/Mid/Low IR; used OR-Tools for Die/L2/L0 allocation; emitted burnable {\textbf{config.bin}}, weight {\textbf{map.bin}}, GPU PTX, and LLVM host code.}\\
+\item {Implemented a cross-device runtime: per-device executors, unified memory, compute/transfer overlap and triple buffering; C++/Python APIs with latency, utilization, and transfer-cost counters.}\\
+\item {Implemented {\textbf{GRC-PIM}}: drift-gated, GEMV-reusing residual calibration and soft-decision error correction for PIM; submitted to \textit{npj Unconventional Computing}.}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
@@ -164,7 +164,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 \begin{rSection}{Publications}
 \begin{rSubsection}{}{}
 {}{}
-  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. \textit{npj Unconventional Computing} (Future Computing collection, submitted; work at Witmem / 知存算力).}\\
+  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. \textit{npj Unconventional Computing} (submitted).}\\
   \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. \textit{Acta Crystallographica Section D: Structural Biology.} 2017 Oct 1;73(10):793-803.}\\
   \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. \textit{Sensors and Actuators B: Chemical}. 2018 Jan 1;254:44-51.}\\
   \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. \textit{PloS one}. 2015 Jul 22;10(7):e0133389.}\\

@@ -16,8 +16,8 @@
             <h1 style="margin: 0; border: none;">CHEN XINGQIANG</h1>
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>Title:</strong> Product-Line Compiler Lead</div>
-                <div class="resume-meta-item"><strong>Focus:</strong> AI Graph Compiler / Palladium Emulation / HW-SW Co-design</div>
+                <div class="resume-meta-item"><strong>Title:</strong> Compiler &amp; Toolchain Expert</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> Compiler / Palladium Verification / CIM-MLIR</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -120,44 +120,37 @@ class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 <div class="rSection">
 <p><span>Experience</span></p>
 <div class="rSubsection">
-<p><span><strong>Product-Line Compiler Lead, Witmem
+<p><span><strong>Compiler &amp; Toolchain Expert, Witmem
 (知存算力)</strong></span><span>Hangzhou, China</span>
-<span><strong>Product-line Compiler / Palladium
-Emulation</strong></span><span>Dec. 10, 2025 - Present</span></p>
-<p><span>Own a CIM product line’s <span><strong>compiler
-stack</strong></span> and <span><strong>Palladium</strong></span>
-hardware emulation: close the loop from workload <span
-class="math inline">→</span> graph compile/codegen <span
-class="math inline">→</span> on-chip execution <span
-class="math inline">→</span> emulation <span
-class="math inline">→</span> root-cause, tracing software-stack bugs to
-hardware behavior.</span><br />
+<span><strong>Compiler / Palladium
+Verification</strong></span><span>Dec. 10, 2025 - Present</span></p>
+<p><span>Owned the product-line compiler and Palladium emulation for a
+CIM chip: model compile, codegen, on-chip execution, and defect
+isolation on the emulator.</span><br />
 </p>
-<p><span>Lead software bring-up on Palladium: run compiler-generated
-programs on the emulator, HW/SW co-debug (GDB + model/silicon/system
-software), and close functional/perf issues—not just mechanical
-regression.</span><br />
+<p><span>Brought up software on Palladium: ran compiler output on the
+emulator and jointly debugged with GDB across the simulation model,
+silicon, and system software.</span><br />
 </p>
-<p><span>Built <span><strong>CIM-MLIR</strong></span>, an
-<span><strong>AI graph compiler</strong></span> (not ISA/LLVM-backend
-only): PyTorch/TensorFlow/ONNX via TOSA/StableHLO onto CPU/GPU/CIM,
-filling the product line’s missing AI-compiler capability.</span><br />
+<p><span>Implemented <span><strong>CIM-MLIR</strong></span>:
+PyTorch/TensorFlow/ONNX lowered via TOSA/StableHLO to CPU, GPU, and CIM,
+covering frontend, graph partition, hardware backend, and
+runtime.</span><br />
 </p>
-<p><span>Cost-driven min-cut partition plus CIMHigh/Mid/Low IR:
-GEMM-like ops on CIM, nonlinear on GPU, control on CPU; OR-Tools
-Die/L2/L0 allocation; emit burnable
-<span><strong>config.bin</strong></span>/<span><strong>map.bin</strong></span>
-plus PTX and LLVM host code.</span><br />
+<p><span>Implemented cost-driven graph partition and CIMHigh/Mid/Low IR;
+used OR-Tools for Die/L2/L0 allocation; emitted burnable
+<span><strong>config.bin</strong></span>, weight
+<span><strong>map.bin</strong></span>, GPU PTX, and LLVM host
+code.</span><br />
 </p>
-<p><span>Shipped the Runtime/Firmware stack: per-device executors,
+<p><span>Implemented a cross-device runtime: per-device executors,
 unified memory, compute/transfer overlap and triple buffering;
-C++/Python APIs for latency, utilization, and transfer cost on LLM/CNN
-CIM deployments.</span><br />
+C++/Python APIs with latency, utilization, and transfer-cost
+counters.</span><br />
 </p>
-<p><span>Research from this role: <span><strong>GRC-PIM</strong></span>,
-a drift-gated, GEMV-reusing residual calibrator for soft-decision error
-correction in PIM; submitted to <em>npj Unconventional Computing</em>
-(Future Computing collection).</span><br />
+<p><span>Implemented <span><strong>GRC-PIM</strong></span>: drift-gated,
+GEMV-reusing residual calibration and soft-decision error correction for
+PIM; submitted to <em>npj Unconventional Computing</em>.</span><br />
 </p>
 </div>
 <div class="rSubsection">
@@ -321,8 +314,7 @@ Contest in Modeling, 2012.</span><br />
 <div class="rSubsection">
 <p><span>Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual
 Calibrator for Soft-Decision Error Correction in Processing-in-Memory.
-<em>npj Unconventional Computing</em> (Future Computing collection,
-submitted; work at Witmem / 知存算力).</span><br />
+<em>npj Unconventional Computing</em> (submitted).</span><br />
 </p>
 <p><span>Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C,
 Shuai J, Han A. Conformational dynamics of the essential sensor

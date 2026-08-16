@@ -16,8 +16,8 @@
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 产品线编译器负责人</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> AI 图编译器 / Palladium 仿真验证 / 软硬件协同</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 编译器&amp;工具链专家</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> 编译器 / Palladium 验证 / CIM-MLIR</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -113,39 +113,31 @@ class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 <div class="rSection">
 <p><span>工作经历</span></p>
 <div class="rSubsection">
-<p><span>产品线编译器负责人，知存算力（Witmem）</span><span>杭州，中国</span>
-<span><strong>产品线 Compiler / Palladium
-硬件仿真验证</strong></span><span>2025年12月10日 - 至今</span></p>
-<p><span>负责一条存算产品线的<span><strong>Compiler
-全栈交付</strong></span>，并同时负责<span><strong>Palladium</strong></span>硬件仿真验证：覆盖工作负载
-<span class="math inline">→</span> 图编译/CodeGen <span
-class="math inline">→</span> 芯片执行 <span class="math inline">→</span>
-Emulation <span class="math inline">→</span>
-问题定位的闭环，能把软件栈问题追到硬件行为。</span><br />
+<p><span>编译器&amp;工具链专家，知存算力（Witmem）</span><span>杭州，中国</span>
+<span><strong>编译器 / Palladium
+验证</strong></span><span>2025年12月10日 - 至今</span></p>
+<p><span>负责存算芯片产品线编译器与 Palladium
+仿真验证，覆盖模型编译、指令生成、芯片执行及 Emulation
+缺陷定位。</span><br />
 </p>
-<p><span>主导 Palladium Emulation 环境上的软件 Bring-up：Compiler
-生成程序在仿真器上执行、HW/SW 协同 Debug（GDB +
-仿真模型/芯片/系统软件），完成功能与性能问题的验证闭环，而非只做机械回归。</span><br />
+<p><span>完成 Palladium 软件 Bring-up：Compiler 输出在仿真器上运行，结合
+GDB 在仿真模型、芯片与系统软件层做联合调试。</span><br />
 </p>
-<p><span>自研<span><strong>CIM-MLIR</strong></span> AI Graph
-Compiler（非仅传统 ISA/LLVM Backend）：前端导入
-PyTorch/TensorFlow/ONNX，经 TOSA/StableHLO 到 CPU/GPU/CIM
-三后端，补齐产品线缺失的 AI 编译能力。</span><br />
+<p><span>实现<span><strong>CIM-MLIR</strong></span>异构编译器：PyTorch/TensorFlow/ONNX
+经 TOSA/StableHLO 映射至 CPU、GPU 与
+CIM，含前端、图划分、硬件后端与运行时。</span><br />
 </p>
-<p><span>代价驱动最小割图划分 + CIMHigh/Mid/Low 三级 IR：CIM
-承接矩阵算子、GPU 承接非线性、CPU 承接控制流；OR-Tools 分配
-Die/L2/L0，生成可烧录<span><strong>config.bin</strong></span>/<span><strong>map.bin</strong></span>及
-PTX/LLVM 主机代码。</span><br />
+<p><span>实现代价驱动图划分与 CIMHigh/Mid/Low 三级 IR；用 OR-Tools 分配
+Die/L2/L0
+资源，生成可烧录<span><strong>config.bin</strong></span>、权重<span><strong>map.bin</strong></span>，以及
+GPU PTX 与 LLVM 主机代码。</span><br />
 </p>
-<p><span>交付跨设备 Runtime/Firmware
-栈：独立执行器、统一内存、计算/传输流水线重叠与三级缓冲；C++/Python API
-输出延迟、利用率、传输开销，支撑大模型与 CNN 在 CIM
-异构平台部署。</span><br />
+<p><span>实现跨设备运行时：分设备执行器、统一内存、计算与传输重叠及三级缓冲；提供
+C++/Python 接口及延迟、利用率、传输开销统计。</span><br />
 </p>
-<p><span>技术产出：<span><strong>GRC-PIM</strong></span>——面向存算一体的
-drift-gated、GEMV 复用残差校准与软判决纠错，投稿 <span><em>npj
-Unconventional Computing</em></span>（Future Computing
-专刊，投稿中）。</span><br />
+<p><span>实现<span><strong>GRC-PIM</strong></span>：PIM 上基于 drift
+gating 与 GEMV 复用的残差校准及软判决纠错，投稿 <span><em>npj
+Unconventional Computing</em></span>。</span><br />
 </p>
 </div>
 <div class="rSubsection">
@@ -322,8 +314,8 @@ ICDM全球气象AI挑战赛，2018年。</span><br />
 <div class="rSubsection">
 <p><span>Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual
 Calibrator for Soft-Decision Error Correction in Processing-in-Memory.
-<span><em>npj Unconventional Computing</em></span>（Future Computing
-专刊，投稿中；知存算力产品线工作）。</span><br />
+<span><em>npj Unconventional
+Computing</em></span>（投稿中）。</span><br />
 </p>
 <p><span>Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C,
 Shuai J, Han A. Conformational dynamics of the essential sensor
