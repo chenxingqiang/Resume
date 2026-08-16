@@ -22,9 +22,9 @@
 
 \begin{rSection}{求职意向}
 {寻求{\bf 全职}职位：
-{\bf 大语言模型推理系统  \/ AI Agent \/ AI编译器} \/
-{\bf 基础模型应用方向} \/
-{\bf 推荐系统}。}
+{\bf AI 加速器编译器 \/ 系统软件} \/
+{\bf 大语言模型推理系统} \/
+{\bf 软硬件协同设计}。}
 \end{rSection}
 
 \begin{rSection}{交叉学科背景}
@@ -57,7 +57,7 @@
  
  \item {\bf 大语言模型 \/ 推理系统}：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、GPU Profiling 与 Replay。
 
- \item {\bf AI编译器 \/ 内核}：图编译、持久化超级内核、算子融合、成本建模；LLM编译器与运行时(YiRage YPK)；GPU 轨迹采集与回放(TraceSmith)。
+ \item {\bf AI编译器 \/ 内核}：MLIR 图编译、CIM/NPU CodeGen、异构运行时；{\bf Palladium} 仿真验证与 HW/SW 协同 Debug；YiRage YPK；TraceSmith。
 
  \item {\bf 深度学习模型}：精通Transformers、RL、GNN、DNN、CNN 等。
 
@@ -108,14 +108,24 @@
 
 \begin{rSection}{工作经历}
 
+\begin{rSubsection}{\textbf{产品线编译器负责人，知存算力（Witmem）}}{杭州，中国}
+{\textbf{产品线 Compiler / Palladium 硬件仿真验证}}{2025年12月10日 - 至今}
+\item {负责一条存算产品线的{\textbf{Compiler 全栈交付}}，并同时负责{\textbf{Palladium}}硬件仿真验证：覆盖工作负载 $\rightarrow$ 图编译/CodeGen $\rightarrow$ 芯片执行 $\rightarrow$ Emulation $\rightarrow$ 问题定位的闭环，能把软件栈问题追到硬件行为。}\\
+\item {主导 Palladium Emulation 环境上的软件 Bring-up：Compiler 生成程序在仿真器上执行、HW/SW 协同 Debug（GDB + 仿真模型/芯片/系统软件），完成功能与性能问题的验证闭环，而非只做机械回归。}\\
+\item {自研{\textbf{CIM-MLIR}} AI Graph Compiler（非仅传统 ISA/LLVM Backend）：前端导入 PyTorch/TensorFlow/ONNX，经 TOSA/StableHLO 到 CPU/GPU/CIM 三后端，补齐产品线缺失的 AI 编译能力。}\\
+\item {代价驱动最小割图划分 + CIMHigh/Mid/Low 三级 IR：CIM 承接矩阵算子、GPU 承接非线性、CPU 承接控制流；OR-Tools 分配 Die/L2/L0，生成可烧录{\textbf{config.bin}}/{\textbf{map.bin}}及 PTX/LLVM 主机代码。}\\
+\item {交付跨设备 Runtime/Firmware 栈：独立执行器、统一内存、计算/传输流水线重叠与三级缓冲；C++/Python API 输出延迟、利用率、传输开销，支撑大模型与 CNN 在 CIM 异构平台部署。}\\
+\item {技术产出：{\textbf{GRC-PIM}}——面向存算一体的 drift-gated、GEMV 复用残差校准与软判决纠错，投稿 {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中）。}\\
+\end{rSubsection}
+
 \begin{rSubsection}{\textbf{高级AI编译器工程师，亿铸智能}}{杭州，中国}
-{\textbf{研发部门}}{2022年9月 - 至今}
+{\textbf{研发部门}}{2022年9月 - 2025年12月}
 \item {主导开发{\textbf{YiRage 持久化内核(YPK)}}，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现{\textbf{1.2×–6.7×延迟缩减}}，GPU利用率提升{\textbf{40\%}}，显存占用减少{\textbf{25\%}}。}\\
 \item {设计并实现融合算子架构（RMSNorm + Linear 等），消除{\textbf{85\%}}的内核启动开销，单次推理延迟从{\textbf{120ms 降至 18ms}}（批大小=1）。}\\
 \item {构建自适应调度系统，整合 Triton 与 FlashInfer 内核，支持多GPU扩展至{\textbf{8卡并行}}，吞吐量达到{\textbf{15,000 tokens/秒}}。}\\
 \item {开发图编译优化器，实现自动内核参数调优和KV-cache内存布局优化，内存访问效率提升{\textbf{60\%}}，缓存命中率达到{\textbf{92\%}}。}\\
 \item {技术成果转化：申请{\textbf{2项}}发明专利，产品已部署到{\textbf{2个}}数据中心客户。}\\
-\item {在 ReRAM 芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的 LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。}\\
+\item {在 ReRAM 芯片公司主要负责编译器后端适配与本公司软件生态构建，聚焦公司 SoC 的 LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。}\\
 \item {承担 AI 模型（含 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs 等）与计算效率；集成 TVM、ONNX、MLCommons、TensorFlow/PyTorch 于 YZlite，对多种模型运行时进行算子级指标统计并输出各类芯片上的 benchmark。}\\
 \end{rSubsection}
 
@@ -181,7 +191,7 @@
 \begin{rSection}{发表论文}
 \begin{rSubsection}{}{}
 {}{}
-  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（Future Computing: Paradigms, Technologies, Software and Applications 专刊，投稿中）。}\\
+  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中；知存算力产品线工作）。}\\
   \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. {\textit{Acta Crystallographica Section D: Structural Biology.}} 2017 Oct 1;73(10):793-803.}\\
   \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. {\textit{Sensors and Actuators B: Chemical}}. 2018 Jan 1;254:44-51.}\\
   \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. {\textit{PloS one}}. 2015 Jul 22;10(7):e0133389.}\\

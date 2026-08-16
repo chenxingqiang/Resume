@@ -16,8 +16,8 @@
             <h1 style="margin: 0; border: none;">CHEN XINGQIANG</h1>
             <div class="subtitle">陈星强</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>Title:</strong> Senior AI Compiler Engineer</div>
-                <div class="resume-meta-item"><strong>Focus:</strong> LLM Systems / AI Compiler / GPU Profiling / Privacy-Preserving ML</div>
+                <div class="resume-meta-item"><strong>Title:</strong> Product-Line Compiler Lead</div>
+                <div class="resume-meta-item"><strong>Focus:</strong> AI Graph Compiler / Palladium Emulation / HW-SW Co-design</div>
                 <div class="resume-meta-item"><strong>Degree:</strong> Ph.D. in Biophysics and Condensed Matter</div>
                 <div class="resume-meta-item"><strong>Location:</strong> Hangzhou, China</div>
                 <div class="resume-meta-item"><strong>Email:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -30,10 +30,10 @@
 </header>
 <div class="rSection">
 <p><span>OBJECTIVE</span> <span>Looking for <span><strong>FULL
-TIME</strong></span> roles in <span><strong>LLM Inference Systems AI
-Agent AI Compiler</strong></span> <span><strong>Applied Foundation
-Models</strong></span> <span><strong>Recommendation
-Systems</strong></span>.</span></p>
+TIME</strong></span> roles in <span><strong>AI Accelerator Compiler
+System Software</strong></span> <span><strong>LLM Inference
+Systems</strong></span> <span><strong>HW/SW
+Co-design</strong></span>.</span></p>
 </div>
 <div class="rSection">
 <p><span>Interdisciplinary Background</span> <span>Physics and
@@ -62,9 +62,10 @@ Triton, TVM, Kubernetes; Hadoop, Flink, Spark.</p>
 <p><span><strong>LLM Inference Systems</strong></span>: Transformers,
 KV-Cache, quantization, batching &amp; scheduling, Triton kernels, CUDA,
 FlashAttention, graph fusion, GPU profiling &amp; replay.</p>
-<p><span><strong>AI Compiler Kernel</strong></span>: Graph compilation,
-persistent megakernel, operator fusion, cost modeling; LLM compiler
-&amp; runtime (YiRage YPK); GPU trace capture/replay (TraceSmith).</p>
+<p><span><strong>AI Compiler Kernel</strong></span>: MLIR graph
+compiler, CIM/NPU codegen, heterogeneous runtime;
+<span><strong>Palladium</strong></span> emulation and HW/SW co-debug;
+YiRage YPK; TraceSmith.</p>
 <p><span><strong>Deep Learning Models</strong></span>: Knowledgeable in
 Transformers, RL, GNN, DNN, CNN, and more.</p>
 <p><span><strong>Interdisciplinary Expertise</strong></span>: Background
@@ -119,9 +120,50 @@ class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 <div class="rSection">
 <p><span>Experience</span></p>
 <div class="rSubsection">
+<p><span><strong>Product-Line Compiler Lead, Witmem
+(知存算力)</strong></span><span>Hangzhou, China</span>
+<span><strong>Product-line Compiler / Palladium
+Emulation</strong></span><span>Dec. 10, 2025 - Present</span></p>
+<p><span>Own a CIM product line’s <span><strong>compiler
+stack</strong></span> and <span><strong>Palladium</strong></span>
+hardware emulation: close the loop from workload <span
+class="math inline">→</span> graph compile/codegen <span
+class="math inline">→</span> on-chip execution <span
+class="math inline">→</span> emulation <span
+class="math inline">→</span> root-cause, tracing software-stack bugs to
+hardware behavior.</span><br />
+</p>
+<p><span>Lead software bring-up on Palladium: run compiler-generated
+programs on the emulator, HW/SW co-debug (GDB + model/silicon/system
+software), and close functional/perf issues—not just mechanical
+regression.</span><br />
+</p>
+<p><span>Built <span><strong>CIM-MLIR</strong></span>, an
+<span><strong>AI graph compiler</strong></span> (not ISA/LLVM-backend
+only): PyTorch/TensorFlow/ONNX via TOSA/StableHLO onto CPU/GPU/CIM,
+filling the product line’s missing AI-compiler capability.</span><br />
+</p>
+<p><span>Cost-driven min-cut partition plus CIMHigh/Mid/Low IR:
+GEMM-like ops on CIM, nonlinear on GPU, control on CPU; OR-Tools
+Die/L2/L0 allocation; emit burnable
+<span><strong>config.bin</strong></span>/<span><strong>map.bin</strong></span>
+plus PTX and LLVM host code.</span><br />
+</p>
+<p><span>Shipped the Runtime/Firmware stack: per-device executors,
+unified memory, compute/transfer overlap and triple buffering;
+C++/Python APIs for latency, utilization, and transfer cost on LLM/CNN
+CIM deployments.</span><br />
+</p>
+<p><span>Research from this role: <span><strong>GRC-PIM</strong></span>,
+a drift-gated, GEMV-reusing residual calibrator for soft-decision error
+correction in PIM; submitted to <em>npj Unconventional Computing</em>
+(Future Computing collection).</span><br />
+</p>
+</div>
+<div class="rSubsection">
 <p><span><strong>Senior AI Compiler Engineer, Yizhu Tech
 Ltd.</strong></span><span>Hangzhou, China</span> <span><strong>R&amp;D
-Department</strong></span><span>Sep. 2022 - Present</span></p>
+Department</strong></span><span>Sep. 2022 - Dec. 2025</span></p>
 <p><span>Led development of <strong>YiRage Persistent Kernel
 (YPK)</strong>, compiling end-to-end LLM inference into a single
 megakernel; on Llama2-7B achieved <strong>1.2×–6.7×</strong> latency
@@ -279,9 +321,8 @@ Contest in Modeling, 2012.</span><br />
 <div class="rSubsection">
 <p><span>Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual
 Calibrator for Soft-Decision Error Correction in Processing-in-Memory.
-<em>npj Unconventional Computing</em> (Future Computing: Paradigms,
-Technologies, Software and Applications collection,
-submitted).</span><br />
+<em>npj Unconventional Computing</em> (Future Computing collection,
+submitted; work at Witmem / 知存算力).</span><br />
 </p>
 <p><span>Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C,
 Shuai J, Han A. Conformational dynamics of the essential sensor

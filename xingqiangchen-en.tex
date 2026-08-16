@@ -21,9 +21,9 @@
 
 \begin{rSection}{OBJECTIVE}
 {Looking for {\bf FULL TIME} roles in
-{\bf LLM Inference Systems \/ AI Agent \/ AI Compiler} \/
-{\bf Applied Foundation Models} \/
-{\bf Recommendation Systems}.}
+{\bf AI Accelerator Compiler \/ System Software} \/
+{\bf LLM Inference Systems} \/
+{\bf HW/SW Co-design}.}
 \end{rSection}
 
 \begin{rSection}{Interdisciplinary Background}
@@ -56,7 +56,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
  
  \item {\bf LLM \/ Inference Systems}: Transformers, KV-Cache, quantization, batching \& scheduling, Triton kernels, CUDA, FlashAttention, graph fusion, GPU profiling \& replay.
 
- \item {\bf AI Compiler \/ Kernel}: Graph compilation, persistent megakernel, operator fusion, cost modeling; LLM compiler \& runtime (YiRage YPK); GPU trace capture/replay (TraceSmith).
+ \item {\bf AI Compiler \/ Kernel}: MLIR graph compiler, CIM/NPU codegen, heterogeneous runtime; {\bf Palladium} emulation and HW/SW co-debug; YiRage YPK; TraceSmith.
 
  \item {\bf Deep Learning Models}: Knowledgeable in Transformers, RL, GNN, DNN, CNN, and more.
 
@@ -81,8 +81,18 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 
 \begin{rSection}{Experience}
 
+\begin{rSubsection}{\textbf{Product-Line Compiler Lead, Witmem (知存算力)}}{Hangzhou, China}
+{\textbf{Product-line Compiler / Palladium Emulation}}{Dec. 10, 2025 - Present}
+\item {Own a CIM product line's {\textbf{compiler stack}} and {\textbf{Palladium}} hardware emulation: close the loop from workload $\rightarrow$ graph compile/codegen $\rightarrow$ on-chip execution $\rightarrow$ emulation $\rightarrow$ root-cause, tracing software-stack bugs to hardware behavior.}\\
+\item {Lead software bring-up on Palladium: run compiler-generated programs on the emulator, HW/SW co-debug (GDB + model/silicon/system software), and close functional/perf issues---not just mechanical regression.}\\
+\item {Built {\textbf{CIM-MLIR}}, an {\textbf{AI graph compiler}} (not ISA/LLVM-backend only): PyTorch/TensorFlow/ONNX via TOSA/StableHLO onto CPU/GPU/CIM, filling the product line's missing AI-compiler capability.}\\
+\item {Cost-driven min-cut partition plus CIMHigh/Mid/Low IR: GEMM-like ops on CIM, nonlinear on GPU, control on CPU; OR-Tools Die/L2/L0 allocation; emit burnable {\textbf{config.bin}}/{\textbf{map.bin}} plus PTX and LLVM host code.}\\
+\item {Shipped the Runtime/Firmware stack: per-device executors, unified memory, compute/transfer overlap and triple buffering; C++/Python APIs for latency, utilization, and transfer cost on LLM/CNN CIM deployments.}\\
+\item {Research from this role: {\textbf{GRC-PIM}}, a drift-gated, GEMV-reusing residual calibrator for soft-decision error correction in PIM; submitted to \textit{npj Unconventional Computing} (Future Computing collection).}\\
+\end{rSubsection}
+
 \begin{rSubsection}{\textbf{Senior AI Compiler Engineer, Yizhu Tech Ltd.}}{Hangzhou, China}
-{\textbf{R\&D Department}}{Sep. 2022 - Present}
+{\textbf{R\&D Department}}{Sep. 2022 - Dec. 2025}
 \item {Led development of \textbf{YiRage Persistent Kernel (YPK)}, compiling end-to-end LLM inference into a single megakernel; on Llama2-7B achieved \textbf{1.2×–6.7×} latency reduction, \textbf{40\%} higher GPU utilization, and \textbf{25\%} lower memory use.}\\
 \item {Designed fused operators (RMSNorm+Linear, etc.), cutting \textbf{85\%} of kernel-launch overhead; single-request latency from \textbf{120ms to 18ms} (batch size=1).}\\
 \item {Built adaptive scheduling with Triton and FlashInfer; scaled to \textbf{8 GPUs} at \textbf{15,000 tokens/s}.}\\
@@ -154,7 +164,7 @@ Xiamen University, Department of Physics and Engineering GPA : 3.0/4.0
 \begin{rSection}{Publications}
 \begin{rSubsection}{}{}
 {}{}
-  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. \textit{npj Unconventional Computing} (Future Computing: Paradigms, Technologies, Software and Applications collection, submitted).}\\
+  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. \textit{npj Unconventional Computing} (Future Computing collection, submitted; work at Witmem / 知存算力).}\\
   \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. \textit{Acta Crystallographica Section D: Structural Biology.} 2017 Oct 1;73(10):793-803.}\\
   \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. \textit{Sensors and Actuators B: Chemical}. 2018 Jan 1;254:44-51.}\\
   \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. \textit{PloS one}. 2015 Jul 22;10(7):e0133389.}\\

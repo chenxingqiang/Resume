@@ -16,8 +16,8 @@
             <h1 style="margin: 0; border: none;">陈星强</h1>
             <div class="subtitle">CHEN XINGQIANG</div>
             <div class="resume-meta">
-                <div class="resume-meta-item"><strong>职称:</strong> 高级AI编译器工程师</div>
-                <div class="resume-meta-item"><strong>专业方向:</strong> 大语言模型推理系统 / AI编译器 / GPU Profiling / 隐私保护机器学习</div>
+                <div class="resume-meta-item"><strong>职称:</strong> 产品线编译器负责人</div>
+                <div class="resume-meta-item"><strong>专业方向:</strong> AI 图编译器 / Palladium 仿真验证 / 软硬件协同</div>
                 <div class="resume-meta-item"><strong>学位:</strong> 博士（生物物理学与凝聚态物理）</div>
                 <div class="resume-meta-item"><strong>位置:</strong> 杭州，中国</div>
                 <div class="resume-meta-item"><strong>邮箱:</strong> <a href="mailto:joy6677@outlook.com">joy6677@outlook.com</a></div>
@@ -30,10 +30,10 @@
 </header>
 <div class="rSection">
 <p><span>求职意向</span>
-<span>寻求<span><strong>全职</strong></span>职位：
-<span><strong>大语言模型推理系统 AI Agent AI编译器</strong></span>
-<span><strong>基础模型应用方向</strong></span>
-<span><strong>推荐系统</strong></span>。</span></p>
+<span>寻求<span><strong>全职</strong></span>职位： <span><strong>AI
+加速器编译器 系统软件</strong></span>
+<span><strong>大语言模型推理系统</strong></span>
+<span><strong>软硬件协同设计</strong></span>。</span></p>
 </div>
 <div class="rSection">
 <p><span>交叉学科背景</span>
@@ -57,9 +57,9 @@ PyTorch、TensorFlow、Triton、TVM、Kubernetes；Hadoop、Flink、Spark
 <p><span><strong>大语言模型
 推理系统</strong></span>：Transformers、KV-Cache、量化、批处理与调度、Triton内核、CUDA、FlashAttention、图融合、GPU
 Profiling 与 Replay。</p>
-<p><span><strong>AI编译器
-内核</strong></span>：图编译、持久化超级内核、算子融合、成本建模；LLM编译器与运行时(YiRage
-YPK)；GPU 轨迹采集与回放(TraceSmith)。</p>
+<p><span><strong>AI编译器 内核</strong></span>：MLIR 图编译、CIM/NPU
+CodeGen、异构运行时；<span><strong>Palladium</strong></span> 仿真验证与
+HW/SW 协同 Debug；YiRage YPK；TraceSmith。</p>
 <p><span><strong>深度学习模型</strong></span>：熟悉
 Transformers、RL、GNN、DNN、CNN 等。</p>
 <p><span><strong>跨学科专长</strong></span>：具有物理学、计算生物学、计算化学、分子动力学、量子力学仿真和计算机科学背景。</p>
@@ -113,8 +113,45 @@ class="uri">https://github.com/chenxingqiang/YiRage</a></p></li>
 <div class="rSection">
 <p><span>工作经历</span></p>
 <div class="rSubsection">
+<p><span>产品线编译器负责人，知存算力（Witmem）</span><span>杭州，中国</span>
+<span><strong>产品线 Compiler / Palladium
+硬件仿真验证</strong></span><span>2025年12月10日 - 至今</span></p>
+<p><span>负责一条存算产品线的<span><strong>Compiler
+全栈交付</strong></span>，并同时负责<span><strong>Palladium</strong></span>硬件仿真验证：覆盖工作负载
+<span class="math inline">→</span> 图编译/CodeGen <span
+class="math inline">→</span> 芯片执行 <span class="math inline">→</span>
+Emulation <span class="math inline">→</span>
+问题定位的闭环，能把软件栈问题追到硬件行为。</span><br />
+</p>
+<p><span>主导 Palladium Emulation 环境上的软件 Bring-up：Compiler
+生成程序在仿真器上执行、HW/SW 协同 Debug（GDB +
+仿真模型/芯片/系统软件），完成功能与性能问题的验证闭环，而非只做机械回归。</span><br />
+</p>
+<p><span>自研<span><strong>CIM-MLIR</strong></span> AI Graph
+Compiler（非仅传统 ISA/LLVM Backend）：前端导入
+PyTorch/TensorFlow/ONNX，经 TOSA/StableHLO 到 CPU/GPU/CIM
+三后端，补齐产品线缺失的 AI 编译能力。</span><br />
+</p>
+<p><span>代价驱动最小割图划分 + CIMHigh/Mid/Low 三级 IR：CIM
+承接矩阵算子、GPU 承接非线性、CPU 承接控制流；OR-Tools 分配
+Die/L2/L0，生成可烧录<span><strong>config.bin</strong></span>/<span><strong>map.bin</strong></span>及
+PTX/LLVM 主机代码。</span><br />
+</p>
+<p><span>交付跨设备 Runtime/Firmware
+栈：独立执行器、统一内存、计算/传输流水线重叠与三级缓冲；C++/Python API
+输出延迟、利用率、传输开销，支撑大模型与 CNN 在 CIM
+异构平台部署。</span><br />
+</p>
+<p><span>技术产出：<span><strong>GRC-PIM</strong></span>——面向存算一体的
+drift-gated、GEMV 复用残差校准与软判决纠错，投稿 <span><em>npj
+Unconventional Computing</em></span>（Future Computing
+专刊，投稿中）。</span><br />
+</p>
+</div>
+<div class="rSubsection">
 <p><span>高级AI编译器工程师，亿铸智能</span><span>杭州，中国</span>
-<span><strong>研发部门</strong></span><span>2022年9月 - 至今</span></p>
+<span><strong>研发部门</strong></span><span>2022年9月 -
+2025年12月</span></p>
 <p><span>主导开发<span><strong>YiRage
 持久化内核(YPK)</strong></span>，将端到端LLM推理编译成单个超级内核，在Llama2-7B上实现<span><strong>1.2×–6.7×延迟缩减</strong></span>，GPU利用率提升<span><strong>40%</strong></span>，显存占用减少<span><strong>25%</strong></span>。</span><br />
 </p>
@@ -131,8 +168,8 @@ tokens/秒</strong></span>。</span><br />
 <p><span>技术成果转化：产品已部署到<span><strong>2个</strong></span>数据中心客户。</span><br />
 </p>
 <p><span>在 ReRAM
-芯片公司主要负责编译器后端适配与本公司软件生态构建，当前聚焦公司 SoC 的
-LLVM 后端 Target 研发，推进代码规范化与复杂指令集架构开发。</span><br />
+芯片公司主要负责编译器后端适配与本公司软件生态构建，聚焦公司 SoC 的 LLVM
+后端 Target 研发，推进代码规范化与复杂指令集架构开发。</span><br />
 </p>
 <p><span>承担 AI 模型（含
 LLMs）的转换与细粒度分析，适配多种运行时格式，评估推理阶段算子指标（Cycles/MACs
@@ -285,9 +322,8 @@ ICDM全球气象AI挑战赛，2018年。</span><br />
 <div class="rSubsection">
 <p><span>Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual
 Calibrator for Soft-Decision Error Correction in Processing-in-Memory.
-<span><em>npj Unconventional Computing</em></span>（Future Computing:
-Paradigms, Technologies, Software and Applications
-专刊，投稿中）。</span><br />
+<span><em>npj Unconventional Computing</em></span>（Future Computing
+专刊，投稿中；知存算力产品线工作）。</span><br />
 </p>
 <p><span>Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C,
 Shuai J, Han A. Conformational dynamics of the essential sensor
