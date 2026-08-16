@@ -115,6 +115,7 @@
 \item {自研{\textbf{CIM-MLIR}} AI Graph Compiler（非仅传统 ISA/LLVM Backend）：前端导入 PyTorch/TensorFlow/ONNX，经 TOSA/StableHLO 到 CPU/GPU/CIM 三后端，补齐产品线缺失的 AI 编译能力。}\\
 \item {代价驱动最小割图划分 + CIMHigh/Mid/Low 三级 IR：CIM 承接矩阵算子、GPU 承接非线性、CPU 承接控制流；OR-Tools 分配 Die/L2/L0，生成可烧录{\textbf{config.bin}}/{\textbf{map.bin}}及 PTX/LLVM 主机代码。}\\
 \item {交付跨设备 Runtime/Firmware 栈：独立执行器、统一内存、计算/传输流水线重叠与三级缓冲；C++/Python API 输出延迟、利用率、传输开销，支撑大模型与 CNN 在 CIM 异构平台部署。}\\
+\item {技术产出：{\textbf{GRC-PIM}}——面向存算一体的 drift-gated、GEMV 复用残差校准与软判决纠错，投稿 {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中）。}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{高级AI编译器工程师，亿铸智能}}{杭州，中国}
@@ -190,7 +191,7 @@
 \begin{rSection}{发表论文}
 \begin{rSubsection}{}{}
 {}{}
-  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（Future Computing: Paradigms, Technologies, Software and Applications 专刊，投稿中）。}\\
+  \item {Chen X. GRC-PIM: A Drift-Gated, GEMV-Reusing Residual Calibrator for Soft-Decision Error Correction in Processing-in-Memory. {\textit{npj Unconventional Computing}}（Future Computing 专刊，投稿中；知存算力产品线工作）。}\\
   \item {Cai Y, Su M, Ahmad A, Hu X, Sang J, Kong L, Chen X, Wang C, Shuai J, Han A. Conformational dynamics of the essential sensor histidine kinase WalK. {\textit{Acta Crystallographica Section D: Structural Biology.}} 2017 Oct 1;73(10):793-803.}\\
   \item {Xia H, Chen X, Chen X, Cheng J, Liu Y, Chen X, Zhang Q, Zou G. Chiral discrimination of amino acid enantiomers based on different interactions with Cu2+. {\textit{Sensors and Actuators B: Chemical}}. 2018 Jan 1;254:44-51.}\\
   \item {Ahmad A, Cai Y, Chen X, Shuai J, Han A. Conformational dynamics of response regulator RegX3 from Mycobacterium tuberculosis. {\textit{PloS one}}. 2015 Jul 22;10(7):e0133389.}\\
