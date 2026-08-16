@@ -11,7 +11,7 @@
 \usepackage[colorlinks=true,urlcolor=linkblue,linkcolor=linkblue,breaklinks=true]{hyperref}
 \newcommand{\link}[1]{\href{#1}{\small\nolinkurl{#1}}}
 \newcommand{\repo}[2]{\href{#2}{\small\nolinkurl{#1}}}
-\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+\usepackage[left=0.55in,top=0.45in,right=0.55in,bottom=0.5in]{geometry} % Document margins
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}} 
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \renewcommand{\baselinestretch}{1}
@@ -39,8 +39,9 @@
 
 \begin{rSection}{Education}
 
-{\bf Doctoral Studies in Biophysics and Condensed Matter} (certificate of completion; degree defense in progress) \hfill {Sep. 2014 - Jul. 2018}\\ 
-Xiamen University, Department of Physics and Engineering; protein dynamics and QM/MM simulation
+{\bf Doctoral Studies in Biophysics and Condensed Matter} \hfill {Sep. 2014 - Jul. 2018}\\ 
+Xiamen University, Department of Physics and Engineering; protein dynamics and QM/MM simulation\\
+Certificate of completion; degree defense in progress
 \\
 \\
 {\bf B.S. in Theoretical Physics} \hfill {Sep. 2010 - Jul. 2014}\\
@@ -64,16 +65,16 @@ Xiamen University, Department of Physics and Engineering
 
  \item {\bf Platforms}: PyTorch, TensorFlow, ONNX, Kubernetes; Spark, Flink, Hadoop.
 
-\item{\bf Open Source \& Releases} (all publicly verifiable):
+\item{\bf Open Source \& Releases} (\nolinkurl{github.com/chenxingqiang} unless noted):
 
 \begin{itemize}
-  \item {\bf TraceSmith} — GPU profiling \& replay across CUDA/ROCm/Metal/MACA/Ascend; C++ core, Python bindings, on \href{https://pypi.org/project/tracesmith/}{PyPI}. \repo{chenxingqiang/TraceSmith}{https://github.com/chenxingqiang/TraceSmith}
-  \item {\bf YiRage Persistent Kernel} — LLM megakernel compiler and runtime, multi-backend. \repo{chenxingqiang/YiRage}{https://github.com/chenxingqiang/YiRage}
-  \item {\bf JAX-sklearn} — sklearn-compatible API on JAX; 13{,}058 tests passing; on PyPI. \repo{chenxingqiang/jax-sklearn}{https://github.com/chenxingqiang/jax-sklearn}
-  \item {\bf Secret-Learn} — Privacy-preserving ML: federated learning, secret sharing, split learning. \repo{chenxingqiang/Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}
-  \item {\bf YouTube-DNN-RecSys} — TensorFlow + Spark retrieval and ranking (60 stars). \repo{chenxingqiang/YouTube-DNN-RecSys}{https://github.com/chenxingqiang/YouTube-DNN-RecSys}
-  \item {\bf Research CLI} — Command-line AI tooling for research; multi-provider models, MCP. \repo{iechor-research/research-cli}{https://github.com/iechor-research/research-cli}
-  \item {\bf Questions-Gen} — Math-problem generation (Qwen3-14B, GRPO, distillation); CLI and HF weights. \repo{chenxingqiang/GenQuestion}{https://github.com/chenxingqiang/GenQuestion}
+  \item {\bf TraceSmith} — GPU profiling \& replay across CUDA/ROCm/Metal/MACA/Ascend; C++ core, Python bindings, on \href{https://pypi.org/project/tracesmith/}{PyPI}. \repo{TraceSmith}{https://github.com/chenxingqiang/TraceSmith}
+  \item {\bf YiRage Persistent Kernel} — LLM megakernel compiler and runtime, multi-backend. \repo{YiRage}{https://github.com/chenxingqiang/YiRage}
+  \item {\bf JAX-sklearn} — sklearn-compatible API on JAX; 13{,}058 tests passing; on PyPI. \repo{jax-sklearn}{https://github.com/chenxingqiang/jax-sklearn}
+  \item {\bf Secret-Learn} — Privacy-preserving ML: federated learning, secret sharing, split learning. \repo{Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}
+  \item {\bf YouTube-DNN-RecSys} — TensorFlow + Spark retrieval and ranking (60 stars). \repo{YouTube-DNN-RecSys}{https://github.com/chenxingqiang/YouTube-DNN-RecSys}
+  \item {\bf Research CLI} — Command-line AI tooling for research workflows. \repo{iechor-research/research-cli}{https://github.com/iechor-research/research-cli}
+  \item {\bf Questions-Gen} — Math-problem generation (Qwen3-14B, GRPO, distillation); CLI and HF weights. \repo{GenQuestion}{https://github.com/chenxingqiang/GenQuestion}
 \end{itemize}
 
 \end{rSection}
@@ -106,7 +107,7 @@ Xiamen University, Department of Physics and Engineering
 {\textbf{IT Group}}{Jan. 2022 - Sep. 2022}
 \item {Built a homomorphic-encryption federated learning platform for cross-institution modeling in finance, improving model quality over local-only baselines while keeping privacy constraints.}\\
 \item {Designed MPC protocols for joint training and inference of bank risk models, balancing protocol security against communication cost.}\\
-\item {Open-sourced \textbf{Secret-Learn}: sklearn-compatible API across federated learning, secret sharing, and split learning, JAX-accelerated and integrated with SecretFlow; on PyPI. \repo{chenxingqiang/Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}}\\
+\item {Open-sourced \textbf{Secret-Learn}: sklearn-compatible API across federated learning, secret sharing, and split learning, JAX-accelerated and integrated with SecretFlow; on PyPI. \repo{Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}}\\
 \item {Filed \textbf{3} invention patents, all published: \repo{CN114925786A}{https://patents.google.com/patent/CN114925786A/en}, \repo{CN114997345A}{https://patents.google.com/patent/CN114997345A/en}, \repo{CN115130681A}{https://patents.google.com/patent/CN115130681A/en}.}\\
 \end{rSubsection}
 
@@ -114,7 +115,7 @@ Xiamen University, Department of Physics and Engineering
 {\textbf{Algorithm Engineering Group}}{Sep. 2021 - Dec. 2021}
 \item {Built bioinformatics tooling and a unified data platform for large-scale sequence analysis, structure prediction, and functional annotation.}\\
 \item {Set up evaluation pipelines for protein structure prediction models (AlphaFold family) feeding downstream drug design.}\\
-\item {Two registered software copyrights (2021SR2004464, 2021SR1862397); open-sourced AlphaFold2 code walkthroughs (26 stars). \repo{chenxingqiang/alphafold2-codecs}{https://github.com/chenxingqiang/alphafold2-codecs}}\\
+\item {Two registered software copyrights (2021SR2004464, 2021SR1862397); open-sourced AlphaFold2 code walkthroughs (26 stars). \repo{alphafold2-codecs}{https://github.com/chenxingqiang/alphafold2-codecs}}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{Senior Algorithms Engineer, Yalla Group (NYSE: YALA)}}{Hangzhou, China}

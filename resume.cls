@@ -25,6 +25,12 @@
 \usepackage[parfill]{parskip} % Remove paragraph indentation
 \usepackage{array} % Required for boldface (\bf and \bfseries) tabular columns
 \usepackage{ifthen} % Required for ifthenelse statements
+\usepackage{needspace} % Keep entry headings attached to their first bullets
+
+% Discourage single lines stranded across a page break
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
 
 \pagestyle{empty} % Suppress page numbers
 
@@ -67,8 +73,8 @@
 % \printname is used to print the name as a page header
 \def \printname {
   \begingroup
-    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    \nameskip\break
+    \centerline{\MakeUppercase{\namesize\bf \@name}}
+    \par\nameskip
   \endgroup
 }
 
@@ -95,6 +101,7 @@
 % Defines the rSection environment for the large sections within the CV
 \newenvironment{rSection}[1]{ % 1 input argument - section name
   \sectionskip
+  \Needspace*{5\baselineskip} % Keep a section title with the start of its content
   \MakeUppercase{\bf #1} % Section title
   \sectionlineskip
   \hrule % Horizontal line
@@ -111,6 +118,7 @@
 %----------------------------------------------------------------------------------------
 
 \newenvironment{rSubsection}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
+ \Needspace*{4\baselineskip} % Never leave the heading alone at a page bottom
  {\large\bfseries\fontsize{12pt}{14pt}\selectfont #1} \hfill {#2} % Bold company name and date on the right
  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
   \\
@@ -120,7 +128,7 @@
    \itemsep -1.5em \vspace{-0.5em} % Compress items in list together for aesthetics
   }{
   \end{list}
-  \vspace{-1em} % Some space after the list of bullet points
+  \vspace{-0.35em} % Separation before the next entry
 }
 
 % The below commands define the whitespace after certain things in the document - they can be \smallskip, \medskip or \bigskip

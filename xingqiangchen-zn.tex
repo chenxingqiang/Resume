@@ -4,7 +4,7 @@
 
 \usepackage{enumitem}
 \usepackage{gensymb}
-\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+\usepackage[left=0.55in,top=0.45in,right=0.55in,bottom=0.5in]{geometry} % Document margins
 \usepackage{xeCJK} % 中文支持（XeLaTeX）
 \setCJKmainfont{PingFang SC}
 \usepackage{url}
@@ -65,16 +65,16 @@
 
  \item {\bf 平台}：PyTorch、TensorFlow、ONNX、Kubernetes；Spark、Flink、Hadoop。
 
-\item{\bf 开源与发布}（均可公开验证）：
+\item{\bf 开源与发布}（默认位于 \nolinkurl{github.com/chenxingqiang}，均可公开验证）：
 
 \begin{itemize}
-  \item {\bf TraceSmith} — 跨平台 GPU Profiling \& Replay 系统，C++ 核心 + Python 绑定，支持 CUDA/ROCm/Metal/MACA/Ascend，已发布至 \href{https://pypi.org/project/tracesmith/}{PyPI}。 \repo{chenxingqiang/TraceSmith}{https://github.com/chenxingqiang/TraceSmith}
-  \item {\bf YiRage 持久化内核 (YPK)} — LLM 超级内核编译器与运行时，多后端（CUDA/CPU/MPS/Ascend/Triton）。 \repo{chenxingqiang/YiRage}{https://github.com/chenxingqiang/YiRage}
-  \item {\bf JAX-sklearn} — scikit-learn 兼容接口 + JAX 加速，13{,}058 项测试通过，PyPI 发布。 \repo{chenxingqiang/jax-sklearn}{https://github.com/chenxingqiang/jax-sklearn}
-  \item {\bf Secret-Learn} — 隐私保护机器学习库，覆盖联邦学习／秘密分享／分割学习，PyPI 发布。 \repo{chenxingqiang/Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}
-  \item {\bf YouTube-DNN-RecSys} — YouTube 风格召回与排序的 TensorFlow + Spark 实现（60 stars）。 \repo{chenxingqiang/YouTube-DNN-RecSys}{https://github.com/chenxingqiang/YouTube-DNN-RecSys}
-  \item {\bf Research CLI} — 面向科研工作流的命令行 AI 工具，多模型供应商与 MCP 集成。 \repo{iechor-research/research-cli}{https://github.com/iechor-research/research-cli}
-  \item {\bf Questions-Gen} — 数学竞赛题目生成（Qwen3-14B、GRPO、蒸馏），含 CLI 与 Hugging Face 权重。 \repo{chenxingqiang/GenQuestion}{https://github.com/chenxingqiang/GenQuestion}
+  \item {\bf TraceSmith}：跨平台 GPU Profiling \& Replay 系统，覆盖 CUDA/ROCm/Metal/MACA/Ascend；C++ 核心 + Python 绑定，已发布至 \href{https://pypi.org/project/tracesmith/}{PyPI}。 \repo{TraceSmith}{https://github.com/chenxingqiang/TraceSmith}
+  \item {\bf YiRage 持久化内核 (YPK)}：LLM 超级内核编译器与运行时，多后端（CUDA/CPU/MPS/Ascend/Triton）。 \repo{YiRage}{https://github.com/chenxingqiang/YiRage}
+  \item {\bf JAX-sklearn}：scikit-learn 兼容接口 + JAX 加速，13{,}058 项测试通过，PyPI 发布。 \repo{jax-sklearn}{https://github.com/chenxingqiang/jax-sklearn}
+  \item {\bf Secret-Learn}：隐私保护机器学习库，覆盖联邦学习／秘密分享／分割学习，PyPI 发布。 \repo{Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}
+  \item {\bf YouTube-DNN-RecSys}：YouTube 风格召回与排序的 TensorFlow + Spark 实现（60 stars）。 \repo{YouTube-DNN-RecSys}{https://github.com/chenxingqiang/YouTube-DNN-RecSys}
+  \item {\bf Research CLI}：面向科研工作流的命令行 AI 工具，多模型供应商与 MCP 集成。 \repo{iechor-research/research-cli}{https://github.com/iechor-research/research-cli}
+  \item {\bf Questions-Gen}：数学竞赛题目生成（Qwen3-14B、GRPO、蒸馏），含 CLI 与 Hugging Face 权重。 \repo{GenQuestion}{https://github.com/chenxingqiang/GenQuestion}
 \end{itemize}
 
 \end{rSection}
@@ -107,7 +107,7 @@
 {\textbf{IT Group}}{2022年1月 - 2022年9月}
 \item {构建基于同态加密的联邦学习平台，支撑多家金融机构的跨域建模；在保持隐私约束下相对本地基线提升模型效果，并缩短训练迭代周期。}\\
 \item {设计多方安全计算协议，用于银行风控模型的联合训练与推理，兼顾协议安全性与通信开销。}\\
-\item {开源 {\textbf{Secret-Learn}}：sklearn 兼容 API × 联邦学习／秘密分享／分割学习三种模式，JAX 加速，并与 SecretFlow 集成，PyPI 发布。 \repo{chenxingqiang/Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}}\\
+\item {开源 {\textbf{Secret-Learn}}：sklearn 兼容 API × 联邦学习／秘密分享／分割学习三种模式，JAX 加速，并与 SecretFlow 集成，PyPI 发布。 \repo{Secret-Learn}{https://github.com/chenxingqiang/Secret-Learn}}\\
 \item {申请 {\textbf{3 项}}发明专利（均已公开，可检索）：}\\
 \item {基于秘密分享的纵向联邦线性支持向量分类方法 \repo{CN114925786A}{https://patents.google.com/patent/CN114925786A/en}；随机森林训练方法及装置 \repo{CN114997345A}{https://patents.google.com/patent/CN114997345A/en}；用于联邦学习的数据处理方法及装置 \repo{CN115130681A}{https://patents.google.com/patent/CN115130681A/en}。}\\
 \end{rSubsection}
@@ -116,7 +116,7 @@
 {\textbf{算法工程组}}{2021年9月 - 2021年12月}
 \item {构建生物信息学工具链与数据平台，统一大规模生物数据的管理、检索与分析流程，支撑序列分析、结构预测与功能注释。}\\
 \item {搭建蛋白质结构预测模型评估流程（含 AlphaFold 系列），为药物设计提供结构输入。}\\
-\item {获 {\textbf{2 项}}软件著作权：生信工具自动化平台（2021SR2004464）、生物医药信息平台（2021SR1862397）；开源 AlphaFold2 代码解析与学习资源（26 stars） \repo{chenxingqiang/alphafold2-codecs}{https://github.com/chenxingqiang/alphafold2-codecs}。}\\
+\item {获 {\textbf{2 项}}软件著作权：生信工具自动化平台（2021SR2004464）、生物医药信息平台（2021SR1862397）；开源 AlphaFold2 代码解析与学习资源（26 stars） \repo{alphafold2-codecs}{https://github.com/chenxingqiang/alphafold2-codecs}。}\\
 \end{rSubsection}
 
 \begin{rSubsection}{\textbf{高级算法工程师，Yalla集团(纽交所: YALA)}}{杭州，中国}
