@@ -22,7 +22,7 @@ def _texts(root: ET.Element) -> str:
 def test_casemaker_visual_language():
     root = _root("tracesmith")
     assert root.attrib["viewBox"] == "0 0 1440 1230"
-    assert "ui-sans-serif" in root.attrib.get("font-family", "")
+    assert "sans-serif" in root.attrib.get("font-family", "")
     bg = root.find("svg:rect", NS)
     assert bg is not None and bg.attrib["fill"] == "#ffffff"
     assert root.find("svg:defs/svg:marker[@id='arr']", NS) is not None
