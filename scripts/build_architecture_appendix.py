@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate draw.io diagrams, export SVG, convert to PDF, merge onto resumes."""
+"""Generate architecture SVGs, convert them to PDF, and merge onto resumes."""
 
 from __future__ import annotations
 
@@ -8,7 +8,6 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DRAWIO_DIR = ROOT / "docs" / "architecture" / "drawio"
 SVG_DIR = ROOT / "docs" / "architecture" / "svg"
 PDF_DIR = ROOT / "docs" / "architecture" / "pdf"
 APPENDIX_PDF = ROOT / "docs" / "architecture" / "architecture-appendix.pdf"
@@ -36,23 +35,30 @@ RESUME_BODY_PAGES = 3
 def ensure_deps() -> None:
     try:
         import pypdf  # noqa: F401
-        import drawpyo  # noqa: F401
+        import cairosvg  # noqa: F401
     except ImportError:
         subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "-q", "pypdf", "drawpyo"]
+            [sys.executable, "-m", "pip", "install", "-q", "pypdf", "cairosvg"]
         )
 
 
-def generate_drawio() -> None:
+def generate_svg() -> None:
     subprocess.check_call(
-        [sys.executable, str(ROOT / "scripts" / "generate_architecture_drawio.py")]
+        [sys.executable, str(ROOT / "scripts" / "generate_architecture_svgs.py")]
     )
 
 
-def export_svg() -> None:
-    script = ROOT / "scripts" / "export_drawio_svg.sh"
-    script.chmod(script.stat().st_mode | 0o111)
-    subprocess.check_call(["bash", str(script)])
+def convert_svg_to_pdf() -> None:
+    import cairosvg
+
+    PDF_DIR.mkdir(parents=True, exist_ok=True)
+    for slug, _ in PROJECTS:
+        svg = SVG_DIR / f"{slug}.svg"
+        pdf = PDF_DIR / f"{slug}.pdf"
+        if not svg.exists():
+            raise FileNotFoundError(f"Missing architecture SVG: {svg}")
+        cairosvg.svg2pdf(url=str(svg), write_to=str(pdf))
+        print(f"Converted {svg.name} -> {pdf.name}")
 
 
 def build_appendix() -> None:
@@ -106,8 +112,8 @@ def merge_resumes() -> None:
 
 def main() -> None:
     ensure_deps()
-    generate_drawio()
-    export_svg()
+    generate_svg()
+    convert_svg_to_pdf()
     build_appendix()
     merge_resumes()
 

@@ -1,242 +1,447 @@
 #!/usr/bin/env python3
-"""Deprecated: simple box SVGs. Use generate_architecture_drawio.py + export_drawio_svg.sh."""
+"""Generate clean, zone-based project architecture SVGs.
+
+The visual grammar follows the toolchain-palladium-casemaker reference:
+white canvas, dashed subsystem zones, compact responsibility boxes, one
+blue end-to-end flow, and an optional dashed purple feedback path.
+"""
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+from html import escape
 from pathlib import Path
-import html
 
-OUT_DIR = Path(__file__).resolve().parent.parent / "docs" / "architecture" / "svg"
-
-W, H = 920, 560
-BG = "#ffffff"
-TITLE = "#1a365d"
-BOX_FILL = "#f7fafc"
-BOX_STROKE = "#2b6cb0"
-ACCENT = "#2c5282"
-TEXT = "#2d3748"
-MUTED = "#718096"
-ARROW = "#4a5568"
+ROOT = Path(__file__).resolve().parent.parent
+SVG_DIR = ROOT / "docs" / "architecture" / "svg"
+W, H = 1440, 1230
 
 
-def esc(text: str) -> str:
-    return html.escape(text, quote=False)
+@dataclass(frozen=True)
+class Box:
+    title: str
+    lines: tuple[str, ...] = ()
+    palette: str = "blue"
 
 
-def svg_header(title: str, subtitle: str) -> str:
-    title = esc(title)
-    subtitle = esc(subtitle)
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <polygon points="0 0, 10 4, 0 8" fill="{ARROW}"/>
-    </marker>
-    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000022"/>
-    </filter>
-  </defs>
-  <rect width="{W}" height="{H}" fill="{BG}"/>
-  <text x="{W/2}" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="{TITLE}">{title}</text>
-  <text x="{W/2}" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="{MUTED}">{subtitle}</text>
-"""
+@dataclass(frozen=True)
+class Zone:
+    label: str
+    boxes: tuple[Box, ...]
+    palette: str = "slate"
+    height: int = 150
 
 
-def svg_footer() -> str:
-    return "</svg>\n"
+PALETTES = {
+    "blue": ("#dbeafe", "#2563eb", "#1e3a8a"),
+    "green": ("#dcfce7", "#16a34a", "#14532d"),
+    "orange": ("#fff7ed", "#ea580c", "#7c2d12"),
+    "purple": ("#fdf4ff", "#a21caf", "#701a75"),
+    "yellow": ("#fef9c3", "#ca8a04", "#713f12"),
+    "red": ("#fee2e2", "#dc2626", "#7f1d1d"),
+    "cyan": ("#ecfeff", "#0891b2", "#155e75"),
+    "pink": ("#fce7f3", "#db2777", "#831843"),
+    "slate": ("#f8fafc", "#64748b", "#1e293b"),
+}
 
 
-def box(x: float, y: float, w: float, h: float, title: str, lines: list[str], fill: str = BOX_FILL) -> str:
-    title = esc(title)
-    lines = [esc(line) for line in lines]
-    line_h = 16
-    body_y = y + 34
-    parts = [
-        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" fill="{fill}" stroke="{BOX_STROKE}" stroke-width="1.6" filter="url(#shadow)"/>',
-        f'<text x="{x + w/2}" y="{y + 24}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="{ACCENT}">{title}</text>',
-    ]
-    for i, line in enumerate(lines):
-        parts.append(
-            f'<text x="{x + 12}" y="{body_y + i * line_h}" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="{TEXT}">{line}</text>'
-        )
-    return "\n  ".join(parts)
-
-
-def arrow(x1: float, y1: float, x2: float, y2: float) -> str:
+def _text(x: float, y: float, value: str, size=12, color="#334155",
+          weight=400, anchor="start", family="") -> str:
+    fam = f' font-family="{family}"' if family else ""
     return (
-        f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{ARROW}" stroke-width="1.8" marker-end="url(#arrow)"/>'
+        f'<text x="{x}" y="{y}" font-size="{size}" fill="{color}" '
+        f'font-weight="{weight}" text-anchor="{anchor}"{fam}>{escape(value)}</text>'
     )
 
 
-def lane(x: float, y: float, w: float, h: float, label: str) -> str:
-    label = esc(label)
-    return f"""
-  <rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
-  <text x="{x + 14}" y="{y + 22}" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="{MUTED}">{label}</text>
-"""
+def _header(title: str, subtitle: str) -> list[str]:
+    return [
+        (
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1230" '
+            'font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">'
+        ),
+        "<defs>",
+        '<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>',
+        '<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>',
+        "</defs>",
+        '<rect x="0" y="0" width="1440" height="1230" fill="#ffffff"/>',
+        _text(40, 44, title, 22, "#111827", 700),
+        _text(40, 68, subtitle, 13, "#475569"),
+        '<rect x="1035" y="18" width="365" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>',
+        '<line x1="1052" y1="36" x2="1084" y2="36" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>',
+        _text(1092, 40, "主数据流", 11.5),
+        '<line x1="1052" y1="58" x2="1084" y2="58" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>',
+        _text(1092, 62, "回退 / 反馈", 11.5),
+        _text(1215, 40, "虚线框 = 架构分区", 11.5),
+        _text(1215, 62, "盒内 = 模块 + 职责", 11.5),
+    ]
 
 
-def write(name: str, content: str) -> None:
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    path = OUT_DIR / f"{name}.svg"
-    path.write_text(content, encoding="utf-8")
-    print(f"Wrote {path}")
+def _zone(lines: list[str], zone: Zone, y: int) -> tuple[int, tuple[float, float]]:
+    fill, stroke, _ = PALETTES[zone.palette]
+    lines.append(
+        f'<rect x="40" y="{y}" width="1360" height="{zone.height}" rx="10" '
+        f'fill="{fill}" fill-opacity="0.42" stroke="{stroke}" stroke-dasharray="7,5"/>'
+    )
+    lines.append(_text(56, y + 25, zone.label, 13, "#475569", 700))
+    count = len(zone.boxes)
+    gap, left = 20, 60
+    width = (1320 - gap * (count - 1)) / count
+    box_y, box_h = y + 43, zone.height - 61
+    for i, item in enumerate(zone.boxes):
+        x = left + i * (width + gap)
+        bfill, bstroke, btext = PALETTES[item.palette]
+        lines.append(
+            f'<rect x="{x:.1f}" y="{box_y}" width="{width:.1f}" height="{box_h}" '
+            f'rx="8" fill="{bfill}" stroke="{bstroke}"/>'
+        )
+        n = len(item.lines)
+        title_y = box_y + (box_h - 18 * n) / 2 + 5
+        lines.append(_text(x + width / 2, title_y, item.title, 13.5, btext, 700, "middle"))
+        for j, value in enumerate(item.lines):
+            lines.append(_text(x + width / 2, title_y + 19 + j * 17, value, 11.5, btext, 400, "middle"))
+    return y + zone.height, (720, y + zone.height)
 
 
-def tracesmith() -> None:
-    s = svg_header("TraceSmith", "Cross-platform GPU Profiling & Replay · github.com/chenxingqiang/TraceSmith")
-    s += lane(36, 92, 848, 430, "Capture → Format → State → Replay / Export")
-    s += box(56, 130, 180, 120, "Capture", ["CUPTI / ROCm / Metal", "MACA / Ascend / eBPF", "Lock-free SPSC ring"])
-    s += box(268, 130, 180, 120, "Common", ["Core event types", "Stack capture", "XRay import"])
-    s += box(480, 130, 180, 120, "Format", ["SBT binary traces", "String interning", "Delta timestamps"])
-    s += box(692, 130, 170, 120, "State", ["GPU state machine", "Timeline builder", "Perfetto export"])
-    s += box(170, 300, 200, 120, "Replay", ["Stream scheduler", "Determinism check", "Full / partial replay"])
-    s += box(410, 300, 200, 120, "Cluster", ["Multi-GPU topology", "Time sync / NCCL", "Distributed profiling"])
-    s += box(650, 300, 200, 120, "CLI / Python", ["profile / record / view", "PyPI: tracesmith", "GDB RSP / Tracy"])
-    s += arrow(236, 190, 268, 190)
-    s += arrow(448, 190, 480, 190)
-    s += arrow(660, 190, 692, 190)
-    s += arrow(777, 250, 777, 300)
-    s += arrow(777, 250, 270, 300)
-    s += arrow(777, 250, 510, 300)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">GPU events captured non-intrusively, serialized to SBT/Perfetto, then analyzed or deterministically replayed.</text>'
-    s += svg_footer()
-    write("tracesmith", s)
+def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
+                  footer: str, feedback: str = "") -> str:
+    lines = _header(title, subtitle)
+    y = 92
+    boundaries: list[tuple[int, int]] = []
+    for zone in zones:
+        end, _ = _zone(lines, zone, y)
+        boundaries.append((y, end))
+        y = end + 34
+    for (_, end), (next_y, _) in zip(boundaries, boundaries[1:]):
+        lines.append(
+            f'<line x1="720" y1="{end}" x2="720" y2="{next_y}" '
+            'stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>'
+        )
+    if feedback and len(boundaries) > 2:
+        start_y = boundaries[-1][0] + 45
+        end_y = boundaries[1][0] + 45
+        lines.append(
+            f'<path d="M 1400,{start_y} L 1420,{start_y} L 1420,{end_y} L 1400,{end_y}" '
+            'fill="none" stroke="#7c3aed" stroke-width="1.6" '
+            'stroke-dasharray="5,3" marker-end="url(#arrP)"/>'
+        )
+        lines.append(_text(1388, (start_y + end_y) / 2, feedback, 11, "#7c3aed", 400, "end"))
+    lines.append(_text(40, 1202, footer, 11.5, "#475569"))
+    lines.append("</svg>")
+    return "\n".join(lines)
 
 
-def yirage() -> None:
-    s = svg_header("YiRage (YPK)", "Multi-backend LLM megakernel compiler & runtime · github.com/chenxingqiang/YiRage")
-    s += lane(36, 92, 848, 430, "Python API → Backend Manager → Search / Transpile → Persistent Kernel / RuntimeFusion")
-    s += box(56, 130, 240, 110, "Python API", ["HardwareRegistry", "UnifiedCompiler", "PersistentKernel / graph"])
-    s += box(330, 130, 250, 110, "Backend Manager (C++)", ["BackendRegistry (12 backends)", "CUDA / ROCm / MPS / Ascend", "MACA / TPU / MLIR / CPU"])
-    s += box(610, 130, 250, 110, "Search & Strategy", ["Hardware-aware search", "Kernel fingerprinting", "Perf profile / autotune"])
-    s += box(120, 290, 230, 120, "Threadblock Ops", ["MatMul / Attention", "RMSNorm / SwiGLU", "Fused LLM operators"])
-    s += box(380, 290, 230, 120, "Transpilers", ["Triton / NKI / MLIR", "CodeGen per backend", "JIT compile path"])
-    s += box(640, 290, 220, 120, "Runtime", ["Persistent Kernel launch", "RuntimeFusion w/ vLLM", "FusionCapsule decode path"])
-    s += arrow(296, 185, 330, 185)
-    s += arrow(580, 185, 610, 185)
-    s += arrow(735, 240, 735, 290)
-    s += arrow(735, 240, 505, 290)
-    s += arrow(735, 240, 235, 290)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">Graph superoptimization selects backend-specific fused kernels; RF embeds optimized capsules into vLLM/SGLang decode loops.</text>'
-    s += svg_footer()
-    write("yirage", s)
+def tracesmith() -> str:
+    return build_diagram(
+        "TraceSmith — 系统架构 · GPU Trace 端到端数据流",
+        "Application → bindings → capture / state / format → replay & export → GPU backends",
+        (
+            Zone("APPLICATION · 用户入口", (
+                Box("C++ / Python Application", ("嵌入业务进程",), "orange"),
+                Box("CLI", ("profile · record · view · export",), "orange"),
+                Box("External UI", ("Perfetto · Chrome",), "purple"),
+            ), "orange", 125),
+            Zone("BINDINGS · Python / C++ 边界", (
+                Box("_tracesmith.so", ("pybind11 native extension",), "blue"),
+            ), "blue", 112),
+            Zone("CORE LIBRARY · C++17", (
+                Box("Capture Module", ("CUPTIProfiler · MCPTIProfiler", "Metal · Ascend · ROCm · eBPF"), "green"),
+                Box("Common + Format", ("RingBuffer SPSC · StackCapture", "SBTWriter / SBTReader"), "blue"),
+                Box("State Module", ("GPUStateMachine", "TimelineBuilder · PerfettoExporter"), "cyan"),
+                Box("Replay Module", ("ReplayEngine · StreamScheduler", "DeterminismChecker · FrameCapture"), "purple"),
+            ), "blue", 185),
+            Zone("CROSS-CUTTING · 集群与调试", (
+                Box("Cluster Module", ("GPUTopology · TimeSync", "NCCLTracker"), "yellow"),
+                Box("GDB / Tracy", ("RSPHandler · GPUDebugEngine", "TracyExporter"), "pink"),
+            ), "slate", 135),
+            Zone("GPU BACKENDS · 系统接口", (
+                Box("NVIDIA", ("CUDA · CUPTI · nsys",), "green"),
+                Box("MetaX", ("MACA · MCPTI · mcTracer",), "cyan"),
+                Box("Apple / AMD", ("Metal · xctrace · ROCm",), "slate"),
+                Box("Huawei / Linux", ("CANN · msprof · eBPF",), "red"),
+            ), "slate", 135),
+            Zone("OUTPUTS · Trace 产物", (
+                Box("trace.sbt", ("compact binary",), "red"),
+                Box("trace.json / .perfetto", ("Perfetto timeline",), "cyan"),
+                Box("graph.dot / ASCII", ("analysis views",), "green"),
+            ), "cyan", 125),
+        ),
+        "主链：GPU event → lock-free ring → SBT/state → replay 或 Perfetto；Cluster / GDB 为旁路能力。",
+        "replay / debug feedback",
+    )
 
 
-def jax_sklearn() -> None:
-    s = svg_header("JAX-sklearn (xlearn)", "Drop-in sklearn API with automatic JAX acceleration · github.com/chenxingqiang/jax-sklearn")
-    s += lane(36, 92, 848, 430, "User API → Proxy → JAX / NumPy fallback → Hardware backends")
-    s += box(80, 140, 760, 70, "User Code Layer", ["import xlearn as sklearn  ·  LinearRegression / KMeans / PCA  ·  100% sklearn-compatible API"])
-    s += box(110, 240, 220, 110, "Compatibility Layer", ["Lazy module import", "Intelligent proxy", "Runtime class injection"])
-    s += box(360, 240, 220, 110, "JAX Acceleration", ["JIT / vmap dispatch", "Algorithm thresholds", "Universal JAX mixins"])
-    s += box(610, 240, 220, 110, "Data Management", ["NumPy ↔ JAX arrays", "dtype / shape guards", "Graceful fallback"])
-    s += box(235, 390, 450, 70, "Hardware Abstraction", ["CPU (default)  ·  CUDA GPU  ·  Apple Metal  ·  Google TPU"])
-    s += arrow(460, 210, 220, 240)
-    s += arrow(460, 210, 470, 240)
-    s += arrow(460, 210, 720, 240)
-    s += arrow(470, 350, 460, 390)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">Proxy decides JAX vs native sklearn by dataset size, algorithm type, and configured hardware.</text>'
-    s += svg_footer()
-    write("jax-sklearn", s)
+def yirage() -> str:
+    return build_diagram(
+        "YiRage (YPK) — 系统架构 · RuntimeFusion 数据流",
+        "Inference engine owns scheduling/KV; RF owns fusion identity; search and execute use the same backend",
+        (
+            Zone("INFERENCE ENGINE · 调度与 KV 所有者", (
+                Box("vLLM", ("continuous batch · PagedAttention",), "orange"),
+                Box("SGLang", ("RadixAttention · extend meta",), "orange"),
+                Box("Decode Metadata", ("block table · seq lens · SM budget",), "slate"),
+            ), "orange", 140),
+            Zone("RUNTIMEFUSION · 每个 decode step", (
+                Box("RF.step(inputs, meta)", ("select 0..N capsules",), "blue"),
+                Box("FusionCapsule", ("MLP gate_up + down", "segment pipeline"), "green"),
+                Box("Native Fallback", ("skip → engine native ops",), "purple"),
+            ), "blue", 150),
+            Zone("SEARCH & PLAN · offline / warm-up", (
+                Box("superoptimize(backend)", ("KN / TB graph search",), "blue"),
+                Box("FusionPlan / µGraph", ("profile · fingerprint verify",), "green"),
+                Box("Persistent Cache", ("shape bucket restore",), "cyan"),
+                Box("Ray Coordinator", ("optional distributed search",), "purple"),
+            ), "green", 155),
+            Zone("BACKEND MANAGER · 编译与执行边界", (
+                Box("BackendRegistry", ("search + execute same backend",), "blue"),
+                Box("KNGraph / TBGraph", ("transpiler → kernels",), "green"),
+                Box("yirage.core", ("Cython runtime",), "slate"),
+            ), "blue", 140),
+            Zone("BACKENDS → HARDWARE", (
+                Box("CUDA / MACA", ("NVIDIA GPU · MetaX C500/C550",), "red"),
+                Box("ROCm / MPS", ("AMD GPU · Apple Silicon",), "orange"),
+                Box("Ascend / NKI", ("Huawei 910 · AWS Neuron",), "yellow"),
+                Box("CPU / MLIR / Triton", ("x86 · ARM · extra targets",), "slate"),
+            ), "slate", 145),
+        ),
+        "主链：Engine metadata → RF.step → FusionCapsule → BackendRegistry → target hardware。",
+        "fallback / re-search",
+    )
 
 
-def secret_learn() -> None:
-    s = svg_header("Secret-Learn", "Privacy-preserving ML · 191 algorithms × FL/SS/SL · github.com/chenxingqiang/Secret-Learn")
-    s += lane(36, 92, 848, 430, "sklearn API → Privacy mode router → JAX + SecretFlow devices")
-    s += box(80, 130, 760, 60, "Application / sklearn-compatible API", ["191 estimators across linear, ensemble, clustering, neural nets, preprocessing"])
-    s += box(90, 220, 230, 100, "FL Mode", ["Local PYU compute", "HEU secure aggregate", "Data stays on device"])
-    s += box(345, 220, 230, 100, "SL Mode", ["Split model layers", "Encrypted activations", "Collaborative training"])
-    s += box(600, 220, 230, 100, "SS Mode", ["SPU MPC encryption", "Maximum privacy", "Multi-party execution"])
-    s += box(170, 360, 250, 90, "JAX Acceleration", ["xlearn / jax-sklearn core", "5×+ local speedup", "CPU / GPU / TPU"])
-    s += box(500, 360, 250, 90, "SecretFlow Integration", ["SPU / PYU / HEU / TEE", "Algorithm classifier", "Template generator"])
-    s += arrow(460, 190, 205, 220)
-    s += arrow(460, 190, 460, 220)
-    s += arrow(460, 190, 715, 220)
-    s += arrow(205, 320, 295, 360)
-    s += arrow(715, 320, 625, 360)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">Same sklearn call surface; privacy mode selects FL/SS/SL execution path with optional JAX-accelerated local work.</text>'
-    s += svg_footer()
-    write("secret-learn", s)
+def jax_sklearn() -> str:
+    return build_diagram(
+        "JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流",
+        "100% sklearn API → runtime injection → proxy dispatch → array conversion → JAX hardware",
+        (
+            Zone("USER CODE · sklearn-compatible API", (
+                Box("import xlearn as sklearn", ("LinearRegression · KMeans · PCA",), "orange"),
+                Box("Estimator Calls", ("fit · predict · transform",), "orange"),
+            ), "orange", 135),
+            Zone("COMPATIBILITY · xlearn/__init__.py", (
+                Box("__getattr__", ("lazy module loading",), "blue"),
+                Box("_auto_jax_accelerate_module", ("runtime class injection",), "blue"),
+                Box("AcceleratorRegistry", ("algorithm implementation map",), "green"),
+            ), "blue", 150),
+            Zone("JAX ACCELERATION · xlearn/_jax", (
+                Box("EstimatorProxy", ("fit-time dispatch",), "blue"),
+                Box("Universal JAX", ("JIT · vmap · accelerated estimator",), "green"),
+                Box("sklearn Fallback", ("original estimator",), "purple"),
+            ), "green", 150),
+            Zone("DATA MANAGEMENT · boundary conversion", (
+                Box("NumPy → JAX", ("dtype · shape normalization",), "cyan"),
+                Box("Policy / Thresholds", ("dataset size · platform · config",), "yellow"),
+                Box("JAX → NumPy", ("sklearn-compatible outputs",), "cyan"),
+            ), "cyan", 145),
+            Zone("HARDWARE ABSTRACTION · JAX backend", (
+                Box("CPU", ("jaxlib",), "slate"),
+                Box("CUDA GPU", ("JAX XLA",), "green"),
+                Box("TPU", ("JAX XLA",), "blue"),
+                Box("Apple Metal", ("experimental",), "purple"),
+            ), "slate", 140),
+        ),
+        "代理根据算法、数据规模和配置选择 JAX；不满足条件或执行失败时回退原生 sklearn。",
+        "graceful fallback",
+    )
 
 
-def youtube_recsys() -> None:
-    s = svg_header("YouTube-DNN-RecSys", "Two-tower recall pipeline · TensorFlow + Spark · github.com/chenxingqiang/YouTube-DNN-RecSys")
-    s += lane(36, 92, 848, 430, "Data ingest → Feature build → DNN training → User/Item vectors → Serving")
-    s += box(60, 140, 180, 100, "Raw Events", ["User watch history", "Continuous features", "Candidate items"])
-    s += box(270, 140, 180, 100, "Data Prep", ["Python: TFRecords", "Scala: Spark ETL", "FeatureBuilder"])
-    s += box(480, 140, 180, 100, "DNN Model", ["Item embeddings", "History average pool", "Dense tower → user vec"])
-    s += box(690, 140, 180, 100, "Training", ["TensorFlow Estimator", "Softmax over items", "Checkpoints / TB"])
-    s += box(190, 300, 240, 110, "Python Inference", ["load_dnn_model.py", "User vector export", "TensorFlow SavedModel"])
-    s += box(490, 300, 240, 110, "Spark Inference", ["PredictUserVector", "ItemEmbeddingPredictor", "Distributed scoring"])
-    s += arrow(240, 190, 270, 190)
-    s += arrow(450, 190, 480, 190)
-    s += arrow(660, 190, 690, 190)
-    s += arrow(570, 240, 570, 300)
-    s += arrow(570, 240, 310, 300)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">Watch history embeddings are pooled into a user vector and matched against item embeddings for next-item recommendation.</text>'
-    s += svg_footer()
-    write("youtube-recsys", s)
+def secret_learn() -> str:
+    return build_diagram(
+        "Secret-Learn — 六层架构 · 隐私计算数据流",
+        "sklearn-compatible API → privacy mode → JAX / SecretFlow compute → secure devices",
+        (
+            Zone("APPLICATION · 多方隐私数据", (
+                Box("Healthcare / Finance", ("cross-party modeling",), "orange"),
+                Box("IoT / Research", ("distributed learning",), "orange"),
+            ), "orange", 125),
+            Zone("SKLEARN API · 统一算法入口", (
+                Box("secretlearn.*", ("fit · predict · transform",), "blue"),
+                Box("algorithm_classifier.py", ("classify fit signature / epochs",), "blue"),
+            ), "blue", 130),
+            Zone("PRIVACY MODES · execution placement", (
+                Box("FEDERATED LEARNING", ("PYU local compute", "HEU secure aggregation"), "yellow"),
+                Box("SECRET SHARING", ("SPU MPC · ABY3 / CHEETAH",), "green"),
+                Box("SPLIT LEARNING", ("split model · encrypted activations",), "cyan"),
+            ), "green", 160),
+            Zone("ACCELERATION & COMPUTE", (
+                Box("JAX Acceleration", ("JIT · vmap · xlearn",), "pink"),
+                Box("SecretFlow Runtime", ("party orchestration",), "purple"),
+            ), "purple", 135),
+            Zone("SECURE DEVICES", (
+                Box("PYU", ("party-local plaintext",), "green"),
+                Box("HEU", ("homomorphic aggregation",), "yellow"),
+                Box("SPU", ("secure MPC",), "cyan"),
+                Box("TEE", ("optional enclave",), "slate"),
+            ), "cyan", 140),
+            Zone("INFRASTRUCTURE & HARDWARE", (
+                Box("SecretFlow", ("distributed secure runtime",), "orange"),
+                Box("JAX / XLA", ("CPU · GPU · TPU",), "pink"),
+                Box("sklearn", ("API compatibility",), "blue"),
+            ), "slate", 125),
+        ),
+        "同一 sklearn 调用由 FL / SS / SL 决定数据驻留与执行设备；JAX 加速可公开的本地计算。",
+    )
 
 
-def research_cli() -> None:
-    s = svg_header("Research CLI", "CLI AI workflow + academic research tools · github.com/iechor-research/research-cli")
-    s += lane(36, 92, 848, 430, "Terminal UI → Core orchestration → Providers / Tools / MCP")
-    s += box(80, 140, 760, 70, "CLI Frontend (packages/cli)", ["Interactive TUI / slash commands", "/research /paper /submit", "Session & theme management"])
-    s += box(110, 240, 220, 110, "Core Backend", ["Prompt + context build", "File discovery / GEMINI.md", "Chat compression"])
-    s += box(360, 240, 220, 110, "Tool Orchestration", ["Filesystem / shell tools", "Policy engine / sandbox", "MCP server adapters"])
-    s += box(610, 240, 220, 110, "Multi-Model Router", ["Gemini / OpenAI / Claude", "Baidu / DeepSeek / Qwen", "Provider config & fallback"])
-    s += box(170, 390, 580, 70, "Academic Research Modules", ["Bibliography (arXiv/PubMed)  ·  LaTeX manager  ·  Experiment codegen  ·  Journal matcher / submission prep"])
-    s += arrow(460, 210, 220, 240)
-    s += arrow(460, 210, 470, 240)
-    s += arrow(460, 210, 720, 240)
-    s += arrow(470, 350, 460, 390)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">User prompts flow through core, selected provider generates plans, tools/MCP execute actions, results stream back to terminal.</text>'
-    s += svg_footer()
-    write("research-cli", s)
+def youtube_recsys() -> str:
+    return build_diagram(
+        "YouTube-DNN-RecSys — 系统架构 · 召回数据流",
+        "Python / Spark data preparation → TFRecords → dnn.py → user & item vectors → prediction",
+        (
+            Zone("DATA PROCESSING · 离线样本构建", (
+                Box("Python Pipeline", ("data2tfrecords.py", "read_tfrecords.py"), "orange"),
+                Box("Spark Pipeline", ("MakeDataOne.scala", "MakeDataTwo.scala"), "purple"),
+                Box("FeatureBuilder", ("history + continuous features",), "green"),
+            ), "orange", 155),
+            Zone("STORAGE · 训练与模型产物", (
+                Box("TFRecords", ("train / evaluation",), "green"),
+                Box("Checkpoints", ("ckpt / eval / modelpath",), "cyan"),
+            ), "green", 135),
+            Zone("MODEL TRAINING · src/python/models/dnn.py", (
+                Box("Input", ("visit_items_index × 5", "continuous_features × 16"), "blue"),
+                Box("Item Embedding", ("500 × 16 · average pooling",), "green"),
+                Box("User Tower", ("Dense 64 → 32 → vector 16",), "yellow"),
+                Box("Softmax Output", ("500 classes · Top-K",), "orange"),
+            ), "pink", 170),
+            Zone("PREDICTION · serving paths", (
+                Box("Python SavedModel", ("load_dnn_model.py",), "blue"),
+                Box("User Vector", ("PredictUserVector.scala",), "purple"),
+                Box("Item Table", ("ItemEmbeddingPredictor.scala",), "purple"),
+            ), "purple", 145),
+            Zone("RECOMMENDATION OUTPUT", (
+                Box("Candidate Recall", ("user vector × item embedding",), "cyan"),
+                Box("Top-K Items", ("next-item recommendation",), "green"),
+            ), "cyan", 130),
+        ),
+        "主链：行为历史 → TFRecords → embedding mean-pool → user vector → item table matching → Top-K。",
+        "evaluation feedback",
+    )
 
 
-def questions_gen() -> None:
-    s = svg_header("Questions-Gen", "Math competition problem generator · Qwen3-14B · github.com/chenxingqiang/GenQuestion")
-    s += lane(36, 92, 848, 430, "Data → 3-stage training → Validation → Deployment")
-    s += box(60, 140, 190, 110, "Training Data", ["Historical contests", "Conditional variations", "Innovative problem types"])
-    s += box(280, 140, 190, 110, "Stage 1", ["Basic pretraining", "Qwen3-14B fine-tune", "HF: stage1-fp-merged"])
-    s += box(500, 140, 190, 110, "Stage 2", ["RL GRPO optimization", "8-problem reward groups", "Novelty constraints"])
-    s += box(720, 140, 160, 110, "Stage 3", ["DeepSeek-R1 distill", "Quality scoring", "Final merged model"])
-    s += box(150, 300, 250, 110, "Validation", ["ModelValidator", "BatchValidator", "QualityEvaluator"])
-    s += box(430, 300, 250, 110, "CLI / API", ["questions-gen CLI", "validate / batch / quality", "Category benchmarks"])
-    s += box(710, 300, 170, 110, "Deploy", ["HuggingFace weights", "Ollama import", "Local inference"])
-    s += arrow(250, 195, 280, 195)
-    s += arrow(470, 195, 500, 195)
-    s += arrow(690, 195, 720, 195)
-    s += arrow(800, 250, 795, 300)
-    s += arrow(590, 250, 555, 300)
-    s += arrow(370, 250, 275, 300)
-    s += f'<text x="{W/2}" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="{MUTED}">Reward = 0.4·difficulty + 0.3·novelty + 0.2·rigor + 0.1·diversity; staged models validated then published to HF/Ollama.</text>'
-    s += svg_footer()
-    write("questions-gen", s)
+def research_cli() -> str:
+    return build_diagram(
+        "Research CLI — 系统架构 · Agent 请求数据流",
+        "Terminal UI → core orchestration & routing → tools / MCP / research modules → model providers",
+        (
+            Zone("CLI FRONTEND · packages/cli", (
+                Box("Interactive TUI", ("research.tsx · sessions",), "orange"),
+                Box("Commands", ("mcp · skills · hooks",), "orange"),
+                Box("ACP", ("acpSession.ts",), "purple"),
+            ), "orange", 145),
+            Zone("CORE ORCHESTRATION · packages/core", (
+                Box("Context & Memory", ("config.ts · memory.ts",), "blue"),
+                Box("modelRouterService", ("provider selection",), "green"),
+                Box("Routing Strategy", ("default · classifier · approval",), "blue"),
+            ), "blue", 155),
+            Zone("TOOLS & INTEGRATIONS", (
+                Box("Workspace Tools", ("filesystem · shell",), "slate"),
+                Box("MCP", ("external service adapters",), "green"),
+                Box("Research Modules", ("writing · bibliography · analysis",), "purple"),
+                Box("SDK / A2A / VS Code", ("embedded clients",), "blue"),
+            ), "green", 155),
+            Zone("MODEL PROVIDERS · provider config", (
+                Box("Gemini / Vertex", ("hosted models",), "blue"),
+                Box("OpenAI / Anthropic", ("hosted models",), "green"),
+                Box("Baidu / DeepSeek / Qwen", ("hosted models",), "orange"),
+            ), "purple", 145),
+            Zone("RESULT STREAM", (
+                Box("Tool Results", ("structured observations",), "cyan"),
+                Box("Assistant Response", ("streamed to terminal",), "green"),
+            ), "cyan", 130),
+        ),
+        "主链：prompt → packages/cli → packages/core router → provider / tools → structured result → terminal。",
+        "tool result loop",
+    )
 
 
-def title_page() -> None:
-    s = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
-  <rect width="{W}" height="{H}" fill="{BG}"/>
-  <text x="{W/2}" y="220" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="{TITLE}">Open Source Architecture Appendix</text>
-  <text x="{W/2}" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="{MUTED}">Chen Xingqiang · github.com/chenxingqiang</text>
-  <rect x="180" y="300" width="560" height="2" fill="#cbd5e0"/>
-  <text x="{W/2}" y="340" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="{TEXT}">TraceSmith · YiRage · JAX-sklearn · Secret-Learn</text>
-  <text x="{W/2}" y="368" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="{TEXT}">YouTube-DNN-RecSys · Research CLI · Questions-Gen</text>
-</svg>
-"""
-    write("00-title", s)
+def questions_gen() -> str:
+    return build_diagram(
+        "Questions-Gen — 系统架构 · 三阶段训练数据流",
+        "Training data → SFT → GRPO → DeepSeek distillation → validation → Hugging Face / Ollama",
+        (
+            Zone("TRAINING DATA · problem mixture", (
+                Box("Historical Problems", ("50% source distribution",), "orange"),
+                Box("Variants", ("30% conditional variation",), "orange"),
+                Box("Novel Problems", ("20% innovation target",), "yellow"),
+            ), "orange", 145),
+            Zone("Stage 1  SFT · QuestionsGenTrainer.py", (
+                Box("Qwen3-14B", ("supervised fine-tuning",), "blue"),
+                Box("Stage-1 Checkpoint", ("stage1-fp-merged",), "cyan"),
+            ), "blue", 140),
+            Zone("Stage 2  GRPO · reward optimization", (
+                Box("RewardCalculator", ("0.4 difficulty · 0.3 novelty", "0.2 rigor · 0.1 diversity"), "green"),
+                Box("NoveltyConstraint", ("variation / duplication guard",), "yellow"),
+                Box("GRPO Trainer", ("group-relative optimization",), "green"),
+            ), "green", 165),
+            Zone("Stage 3  Distill · teacher supervision", (
+                Box("DeepSeekTeacher", ("DeepSeek-R1 reasoning teacher",), "purple"),
+                Box("Final Model", ("final-merged-16bit",), "pink"),
+            ), "purple", 140),
+            Zone("VALIDATION", (
+                Box("ModelValidator", ("single checkpoint",), "blue"),
+                Box("BatchValidator", ("algebra · geometry · calculus",), "blue"),
+                Box("QualityEvaluator", ("clarity · difficulty · originality",), "green"),
+            ), "blue", 145),
+            Zone("DEPLOYMENT", (
+                Box("Hugging Face", ("three published stages",), "cyan"),
+                Box("Ollama", ("local inference",), "green"),
+                Box("questions-gen CLI", ("validate · batch · quality",), "slate"),
+            ), "cyan", 130),
+        ),
+        "主链：混合题库 → SFT → GRPO reward/novelty → DeepSeek-R1 distill → validate → publish。",
+        "quality feedback",
+    )
+
+
+def title_page() -> str:
+    lines = _header(
+        "Open Source Architecture Appendix",
+        "Chen Xingqiang · github.com/chenxingqiang · zone-based end-to-end system architecture",
+    )
+    projects = (
+        Box("TraceSmith", ("GPU profiling & replay",), "green"),
+        Box("YiRage", ("RuntimeFusion compiler",), "blue"),
+        Box("JAX-sklearn", ("transparent JAX acceleration",), "purple"),
+        Box("Secret-Learn", ("privacy-preserving ML",), "yellow"),
+        Box("YouTube-DNN", ("two-tower recall",), "orange"),
+        Box("Research CLI", ("agent workflow",), "cyan"),
+        Box("Questions-Gen", ("three-stage training",), "pink"),
+    )
+    _zone(lines, Zone("CONTENTS · one architecture per page", projects, "slate", 250), 250)
+    lines.extend([
+        _text(720, 570, "阅读约定", 18, "#111827", 700, "middle"),
+        _text(720, 610, "自上而下读取主数据流；虚线框表示架构分区；盒内仅列模块与职责。", 13, "#475569", 400, "middle"),
+        _text(720, 640, "蓝色实线表示主链路，紫色虚线表示回退或反馈，不以源码文件充当架构层。", 13, "#475569", 400, "middle"),
+        "</svg>",
+    ])
+    return "\n".join(lines)
+
+
+DIAGRAMS = {
+    "00-title": title_page,
+    "tracesmith": tracesmith,
+    "yirage": yirage,
+    "jax-sklearn": jax_sklearn,
+    "secret-learn": secret_learn,
+    "youtube-recsys": youtube_recsys,
+    "research-cli": research_cli,
+    "questions-gen": questions_gen,
+}
+
+
+def build_all() -> list[Path]:
+    SVG_DIR.mkdir(parents=True, exist_ok=True)
+    written = []
+    for name, builder in DIAGRAMS.items():
+        path = SVG_DIR / f"{name}.svg"
+        path.write_text(builder(), encoding="utf-8")
+        written.append(path)
+        print(f"Wrote {path}")
+    return written
 
 
 def main() -> None:
-    title_page()
-    tracesmith()
-    yirage()
-    jax_sklearn()
-    secret_learn()
-    youtube_recsys()
-    research_cli()
-    questions_gen()
+    build_all()
 
 
 if __name__ == "__main__":
