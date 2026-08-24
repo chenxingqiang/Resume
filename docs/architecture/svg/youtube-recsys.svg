@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#4a5568"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+  <rect width="920" height="560" fill="#ffffff"/>
+  <text x="460.0" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#1a365d">YouTube-DNN-RecSys</text>
+  <text x="460.0" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#718096">Two-tower recall pipeline · TensorFlow + Spark · github.com/chenxingqiang/YouTube-DNN-RecSys</text>
+
+  <rect x="36" y="92" width="848" height="430" rx="12" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
+  <text x="50" y="114" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#718096">Data ingest → Feature build → DNN training → User/Item vectors → Serving</text>
+<rect x="60" y="140" width="180" height="100" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="150.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Raw Events</text>
+  <text x="72" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">User watch history</text>
+  <text x="72" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Continuous features</text>
+  <text x="72" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Candidate items</text><rect x="270" y="140" width="180" height="100" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="360.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Data Prep</text>
+  <text x="282" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Python: TFRecords</text>
+  <text x="282" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Scala: Spark ETL</text>
+  <text x="282" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">FeatureBuilder</text><rect x="480" y="140" width="180" height="100" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="570.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">DNN Model</text>
+  <text x="492" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Item embeddings</text>
+  <text x="492" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">History average pool</text>
+  <text x="492" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Dense tower → user vec</text><rect x="690" y="140" width="180" height="100" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="780.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Training</text>
+  <text x="702" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">TensorFlow Estimator</text>
+  <text x="702" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Softmax over items</text>
+  <text x="702" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Checkpoints / TB</text><rect x="190" y="300" width="240" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="310.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Python Inference</text>
+  <text x="202" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">load_dnn_model.py</text>
+  <text x="202" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">User vector export</text>
+  <text x="202" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">TensorFlow SavedModel</text><rect x="490" y="300" width="240" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="610.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Spark Inference</text>
+  <text x="502" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">PredictUserVector</text>
+  <text x="502" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">ItemEmbeddingPredictor</text>
+  <text x="502" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Distributed scoring</text><line x1="240" y1="190" x2="270" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="450" y1="190" x2="480" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="660" y1="190" x2="690" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="570" y1="240" x2="570" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="570" y1="240" x2="310" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><text x="460.0" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#718096">Watch history embeddings are pooled into a user vector and matched against item embeddings for next-item recommendation.</text></svg>
