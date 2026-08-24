@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""Generate draw.io architecture diagrams for the resume appendix."""
+"""Generate DS4-style draw.io diagrams strictly from each repo's architecture.
+
+Visual language follows the DS4/BW01 system diagram:
+  dark canvas, nested containers, monospace labels, real file/module names.
+
+Content follows official repo diagrams + source trees, not invented boxes:
+  TraceSmith  docs/architecture.drawio
+  YiRage      docs/yirage-architecture.drawio + include/backend/*.h
+  Secret-Learn docs/secret_learn_architecture.drawio + src/secretlearn/
+  YouTube     docs/architecture.drawio + src/python|scala
+  JAX-sklearn xlearn/_jax/*.py
+  Research CLI packages/{cli,core}
+  Questions-Gen src/*.py + questions_gen/
+"""
 
 from __future__ import annotations
 
@@ -14,116 +27,165 @@ from drawpyo.page import Page
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "docs" / "architecture" / "drawio"
 
-PAGE_W, PAGE_H = 1600, 900
+W, H = 1720, 1080
 
-COLORS = {
-    "blue": ("#dae8fc", "#6c8ebf"),
-    "green": ("#d5e8d4", "#82b366"),
-    "yellow": ("#fff2cc", "#d6b656"),
-    "orange": ("#ffe6cc", "#d79b00"),
-    "purple": ("#e1d5e7", "#9673a6"),
-    "red": ("#f8cecc", "#b85450"),
-    "gray": ("#f5f5f5", "#666666"),
-    "cyan": ("#b1ddf0", "#10739e"),
-    "white": ("#ffffff", "#666666"),
-}
+BG = "#0b1520"
+INK = "#c5dde3"
+CYAN = "#3ecfcf"
+CYAN2 = "#7ee8f0"
+TEAL = "#173445"
+NAVY = "#102433"
+ORANGE = "#ff8c42"
+ORANGE_BG = "#3a2618"
+MUTED = "#7a9aa3"
+GREEN = "#6ee7b7"
+GREEN_BG = "#16352c"
+PURPLE = "#c4b5fd"
+PURPLE_BG = "#2a2150"
 
 
-def tf(size: int = 11, bold: bool = False, align: str = "center") -> TextFormat:
+def tf(size: int = 10, bold: bool = False, color: str = INK, align: str = "center") -> TextFormat:
     return TextFormat(
         formattedText=True,
         fontSize=size,
-        fontFamily="Helvetica",
+        fontFamily="Courier New",
+        fontColor=color,
         align=align,
         verticalAlign="middle",
         bold=bold,
     )
 
 
-def box(
+def cell(
     page: Page,
-    value: str,
-    x: int,
-    y: int,
-    w: int,
-    h: int,
-    color: str = "blue",
+    title: str,
+    file: str = "",
+    x: int = 0,
+    y: int = 0,
+    w: int = 160,
+    h: int = 64,
+    kind: str = "box",
     parent: Object | None = None,
-    size: int = 11,
-    bold: bool = False,
 ) -> Object:
-    fill, stroke = COLORS[color]
+    if kind == "hl":
+        fill, stroke, tc = ORANGE_BG, ORANGE, ORANGE
+    elif kind == "out":
+        fill, stroke, tc = GREEN_BG, GREEN, GREEN
+    elif kind == "alt":
+        fill, stroke, tc = PURPLE_BG, PURPLE, PURPLE
+    elif kind == "lane":
+        fill, stroke, tc = NAVY, CYAN, CYAN2
+    else:
+        fill, stroke, tc = TEAL, CYAN, CYAN2
+
+    if file:
+        file_html = file.replace("\n", "<br>")
+        value = (
+            f'<font color="{tc}"><b>{title}</b></font>'
+            f'<br><font color="{MUTED}">{file_html}</font>'
+        )
+    else:
+        value = f'<font color="{tc}"><b>{title}</b></font>'
+
     kwargs = dict(
         page=page,
         value=value,
         position=(x, y),
         width=w,
         height=h,
-        rounded=1,
+        rounded=0,
         fillColor=fill,
         strokeColor=stroke,
-        text_format=tf(size, bold),
+        text_format=tf(10, False, INK),
     )
     if parent is not None:
         kwargs["parent"] = parent
-    return Object(**kwargs)
+    obj = Object(**kwargs)
+    obj._style_attributes.append("strokeWidth")
+    obj.strokeWidth = 2 if kind == "lane" else 1
+    return obj
 
 
-def lane(page: Page, title: str, x: int, y: int, w: int, h: int, color: str = "gray") -> Object:
-    fill, stroke = COLORS[color]
-    return object_from_library(
+def lane(page: Page, title: str, x: int, y: int, w: int, h: int) -> Object:
+    obj = object_from_library(
         "general",
         "labeled_container",
         page=page,
-        value=title,
+        value=f'<font color="{CYAN2}"><b>{title}</b></font>',
         position=(x, y),
         width=w,
         height=h,
-        fillColor=fill,
-        strokeColor=stroke,
-        text_format=tf(12, True, "left"),
+        fillColor=NAVY,
+        strokeColor=CYAN,
+        text_format=tf(11, True, CYAN2, "left"),
+        rounded=0,
     )
+    obj._style_attributes.append("strokeWidth")
+    obj.strokeWidth = 2
+    return obj
 
 
 def header(page: Page, title: str, subtitle: str) -> None:
-    box(page, f"<b>{title}</b>", 30, 14, 1540, 38, "blue", size=20, bold=True)
-    box(page, subtitle, 30, 56, 1540, 26, "white", size=11)
+    Object(
+        page=page,
+        value="",
+        position=(0, 0),
+        width=W,
+        height=H,
+        rounded=0,
+        fillColor=BG,
+        strokeColor=BG,
+        text_format=tf(1),
+    )
+    cell(page, title, "", 24, 12, 1672, 40, "lane")
+    Object(
+        page=page,
+        value=f'<font color="{MUTED}">{subtitle}</font>',
+        position=(24, 54),
+        width=1672,
+        height=24,
+        rounded=0,
+        fillColor=BG,
+        strokeColor=BG,
+        text_format=tf(10, False, MUTED, "left"),
+    )
 
 
 def footer(page: Page, text: str) -> None:
-    box(page, text, 30, 854, 1540, 32, "white", size=11)
+    Object(
+        page=page,
+        value=f'<font color="{MUTED}">{text}</font>',
+        position=(24, 1048),
+        width=1672,
+        height=22,
+        rounded=0,
+        fillColor=BG,
+        strokeColor=BG,
+        text_format=tf(9, False, MUTED, "left"),
+    )
 
 
-def arrow(page: Page, src: Object, dst: Object, label: str = "") -> Edge:
+def arrow(page: Page, src: Object, dst: Object, color: str = CYAN, dashed: bool = False, label: str = "") -> Edge:
     return Edge(
         source=src,
         target=dst,
         page=page,
         waypoints="orthogonal",
-        rounded=1,
+        rounded=0,
         line_end_target="classic",
         endFill_target=True,
         label=label,
         strokeWidth=1.4,
+        stroke_color=color,
+        pattern="dashed_small" if dashed else "solid",
+        text_format=tf(8, False, color),
     )
 
 
 def new_file(name: str) -> tuple[File, Page]:
     file = File(file_name=f"{name}.drawio", file_path=str(OUT_DIR))
-    page = Page(file=file, name=name, width=PAGE_W, height=PAGE_H)
+    page = Page(file=file, name=name, width=W, height=H)
     return file, page
-
-
-def place_row(page: Page, parent: Object, items: list[tuple[str, str]], y: int, h: int, gap: int = 16) -> list[Object]:
-    n = len(items)
-    inner = parent.width - 24
-    w = (inner - gap * (n - 1)) // n
-    objs = []
-    x = 12
-    for value, color in items:
-        objs.append(box(page, value, x, y, w, h, color, parent=parent))
-        x += w + gap
-    return objs
 
 
 def write_file(file: File) -> Path:
@@ -133,580 +195,792 @@ def write_file(file: File) -> Path:
     return path
 
 
+def row(page: Page, parent: Object, items: list[tuple], y: int, h: int, gap: int = 10) -> list[Object]:
+    n = len(items)
+    inner = parent.width - 20
+    bw = (inner - gap * (n - 1)) // n
+    out = []
+    x = 10
+    for item in items:
+        title, file, kind = item if len(item) == 3 else (*item, "box")
+        out.append(cell(page, title, file, x, y, bw, h, kind, parent=parent))
+        x += bw + gap
+    return out
+
+
 def title_page() -> None:
     file, page = new_file("00-title")
-    box(page, "<b>Open Source Architecture Appendix</b>", 120, 180, 1360, 70, "blue", size=28, bold=True)
-    box(page, "Chen Xingqiang  ·  github.com/chenxingqiang  ·  draw.io source in docs/architecture/drawio/", 120, 260, 1360, 40, "white", size=14)
+    header(
+        page,
+        "OPEN SOURCE — SYSTEM ARCHITECTURE APPENDIX",
+        "Chen Xingqiang  ·  diagrams restyle DS4/BW01  ·  content from each repo's official architecture + source tree",
+    )
     cards = [
-        ("TraceSmith", "GPU Profiling & Replay<br>CUPTI / ROCm / Metal / MACA / Ascend", "orange"),
-        ("YiRage YPK", "LLM megakernel compiler<br>12 backends + RuntimeFusion", "purple"),
-        ("JAX-sklearn", "sklearn API + JAX proxy<br>CPU / GPU / TPU fallback", "cyan"),
-        ("Secret-Learn", "191 algos × FL / SL / SS<br>JAX + SecretFlow", "green"),
-        ("YouTube-DNN", "Two-tower recall<br>TensorFlow + Spark", "yellow"),
-        ("Research CLI", "AI CLI + academic tools<br>multi-provider / MCP", "blue"),
-        ("Questions-Gen", "Qwen3-14B contest problems<br>Pretrain → GRPO → Distill", "red"),
+        ("TRACESMITH", "docs/architecture.drawio\ninclude/tracesmith/*"),
+        ("YIRAGE YPK", "docs/yirage-architecture.drawio\ninclude/backend/*.h"),
+        ("JAX-SKLEARN", "xlearn/_jax/*.py\nxlearn/__init__.py"),
+        ("SECRET-LEARN", "docs/secret_learn_architecture.drawio\nsrc/secretlearn/"),
+        ("YOUTUBE-DNN", "docs/architecture.drawio\nsrc/python + src/scala"),
+        ("RESEARCH CLI", "packages/cli + packages/core\nmodelRouterService.ts"),
+        ("QUESTIONS-GEN", "src/QuestionsGenTrainer.py\nquestions_gen/"),
     ]
-    y = 360
-    w, h, gap = 196, 160, 18
-    x = 80
-    for title, desc, color in cards:
-        box(page, f"<b>{title}</b><br><br>{desc}", x, y, w, h, color, size=12)
-        x += w + gap
-    box(page, "Each following page is a draw.io diagram exported to SVG, then appended to the resume PDF.", 120, 580, 1360, 40, "gray", size=12)
+    x = 40
+    for title, files in cards:
+        cell(page, title, files.replace("\n", "<br>"), x, 160, 220, 140, "box")
+        x += 236
+    cell(
+        page,
+        "STYLE",
+        "dark canvas · nested containers · Courier · real paths · no invented layers",
+        40,
+        340,
+        1640,
+        70,
+        "hl",
+    )
+    footer(page, "v1.0  ·  2026-08-24  ·  github.com/chenxingqiang  ·  source: docs/architecture/drawio/")
     write_file(file)
 
 
 def tracesmith() -> None:
+    """TraceSmith docs/architecture.drawio + src/include tree."""
     file, page = new_file("tracesmith")
-    header(page, "TraceSmith — Cross-platform GPU Profiling & Replay", "github.com/chenxingqiang/TraceSmith  ·  C++ core + pybind11  ·  PyPI: tracesmith")
-
-    l1 = lane(page, "1. Workloads / producers", 30, 94, 1540, 118)
-    w1 = place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>PyTorch / Kineto</b><br>kernel + runtime traces", "blue"),
-            ("<b>TensorFlow / XLA</b><br>graph + device events", "blue"),
-            ("<b>Custom CUDA / HIP</b><br>driver / runtime APIs", "blue"),
-            ("<b>Multi-GPU cluster</b><br>NCCL collectives", "cyan"),
-        ],
-        y=38,
-        h=68,
+        "TRACESMITH — SYSTEM ARCHITECTURE",
+        "GPU Profiling & Replay  ·  C++17 core + pybind11  ·  source: docs/architecture.drawio  ·  github.com/chenxingqiang/TraceSmith",
     )
 
-    l2 = lane(page, "2. User interface", 30, 224, 1540, 118)
-    w2 = place_row(
+    apps = lane(page, "APPLICATION LAYER", 20, 88, 1680, 108)
+    a = row(
         page,
-        l2,
+        apps,
         [
-            ("<b>CLI</b><br>profile / record / view<br>export / analyze / replay", "green"),
-            ("<b>Python API</b><br>pybind11 bindings<br>in-process capture", "green"),
-            ("<b>Distribution</b><br>pip install tracesmith<br>Apache-2.0", "green"),
+            ("C++ Application", "user binary", "box"),
+            ("Python Application", "import tracesmith", "box"),
+            ("C++ CLI", "cli/main.cpp", "box"),
+            ("Python CLI", "python/tracesmith/cli.py", "box"),
+            ("External Tools", "Perfetto UI / Chrome", "out"),
         ],
-        y=38,
-        h=68,
+        y=36,
+        h=60,
     )
 
-    l3 = lane(page, "3. Capture backends  (platform-specific, lock-free ingest)", 30, 354, 1540, 140)
-    w3 = place_row(
+    bind = lane(page, "PYTHON BINDINGS", 20, 206, 1680, 88)
+    b = row(
         page,
-        l3,
+        bind,
         [
-            ("<b>NVIDIA CUPTI</b><br>nsys / kernel / memcpy", "orange"),
-            ("<b>AMD ROCm</b><br>rocprof / HIP events", "orange"),
-            ("<b>Apple Metal</b><br>xctrace / Instruments", "orange"),
-            ("<b>MetaX MACA</b><br>MCPTI", "orange"),
-            ("<b>Huawei Ascend</b><br>CANN / msprof", "orange"),
-            ("<b>Linux eBPF</b><br>host syscall / driver", "orange"),
+            ("pybind11 module", "python/src/bindings.cpp", "hl"),
+            ("_tracesmith.so", "native extension", "hl"),
+            ("python/tracesmith/__init__.py", "package API", "box"),
         ],
-        y=38,
-        h=86,
+        y=34,
+        h=42,
     )
 
-    l4 = lane(page, "4. Core pipeline", 30, 506, 1540, 150)
-    w4 = place_row(
+    core = lane(page, "TRACESMITH CORE LIBRARY (C++17)  include/tracesmith + src/", 20, 304, 1680, 430)
+    cap = row(
         page,
-        l4,
+        core,
         [
-            ("<b>SPSC ring buffer</b><br>lock-free ingest<br>&lt;1% overhead", "yellow"),
-            ("<b>Common / stacks</b><br>event types<br>XRay / host stacks", "yellow"),
-            ("<b>SBT format</b><br>string interning<br>delta timestamps", "yellow"),
-            ("<b>State / timeline</b><br>GPU state machine<br>stream reconstruction", "yellow"),
+            ("CUPTIProfiler", "src/capture/cupti_profiler.cpp", "hl"),
+            ("MCPTIProfiler", "src/capture/mcpti_profiler.cpp", "box"),
+            ("MetalProfiler", "src/capture/metal_profiler.mm", "box"),
+            ("AscendProfiler", "src/capture/ascend_profiler.cpp", "box"),
+            ("ROCmProfiler", "src/capture/rocm_profiler.cpp", "box"),
+            ("BPFTracer", "src/capture/bpf_tracer.cpp", "box"),
+            ("MemoryProfiler", "src/capture/memory_profiler.cpp", "box"),
         ],
-        y=38,
-        h=96,
+        y=34,
+        h=58,
+    )
+    com = row(
+        page,
+        core,
+        [
+            ("RingBuffer SPSC", "common/ring_buffer.hpp", "hl"),
+            ("Types / TraceEvent", "src/common/types.cpp", "box"),
+            ("StackCapture", "src/common/stack_capture.cpp", "box"),
+            ("XRayImporter", "src/common/xray_importer.cpp", "box"),
+            ("SBTWriter/Reader", "src/format/sbt_format.cpp", "hl"),
+        ],
+        y=104,
+        h=58,
+    )
+    st = row(
+        page,
+        core,
+        [
+            ("GPUStateMachine", "src/state/gpu_state_machine.cpp", "box"),
+            ("InstructionStream", "src/state/instruction_stream.cpp", "box"),
+            ("TimelineBuilder", "src/state/timeline_builder.cpp", "box"),
+            ("TimelineViewer", "src/state/timeline_viewer.cpp", "box"),
+            ("PerfettoExporter", "src/state/perfetto_exporter.cpp", "out"),
+            ("PerfettoProto", "src/state/perfetto_proto_exporter.cpp", "out"),
+        ],
+        y=174,
+        h=58,
+    )
+    rp = row(
+        page,
+        core,
+        [
+            ("ReplayEngine", "src/replay/replay_engine.cpp", "alt"),
+            ("StreamScheduler", "src/replay/stream_scheduler.cpp", "alt"),
+            ("OperationExecutor", "src/replay/operation_executor.cpp", "alt"),
+            ("DeterminismChecker", "src/replay/determinism_checker.cpp", "alt"),
+            ("FrameCapture", "src/replay/frame_capture.cpp", "alt"),
+        ],
+        y=244,
+        h=58,
+    )
+    cl = row(
+        page,
+        core,
+        [
+            ("GPUTopology", "src/cluster/gpu_topology.cpp", "box"),
+            ("MultiGPUProfiler", "src/cluster/multi_gpu_profiler.cpp", "box"),
+            ("TimeSync NTP/PTP", "src/cluster/time_sync.cpp", "box"),
+            ("NCCLTracker", "src/cluster/nccl_tracker.cpp", "box"),
+            ("GDB RSP", "src/gdb/rsp_handler.cpp", "box"),
+            ("TracyExporter", "src/tracy/tracy_exporter.cpp", "box"),
+        ],
+        y=314,
+        h=58,
     )
 
-    l5 = lane(page, "5. Replay, export, debug", 30, 668, 1540, 170)
-    w5 = place_row(
+    hw = lane(page, "GPU BACKENDS & SYSTEM  (createProfiler + nsys / mcTracer / xctrace / msprof)", 20, 746, 1680, 108)
+    row(
         page,
-        l5,
+        hw,
         [
-            ("<b>Replay engine</b><br>full / partial / dry-run<br>stream scheduler<br>determinism checker", "purple"),
-            ("<b>Perfetto</b><br>protobuf export<br>~85% smaller than JSON", "purple"),
-            ("<b>Tracy profiler</b><br>live timeline view", "purple"),
-            ("<b>GDB RSP</b><br>GPU breakpoints<br>trace-driven debug", "purple"),
-            ("<b>Cluster sync</b><br>NTP / PTP / CUDA<br>NCCL tracking", "purple"),
+            ("NVIDIA CUDA", "CUPTI SDK + nsys", "hl"),
+            ("Apple Metal", "Metal API + xctrace", "box"),
+            ("MetaX MACA", "MCPTI + mcTracer", "box"),
+            ("Huawei Ascend", "CANN + msprof", "box"),
+            ("AMD ROCm", "roctracer", "box"),
+            ("Linux eBPF", "kernel events", "box"),
+            ("libunwind", "host stacks", "box"),
+            ("Perfetto SDK", "protobuf", "out"),
         ],
-        y=38,
-        h=116,
+        y=36,
+        h=60,
     )
 
-    arrow(page, w1[0], w2[1], "hooks")
-    arrow(page, w2[0], w3[0])
-    arrow(page, w3[0], w4[0], "events")
-    arrow(page, w4[0], w4[1])
-    arrow(page, w4[1], w4[2])
-    arrow(page, w4[2], w4[3])
-    arrow(page, w4[3], w5[0], "timeline")
-    arrow(page, w4[3], w5[1], "export")
-    footer(page, "Flow: workload → CLI/Python → platform backend → lock-free ring → SBT/timeline → replay or Perfetto/Tracy/GDB.")
+    outp = lane(page, "OUTPUT FORMATS", 20, 866, 1680, 88)
+    row(
+        page,
+        outp,
+        [
+            ("trace.sbt", "SBT binary", "out"),
+            ("trace.json", "Perfetto JSON", "out"),
+            ("trace.perfetto", "protobuf", "out"),
+            ("graph.dot", "Graphviz", "out"),
+            ("ASCII timeline", "terminal", "out"),
+            ("comm matrix", "NCCL heatmap", "out"),
+        ],
+        y=34,
+        h=42,
+    )
+
+    arrow(page, a[3], b[0], CYAN)
+    arrow(page, b[0], cap[0], ORANGE, True, "native")
+    arrow(page, cap[0], com[0], CYAN, False, "events")
+    arrow(page, com[0], com[4], CYAN)
+    arrow(page, com[4], st[2], CYAN)
+    arrow(page, st[2], rp[0], PURPLE, True, "replay")
+    arrow(page, st[4], a[4], GREEN, True, "ui")
+    footer(page, "v0.10+  ·  capture→ring→SBT→state/timeline→replay/export  ·  files from include/tracesmith and src/")
     write_file(file)
 
 
 def yirage() -> None:
+    """YiRage docs/yirage-architecture.drawio + include/backend/*.h."""
     file, page = new_file("yirage")
-    header(page, "YiRage (YPK) — Multi-backend LLM Megakernel Compiler & Runtime", "github.com/chenxingqiang/YiRage  ·  based on Mirage (CMU) + multi-backend / RuntimeFusion extensions")
-
-    l1 = lane(page, "1. Serving / embedding", 30, 94, 1540, 118)
-    w1 = place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>vLLM</b><br>keeps schedule + KV<br>RF selects capsules", "blue"),
-            ("<b>SGLang</b><br>decode-loop embed<br>same FusionPlan cache", "blue"),
-            ("<b>Python API</b><br>PersistentKernel<br>HardwareRegistry", "blue"),
-            ("<b>UnifiedCompiler</b><br>graph + backend pick<br>Cython CoreBridge", "cyan"),
-        ],
-        y=38,
-        h=68,
+        "YIRAGE (YPK) — SYSTEM ARCHITECTURE",
+        "RuntimeFusion × Multi-Backend  ·  source: docs/yirage-architecture.drawio + include/backend/*.h  ·  github.com/chenxingqiang/YiRage",
     )
 
-    l2 = lane(page, "2. RuntimeFusion", 30, 224, 1540, 118)
-    w2 = place_row(
+    eng = lane(page, "INFERENCE ENGINE  (scheduling + KV owner)", 20, 88, 1680, 100)
+    e = row(
         page,
-        l2,
+        eng,
         [
-            ("<b>FusionPlan cache</b><br>search / profile results<br>per backend + shape", "purple"),
-            ("<b>FusionCapsule</b><br>one decode-step kernel<br>selected each token", "purple"),
-            ("<b>Device memory</b><br>persistent workspace<br>KV-friendly layout", "purple"),
+            ("vLLM", "continuous batch · PagedAttention", "box"),
+            ("SGLang", "RadixAttention · extend meta", "box"),
+            ("meta", "block_table · seq_lens · SM budget", "box"),
         ],
-        y=38,
-        h=68,
+        y=36,
+        h=52,
     )
 
-    l3 = lane(page, "3. Compiler / search", 30, 354, 1540, 130)
-    w3 = place_row(
+    rf = lane(page, "RUNTIMEFUSION  yirage.serving  ·  RF.step(inputs, meta) selects 0..N capsules / decode step", 20, 200, 1680, 120)
+    r = row(
         page,
-        l3,
+        rf,
         [
-            ("<b>Kernel graph IR</b><br>matmul / attn / norm<br>mark inputs / outputs", "yellow"),
-            ("<b>Superoptimize</b><br>hardware-aware search<br>15 candidate dims", "yellow"),
-            ("<b>Fingerprint</b><br>numeric verify<br>before accept", "yellow"),
-            ("<b>Autotune</b><br>grid / tile / pipeline<br>occupancy model", "yellow"),
+            ("RF.step()", "yirage.serving", "hl"),
+            ("FusionCapsule MLP", "gate_up + down  yirage.core", "hl"),
+            ("FusionCapsule seg", "gate_up → down pipeline", "box"),
+            ("skip / fallback", "engine native ops", "alt"),
         ],
-        y=38,
-        h=78,
+        y=36,
+        h=70,
     )
 
-    l4 = lane(page, "4. Threadblock operators + transpilers", 30, 496, 1540, 150)
-    ops = place_row(
+    search = lane(page, "SEARCH & PLAN  (offline / warm-up)", 20, 332, 1680, 110)
+    s = row(
         page,
-        l4,
+        search,
         [
-            ("<b>MatMul</b><br>Tensor Core / Cube", "green"),
-            ("<b>Attention / GQA</b><br>Flash-style tiles", "green"),
-            ("<b>RMSNorm / SwiGLU</b><br>fused decode path", "green"),
-            ("<b>Triton codegen</b>", "orange"),
-            ("<b>NKI / MLIR</b>", "orange"),
-            ("<b>CUDA / HIP JIT</b>", "orange"),
+            ("superoptimize(backend)", "KN/TB graph search", "box"),
+            ("FusionPlan / µGraph", "profile + fingerprint verify", "hl"),
+            ("MuGraph cache", "shape-bucket restore", "box"),
+            ("Ray coordinator", "distributed search optional", "box"),
+            ("serving tiers", "seed_verify · full_tb · full_tb_ray", "box"),
         ],
-        y=38,
-        h=96,
+        y=36,
+        h=62,
     )
 
-    l5 = lane(page, "5. Backend registry  (12 targets; factory + thread-safe singleton)", 30, 658, 1540, 180)
-    place_row(
+    api = lane(page, "PYTHON API & BACKEND MANAGER (C++)", 20, 454, 1680, 120)
+    p = row(
         page,
-        l5,
+        api,
         [
-            ("<b>CUDA</b><br>Tensor Core<br>bank conflict", "orange"),
-            ("<b>ROCm</b><br>HIP / MFMA", "orange"),
-            ("<b>MPS</b><br>Apple Metal<br>unified mem", "orange"),
-            ("<b>Ascend</b><br>AI Core / Cube<br>BiSheng", "orange"),
-            ("<b>MACA</b><br>MetaX", "orange"),
-            ("<b>TPU / XPU</b><br>NKI / Intel", "orange"),
-            ("<b>MLIR / CPU</b><br>LLVM / SIMD", "orange"),
-            ("<b>FPGA</b><br>experimental", "gray"),
+            ("PersistentKernel", "python/yirage", "box"),
+            ("KNGraph / TBGraph", "transpiler → kernels", "box"),
+            ("BackendRegistry", "include/backend/backend_registry.h", "hl"),
+            ("yirage.core", "Cython runtime", "box"),
+            ("KernelExecutor factory", "search + execute same backend", "box"),
         ],
-        y=38,
-        h=126,
+        y=36,
+        h=70,
     )
 
-    arrow(page, w1[0], w2[1], "decode")
-    arrow(page, w1[3], w3[0])
-    arrow(page, w3[0], w3[1])
-    arrow(page, w3[1], w2[0], "cache")
-    arrow(page, w3[1], ops[0])
-    footer(page, "Serving keeps scheduling/KV; compiler searches fused kernels; RuntimeFusion injects FusionCapsules into vLLM/SGLang decode.")
+    be = lane(page, "BACKEND IMPLEMENTATIONS  include/backend/*.h + include/kernel/{cuda,maca,cpu,mps,ascend}/", 20, 586, 1680, 200)
+    row(
+        page,
+        be,
+        [
+            ("CUDA", "cuda_backend.h  warp 32  nvcc", "hl"),
+            ("MACA", "maca_backend.h  warp 64  mxcc", "box"),
+            ("ROCm", "rocm_backend.h  AMD GPU", "box"),
+            ("MPS", "mps_backend.h  Apple GPU", "box"),
+            ("Ascend", "ascend_backend.h  CANN", "box"),
+            ("CPU", "cpu_backend.h  OpenMP/MKL", "box"),
+            ("Triton", "triton_backend.h  DSL", "box"),
+            ("NKI", "nki_backend.h  SBUF/DMA", "box"),
+        ],
+        y=36,
+        h=70,
+    )
+    row(
+        page,
+        be,
+        [
+            ("cuDNN", "cudnn_backend.h", "box"),
+            ("MKL", "mkl_backend.h", "box"),
+            ("TPU", "tpu_backend.h", "box"),
+            ("XPU", "xpu_backend.h", "box"),
+            ("MLIR", "mlir_backend.h  CPU JIT", "box"),
+            ("FPGA", "fpga_backend.h  experimental", "alt"),
+        ],
+        y=118,
+        h=62,
+    )
+
+    hw = lane(page, "HARDWARE TARGETS", 20, 798, 1680, 100)
+    row(
+        page,
+        hw,
+        [
+            ("NVIDIA GPU", "Ampere / Hopper", "hl"),
+            ("MetaX C500/C550", "MACA", "box"),
+            ("x86 / ARM CPU", "Intel / AMD / Apple", "box"),
+            ("Apple Silicon", "M1–M4", "box"),
+            ("Huawei Ascend", "910 / 910B / 310P", "box"),
+            ("AWS Neuron / Intel XPU", "NKI", "box"),
+        ],
+        y=36,
+        h=52,
+    )
+
+    arrow(page, e[0], r[0], CYAN, False, "decode")
+    arrow(page, r[0], r[1], ORANGE, True, "capsule")
+    arrow(page, s[1], r[0], PURPLE, True, "plan")
+    arrow(page, p[2], s[0], CYAN)
+    footer(page, "Engine owns scheduling & KV; RF owns fusion identity per step  ·  BackendRegistry search+execute same backend")
     write_file(file)
 
 
 def jax_sklearn() -> None:
+    """xlearn/_jax source tree — no invented layers."""
     file, page = new_file("jax-sklearn")
-    header(page, "JAX-sklearn (xlearn) — Drop-in sklearn with automatic JAX acceleration", "github.com/chenxingqiang/jax-sklearn  ·  13,058 tests passed  ·  pip install jax-sklearn")
-
-    l1 = lane(page, "1. User code  (zero API change)", 30, 94, 1540, 110)
-    place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>import xlearn as sklearn</b><br>LinearRegression().fit(X, y)", "blue"),
-            ("<b>Same estimators</b><br>cluster / decompose / preprocess", "blue"),
-            ("<b>config_context()</b><br>force GPU / disable JAX", "cyan"),
-        ],
-        y=38,
-        h=60,
+        "JAX-SKLEARN (xlearn) — SYSTEM ARCHITECTURE",
+        "drop-in sklearn  ·  files: xlearn/__init__.py + xlearn/_jax/*.py  ·  github.com/chenxingqiang/jax-sklearn",
     )
 
-    l2 = lane(page, "2. sklearn-compatible surface", 30, 216, 1540, 130)
-    place_row(
+    user = lane(page, "USER CODE", 20, 88, 1680, 90)
+    row(
         page,
-        l2,
+        user,
         [
-            ("<b>Linear</b><br>LR / Ridge / Lasso<br>ElasticNet", "green"),
-            ("<b>Cluster</b><br>KMeans<br>282 tests", "green"),
-            ("<b>Decompose</b><br>PCA / TruncatedSVD<br>528 tests", "green"),
-            ("<b>Preprocess</b><br>Standard / MinMax", "green"),
-            ("<b>Others</b><br>native sklearn<br>via fallback", "gray"),
+            ("import xlearn as sklearn", "public API", "box"),
+            ("LinearRegression / KMeans / PCA", "xlearn.linear_model · cluster · decomposition", "box"),
+            ("set_config / config_context", "xlearn/_jax/_config.py", "box"),
         ],
-        y=38,
-        h=78,
+        y=34,
+        h=44,
     )
 
-    l3 = lane(page, "3. Runtime injection / proxy", 30, 358, 1540, 150)
-    w3 = place_row(
+    init = lane(page, "PACKAGE INIT  xlearn/__init__.py", 20, 190, 1680, 110)
+    i = row(
         page,
-        l3,
+        init,
         [
-            ("<b>__getattr__ lazy import</b><br>xlearn.linear_model …", "yellow"),
-            ("<b>_auto_jax_accelerate</b><br>replace estimator classes", "yellow"),
-            ("<b>EstimatorProxy</b><br>create JAX or original impl", "yellow"),
-            ("<b>Heuristics</b><br>LR &gt; 1e8  ·  KMeans &gt; 1e6<br>PCA &gt; 1e7 complexity", "yellow"),
+            ("__getattr__(name)", "lazy submodule import", "hl"),
+            ("_JAX_ENABLED", "import xlearn._jax", "box"),
+            ("_auto_jax_accelerate_module", "replace estimator classes", "hl"),
+            ("AcceleratorRegistry", "xlearn/_jax/_accelerator.py", "box"),
         ],
-        y=38,
-        h=96,
+        y=36,
+        h=62,
     )
 
-    l4 = lane(page, "4. Acceleration + data", 30, 520, 1540, 140)
-    w4 = place_row(
+    proxy = lane(page, "PROXY  xlearn/_jax/_proxy.py", 20, 314, 1680, 130)
+    p = row(
         page,
-        l4,
+        proxy,
         [
-            ("<b>JAX kernels</b><br>JIT / vmap<br>universal mixins", "purple"),
-            ("<b>Algo kernels</b><br>GP / MLP / SVM / tree", "purple"),
-            ("<b>NumPy ↔ JAX</b><br>dtype / shape guards", "purple"),
-            ("<b>Fallback</b><br>small data or error<br>→ original sklearn", "red"),
+            ("create_intelligent_proxy", "wrap estimator type", "hl"),
+            ("EstimatorProxy.__init__", "_create_implementation()", "box"),
+            ("JAX path", "create_accelerated_estimator", "box"),
+            ("sklearn fallback", "original_class(*args)", "alt"),
         ],
-        y=38,
-        h=86,
+        y=36,
+        h=80,
     )
 
-    l5 = lane(page, "5. Hardware abstraction  (auto-select by problem size)", 30, 672, 1540, 160)
-    place_row(
+    jax = lane(page, "JAX KERNELS  xlearn/_jax/", 20, 456, 1680, 160)
+    row(
         page,
-        l5,
+        jax,
         [
-            ("<b>CPU</b><br>&lt;10K samples<br>1.0–2.5×", "cyan"),
-            ("<b>NVIDIA GPU</b><br>10K–100K<br>5.5–8×", "cyan"),
-            ("<b>Google TPU</b><br>&gt;100K<br>9.5–15×", "cyan"),
-            ("<b>Apple Metal</b><br>M1/M2/M3 beta<br>2–4×", "gray"),
+            ("_universal_jax.py", "generic mixins JIT/vmap", "box"),
+            ("_accelerator.py", "dispatch + registry", "box"),
+            ("_data_conversion.py", "NumPy ↔ JAX", "box"),
+            ("_gp.py", "Gaussian process", "box"),
+            ("_mlp.py", "neural_network", "box"),
+            ("_svm.py", "SVM", "box"),
+            ("_tree.py", "trees", "box"),
         ],
-        y=38,
-        h=106,
+        y=36,
+        h=110,
     )
 
-    arrow(page, w3[0], w3[1])
-    arrow(page, w3[1], w3[2])
-    arrow(page, w3[2], w4[0], "JAX")
-    arrow(page, w3[2], w4[3], "fallback")
-    footer(page, "Proxy decides JAX vs sklearn from dataset size, algorithm family, and configured platform; errors fall back silently.")
+    cfg = lane(page, "CONFIG / HEURISTICS  xlearn/_jax/_config.py", 20, 630, 1680, 120)
+    row(
+        page,
+        cfg,
+        [
+            ("enable_jax", "on/off", "box"),
+            ("jax_platform", "cpu | gpu | tpu | metal", "box"),
+            ("LinearRegression", "min_complexity 1e8", "box"),
+            ("KMeans", "min_complexity 1e6", "box"),
+            ("PCA", "min_complexity 1e7", "box"),
+        ],
+        y=36,
+        h=70,
+    )
+
+    hw = lane(page, "HARDWARE  (JAX backends)", 20, 764, 1680, 100)
+    row(
+        page,
+        hw,
+        [
+            ("CPU jaxlib", "default", "box"),
+            ("CUDA jax[gpu]", "NVIDIA", "hl"),
+            ("TPU jax[tpu]", "Google Cloud", "box"),
+            ("Metal jax-metal", "Apple experimental", "alt"),
+        ],
+        y=36,
+        h=52,
+    )
+
+    arrow(page, i[0], i[2], CYAN)
+    arrow(page, i[2], p[0], ORANGE, True, "inject")
+    arrow(page, p[1], p[2], CYAN, False, "JAX")
+    arrow(page, p[1], p[3], PURPLE, True, "fallback")
+    footer(page, "Injection is lazy: xlearn.__getattr__ → proxy class in module → fit() chooses JAX or sklearn")
     write_file(file)
 
 
 def secret_learn() -> None:
+    """docs/secret_learn_architecture.drawio + src/secretlearn/."""
     file, page = new_file("secret-learn")
-    header(page, "Secret-Learn — Privacy-preserving ML (191 algorithms × FL / SL / SS)", "github.com/chenxingqiang/Secret-Learn  ·  sklearn API  ·  JAX acceleration  ·  SecretFlow devices")
-
-    l1 = lane(page, "1. Applications", 30, 94, 1540, 110)
-    place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>Healthcare</b><br>hospitals keep records local", "blue"),
-            ("<b>Finance</b><br>cross-bank fraud / risk", "blue"),
-            ("<b>IoT / edge</b><br>federated sensors", "blue"),
-            ("<b>Research</b><br>multi-institution studies", "blue"),
-        ],
-        y=38,
-        h=60,
+        "SECRET-LEARN — SYSTEM ARCHITECTURE",
+        "Privacy-preserving ML  ·  source: docs/secret_learn_architecture.drawio + src/secretlearn/  ·  github.com/chenxingqiang/Secret-Learn",
     )
 
-    l2 = lane(page, "2. sklearn-compatible API  (191 estimators, 30+ categories)", 30, 216, 1540, 120)
-    place_row(
+    app = lane(page, "APPLICATION & USE CASES", 20, 88, 1680, 90)
+    row(
         page,
-        l2,
+        app,
         [
-            ("Linear / GLM", "green"),
-            ("Ensemble / trees", "green"),
-            ("SVM / neighbors", "green"),
-            ("Cluster / PCA", "green"),
-            ("NN / Naive Bayes", "green"),
-            ("Preprocess / select", "green"),
+            ("Healthcare", "hospital FL", "box"),
+            ("Finance", "cross-bank fraud", "box"),
+            ("IoT / Edge", "distributed sensors", "box"),
+            ("Research", "multi-institution", "box"),
+            ("Government", "census / tax", "box"),
         ],
-        y=38,
-        h=68,
+        y=34,
+        h=44,
     )
 
-    l3 = lane(page, "3. Privacy mode router", 30, 348, 1540, 160)
-    w3 = place_row(
+    api = lane(page, "SKLEARN-COMPATIBLE API  191 algorithms", 20, 190, 1680, 100)
+    row(
         page,
-        l3,
+        api,
         [
-            ("<b>FL — Federated</b><br>data stays on PYU<br>local JAX train<br>HEU secure aggregate<br>best: horizontal FL", "yellow"),
-            ("<b>SL — Split learning</b><br>model split by party<br>encrypted activations<br>vertical / deep models", "yellow"),
-            ("<b>SS — Secret sharing</b><br>SPU MPC encrypt<br>maximum privacy<br>multi-party runtime", "yellow"),
+            ("Linear 39", "Ridge Lasso SGD", "box"),
+            ("Ensemble 18", "RF AdaBoost", "box"),
+            ("Clustering 14", "KMeans DBSCAN", "box"),
+            ("Decomposition 14", "PCA NMF ICA", "box"),
+            ("SVM 7", "SVC SVR NuSVC", "box"),
+            ("NN 4", "MLP BernoulliRBM", "box"),
+            ("+95", "neighbors trees NB …", "box"),
         ],
-        y=38,
-        h=108,
+        y=36,
+        h=52,
     )
 
-    l4 = lane(page, "4. Intelligent generation + acceleration", 30, 520, 1540, 140)
-    w4 = place_row(
+    modes = lane(page, "PRIVACY MODES  src/secretlearn/{federated_learning,secret_sharing,split_learning}/", 20, 304, 1680, 200)
+    row(
         page,
-        l4,
+        modes,
         [
-            ("<b>Algorithm classifier</b><br>supervised? partial_fit?<br>fit(x) vs fit(x,y)", "purple"),
-            ("<b>Template migrator</b><br>auto-generate FL/SL/SS<br>adapter from sklearn", "purple"),
-            ("<b>JAX-sklearn core</b><br>local 5×+ speedup<br>CPU / GPU / TPU", "cyan"),
-            ("<b>573 examples</b><br>one per algo × mode<br>batch runners", "gray"),
+            ("FEDERATED LEARNING", "federated_learning/\nFLLinearRegression\nlocal PYU · HEU aggregate\n191 algos · 3–5×", "box"),
+            ("SECRET SHARING", "secret_sharing/\nSSPCA\nSPU MPC ABY3/CHEETAH\n191 algos · max privacy", "hl"),
+            ("SPLIT LEARNING", "split_learning/\nSLMLPClassifier\nmodel split · HEU acts\n191 algos · vertical FL", "box"),
         ],
-        y=38,
-        h=86,
+        y=36,
+        h=150,
     )
 
-    l5 = lane(page, "5. SecretFlow device plane", 30, 672, 1540, 160)
-    place_row(
+    intel = lane(page, "INTELLIGENT SYSTEM + JAX", 20, 518, 1680, 130)
+    row(
         page,
-        l5,
+        intel,
         [
-            ("<b>PYU</b><br>plaintext local<br>party compute", "orange"),
-            ("<b>HEU</b><br>homomorphic<br>secure aggregate", "orange"),
-            ("<b>SPU</b><br>MPC / secret share", "orange"),
-            ("<b>TEE</b><br>trusted execution", "orange"),
-            ("<b>DP hooks</b><br>optional noise", "gray"),
+            ("algorithm_classifier.py", "src/secretlearn/algorithm_classifier.py", "hl"),
+            ("JIT / XLA", "xlearn backend", "box"),
+            ("jax.vmap", "batch + autodiff", "box"),
+            ("smart fallback", "original sklearn", "alt"),
         ],
-        y=38,
-        h=106,
+        y=36,
+        h=80,
     )
 
-    arrow(page, w3[0], w4[2], "local JAX")
-    arrow(page, w3[2], w4[0])
-    footer(page, "Same estimator call; mode picks FL/SL/SS. FL keeps data local, SL splits the net, SS runs under MPC on SPU.")
+    dev = lane(page, "SECRETFLOW DEVICES", 20, 662, 1680, 120)
+    row(
+        page,
+        dev,
+        [
+            ("PYU", "plaintext party compute", "box"),
+            ("HEU", "homomorphic aggregate", "hl"),
+            ("SPU", "MPC ABY3 / CHEETAH", "hl"),
+            ("TEE", "trusted execution", "box"),
+        ],
+        y=36,
+        h=70,
+    )
+
+    hw = lane(page, "INFRASTRUCTURE & HARDWARE", 20, 796, 1680, 90)
+    row(
+        page,
+        hw,
+        [
+            ("CPU 1.5–2.5×", "local JAX", "box"),
+            ("GPU 5–8×", "CUDA", "box"),
+            ("TPU 9–15×", "Google", "box"),
+            ("M1/M2 2–4×", "Metal beta", "alt"),
+        ],
+        y=34,
+        h=44,
+    )
+
+    footer(page, "Same sklearn call surface; mode directory picks FL / SS / SL  ·  191 × 3 = 573 implementations")
     write_file(file)
 
 
 def youtube_recsys() -> None:
+    """docs/architecture.drawio + src/python and src/scala files."""
     file, page = new_file("youtube-recsys")
-    header(page, "YouTube-DNN-RecSys — Two-tower recall (Covington et al.) in TF + Spark", "github.com/chenxingqiang/YouTube-DNN-RecSys  ·  Python TensorFlow  ·  Scala Spark  ·  60 GitHub stars")
-
-    l1 = lane(page, "1. Event / feature sources", 30, 94, 1540, 118)
-    w1 = place_row(
+    header(
         page,
-        l1,
+        "YOUTUBE-DNN-RECSYS — SYSTEM ARCHITECTURE",
+        "Covington two-tower recall  ·  source: docs/architecture.drawio  ·  github.com/chenxingqiang/YouTube-DNN-RecSys",
+    )
+
+    data = lane(page, "DATA PROCESSING", 20, 88, 1680, 140)
+    d = row(
+        page,
+        data,
         [
-            ("<b>Watch history</b><br>video / search ids", "blue"),
-            ("<b>Context</b><br>device / geo / time", "blue"),
-            ("<b>Continuous feats</b><br>age / counts", "blue"),
-            ("<b>Candidate items</b><br>catalog embeddings", "blue"),
+            ("data2tfrecords.py", "src/python/data/data2tfrecords.py\nrandom + TFRecords train/eval", "box"),
+            ("read_tfrecords.py", "src/python/data/read_tfrecords.py", "box"),
+            ("MakeDataOne.scala", "src/scala/data/MakeDataOne.scala\nSpark distributed generate", "alt"),
+            ("MakeDataTwo.scala", "src/scala/data/MakeDataTwo.scala\nHDFS TFRecords", "alt"),
         ],
-        y=38,
-        h=68,
+        y=36,
+        h=90,
     )
 
-    l2 = lane(page, "2. Dual implementation stacks", 30, 224, 1540, 200)
-    py = box(
+    store = lane(page, "STORAGE", 20, 240, 1680, 80)
+    row(
         page,
-        "<b>Python / TensorFlow</b><br>data2tfrecords.py<br>models/dnn.py (Estimator)<br>custom layers / TensorBoard<br>SavedModel export",
-        20,
-        40,
-        740,
-        144,
-        "green",
-        parent=l2,
-        size=12,
-    )
-    sc = box(
-        page,
-        "<b>Scala / Spark</b><br>FeatureBuilder.scala<br>BaseSparkLocal<br>PredictUserVector<br>ItemEmbeddingPredictor",
-        780,
-        40,
-        740,
-        144,
-        "cyan",
-        parent=l2,
-        size=12,
-    )
-
-    l3 = lane(page, "3. Two-tower model", 30, 436, 1540, 190)
-    user = box(page, "<b>User tower</b><br>item-id embeddings<br>average watch history<br>concat continuous feats<br>MLP → user vector u", 20, 40, 480, 134, "yellow", parent=l3, size=12)
-    match = box(page, "<b>Matching</b><br>dot(u, v_i)<br>sampled softmax<br>next-watch objective", 530, 40, 480, 134, "orange", parent=l3, size=12)
-    item = box(page, "<b>Item tower</b><br>shared item embedding<br>table v_i<br>optional side features", 1040, 40, 480, 134, "yellow", parent=l3, size=12)
-
-    l4 = lane(page, "4. Train / serve", 30, 638, 1540, 196)
-    place_row(
-        page,
-        l4,
+        store,
         [
-            ("<b>Train</b><br>TF Estimator<br>optional PS / workers<br>checkpoints", "purple"),
-            ("<b>Eval</b><br>hold-out next-item<br>TensorBoard curves", "purple"),
-            ("<b>Online recall</b><br>ANN / softmax top-k<br>user vec × item table", "purple"),
-            ("<b>Artifacts</b><br>TFRecords<br>SavedModel / Spark vecs", "gray"),
+            ("data/tfrecords/", "train + eval TFRecords", "out"),
+            ("data/checkpoints/", "TF ckpt + SavedModel", "out"),
         ],
-        y=38,
-        h=142,
+        y=32,
+        h=36,
     )
 
-    arrow(page, w1[0], py)
-    arrow(page, w1[0], sc)
-    arrow(page, py, user)
-    arrow(page, sc, item)
-    arrow(page, user, match)
-    arrow(page, item, match)
-    footer(page, "History embeddings are mean-pooled into a user vector and scored against the item table — the paper's candidate-generation stage.")
+    train = lane(page, "MODEL  src/python/models/dnn.py  (TensorFlow Estimator)", 20, 332, 1680, 180)
+    t = row(
+        page,
+        train,
+        [
+            ("Input", "visit_items_index (5)\ncontinuous_features (16)", "box"),
+            ("Embedding", "item table 500 × 16\naverage pooling on history", "hl"),
+            ("MLP tower", "dense layers → user vector u", "box"),
+            ("Softmax", "500-way next-item\ncross entropy · Top-K", "hl"),
+        ],
+        y=36,
+        h=128,
+    )
+
+    pred = lane(page, "PREDICTION", 20, 526, 1680, 150)
+    pr = row(
+        page,
+        pred,
+        [
+            ("load_dnn_model.py", "src/python/models/load_dnn_model.py\nSavedModel online / batch", "box"),
+            ("PredictUserVector.scala", "src/scala/prediction/PredictUserVector.scala", "alt"),
+            ("ItemEmbeddingPredictor.scala", "src/scala/prediction/ItemEmbeddingPredictor.scala", "alt"),
+            ("ItemEmbedding.scala", "src/scala/models/ItemEmbedding.scala", "alt"),
+        ],
+        y=36,
+        h=100,
+    )
+
+    util = lane(page, "UTILITIES & CONFIG", 20, 690, 1680, 150)
+    row(
+        page,
+        util,
+        [
+            ("tensor_board.py", "src/python/utils/tensor_board.py", "box"),
+            ("feature_column.py", "src/python/reference/feature_column.py", "box"),
+            ("self_defined_network_layer.py", "src/python/reference/self_defined_network_layer.py", "box"),
+            ("FeatureBuilder.scala", "src/scala/models/FeatureBuilder.scala", "alt"),
+            ("BaseSparkLocal/Online", "src/scala/core/*.scala", "alt"),
+            ("vars.prod/sit.properties", "src/scala/config/", "alt"),
+        ],
+        y=36,
+        h=100,
+    )
+
+    arrow(page, d[0], t[0], CYAN, False, "TFRecords")
+    arrow(page, t[3], pr[0], GREEN, True, "SavedModel")
+    footer(page, "Python/TF path and Scala/Spark path share TFRecords + the same two-tower (history pool → user vec · item table)")
     write_file(file)
 
 
 def research_cli() -> None:
+    """packages/cli + packages/core source tree."""
     file, page = new_file("research-cli")
-    header(page, "Research CLI — Command-line AI workflow with academic research tools", "github.com/iechor-research/research-cli  ·  TypeScript monorepo  ·  Gemini CLI lineage + multi-provider + research modules")
-
-    l1 = lane(page, "1. Interaction", 30, 94, 1540, 118)
-    w1 = place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>packages/cli</b><br>Ink TUI  ·  research.tsx", "blue"),
-            ("<b>Slash commands</b><br>/research /paper /submit<br>/model config|select", "blue"),
-            ("<b>Non-interactive</b><br>npx / CI scripts", "blue"),
-            ("<b>VS Code companion</b><br>packages/vscode-ide", "cyan"),
-        ],
-        y=38,
-        h=68,
+        "RESEARCH CLI — SYSTEM ARCHITECTURE",
+        "TypeScript monorepo  ·  packages/cli + packages/core  ·  github.com/iechor-research/research-cli",
     )
 
-    l2 = lane(page, "2. packages/core — orchestration", 30, 224, 1540, 150)
-    w2 = place_row(
+    ui = lane(page, "packages/cli", 20, 88, 1680, 130)
+    u = row(
         page,
-        l2,
+        ui,
         [
-            ("<b>Prompt + context</b><br>GEMINI.md<br>file discovery", "yellow"),
-            ("<b>Session state</b><br>history / compress<br>1M-token window", "yellow"),
-            ("<b>Policy / sandbox</b><br>tool permission<br>workspace isolation", "yellow"),
-            ("<b>Routing</b><br>provider + model<br>fallback chain", "yellow"),
+            ("research.tsx / TUI", "packages/cli/src", "box"),
+            ("commands/", "mcp.ts skills.tsx hooks.tsx", "box"),
+            ("config/config.ts", "packages/cli/src/config/config.ts", "box"),
+            ("acp/", "acpSession.ts acpCommandHandler.ts", "box"),
         ],
-        y=38,
-        h=96,
+        y=36,
+        h=80,
     )
 
-    l3 = lane(page, "3. Multi-model providers", 30, 386, 1540, 130)
-    place_row(
+    core = lane(page, "packages/core  orchestration", 20, 230, 1680, 150)
+    c = row(
         page,
-        l3,
+        core,
         [
-            ("Gemini / Vertex", "orange"),
-            ("OpenAI", "orange"),
-            ("Anthropic", "orange"),
-            ("Baidu ERNIE", "orange"),
-            ("DeepSeek", "orange"),
-            ("Qwen / Groq / Kimi", "orange"),
+            ("config.ts", "packages/core/src/config/config.ts", "box"),
+            ("research-config-manager.ts", "packages/core/src/config/", "box"),
+            ("modelRouterService.ts", "packages/core/src/routing/", "hl"),
+            ("routingStrategy.ts", "default/classifier/composite", "box"),
+            ("memory.ts / storage.ts", "session + compress", "box"),
         ],
-        y=38,
-        h=78,
-    )
-
-    l4 = lane(page, "4. Tools + MCP", 30, 528, 1540, 140)
-    w4 = place_row(
-        page,
-        l4,
-        [
-            ("<b>Workspace tools</b><br>fs / shell / git", "green"),
-            ("<b>MCP servers</b><br>external capabilities", "green"),
-            ("<b>Search grounding</b><br>iEchor / web", "green"),
-            ("<b>SDK / a2a-server</b><br>programmatic embed", "green"),
-        ],
-        y=38,
-        h=86,
-    )
-
-    l5 = lane(page, "5. Academic research modules  (packages/core/src/tools/research)", 30, 680, 1540, 154)
-    place_row(
-        page,
-        l5,
-        [
-            ("<b>Bibliography</b><br>arXiv / PubMed / IEEE<br>BibTeX export", "purple"),
-            ("<b>Writing</b><br>outline / grammar<br>LaTeX manager", "purple"),
-            ("<b>Analysis</b><br>stats / citation net<br>experiment codegen", "purple"),
-            ("<b>Submission</b><br>journal matcher<br>template / package", "purple"),
-        ],
-        y=38,
+        y=36,
         h=100,
     )
 
-    arrow(page, w1[0], w2[0])
-    arrow(page, w2[3], w4[0], "tool calls")
-    footer(page, "Prompt → core context → selected provider → tools/MCP/research modules → streamed terminal result.")
+    tools = lane(page, "TOOLS + MCP", 20, 394, 1680, 130)
+    row(
+        page,
+        tools,
+        [
+            ("workspace tools", "fs / shell  packages/core/src/tools", "box"),
+            ("MCP", "packages/cli/src/commands/mcp.ts", "hl"),
+            ("sandbox", "config/sandbox-integration", "box"),
+            ("packages/sdk", "programmatic embed", "box"),
+            ("packages/a2a-server", "agent protocol", "box"),
+            ("vscode-ide-companion", "IDE bridge", "box"),
+        ],
+        y=36,
+        h=80,
+    )
+
+    research = lane(page, "ACADEMIC MODULES  packages/core/src/tools/research/", 20, 538, 1680, 130)
+    row(
+        page,
+        research,
+        [
+            ("writing", "outline / LaTeX", "alt"),
+            ("bibliography", "arXiv / PubMed / BibTeX", "alt"),
+            ("analysis", "stats / citation net", "alt"),
+            ("investigation", "experiment codegen", "alt"),
+            ("submission", "journal matcher", "alt"),
+        ],
+        y=36,
+        h=80,
+    )
+
+    providers = lane(page, "PROVIDERS  model-provider-config.ts + /model config", 20, 682, 1680, 110)
+    pv = row(
+        page,
+        providers,
+        [
+            ("Gemini / Vertex", "", "box"),
+            ("OpenAI", "", "box"),
+            ("Anthropic", "", "box"),
+            ("Baidu ERNIE", "", "box"),
+            ("DeepSeek", "", "box"),
+            ("Qwen / Groq / Kimi", "", "box"),
+        ],
+        y=36,
+        h=60,
+    )
+
+    arrow(page, u[0], c[0], CYAN)
+    arrow(page, c[2], pv[0], ORANGE, True, "route")
+    footer(page, "CLI TUI → core config/router → provider + tools/MCP/research modules → streamed result")
     write_file(file)
 
 
 def questions_gen() -> None:
+    """src/*.py + questions_gen/ package."""
     file, page = new_file("questions-gen")
-    header(page, "Questions-Gen — Math competition problem generator (Qwen3-14B)", "github.com/chenxingqiang/GenQuestion  ·  Unsloth training  ·  Hugging Face: xingqiang/*  ·  pip install questions-gen")
-
-    l1 = lane(page, "1. Training mixture", 30, 94, 1540, 118)
-    w1 = place_row(
+    header(
         page,
-        l1,
-        [
-            ("<b>Historical contests</b><br>50%  ·  CUMCM / olympiad", "blue"),
-            ("<b>Conditional variants</b><br>30%  ·  rewrite constraints", "blue"),
-            ("<b>Innovative types</b><br>20%  ·  new stems", "blue"),
-            ("<b>data_preparer.py</b><br>tokenize / pack", "cyan"),
-        ],
-        y=38,
-        h=68,
+        "QUESTIONS-GEN — SYSTEM ARCHITECTURE",
+        "Qwen3-14B contest problems  ·  src/*.py + questions_gen/  ·  github.com/chenxingqiang/GenQuestion",
     )
 
-    l2 = lane(page, "2. Three-stage pipeline", 30, 224, 1540, 200)
-    s1 = box(page, "<b>Stage 1 — Pretrain</b><br>Qwen3-14B SFT<br>HF: stage1-fp-merged<br>base generation", 20, 40, 360, 144, "yellow", parent=l2, size=12)
-    s2 = box(page, "<b>Stage 2 — GRPO</b><br>8 problems / group<br>novelty constraint<br>policy optimization", 400, 40, 360, 144, "orange", parent=l2, size=12)
-    reward = box(page, "<b>Reward</b><br>0.4 difficulty<br>0.3 novelty<br>0.2 rigor<br>0.1 diversity", 780, 40, 360, 144, "red", parent=l2, size=12)
-    s3 = box(page, "<b>Stage 3 — Distill</b><br>DeepSeek-R1 teacher<br>difficulty / logic / edu<br>final merged FP16", 1160, 40, 360, 144, "purple", parent=l2, size=12)
-
-    l3 = lane(page, "3. Validation  (questions_gen/validation)", 30, 436, 1540, 160)
-    w3 = place_row(
+    data = lane(page, "DATA", 20, 88, 1680, 110)
+    d = row(
         page,
-        l3,
+        data,
         [
-            ("<b>ModelValidator</b><br>single-model n tests", "green"),
-            ("<b>BatchValidator</b><br>algebra / calculus<br>geometry / number theory", "green"),
-            ("<b>QualityEvaluator</b><br>content / clarity<br>difficulty / originality", "green"),
-            ("<b>Scores</b><br>Final 0.847<br>teacher 4.2 / 5", "cyan"),
+            ("QuestionDataPreparer.py", "src/QuestionDataPreparer.py", "box"),
+            ("data_preparer.py", "questions_gen/data/data_preparer.py", "box"),
+            ("real_math_data_processor.py", "src/real_math_data_processor.py", "box"),
+            ("mixture", "historical 50% · variants 30% · novel 20%", "box"),
         ],
-        y=38,
-        h=108,
+        y=36,
+        h=62,
     )
 
-    l4 = lane(page, "4. Package / deploy", 30, 608, 1540, 226)
-    place_row(
+    train = lane(page, "THREE-STAGE TRAINER", 20, 212, 1680, 200)
+    t = row(
         page,
-        l4,
+        train,
         [
-            ("<b>CLI</b><br>questions-gen<br>validate / batch<br>quality / compare", "blue"),
-            ("<b>Python API</b><br>QuestionsGenTrainer<br>OllamaManager<br>HuggingFaceUtils", "blue"),
-            ("<b>Hugging Face</b><br>stage1 / stage2 / final<br>xingqiang/*", "purple"),
-            ("<b>Ollama</b><br>push-all<br>local generate API", "purple"),
+            ("QuestionsGenTrainer.py", "src/QuestionsGenTrainer.py\nquestions_gen/core/trainer.py\nStage1 SFT Qwen3-14B", "box"),
+            ("RewardCalculator.py", "src/RewardCalculator.py\n0.4 diff 0.3 nov 0.2 rigor 0.1 div", "hl"),
+            ("NoveltyConstraint.py", "src/NoveltyConstraint.py\nGRPO 8-problem groups", "hl"),
+            ("DeepSeekTeacher.py", "src/DeepSeekTeacher.py\nStage3 distill R1", "box"),
+            ("config.py", "src/config.py\nquestions_gen/core/config.py", "box"),
         ],
-        y=38,
-        h=172,
+        y=36,
+        h=148,
     )
 
-    arrow(page, w1[3], s1)
-    arrow(page, s1, s2)
-    arrow(page, s2, reward, "score")
-    arrow(page, s2, s3)
-    arrow(page, s3, w3[0], "eval")
-    footer(page, "Pretrain → GRPO with multi-dimensional rewards → R1 distillation → validate by category → publish HF weights and Ollama models.")
+    val = lane(page, "VALIDATION  questions_gen/validation/", 20, 426, 1680, 130)
+    v = row(
+        page,
+        val,
+        [
+            ("model_validator.py", "single-model n tests", "box"),
+            ("batch_validator.py", "algebra/calculus/geometry/NT", "box"),
+            ("quality_evaluator.py", "content clarity difficulty originality", "box"),
+        ],
+        y=36,
+        h=80,
+    )
+
+    pkg = lane(page, "PACKAGE / CLI / DEPLOY", 20, 570, 1680, 160)
+    row(
+        page,
+        pkg,
+        [
+            ("main_cli.py", "questions_gen/cli/main_cli.py\nvalidate batch quality", "box"),
+            ("ollama_manager.py", "questions_gen/utils/ollama_manager.py", "out"),
+            ("hf_utils.py", "questions_gen/utils/hf_utils.py", "out"),
+            ("questions_gen_training.py", "scripts/questions_gen_training.py", "box"),
+        ],
+        y=36,
+        h=110,
+    )
+
+    models = lane(page, "ARTIFACTS  Hugging Face xingqiang/*", 20, 746, 1680, 100)
+    row(
+        page,
+        models,
+        [
+            ("stage1-fp-merged", "SFT", "out"),
+            ("stage2-merged-16bit", "GRPO", "out"),
+            ("final-merged-16bit", "distill  quality 0.847", "hl"),
+            ("Ollama questions-gen-final", "local generate", "out"),
+        ],
+        y=36,
+        h=52,
+    )
+
+    arrow(page, d[0], t[0], CYAN)
+    arrow(page, t[0], t[1], ORANGE, True, "reward")
+    arrow(page, t[1], t[2], ORANGE, True)
+    arrow(page, t[3], v[0], GREEN, True, "eval")
+    footer(page, "Stage1 SFT → Stage2 GRPO (RewardCalculator + NoveltyConstraint) → Stage3 DeepSeekTeacher → HF/Ollama")
     write_file(file)
 
 

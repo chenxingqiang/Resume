@@ -1,86 +1,101 @@
-<mxfile host="Drawpyo" modified="2026-08-24T02:24:36" agent="Python 3.12, Drawpyo 0.23" version="21.6.5" type="device">
-  <diagram name="youtube-recsys" id="140606711708656">
-    <mxGraphModel dx="2037" dy="830" grid="1" gridSize="10" guides="1" toolTips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+<mxfile host="Drawpyo" modified="2026-08-24T03:06:49" agent="Python 3.12, Drawpyo 0.23" version="21.6.5" type="device">
+  <diagram name="youtube-recsys" id="140287772869264">
+    <mxGraphModel dx="2037" dy="830" grid="1" gridSize="10" guides="1" toolTips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1720" pageHeight="1080" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="140606711709040" value="&lt;b&gt;YouTube-DNN-RecSys — Two-tower recall (Covington et al.) in TF + Spark&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=20;align=center;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="14" width="1540" height="38" as="geometry" />
+        <mxCell id="140287772869888" value="" style="whiteSpace=wrap;rounded=0;fillColor=#0b1520;strokeColor=#0b1520;dashed=0;html=1;fontFamily=Courier New;fontSize=1;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="0" y="0" width="1720" height="1080" as="geometry" />
 </mxCell>
-        <mxCell id="140606711709136" value="github.com/chenxingqiang/YouTube-DNN-RecSys  ·  Python TensorFlow  ·  Scala Spark  ·  60 GitHub stars" style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="56" width="1540" height="26" as="geometry" />
+        <mxCell id="140287772869216" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;YOUTUBE-DNN-RECSYS — SYSTEM ARCHITECTURE&lt;/b&gt;&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="24" y="12" width="1672" height="40" as="geometry" />
 </mxCell>
-        <mxCell id="140606711709328" value="1. Event / feature sources" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="94" width="1540" height="118" as="geometry" />
+        <mxCell id="140287772868880" value="&lt;font color=&quot;#7a9aa3&quot;&gt;Covington two-tower recall  ·  source: docs/architecture.drawio  ·  github.com/chenxingqiang/YouTube-DNN-RecSys&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#0b1520;strokeColor=#0b1520;dashed=0;html=1;fontFamily=Courier New;fontSize=10;fontColor=#7a9aa3;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="24" y="54" width="1672" height="24" as="geometry" />
 </mxCell>
-        <mxCell id="140606711709568" value="&lt;b&gt;Watch history&lt;/b&gt;&lt;br&gt;video / search ids" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709328">
-  <mxGeometry x="12" y="38" width="367" height="68" as="geometry" />
+        <mxCell id="140287772868784" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;DATA PROCESSING&lt;/b&gt;&lt;/font&gt;" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontStyle=1;fontSize=11;fontColor=#7ee8f0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="20" y="88" width="1680" height="140" as="geometry" />
 </mxCell>
-        <mxCell id="140606713546800" value="&lt;b&gt;Context&lt;/b&gt;&lt;br&gt;device / geo / time" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709328">
-  <mxGeometry x="395" y="38" width="367" height="68" as="geometry" />
+        <mxCell id="140287772883136" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;data2tfrecords.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/data/data2tfrecords.py&lt;br&gt;random + TFRecords train/eval&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772868784">
+  <mxGeometry x="10" y="36" width="407" height="90" as="geometry" />
 </mxCell>
-        <mxCell id="140606713549152" value="&lt;b&gt;Continuous feats&lt;/b&gt;&lt;br&gt;age / counts" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709328">
-  <mxGeometry x="778" y="38" width="367" height="68" as="geometry" />
+        <mxCell id="140287772884912" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;read_tfrecords.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/data/read_tfrecords.py&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772868784">
+  <mxGeometry x="427" y="36" width="407" height="90" as="geometry" />
 </mxCell>
-        <mxCell id="140606713554240" value="&lt;b&gt;Candidate items&lt;/b&gt;&lt;br&gt;catalog embeddings" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709328">
-  <mxGeometry x="1161" y="38" width="367" height="68" as="geometry" />
+        <mxCell id="140287772882560" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;MakeDataOne.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/data/MakeDataOne.scala&lt;br&gt;Spark distributed generate&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772868784">
+  <mxGeometry x="844" y="36" width="407" height="90" as="geometry" />
 </mxCell>
-        <mxCell id="140606713556544" value="2. Dual implementation stacks" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="224" width="1540" height="200" as="geometry" />
+        <mxCell id="140287772870320" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;MakeDataTwo.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/data/MakeDataTwo.scala&lt;br&gt;HDFS TFRecords&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772868784">
+  <mxGeometry x="1261" y="36" width="407" height="90" as="geometry" />
 </mxCell>
-        <mxCell id="140606713556736" value="&lt;b&gt;Python / TensorFlow&lt;/b&gt;&lt;br&gt;data2tfrecords.py&lt;br&gt;models/dnn.py (Estimator)&lt;br&gt;custom layers / TensorBoard&lt;br&gt;SavedModel export" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="140606713556544">
-  <mxGeometry x="20" y="40" width="740" height="144" as="geometry" />
+        <mxCell id="140287772870176" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;STORAGE&lt;/b&gt;&lt;/font&gt;" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontStyle=1;fontSize=11;fontColor=#7ee8f0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="20" y="240" width="1680" height="80" as="geometry" />
 </mxCell>
-        <mxCell id="140606713558224" value="&lt;b&gt;Scala / Spark&lt;/b&gt;&lt;br&gt;FeatureBuilder.scala&lt;br&gt;BaseSparkLocal&lt;br&gt;PredictUserVector&lt;br&gt;ItemEmbeddingPredictor" style="whiteSpace=wrap;rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="140606713556544">
-  <mxGeometry x="780" y="40" width="740" height="144" as="geometry" />
+        <mxCell id="140287772869936" value="&lt;font color=&quot;#6ee7b7&quot;&gt;&lt;b&gt;data/tfrecords/&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;train + eval TFRecords&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#16352c;strokeColor=#6ee7b7;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772870176">
+  <mxGeometry x="10" y="32" width="825" height="36" as="geometry" />
 </mxCell>
-        <mxCell id="140606713559856" value="3. Two-tower model" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="436" width="1540" height="190" as="geometry" />
+        <mxCell id="140287772869312" value="&lt;font color=&quot;#6ee7b7&quot;&gt;&lt;b&gt;data/checkpoints/&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;TF ckpt + SavedModel&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#16352c;strokeColor=#6ee7b7;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772870176">
+  <mxGeometry x="845" y="32" width="825" height="36" as="geometry" />
 </mxCell>
-        <mxCell id="140606713544928" value="&lt;b&gt;User tower&lt;/b&gt;&lt;br&gt;item-id embeddings&lt;br&gt;average watch history&lt;br&gt;concat continuous feats&lt;br&gt;MLP → user vector u" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="140606713559856">
-  <mxGeometry x="20" y="40" width="480" height="134" as="geometry" />
+        <mxCell id="140287772872096" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;MODEL  src/python/models/dnn.py  (TensorFlow Estimator)&lt;/b&gt;&lt;/font&gt;" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontStyle=1;fontSize=11;fontColor=#7ee8f0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="20" y="332" width="1680" height="180" as="geometry" />
 </mxCell>
-        <mxCell id="140606711713280" value="&lt;b&gt;Matching&lt;/b&gt;&lt;br&gt;dot(u, v_i)&lt;br&gt;sampled softmax&lt;br&gt;next-watch objective" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="140606713559856">
-  <mxGeometry x="530" y="40" width="480" height="134" as="geometry" />
+        <mxCell id="140287772872240" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;Input&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;visit_items_index (5)&lt;br&gt;continuous_features (16)&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872096">
+  <mxGeometry x="10" y="36" width="407" height="128" as="geometry" />
 </mxCell>
-        <mxCell id="140606711713616" value="&lt;b&gt;Item tower&lt;/b&gt;&lt;br&gt;shared item embedding&lt;br&gt;table v_i&lt;br&gt;optional side features" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="140606713559856">
-  <mxGeometry x="1040" y="40" width="480" height="134" as="geometry" />
+        <mxCell id="140287772872336" value="&lt;font color=&quot;#ff8c42&quot;&gt;&lt;b&gt;Embedding&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;item table 500 × 16&lt;br&gt;average pooling on history&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#3a2618;strokeColor=#ff8c42;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872096">
+  <mxGeometry x="427" y="36" width="407" height="128" as="geometry" />
 </mxCell>
-        <mxCell id="140606711709872" value="4. Train / serve" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="638" width="1540" height="196" as="geometry" />
+        <mxCell id="140287772872576" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;MLP tower&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;dense layers → user vector u&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872096">
+  <mxGeometry x="844" y="36" width="407" height="128" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710112" value="&lt;b&gt;Train&lt;/b&gt;&lt;br&gt;TF Estimator&lt;br&gt;optional PS / workers&lt;br&gt;checkpoints" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709872">
-  <mxGeometry x="12" y="38" width="367" height="142" as="geometry" />
+        <mxCell id="140287772872768" value="&lt;font color=&quot;#ff8c42&quot;&gt;&lt;b&gt;Softmax&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;500-way next-item&lt;br&gt;cross entropy · Top-K&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#3a2618;strokeColor=#ff8c42;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872096">
+  <mxGeometry x="1261" y="36" width="407" height="128" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710208" value="&lt;b&gt;Eval&lt;/b&gt;&lt;br&gt;hold-out next-item&lt;br&gt;TensorBoard curves" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709872">
-  <mxGeometry x="395" y="38" width="367" height="142" as="geometry" />
+        <mxCell id="140287772872912" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;PREDICTION&lt;/b&gt;&lt;/font&gt;" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontStyle=1;fontSize=11;fontColor=#7ee8f0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="20" y="526" width="1680" height="150" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710352" value="&lt;b&gt;Online recall&lt;/b&gt;&lt;br&gt;ANN / softmax top-k&lt;br&gt;user vec × item table" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709872">
-  <mxGeometry x="778" y="38" width="367" height="142" as="geometry" />
+        <mxCell id="140287772873104" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;load_dnn_model.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/models/load_dnn_model.py&lt;br&gt;SavedModel online / batch&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872912">
+  <mxGeometry x="10" y="36" width="407" height="100" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710544" value="&lt;b&gt;Artifacts&lt;/b&gt;&lt;br&gt;TFRecords&lt;br&gt;SavedModel / Spark vecs" style="whiteSpace=wrap;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711709872">
-  <mxGeometry x="1161" y="38" width="367" height="142" as="geometry" />
+        <mxCell id="140287772873200" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;PredictUserVector.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/prediction/PredictUserVector.scala&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872912">
+  <mxGeometry x="427" y="36" width="407" height="100" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710064" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711709568" target="140606713556736" value="">
+        <mxCell id="140287772874784" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;ItemEmbeddingPredictor.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/prediction/ItemEmbeddingPredictor.scala&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872912">
+  <mxGeometry x="844" y="36" width="407" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772873776" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;ItemEmbedding.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/models/ItemEmbedding.scala&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772872912">
+  <mxGeometry x="1261" y="36" width="407" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772873536" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;UTILITIES &amp; CONFIG&lt;/b&gt;&lt;/font&gt;" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#102433;strokeColor=#3ecfcf;dashed=0;strokeWidth=2;html=1;fontFamily=Courier New;fontStyle=1;fontSize=11;fontColor=#7ee8f0;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="20" y="690" width="1680" height="150" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874928" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;tensor_board.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/utils/tensor_board.py&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="10" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874832" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;feature_column.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/reference/feature_column.py&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="288" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874592" value="&lt;font color=&quot;#7ee8f0&quot;&gt;&lt;b&gt;self_defined_network_layer.py&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/python/reference/self_defined_network_layer.py&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#173445;strokeColor=#3ecfcf;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="566" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874448" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;FeatureBuilder.scala&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/models/FeatureBuilder.scala&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="844" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874256" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;BaseSparkLocal/Online&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/core/*.scala&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="1122" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772874016" value="&lt;font color=&quot;#c4b5fd&quot;&gt;&lt;b&gt;vars.prod/sit.properties&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7a9aa3&quot;&gt;src/scala/config/&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#2a2150;strokeColor=#c4b5fd;dashed=0;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=10;fontColor=#c5dde3;align=center;verticalAlign=middle;" vertex="1" parent="140287772873536">
+  <mxGeometry x="1400" y="36" width="268" height="100" as="geometry" />
+</mxCell>
+        <mxCell id="140287772873440" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=0;jettySize=auto;endArrow=classic;endFill=1;strokeColor=#3ecfcf;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=8;fontColor=#3ecfcf;align=center;verticalAlign=middle;" edge="1" parent="1" source="140287772883136" target="140287772872240" value="TFRecords">
   <mxGeometry relative="1" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710784" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711709568" target="140606713558224" value="">
+        <mxCell id="140287772873728" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;dashed=1;rounded=0;jettySize=auto;endArrow=classic;endFill=1;strokeColor=#6ee7b7;strokeWidth=1;html=1;fontFamily=Courier New;fontSize=8;fontColor=#6ee7b7;align=center;verticalAlign=middle;" edge="1" parent="1" source="140287772872768" target="140287772873104" value="SavedModel">
   <mxGeometry relative="1" as="geometry" />
 </mxCell>
-        <mxCell id="140606711710976" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606713556736" target="140606713544928" value="">
-  <mxGeometry relative="1" as="geometry" />
-</mxCell>
-        <mxCell id="140606711711120" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606713558224" target="140606711713616" value="">
-  <mxGeometry relative="1" as="geometry" />
-</mxCell>
-        <mxCell id="140606711711360" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606713544928" target="140606711713280" value="">
-  <mxGeometry relative="1" as="geometry" />
-</mxCell>
-        <mxCell id="140606711711504" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711713616" target="140606711713280" value="">
-  <mxGeometry relative="1" as="geometry" />
-</mxCell>
-        <mxCell id="140606711711696" value="History embeddings are mean-pooled into a user vector and scored against the item table — the paper&apos;s candidate-generation stage." style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
-  <mxGeometry x="30" y="854" width="1540" height="32" as="geometry" />
+        <mxCell id="140287773901072" value="&lt;font color=&quot;#7a9aa3&quot;&gt;Python/TF path and Scala/Spark path share TFRecords + the same two-tower (history pool → user vec · item table)&lt;/font&gt;" style="whiteSpace=wrap;rounded=0;fillColor=#0b1520;strokeColor=#0b1520;dashed=0;html=1;fontFamily=Courier New;fontSize=9;fontColor=#7a9aa3;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="24" y="1048" width="1672" height="22" as="geometry" />
 </mxCell>
       </root>
     </mxGraphModel>
