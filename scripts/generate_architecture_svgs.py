@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate architecture SVG diagrams for resume appendix."""
+"""Deprecated: simple box SVGs. Use generate_architecture_drawio.py + export_drawio_svg.sh."""
 
 from __future__ import annotations
 

@@ -1,0 +1,124 @@
+<mxfile host="Drawpyo" modified="2026-08-24T02:24:36" agent="Python 3.12, Drawpyo 0.23" version="21.6.5" type="device">
+  <diagram name="tracesmith" id="140606711658640">
+    <mxGraphModel dx="2037" dy="830" grid="1" gridSize="10" guides="1" toolTips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="140606711658784" value="&lt;b&gt;TraceSmith — Cross-platform GPU Profiling &amp; Replay&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=20;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="14" width="1540" height="38" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658832" value="github.com/chenxingqiang/TraceSmith  ·  C++ core + pybind11  ·  PyPI: tracesmith" style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="56" width="1540" height="26" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659072" value="1. Workloads / producers" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="94" width="1540" height="118" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659312" value="&lt;b&gt;PyTorch / Kineto&lt;/b&gt;&lt;br&gt;kernel + runtime traces" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659072">
+  <mxGeometry x="12" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659456" value="&lt;b&gt;TensorFlow / XLA&lt;/b&gt;&lt;br&gt;graph + device events" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659072">
+  <mxGeometry x="395" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659648" value="&lt;b&gt;Custom CUDA / HIP&lt;/b&gt;&lt;br&gt;driver / runtime APIs" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659072">
+  <mxGeometry x="778" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659792" value="&lt;b&gt;Multi-GPU cluster&lt;/b&gt;&lt;br&gt;NCCL collectives" style="whiteSpace=wrap;rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659072">
+  <mxGeometry x="1161" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711659984" value="2. User interface" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="224" width="1540" height="118" as="geometry" />
+</mxCell>
+        <mxCell id="140606711692752" value="&lt;b&gt;CLI&lt;/b&gt;&lt;br&gt;profile / record / view&lt;br&gt;export / analyze / replay" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659984">
+  <mxGeometry x="12" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711677920" value="&lt;b&gt;Python API&lt;/b&gt;&lt;br&gt;pybind11 bindings&lt;br&gt;in-process capture" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659984">
+  <mxGeometry x="522" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711677008" value="&lt;b&gt;Distribution&lt;/b&gt;&lt;br&gt;pip install tracesmith&lt;br&gt;Apache-2.0" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711659984">
+  <mxGeometry x="1032" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711677152" value="3. Capture backends  (platform-specific, lock-free ingest)" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="354" width="1540" height="140" as="geometry" />
+</mxCell>
+        <mxCell id="140606711679312" value="&lt;b&gt;NVIDIA CUPTI&lt;/b&gt;&lt;br&gt;nsys / kernel / memcpy" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="12" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711678160" value="&lt;b&gt;AMD ROCm&lt;/b&gt;&lt;br&gt;rocprof / HIP events" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="267" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711692080" value="&lt;b&gt;Apple Metal&lt;/b&gt;&lt;br&gt;xctrace / Instruments" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="522" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711692224" value="&lt;b&gt;MetaX MACA&lt;/b&gt;&lt;br&gt;MCPTI" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="777" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658208" value="&lt;b&gt;Huawei Ascend&lt;/b&gt;&lt;br&gt;CANN / msprof" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="1032" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658160" value="&lt;b&gt;Linux eBPF&lt;/b&gt;&lt;br&gt;host syscall / driver" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711677152">
+  <mxGeometry x="1287" y="38" width="239" height="86" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658016" value="4. Core pipeline" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="506" width="1540" height="150" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657536" value="&lt;b&gt;SPSC ring buffer&lt;/b&gt;&lt;br&gt;lock-free ingest&lt;br&gt;&amp;lt;1% overhead" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711658016">
+  <mxGeometry x="12" y="38" width="367" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657632" value="&lt;b&gt;Common / stacks&lt;/b&gt;&lt;br&gt;event types&lt;br&gt;XRay / host stacks" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711658016">
+  <mxGeometry x="395" y="38" width="367" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657488" value="&lt;b&gt;SBT format&lt;/b&gt;&lt;br&gt;string interning&lt;br&gt;delta timestamps" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711658016">
+  <mxGeometry x="778" y="38" width="367" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606715256448" value="&lt;b&gt;State / timeline&lt;/b&gt;&lt;br&gt;GPU state machine&lt;br&gt;stream reconstruction" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711658016">
+  <mxGeometry x="1161" y="38" width="367" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606716916032" value="5. Replay, export, debug" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="668" width="1540" height="170" as="geometry" />
+</mxCell>
+        <mxCell id="140606715582160" value="&lt;b&gt;Replay engine&lt;/b&gt;&lt;br&gt;full / partial / dry-run&lt;br&gt;stream scheduler&lt;br&gt;determinism checker" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606716916032">
+  <mxGeometry x="12" y="38" width="290" height="116" as="geometry" />
+</mxCell>
+        <mxCell id="140606715394480" value="&lt;b&gt;Perfetto&lt;/b&gt;&lt;br&gt;protobuf export&lt;br&gt;~85% smaller than JSON" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606716916032">
+  <mxGeometry x="318" y="38" width="290" height="116" as="geometry" />
+</mxCell>
+        <mxCell id="140606715602720" value="&lt;b&gt;Tracy profiler&lt;/b&gt;&lt;br&gt;live timeline view" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606716916032">
+  <mxGeometry x="624" y="38" width="290" height="116" as="geometry" />
+</mxCell>
+        <mxCell id="140606714607664" value="&lt;b&gt;GDB RSP&lt;/b&gt;&lt;br&gt;GPU breakpoints&lt;br&gt;trace-driven debug" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606716916032">
+  <mxGeometry x="930" y="38" width="290" height="116" as="geometry" />
+</mxCell>
+        <mxCell id="140606711677248" value="&lt;b&gt;Cluster sync&lt;/b&gt;&lt;br&gt;NTP / PTP / CUDA&lt;br&gt;NCCL tracking" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606716916032">
+  <mxGeometry x="1236" y="38" width="290" height="116" as="geometry" />
+</mxCell>
+        <mxCell id="140606715582928" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711659312" target="140606711677920" value="hooks">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606714604400" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711692752" target="140606711679312" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711693280" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711679312" target="140606711657536" value="events">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711692560" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711657536" target="140606711657632" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711701312" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711657632" target="140606711657488" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711695504" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711657488" target="140606715256448" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711695648" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606715256448" target="140606715582160" value="timeline">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711695888" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606715256448" target="140606715394480" value="export">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711696128" value="Flow: workload → CLI/Python → platform backend → lock-free ring → SBT/timeline → replay or Perfetto/Tracy/GDB." style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="854" width="1540" height="32" as="geometry" />
+</mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

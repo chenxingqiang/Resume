@@ -13,7 +13,7 @@ xelatex xingqiangchen-zn-adjust.tex
 
 echo "All PDFs compiled successfully!"
 
-echo "Building architecture appendix and merging into resume PDFs..."
+echo "Building draw.io architecture appendix and merging into resume PDFs..."
 python3 scripts/build_architecture_appendix.py
 
 # Copy merged PDFs to docs/

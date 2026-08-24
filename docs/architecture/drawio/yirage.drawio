@@ -1,0 +1,124 @@
+<mxfile host="Drawpyo" modified="2026-08-24T02:24:36" agent="Python 3.12, Drawpyo 0.23" version="21.6.5" type="device">
+  <diagram name="yirage" id="140606711696560">
+    <mxGraphModel dx="2037" dy="830" grid="1" gridSize="10" guides="1" toolTips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="140606711696224" value="&lt;b&gt;YiRage (YPK) — Multi-backend LLM Megakernel Compiler &amp; Runtime&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=20;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="14" width="1540" height="38" as="geometry" />
+</mxCell>
+        <mxCell id="140606711696608" value="github.com/chenxingqiang/YiRage  ·  based on Mirage (CMU) + multi-backend / RuntimeFusion extensions" style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="56" width="1540" height="26" as="geometry" />
+</mxCell>
+        <mxCell id="140606711696800" value="1. Serving / embedding" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="94" width="1540" height="118" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697040" value="&lt;b&gt;vLLM&lt;/b&gt;&lt;br&gt;keeps schedule + KV&lt;br&gt;RF selects capsules" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711696800">
+  <mxGeometry x="12" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697184" value="&lt;b&gt;SGLang&lt;/b&gt;&lt;br&gt;decode-loop embed&lt;br&gt;same FusionPlan cache" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711696800">
+  <mxGeometry x="395" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697328" value="&lt;b&gt;Python API&lt;/b&gt;&lt;br&gt;PersistentKernel&lt;br&gt;HardwareRegistry" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711696800">
+  <mxGeometry x="778" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697472" value="&lt;b&gt;UnifiedCompiler&lt;/b&gt;&lt;br&gt;graph + backend pick&lt;br&gt;Cython CoreBridge" style="whiteSpace=wrap;rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711696800">
+  <mxGeometry x="1161" y="38" width="367" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697616" value="2. RuntimeFusion" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="224" width="1540" height="118" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697808" value="&lt;b&gt;FusionPlan cache&lt;/b&gt;&lt;br&gt;search / profile results&lt;br&gt;per backend + shape" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711697616">
+  <mxGeometry x="12" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711697904" value="&lt;b&gt;FusionCapsule&lt;/b&gt;&lt;br&gt;one decode-step kernel&lt;br&gt;selected each token" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711697616">
+  <mxGeometry x="522" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698048" value="&lt;b&gt;Device memory&lt;/b&gt;&lt;br&gt;persistent workspace&lt;br&gt;KV-friendly layout" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711697616">
+  <mxGeometry x="1032" y="38" width="494" height="68" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698240" value="3. Compiler / search" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="354" width="1540" height="130" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698480" value="&lt;b&gt;Kernel graph IR&lt;/b&gt;&lt;br&gt;matmul / attn / norm&lt;br&gt;mark inputs / outputs" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711698240">
+  <mxGeometry x="12" y="38" width="367" height="78" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698576" value="&lt;b&gt;Superoptimize&lt;/b&gt;&lt;br&gt;hardware-aware search&lt;br&gt;15 candidate dims" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711698240">
+  <mxGeometry x="395" y="38" width="367" height="78" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698720" value="&lt;b&gt;Fingerprint&lt;/b&gt;&lt;br&gt;numeric verify&lt;br&gt;before accept" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711698240">
+  <mxGeometry x="778" y="38" width="367" height="78" as="geometry" />
+</mxCell>
+        <mxCell id="140606711698864" value="&lt;b&gt;Autotune&lt;/b&gt;&lt;br&gt;grid / tile / pipeline&lt;br&gt;occupancy model" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711698240">
+  <mxGeometry x="1161" y="38" width="367" height="78" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699104" value="4. Threadblock operators + transpilers" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="496" width="1540" height="150" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699344" value="&lt;b&gt;MatMul&lt;/b&gt;&lt;br&gt;Tensor Core / Cube" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="12" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699488" value="&lt;b&gt;Attention / GQA&lt;/b&gt;&lt;br&gt;Flash-style tiles" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="267" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699680" value="&lt;b&gt;RMSNorm / SwiGLU&lt;/b&gt;&lt;br&gt;fused decode path" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="522" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699824" value="&lt;b&gt;Triton codegen&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="777" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699968" value="&lt;b&gt;NKI / MLIR&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="1032" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711700160" value="&lt;b&gt;CUDA / HIP JIT&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699104">
+  <mxGeometry x="1287" y="38" width="239" height="96" as="geometry" />
+</mxCell>
+        <mxCell id="140606711699200" value="5. Backend registry  (12 targets; factory + thread-safe singleton)" style="swimlane;whiteSpace=wrap;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=12;align=left;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="658" width="1540" height="180" as="geometry" />
+</mxCell>
+        <mxCell id="140606711700640" value="&lt;b&gt;CUDA&lt;/b&gt;&lt;br&gt;Tensor Core&lt;br&gt;bank conflict" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="12" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711702224" value="&lt;b&gt;ROCm&lt;/b&gt;&lt;br&gt;HIP / MFMA" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="203" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711702416" value="&lt;b&gt;MPS&lt;/b&gt;&lt;br&gt;Apple Metal&lt;br&gt;unified mem" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="394" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711702608" value="&lt;b&gt;Ascend&lt;/b&gt;&lt;br&gt;AI Core / Cube&lt;br&gt;BiSheng" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="585" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711702800" value="&lt;b&gt;MACA&lt;/b&gt;&lt;br&gt;MetaX" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="776" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711702944" value="&lt;b&gt;TPU / XPU&lt;/b&gt;&lt;br&gt;NKI / Intel" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="967" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703136" value="&lt;b&gt;MLIR / CPU&lt;/b&gt;&lt;br&gt;LLVM / SIMD" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="1158" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703328" value="&lt;b&gt;FPGA&lt;/b&gt;&lt;br&gt;experimental" style="whiteSpace=wrap;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="140606711699200">
+  <mxGeometry x="1349" y="38" width="175" height="126" as="geometry" />
+</mxCell>
+        <mxCell id="140606711700544" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711697040" target="140606711697904" value="decode">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703520" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711697472" target="140606711698480" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703664" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711698480" target="140606711698576" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703808" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711698576" target="140606711697808" value="cache">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711703952" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=classic;endFill=1;strokeWidth=1;" edge="1" parent="1" source="140606711698576" target="140606711699344" value="">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+        <mxCell id="140606711704144" value="Serving keeps scheduling/KV; compiler searches fused kernels; RuntimeFusion injects FusionCapsules into vLLM/SGLang decode." style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="30" y="854" width="1540" height="32" as="geometry" />
+</mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

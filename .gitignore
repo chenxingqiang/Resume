@@ -20,3 +20,4 @@
 .vscode/
 .idea/
 
+scripts/__pycache__/

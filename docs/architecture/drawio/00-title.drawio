@@ -1,0 +1,40 @@
+<mxfile host="Drawpyo" modified="2026-08-24T02:24:36" agent="Python 3.12, Drawpyo 0.23" version="21.6.5" type="device">
+  <diagram name="00-title" id="140606715602720">
+    <mxGraphModel dx="2037" dy="830" grid="1" gridSize="10" guides="1" toolTips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="140606716916032" value="&lt;b&gt;Open Source Architecture Appendix&lt;/b&gt;" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontStyle=1;fontSize=28;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="120" y="180" width="1360" height="70" as="geometry" />
+</mxCell>
+        <mxCell id="140606715582928" value="Chen Xingqiang  ·  github.com/chenxingqiang  ·  draw.io source in docs/architecture/drawio/" style="whiteSpace=wrap;rounded=1;fillColor=#ffffff;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="120" y="260" width="1360" height="40" as="geometry" />
+</mxCell>
+        <mxCell id="140606715256448" value="&lt;b&gt;TraceSmith&lt;/b&gt;&lt;br&gt;&lt;br&gt;GPU Profiling &amp; Replay&lt;br&gt;CUPTI / ROCm / Metal / MACA / Ascend" style="whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="80" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711651152" value="&lt;b&gt;YiRage YPK&lt;/b&gt;&lt;br&gt;&lt;br&gt;LLM megakernel compiler&lt;br&gt;12 backends + RuntimeFusion" style="whiteSpace=wrap;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="294" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657392" value="&lt;b&gt;JAX-sklearn&lt;/b&gt;&lt;br&gt;&lt;br&gt;sklearn API + JAX proxy&lt;br&gt;CPU / GPU / TPU fallback" style="whiteSpace=wrap;rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="508" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657536" value="&lt;b&gt;Secret-Learn&lt;/b&gt;&lt;br&gt;&lt;br&gt;191 algos × FL / SL / SS&lt;br&gt;JAX + SecretFlow" style="whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="722" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657680" value="&lt;b&gt;YouTube-DNN&lt;/b&gt;&lt;br&gt;&lt;br&gt;Two-tower recall&lt;br&gt;TensorFlow + Spark" style="whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="936" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711657872" value="&lt;b&gt;Research CLI&lt;/b&gt;&lt;br&gt;&lt;br&gt;AI CLI + academic tools&lt;br&gt;multi-provider / MCP" style="whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="1150" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658112" value="&lt;b&gt;Questions-Gen&lt;/b&gt;&lt;br&gt;&lt;br&gt;Qwen3-14B contest problems&lt;br&gt;Pretrain → GRPO → Distill" style="whiteSpace=wrap;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="1364" y="360" width="196" height="160" as="geometry" />
+</mxCell>
+        <mxCell id="140606711658208" value="Each following page is a draw.io diagram exported to SVG, then appended to the resume PDF." style="whiteSpace=wrap;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=0;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+  <mxGeometry x="120" y="580" width="1360" height="40" as="geometry" />
+</mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

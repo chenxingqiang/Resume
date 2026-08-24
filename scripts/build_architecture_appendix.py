@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert architecture SVGs to PDF and merge with resume PDFs."""
+"""Generate draw.io diagrams, export SVG, convert to PDF, merge onto resumes."""
 
 from __future__ import annotations
 
@@ -7,10 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-import cairosvg
-from pypdf import PdfReader, PdfWriter
-
 ROOT = Path(__file__).resolve().parent.parent
+DRAWIO_DIR = ROOT / "docs" / "architecture" / "drawio"
 SVG_DIR = ROOT / "docs" / "architecture" / "svg"
 PDF_DIR = ROOT / "docs" / "architecture" / "pdf"
 APPENDIX_PDF = ROOT / "docs" / "architecture" / "architecture-appendix.pdf"
@@ -32,32 +30,40 @@ RESUME_PDFS = [
     ROOT / "xingqiangchen-zn-adjust.pdf",
 ]
 
+RESUME_BODY_PAGES = 3
+
 
 def ensure_deps() -> None:
     try:
-        import cairosvg  # noqa: F401
         import pypdf  # noqa: F401
+        import drawpyo  # noqa: F401
     except ImportError:
         subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "-q", "cairosvg", "pypdf"]
+            [sys.executable, "-m", "pip", "install", "-q", "pypdf", "drawpyo"]
         )
 
 
-def svg_to_pdf(svg_path: Path, pdf_path: Path) -> None:
-    pdf_path.parent.mkdir(parents=True, exist_ok=True)
-    cairosvg.svg2pdf(url=str(svg_path), write_to=str(pdf_path))
-    print(f"Converted {svg_path.name} -> {pdf_path.name}")
+def generate_drawio() -> None:
+    subprocess.check_call(
+        [sys.executable, str(ROOT / "scripts" / "generate_architecture_drawio.py")]
+    )
+
+
+def export_svg() -> None:
+    script = ROOT / "scripts" / "export_drawio_svg.sh"
+    script.chmod(script.stat().st_mode | 0o111)
+    subprocess.check_call(["bash", str(script)])
 
 
 def build_appendix() -> None:
+    from pypdf import PdfReader, PdfWriter
+
     PDF_DIR.mkdir(parents=True, exist_ok=True)
     diagram_pdfs: list[Path] = []
     for slug, _ in PROJECTS:
-        svg = SVG_DIR / f"{slug}.svg"
         pdf = PDF_DIR / f"{slug}.pdf"
-        if not svg.exists():
-            raise FileNotFoundError(f"Missing SVG: {svg}")
-        svg_to_pdf(svg, pdf)
+        if not pdf.exists():
+            raise FileNotFoundError(f"Missing draw.io PDF: {pdf}")
         diagram_pdfs.append(pdf)
 
     writer = PdfWriter()
@@ -73,6 +79,8 @@ def build_appendix() -> None:
 
 
 def merge_resumes() -> None:
+    from pypdf import PdfReader, PdfWriter
+
     if not APPENDIX_PDF.exists():
         raise FileNotFoundError(f"Appendix missing: {APPENDIX_PDF}")
 
@@ -83,18 +91,23 @@ def merge_resumes() -> None:
             continue
         writer = PdfWriter()
         resume_reader = PdfReader(str(resume_pdf))
-        for page in resume_reader.pages:
+        body_pages = min(RESUME_BODY_PAGES, len(resume_reader.pages))
+        for page in resume_reader.pages[:body_pages]:
             writer.add_page(page)
         for page in appendix_reader.pages:
             writer.add_page(page)
         with resume_pdf.open("wb") as f:
             writer.write(f)
-        print(f"Merged appendix into {resume_pdf.name} ({len(resume_reader.pages)} + {len(appendix_reader.pages)} pages)")
+        print(
+            f"Merged appendix into {resume_pdf.name} "
+            f"({body_pages} + {len(appendix_reader.pages)} pages)"
+        )
 
 
 def main() -> None:
     ensure_deps()
-    subprocess.check_call([sys.executable, str(ROOT / "scripts" / "generate_architecture_svgs.py")])
+    generate_drawio()
+    export_svg()
     build_appendix()
     merge_resumes()
 
