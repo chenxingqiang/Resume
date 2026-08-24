@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#4a5568"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+  <rect width="920" height="560" fill="#ffffff"/>
+  <text x="460.0" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#1a365d">Questions-Gen</text>
+  <text x="460.0" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#718096">Math competition problem generator · Qwen3-14B · github.com/chenxingqiang/GenQuestion</text>
+
+  <rect x="36" y="92" width="848" height="430" rx="12" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
+  <text x="50" y="114" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#718096">Data → 3-stage training → Validation → Deployment</text>
+<rect x="60" y="140" width="190" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="155.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Training Data</text>
+  <text x="72" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Historical contests</text>
+  <text x="72" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Conditional variations</text>
+  <text x="72" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Innovative problem types</text><rect x="280" y="140" width="190" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="375.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Stage 1</text>
+  <text x="292" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Basic pretraining</text>
+  <text x="292" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Qwen3-14B fine-tune</text>
+  <text x="292" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">HF: stage1-fp-merged</text><rect x="500" y="140" width="190" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="595.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Stage 2</text>
+  <text x="512" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">RL GRPO optimization</text>
+  <text x="512" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">8-problem reward groups</text>
+  <text x="512" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Novelty constraints</text><rect x="720" y="140" width="160" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="800.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Stage 3</text>
+  <text x="732" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">DeepSeek-R1 distill</text>
+  <text x="732" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Quality scoring</text>
+  <text x="732" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Final merged model</text><rect x="150" y="300" width="250" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="275.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Validation</text>
+  <text x="162" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">ModelValidator</text>
+  <text x="162" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">BatchValidator</text>
+  <text x="162" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">QualityEvaluator</text><rect x="430" y="300" width="250" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="555.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">CLI / API</text>
+  <text x="442" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">questions-gen CLI</text>
+  <text x="442" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">validate / batch / quality</text>
+  <text x="442" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Category benchmarks</text><rect x="710" y="300" width="170" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="795.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Deploy</text>
+  <text x="722" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">HuggingFace weights</text>
+  <text x="722" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Ollama import</text>
+  <text x="722" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Local inference</text><line x1="250" y1="195" x2="280" y2="195" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="470" y1="195" x2="500" y2="195" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="690" y1="195" x2="720" y2="195" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="800" y1="250" x2="795" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="590" y1="250" x2="555" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="370" y1="250" x2="275" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><text x="460.0" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#718096">Reward = 0.4·difficulty + 0.3·novelty + 0.2·rigor + 0.1·diversity; staged models validated then published to HF/Ollama.</text></svg>

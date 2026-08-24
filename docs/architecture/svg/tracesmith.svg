@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#4a5568"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+  <rect width="920" height="560" fill="#ffffff"/>
+  <text x="460.0" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#1a365d">TraceSmith</text>
+  <text x="460.0" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#718096">Cross-platform GPU Profiling &amp; Replay · github.com/chenxingqiang/TraceSmith</text>
+
+  <rect x="36" y="92" width="848" height="430" rx="12" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
+  <text x="50" y="114" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#718096">Capture → Format → State → Replay / Export</text>
+<rect x="56" y="130" width="180" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="146.0" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Capture</text>
+  <text x="68" y="164" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">CUPTI / ROCm / Metal</text>
+  <text x="68" y="180" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">MACA / Ascend / eBPF</text>
+  <text x="68" y="196" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Lock-free SPSC ring</text><rect x="268" y="130" width="180" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="358.0" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Common</text>
+  <text x="280" y="164" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Core event types</text>
+  <text x="280" y="180" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Stack capture</text>
+  <text x="280" y="196" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">XRay import</text><rect x="480" y="130" width="180" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="570.0" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Format</text>
+  <text x="492" y="164" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">SBT binary traces</text>
+  <text x="492" y="180" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">String interning</text>
+  <text x="492" y="196" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Delta timestamps</text><rect x="692" y="130" width="170" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="777.0" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">State</text>
+  <text x="704" y="164" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">GPU state machine</text>
+  <text x="704" y="180" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Timeline builder</text>
+  <text x="704" y="196" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Perfetto export</text><rect x="170" y="300" width="200" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="270.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Replay</text>
+  <text x="182" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Stream scheduler</text>
+  <text x="182" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Determinism check</text>
+  <text x="182" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Full / partial replay</text><rect x="410" y="300" width="200" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="510.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Cluster</text>
+  <text x="422" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Multi-GPU topology</text>
+  <text x="422" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Time sync / NCCL</text>
+  <text x="422" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Distributed profiling</text><rect x="650" y="300" width="200" height="120" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="750.0" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">CLI / Python</text>
+  <text x="662" y="334" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">profile / record / view</text>
+  <text x="662" y="350" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">PyPI: tracesmith</text>
+  <text x="662" y="366" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">GDB RSP / Tracy</text><line x1="236" y1="190" x2="268" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="448" y1="190" x2="480" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="660" y1="190" x2="692" y2="190" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="777" y1="250" x2="777" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="777" y1="250" x2="270" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="777" y1="250" x2="510" y2="300" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><text x="460.0" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#718096">GPU events captured non-intrusively, serialized to SBT/Perfetto, then analyzed or deterministically replayed.</text></svg>

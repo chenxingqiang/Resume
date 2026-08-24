@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#4a5568"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+  </defs>
+  <rect width="920" height="560" fill="#ffffff"/>
+  <text x="460.0" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#1a365d">Research CLI</text>
+  <text x="460.0" y="68" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#718096">CLI AI workflow + academic research tools · github.com/iechor-research/research-cli</text>
+
+  <rect x="36" y="92" width="848" height="430" rx="12" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1.2"/>
+  <text x="50" y="114" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#718096">Terminal UI → Core orchestration → Providers / Tools / MCP</text>
+<rect x="80" y="140" width="760" height="70" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="460.0" y="164" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">CLI Frontend (packages/cli)</text>
+  <text x="92" y="174" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Interactive TUI / slash commands</text>
+  <text x="92" y="190" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">/research /paper /submit</text>
+  <text x="92" y="206" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Session &amp; theme management</text><rect x="110" y="240" width="220" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="220.0" y="264" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Core Backend</text>
+  <text x="122" y="274" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Prompt + context build</text>
+  <text x="122" y="290" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">File discovery / GEMINI.md</text>
+  <text x="122" y="306" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Chat compression</text><rect x="360" y="240" width="220" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="470.0" y="264" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Tool Orchestration</text>
+  <text x="372" y="274" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Filesystem / shell tools</text>
+  <text x="372" y="290" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Policy engine / sandbox</text>
+  <text x="372" y="306" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">MCP server adapters</text><rect x="610" y="240" width="220" height="110" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="720.0" y="264" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Multi-Model Router</text>
+  <text x="622" y="274" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Gemini / OpenAI / Claude</text>
+  <text x="622" y="290" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Baidu / DeepSeek / Qwen</text>
+  <text x="622" y="306" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Provider config &amp; fallback</text><rect x="170" y="390" width="580" height="70" rx="10" fill="#f7fafc" stroke="#2b6cb0" stroke-width="1.6" filter="url(#shadow)"/>
+  <text x="460.0" y="414" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2c5282">Academic Research Modules</text>
+  <text x="182" y="424" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#2d3748">Bibliography (arXiv/PubMed)  ·  LaTeX manager  ·  Experiment codegen  ·  Journal matcher / submission prep</text><line x1="460" y1="210" x2="220" y2="240" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="460" y1="210" x2="470" y2="240" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="460" y1="210" x2="720" y2="240" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><line x1="470" y1="350" x2="460" y2="390" stroke="#4a5568" stroke-width="1.8" marker-end="url(#arrow)"/><text x="460.0" y="520" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#718096">User prompts flow through core, selected provider generates plans, tools/MCP execute actions, results stream back to terminal.</text></svg>
