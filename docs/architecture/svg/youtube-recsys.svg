@@ -13,66 +13,70 @@
 <text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
 <text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
 <text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
-<rect x="40" y="92" width="1360" height="155" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="56" y="117" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA PROCESSING · 离线样本构建</text>
-<rect x="60.0" y="135" width="426.7" height="94" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="273.33333333333337" y="169.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Python Pipeline</text>
-<text x="273.33333333333337" y="188.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">data2tfrecords.py</text>
-<text x="273.33333333333337" y="205.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">read_tfrecords.py</text>
-<rect x="506.7" y="135" width="426.7" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="720.0" y="169.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Spark Pipeline</text>
-<text x="720.0" y="188.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">MakeDataOne.scala</text>
-<text x="720.0" y="205.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">MakeDataTwo.scala</text>
-<rect x="953.3" y="135" width="426.7" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1166.6666666666667" y="178.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FeatureBuilder</text>
-<text x="1166.6666666666667" y="197.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">history + continuous features</text>
-<rect x="40" y="281" width="1360" height="135" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="56" y="306" font-size="13" fill="#475569" font-weight="700" text-anchor="start">STORAGE · 训练与模型产物</text>
-<rect x="60.0" y="324" width="650.0" height="74" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="385.0" y="357.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">TFRecords</text>
-<text x="385.0" y="376.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">train / evaluation</text>
-<rect x="730.0" y="324" width="650.0" height="74" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1055.0" y="357.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Checkpoints</text>
-<text x="1055.0" y="376.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt / eval / modelpath</text>
-<rect x="40" y="450" width="1360" height="170" rx="10" fill="#fce7f3" fill-opacity="0.42" stroke="#db2777" stroke-dasharray="7,5"/>
-<text x="56" y="475" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL TRAINING · src/python/models/dnn.py</text>
-<rect x="60.0" y="493" width="315.0" height="109" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="217.5" y="534.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Input</text>
-<text x="217.5" y="553.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">visit_items_index × 5</text>
-<text x="217.5" y="570.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">continuous_features × 16</text>
-<rect x="395.0" y="493" width="315.0" height="109" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="552.5" y="543.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Item Embedding</text>
-<text x="552.5" y="562.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">500 × 16 · average pooling</text>
-<rect x="730.0" y="493" width="315.0" height="109" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="887.5" y="543.5" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">User Tower</text>
-<text x="887.5" y="562.5" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">Dense 64 → 32 → vector 16</text>
-<rect x="1065.0" y="493" width="315.0" height="109" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1222.5" y="543.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Softmax Output</text>
-<text x="1222.5" y="562.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">500 classes · Top-K</text>
-<rect x="40" y="654" width="1360" height="145" rx="10" fill="#fdf4ff" fill-opacity="0.42" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="56" y="679" font-size="13" fill="#475569" font-weight="700" text-anchor="start">PREDICTION · serving paths</text>
-<rect x="60.0" y="697" width="426.7" height="84" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="735.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Python SavedModel</text>
-<text x="273.33333333333337" y="754.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">load_dnn_model.py</text>
-<rect x="506.7" y="697" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="720.0" y="735.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">User Vector</text>
-<text x="720.0" y="754.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">PredictUserVector.scala</text>
-<rect x="953.3" y="697" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1166.6666666666667" y="735.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Item Table</text>
-<text x="1166.6666666666667" y="754.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">ItemEmbeddingPredictor.scala</text>
-<rect x="40" y="833" width="1360" height="130" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="56" y="858" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RECOMMENDATION OUTPUT</text>
-<rect x="60.0" y="876" width="650.0" height="69" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="385.0" y="906.5" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Candidate Recall</text>
-<text x="385.0" y="925.5" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">user vector × item embedding</text>
-<rect x="730.0" y="876" width="650.0" height="69" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1055.0" y="906.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Top-K Items</text>
-<text x="1055.0" y="925.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">next-item recommendation</text>
-<line x1="720" y1="247" x2="720" y2="281" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="416" x2="720" y2="450" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="620" x2="720" y2="654" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="799" x2="720" y2="833" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1400,878 L 1420,878 L 1420,326 L 1400,326" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1388" y="602.0" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">evaluation feedback</text>
+<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
+<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">YouTube-DNN-RecSys 使用 TensorFlow 与 Spark 实现 YouTube 推荐系统中的候选召回阶段。</text>
+<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">系统将用户行为历史转换为 TFRecords，训练用户与物品向量，并为在线服务生成 Top-K 召回候选。</text>
+<rect x="40" y="150" width="1360" height="155" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA PROCESSING · 离线样本构建</text>
+<rect x="60.0" y="193" width="426.7" height="94" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="273.33333333333337" y="227.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Python Pipeline</text>
+<text x="273.33333333333337" y="246.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">data2tfrecords.py</text>
+<text x="273.33333333333337" y="263.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">read_tfrecords.py</text>
+<rect x="506.7" y="193" width="426.7" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="720.0" y="227.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Spark Pipeline</text>
+<text x="720.0" y="246.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">MakeDataOne.scala</text>
+<text x="720.0" y="263.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">MakeDataTwo.scala</text>
+<rect x="953.3" y="193" width="426.7" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1166.6666666666667" y="236.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FeatureBuilder</text>
+<text x="1166.6666666666667" y="255.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">history + continuous features</text>
+<rect x="40" y="325" width="1360" height="135" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="56" y="350" font-size="13" fill="#475569" font-weight="700" text-anchor="start">STORAGE · 训练与模型产物</text>
+<rect x="60.0" y="368" width="650.0" height="74" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="385.0" y="401.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">TFRecords</text>
+<text x="385.0" y="420.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">train / evaluation</text>
+<rect x="730.0" y="368" width="650.0" height="74" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1055.0" y="401.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Checkpoints</text>
+<text x="1055.0" y="420.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt / eval / modelpath</text>
+<rect x="40" y="480" width="1360" height="170" rx="10" fill="#fce7f3" fill-opacity="0.42" stroke="#db2777" stroke-dasharray="7,5"/>
+<text x="56" y="505" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL TRAINING · src/python/models/dnn.py</text>
+<rect x="60.0" y="523" width="315.0" height="109" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="217.5" y="564.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Input</text>
+<text x="217.5" y="583.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">visit_items_index × 5</text>
+<text x="217.5" y="600.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">continuous_features × 16</text>
+<rect x="395.0" y="523" width="315.0" height="109" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="552.5" y="573.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Item Embedding</text>
+<text x="552.5" y="592.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">500 × 16 · average pooling</text>
+<rect x="730.0" y="523" width="315.0" height="109" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="887.5" y="573.5" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">User Tower</text>
+<text x="887.5" y="592.5" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">Dense 64 → 32 → vector 16</text>
+<rect x="1065.0" y="523" width="315.0" height="109" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="1222.5" y="573.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Softmax Output</text>
+<text x="1222.5" y="592.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">500 classes · Top-K</text>
+<rect x="40" y="670" width="1360" height="145" rx="10" fill="#fdf4ff" fill-opacity="0.42" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="56" y="695" font-size="13" fill="#475569" font-weight="700" text-anchor="start">PREDICTION · serving paths</text>
+<rect x="60.0" y="713" width="426.7" height="84" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="751.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Python SavedModel</text>
+<text x="273.33333333333337" y="770.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">load_dnn_model.py</text>
+<rect x="506.7" y="713" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="720.0" y="751.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">User Vector</text>
+<text x="720.0" y="770.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">PredictUserVector.scala</text>
+<rect x="953.3" y="713" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1166.6666666666667" y="751.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Item Table</text>
+<text x="1166.6666666666667" y="770.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">ItemEmbeddingPredictor.scala</text>
+<rect x="40" y="835" width="1360" height="130" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="56" y="860" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RECOMMENDATION OUTPUT</text>
+<rect x="60.0" y="878" width="650.0" height="69" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="385.0" y="908.5" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Candidate Recall</text>
+<text x="385.0" y="927.5" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">user vector × item embedding</text>
+<rect x="730.0" y="878" width="650.0" height="69" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1055.0" y="908.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Top-K Items</text>
+<text x="1055.0" y="927.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">next-item recommendation</text>
+<line x1="720" y1="305" x2="720" y2="325" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="460" x2="720" y2="480" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="650" x2="720" y2="670" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="815" x2="720" y2="835" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1400,880 L 1420,880 L 1420,370 L 1400,370" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1388" y="625.0" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">evaluation feedback</text>
 <text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：行为历史 → TFRecords → embedding mean-pool → user vector → item table matching → Top-K。</text>
 </svg>

@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import xml.etree.ElementTree as ET
 
-from scripts.generate_architecture_svgs import DIAGRAMS, build_all
+from scripts.generate_architecture_svgs import (
+    DIAGRAMS,
+    PROJECT_INTRODUCTIONS,
+    build_all,
+)
 
 
 NS = {"svg": "http://www.w3.org/2000/svg"}
 
 
-def _root(name: str) -> ET.Element:
-    xml = DIAGRAMS[name]()
+def _root(name: str, locale: str = "zh") -> ET.Element:
+    xml = DIAGRAMS[name](locale)
     return ET.fromstring(xml)
 
 
@@ -108,11 +112,42 @@ def test_questions_gen_three_stages():
         assert token in text, token
 
 
+def test_each_project_has_localized_introduction():
+    assert set(PROJECT_INTRODUCTIONS) == set(DIAGRAMS) - {"00-title"}
+    for name, localized in PROJECT_INTRODUCTIONS.items():
+        assert set(localized) == {"en", "zh"}, name
+        assert sum(map(len, localized["en"])) >= 120, name
+        assert sum(map(len, localized["zh"])) >= 45, name
+        en_text = _texts(_root(name, "en"))
+        zh_text = _texts(_root(name, "zh"))
+        assert localized["en"][0] in en_text
+        assert localized["zh"][0] in zh_text
+        assert localized["zh"][0] not in en_text
+
+
+def test_title_page_is_localized():
+    assert "Architecture Appendix" in _texts(_root("00-title", "en"))
+    assert "架构附录" in _texts(_root("00-title", "zh"))
+
+
 def test_build_all_writes_svgs(tmp_path, monkeypatch):
     import scripts.generate_architecture_svgs as gen
 
     monkeypatch.setattr(gen, "SVG_DIR", tmp_path)
-    written = build_all()
+    written = build_all("zh")
     assert set(p.stem for p in written) == set(DIAGRAMS)
     for path in written:
         ET.parse(path)
+
+    english = build_all("en")
+    assert all(path.parent == tmp_path / "en" for path in english)
+
+
+def test_resume_appendix_language_mapping():
+    from scripts.build_architecture_appendix import APPENDIX_PDFS, RESUME_APPENDIX
+
+    assert APPENDIX_PDFS["en"].name == "architecture-appendix-en.pdf"
+    assert APPENDIX_PDFS["zh"].name == "architecture-appendix.pdf"
+    assert RESUME_APPENDIX["xingqiangchen-en.pdf"] == "en"
+    assert RESUME_APPENDIX["xingqiangchen-zn.pdf"] == "zh"
+    assert RESUME_APPENDIX["xingqiangchen-zn-adjust.pdf"] == "zh"

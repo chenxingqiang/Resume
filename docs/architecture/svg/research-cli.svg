@@ -13,66 +13,70 @@
 <text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
 <text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
 <text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
-<rect x="40" y="92" width="1360" height="145" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="56" y="117" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CLI FRONTEND · packages/cli</text>
-<rect x="60.0" y="135" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="273.33333333333337" y="173.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Interactive TUI</text>
-<text x="273.33333333333337" y="192.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">research.tsx · sessions</text>
-<rect x="506.7" y="135" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="720.0" y="173.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Commands</text>
-<text x="720.0" y="192.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">mcp · skills · hooks</text>
-<rect x="953.3" y="135" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1166.6666666666667" y="173.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">ACP</text>
-<text x="1166.6666666666667" y="192.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">acpSession.ts</text>
-<rect x="40" y="271" width="1360" height="155" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="56" y="296" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
-<rect x="60.0" y="314" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="357.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Context &amp; Memory</text>
-<text x="273.33333333333337" y="376.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">config.ts · memory.ts</text>
-<rect x="506.7" y="314" width="426.7" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="357.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
-<text x="720.0" y="376.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">provider selection</text>
-<rect x="953.3" y="314" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="1166.6666666666667" y="357.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Routing Strategy</text>
-<text x="1166.6666666666667" y="376.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">default · classifier · approval</text>
-<rect x="40" y="460" width="1360" height="155" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="56" y="485" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS &amp; INTEGRATIONS</text>
-<rect x="60.0" y="503" width="315.0" height="94" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="217.5" y="546.0" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">Workspace Tools</text>
-<text x="217.5" y="565.0" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem · shell</text>
-<rect x="395.0" y="503" width="315.0" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="552.5" y="546.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">MCP</text>
-<text x="552.5" y="565.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">external service adapters</text>
-<rect x="730.0" y="503" width="315.0" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="887.5" y="546.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Research Modules</text>
-<text x="887.5" y="565.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">writing · bibliography · analysis</text>
-<rect x="1065.0" y="503" width="315.0" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="1222.5" y="546.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">SDK / A2A / VS Code</text>
-<text x="1222.5" y="565.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">embedded clients</text>
-<rect x="40" y="649" width="1360" height="145" rx="10" fill="#fdf4ff" fill-opacity="0.42" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="56" y="674" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS · provider config</text>
-<rect x="60.0" y="692" width="426.7" height="84" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="730.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
-<text x="273.33333333333337" y="749.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="506.7" y="692" width="426.7" height="84" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="730.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI / Anthropic</text>
-<text x="720.0" y="749.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="953.3" y="692" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1166.6666666666667" y="730.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu / DeepSeek / Qwen</text>
-<text x="1166.6666666666667" y="749.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="40" y="828" width="1360" height="130" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="56" y="853" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RESULT STREAM</text>
-<rect x="60.0" y="871" width="650.0" height="69" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="385.0" y="901.5" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Tool Results</text>
-<text x="385.0" y="920.5" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">structured observations</text>
-<rect x="730.0" y="871" width="650.0" height="69" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1055.0" y="901.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Assistant Response</text>
-<text x="1055.0" y="920.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">streamed to terminal</text>
-<line x1="720" y1="237" x2="720" y2="271" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="426" x2="720" y2="460" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="615" x2="720" y2="649" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="794" x2="720" y2="828" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1400,873 L 1420,873 L 1420,316 L 1400,316" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1388" y="594.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">tool result loop</text>
+<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
+<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Research CLI 是终端优先的 AI Agent 工作流，将交互会话连接到模型、工作区工具和 MCP 服务。</text>
+<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">核心路由负责上下文与模型供应商选择，研究模块覆盖论文写作、文献管理、数据分析和投稿准备。</text>
+<rect x="40" y="150" width="1360" height="145" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CLI FRONTEND · packages/cli</text>
+<rect x="60.0" y="193" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="273.33333333333337" y="231.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Interactive TUI</text>
+<text x="273.33333333333337" y="250.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">research.tsx · sessions</text>
+<rect x="506.7" y="193" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="720.0" y="231.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Commands</text>
+<text x="720.0" y="250.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">mcp · skills · hooks</text>
+<rect x="953.3" y="193" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1166.6666666666667" y="231.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">ACP</text>
+<text x="1166.6666666666667" y="250.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">acpSession.ts</text>
+<rect x="40" y="315" width="1360" height="155" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="56" y="340" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
+<rect x="60.0" y="358" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="401.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Context &amp; Memory</text>
+<text x="273.33333333333337" y="420.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">config.ts · memory.ts</text>
+<rect x="506.7" y="358" width="426.7" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="720.0" y="401.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
+<text x="720.0" y="420.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">provider selection</text>
+<rect x="953.3" y="358" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1166.6666666666667" y="401.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Routing Strategy</text>
+<text x="1166.6666666666667" y="420.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">default · classifier · approval</text>
+<rect x="40" y="490" width="1360" height="155" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="56" y="515" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS &amp; INTEGRATIONS</text>
+<rect x="60.0" y="533" width="315.0" height="94" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="217.5" y="576.0" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">Workspace Tools</text>
+<text x="217.5" y="595.0" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem · shell</text>
+<rect x="395.0" y="533" width="315.0" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="552.5" y="576.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">MCP</text>
+<text x="552.5" y="595.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">external service adapters</text>
+<rect x="730.0" y="533" width="315.0" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="887.5" y="576.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Research Modules</text>
+<text x="887.5" y="595.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">writing · bibliography · analysis</text>
+<rect x="1065.0" y="533" width="315.0" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1222.5" y="576.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">SDK / A2A / VS Code</text>
+<text x="1222.5" y="595.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">embedded clients</text>
+<rect x="40" y="665" width="1360" height="145" rx="10" fill="#fdf4ff" fill-opacity="0.42" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="56" y="690" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS · provider config</text>
+<rect x="60.0" y="708" width="426.7" height="84" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="746.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
+<text x="273.33333333333337" y="765.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">hosted models</text>
+<rect x="506.7" y="708" width="426.7" height="84" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="720.0" y="746.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI / Anthropic</text>
+<text x="720.0" y="765.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">hosted models</text>
+<rect x="953.3" y="708" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="1166.6666666666667" y="746.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu / DeepSeek / Qwen</text>
+<text x="1166.6666666666667" y="765.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">hosted models</text>
+<rect x="40" y="830" width="1360" height="130" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="56" y="855" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RESULT STREAM</text>
+<rect x="60.0" y="873" width="650.0" height="69" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="385.0" y="903.5" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Tool Results</text>
+<text x="385.0" y="922.5" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">structured observations</text>
+<rect x="730.0" y="873" width="650.0" height="69" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1055.0" y="903.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Assistant Response</text>
+<text x="1055.0" y="922.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">streamed to terminal</text>
+<line x1="720" y1="295" x2="720" y2="315" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="470" x2="720" y2="490" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="645" x2="720" y2="665" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="810" x2="720" y2="830" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1400,875 L 1420,875 L 1420,360 L 1400,360" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1388" y="617.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">tool result loop</text>
 <text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：prompt → packages/cli → packages/core router → provider / tools → structured result → terminal。</text>
 </svg>

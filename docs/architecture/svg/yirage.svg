@@ -13,73 +13,77 @@
 <text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
 <text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
 <text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
-<rect x="40" y="92" width="1360" height="140" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="56" y="117" font-size="13" fill="#475569" font-weight="700" text-anchor="start">INFERENCE ENGINE · 调度与 KV 所有者</text>
-<rect x="60.0" y="135" width="426.7" height="79" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="273.33333333333337" y="170.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">vLLM</text>
-<text x="273.33333333333337" y="189.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">continuous batch · PagedAttention</text>
-<rect x="506.7" y="135" width="426.7" height="79" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="720.0" y="170.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">SGLang</text>
-<text x="720.0" y="189.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">RadixAttention · extend meta</text>
-<rect x="953.3" y="135" width="426.7" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1166.6666666666667" y="170.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">Decode Metadata</text>
-<text x="1166.6666666666667" y="189.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">block table · seq lens · SM budget</text>
-<rect x="40" y="266" width="1360" height="150" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="56" y="291" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RUNTIMEFUSION · 每个 decode step</text>
-<rect x="60.0" y="309" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="349.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">RF.step(inputs, meta)</text>
-<text x="273.33333333333337" y="368.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">select 0..N capsules</text>
-<rect x="506.7" y="309" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="340.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FusionCapsule</text>
-<text x="720.0" y="359.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">MLP gate_up + down</text>
-<text x="720.0" y="376.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">segment pipeline</text>
-<rect x="953.3" y="309" width="426.7" height="89" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1166.6666666666667" y="349.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Native Fallback</text>
-<text x="1166.6666666666667" y="368.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">skip → engine native ops</text>
-<rect x="40" y="450" width="1360" height="155" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="56" y="475" font-size="13" fill="#475569" font-weight="700" text-anchor="start">SEARCH &amp; PLAN · offline / warm-up</text>
-<rect x="60.0" y="493" width="315.0" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="217.5" y="536.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">superoptimize(backend)</text>
-<text x="217.5" y="555.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">KN / TB graph search</text>
-<rect x="395.0" y="493" width="315.0" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="552.5" y="536.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FusionPlan / µGraph</text>
-<text x="552.5" y="555.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">profile · fingerprint verify</text>
-<rect x="730.0" y="493" width="315.0" height="94" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="887.5" y="536.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Persistent Cache</text>
-<text x="887.5" y="555.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">shape bucket restore</text>
-<rect x="1065.0" y="493" width="315.0" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1222.5" y="536.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Ray Coordinator</text>
-<text x="1222.5" y="555.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">optional distributed search</text>
-<rect x="40" y="639" width="1360" height="140" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="56" y="664" font-size="13" fill="#475569" font-weight="700" text-anchor="start">BACKEND MANAGER · 编译与执行边界</text>
-<rect x="60.0" y="682" width="426.7" height="79" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="717.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">BackendRegistry</text>
-<text x="273.33333333333337" y="736.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">search + execute same backend</text>
-<rect x="506.7" y="682" width="426.7" height="79" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="717.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">KNGraph / TBGraph</text>
-<text x="720.0" y="736.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">transpiler → kernels</text>
-<rect x="953.3" y="682" width="426.7" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1166.6666666666667" y="717.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">yirage.core</text>
-<text x="1166.6666666666667" y="736.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cython runtime</text>
-<rect x="40" y="813" width="1360" height="145" rx="10" fill="#f8fafc" fill-opacity="0.42" stroke="#64748b" stroke-dasharray="7,5"/>
-<text x="56" y="838" font-size="13" fill="#475569" font-weight="700" text-anchor="start">BACKENDS → HARDWARE</text>
-<rect x="60.0" y="856" width="315.0" height="84" rx="8" fill="#fee2e2" stroke="#dc2626"/>
-<text x="217.5" y="894.0" font-size="13.5" fill="#7f1d1d" font-weight="700" text-anchor="middle">CUDA / MACA</text>
-<text x="217.5" y="913.0" font-size="11.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">NVIDIA GPU · MetaX C500/C550</text>
-<rect x="395.0" y="856" width="315.0" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="552.5" y="894.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">ROCm / MPS</text>
-<text x="552.5" y="913.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">AMD GPU · Apple Silicon</text>
-<rect x="730.0" y="856" width="315.0" height="84" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="887.5" y="894.0" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">Ascend / NKI</text>
-<text x="887.5" y="913.0" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">Huawei 910 · AWS Neuron</text>
-<rect x="1065.0" y="856" width="315.0" height="84" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1222.5" y="894.0" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">CPU / MLIR / Triton</text>
-<text x="1222.5" y="913.0" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">x86 · ARM · extra targets</text>
-<line x1="720" y1="232" x2="720" y2="266" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="416" x2="720" y2="450" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="605" x2="720" y2="639" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="779" x2="720" y2="813" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1400,858 L 1420,858 L 1420,311 L 1400,311" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1388" y="584.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">fallback / re-search</text>
+<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
+<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">YiRage 是面向大模型推理的多后端算子编译与运行时系统，核心能力是计算图超优化和 RuntimeFusion。</text>
+<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">系统离线搜索并验证后端特定融合计划，再将 FusionCapsule 注入 vLLM 或 SGLang 的逐步解码流程。</text>
+<rect x="40" y="150" width="1360" height="140" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">INFERENCE ENGINE · 调度与 KV 所有者</text>
+<rect x="60.0" y="193" width="426.7" height="79" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="273.33333333333337" y="228.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">vLLM</text>
+<text x="273.33333333333337" y="247.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">continuous batch · PagedAttention</text>
+<rect x="506.7" y="193" width="426.7" height="79" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="720.0" y="228.5" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">SGLang</text>
+<text x="720.0" y="247.5" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">RadixAttention · extend meta</text>
+<rect x="953.3" y="193" width="426.7" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1166.6666666666667" y="228.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">Decode Metadata</text>
+<text x="1166.6666666666667" y="247.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">block table · seq lens · SM budget</text>
+<rect x="40" y="310" width="1360" height="150" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="56" y="335" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RUNTIMEFUSION · 每个 decode step</text>
+<rect x="60.0" y="353" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="393.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">RF.step(inputs, meta)</text>
+<text x="273.33333333333337" y="412.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">select 0..N capsules</text>
+<rect x="506.7" y="353" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="720.0" y="384.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FusionCapsule</text>
+<text x="720.0" y="403.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">MLP gate_up + down</text>
+<text x="720.0" y="420.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">segment pipeline</text>
+<rect x="953.3" y="353" width="426.7" height="89" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1166.6666666666667" y="393.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Native Fallback</text>
+<text x="1166.6666666666667" y="412.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">skip → engine native ops</text>
+<rect x="40" y="480" width="1360" height="155" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="56" y="505" font-size="13" fill="#475569" font-weight="700" text-anchor="start">SEARCH &amp; PLAN · offline / warm-up</text>
+<rect x="60.0" y="523" width="315.0" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="217.5" y="566.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">superoptimize(backend)</text>
+<text x="217.5" y="585.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">KN / TB graph search</text>
+<rect x="395.0" y="523" width="315.0" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="552.5" y="566.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">FusionPlan / µGraph</text>
+<text x="552.5" y="585.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">profile · fingerprint verify</text>
+<rect x="730.0" y="523" width="315.0" height="94" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="887.5" y="566.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Persistent Cache</text>
+<text x="887.5" y="585.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">shape bucket restore</text>
+<rect x="1065.0" y="523" width="315.0" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1222.5" y="566.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Ray Coordinator</text>
+<text x="1222.5" y="585.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">optional distributed search</text>
+<rect x="40" y="655" width="1360" height="140" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="56" y="680" font-size="13" fill="#475569" font-weight="700" text-anchor="start">BACKEND MANAGER · 编译与执行边界</text>
+<rect x="60.0" y="698" width="426.7" height="79" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="733.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">BackendRegistry</text>
+<text x="273.33333333333337" y="752.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">search + execute same backend</text>
+<rect x="506.7" y="698" width="426.7" height="79" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="720.0" y="733.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">KNGraph / TBGraph</text>
+<text x="720.0" y="752.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">transpiler → kernels</text>
+<rect x="953.3" y="698" width="426.7" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1166.6666666666667" y="733.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">yirage.core</text>
+<text x="1166.6666666666667" y="752.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cython runtime</text>
+<rect x="40" y="815" width="1360" height="145" rx="10" fill="#f8fafc" fill-opacity="0.42" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="56" y="840" font-size="13" fill="#475569" font-weight="700" text-anchor="start">BACKENDS → HARDWARE</text>
+<rect x="60.0" y="858" width="315.0" height="84" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+<text x="217.5" y="896.0" font-size="13.5" fill="#7f1d1d" font-weight="700" text-anchor="middle">CUDA / MACA</text>
+<text x="217.5" y="915.0" font-size="11.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">NVIDIA GPU · MetaX C500/C550</text>
+<rect x="395.0" y="858" width="315.0" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="552.5" y="896.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">ROCm / MPS</text>
+<text x="552.5" y="915.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">AMD GPU · Apple Silicon</text>
+<rect x="730.0" y="858" width="315.0" height="84" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="887.5" y="896.0" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">Ascend / NKI</text>
+<text x="887.5" y="915.0" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">Huawei 910 · AWS Neuron</text>
+<rect x="1065.0" y="858" width="315.0" height="84" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1222.5" y="896.0" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">CPU / MLIR / Triton</text>
+<text x="1222.5" y="915.0" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">x86 · ARM · extra targets</text>
+<line x1="720" y1="290" x2="720" y2="310" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="460" x2="720" y2="480" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="635" x2="720" y2="655" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="795" x2="720" y2="815" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1400,860 L 1420,860 L 1420,355 L 1400,355" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1388" y="607.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">fallback / re-search</text>
 <text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：Engine metadata → RF.step → FusionCapsule → BackendRegistry → target hardware。</text>
 </svg>

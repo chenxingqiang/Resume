@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1230" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+</defs>
+<rect x="0" y="0" width="1440" height="1230" fill="#ffffff"/>
+<text x="40" y="44" font-size="22" fill="#111827" font-weight="700" text-anchor="start">JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流</text>
+<text x="40" y="68" font-size="13" fill="#475569" font-weight="400" text-anchor="start">100% sklearn API → runtime injection → proxy dispatch → array conversion → JAX hardware</text>
+<rect x="1035" y="18" width="365" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<line x1="1052" y1="36" x2="1084" y2="36" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<text x="1092" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Primary flow</text>
+<line x1="1052" y1="58" x2="1084" y2="58" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Fallback / feedback</text>
+<text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Dashed = architecture zone</text>
+<text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Box = module + responsibility</text>
+<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">PROJECT OVERVIEW</text>
+<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">JAX-sklearn provides a drop-in scikit-learn API while transparently accelerating supported estimators with JAX.</text>
+<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Runtime proxies select JAX or native sklearn by algorithm, data size, and platform, preserving familiar inputs and outputs.</text>
+<rect x="40" y="150" width="1360" height="135" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">USER CODE · sklearn-compatible API</text>
+<rect x="60.0" y="193" width="650.0" height="74" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="385.0" y="226.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">import xlearn as sklearn</text>
+<text x="385.0" y="245.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">LinearRegression · KMeans · PCA</text>
+<rect x="730.0" y="193" width="650.0" height="74" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="1055.0" y="226.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Estimator Calls</text>
+<text x="1055.0" y="245.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">fit · predict · transform</text>
+<rect x="40" y="305" width="1360" height="150" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="56" y="330" font-size="13" fill="#475569" font-weight="700" text-anchor="start">COMPATIBILITY · xlearn/__init__.py</text>
+<rect x="60.0" y="348" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="388.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">__getattr__</text>
+<text x="273.33333333333337" y="407.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">lazy module loading</text>
+<rect x="506.7" y="348" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="720.0" y="388.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">_auto_jax_accelerate_module</text>
+<text x="720.0" y="407.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">runtime class injection</text>
+<rect x="953.3" y="348" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1166.6666666666667" y="388.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">AcceleratorRegistry</text>
+<text x="1166.6666666666667" y="407.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">algorithm implementation map</text>
+<rect x="40" y="475" width="1360" height="150" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="56" y="500" font-size="13" fill="#475569" font-weight="700" text-anchor="start">JAX ACCELERATION · xlearn/_jax</text>
+<rect x="60.0" y="518" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="273.33333333333337" y="558.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">EstimatorProxy</text>
+<text x="273.33333333333337" y="577.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">fit-time dispatch</text>
+<rect x="506.7" y="518" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="720.0" y="558.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Universal JAX</text>
+<text x="720.0" y="577.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">JIT · vmap · accelerated estimator</text>
+<rect x="953.3" y="518" width="426.7" height="89" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1166.6666666666667" y="558.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">sklearn Fallback</text>
+<text x="1166.6666666666667" y="577.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">original estimator</text>
+<rect x="40" y="645" width="1360" height="145" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="56" y="670" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA MANAGEMENT · boundary conversion</text>
+<rect x="60.0" y="688" width="426.7" height="84" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="273.33333333333337" y="726.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">NumPy → JAX</text>
+<text x="273.33333333333337" y="745.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">dtype · shape normalization</text>
+<rect x="506.7" y="688" width="426.7" height="84" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="720.0" y="726.0" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">Policy / Thresholds</text>
+<text x="720.0" y="745.0" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">dataset size · platform · config</text>
+<rect x="953.3" y="688" width="426.7" height="84" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1166.6666666666667" y="726.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">JAX → NumPy</text>
+<text x="1166.6666666666667" y="745.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">sklearn-compatible outputs</text>
+<rect x="40" y="810" width="1360" height="140" rx="10" fill="#f8fafc" fill-opacity="0.42" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="56" y="835" font-size="13" fill="#475569" font-weight="700" text-anchor="start">HARDWARE ABSTRACTION · JAX backend</text>
+<rect x="60.0" y="853" width="315.0" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="217.5" y="888.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">CPU</text>
+<text x="217.5" y="907.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">jaxlib</text>
+<rect x="395.0" y="853" width="315.0" height="79" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="552.5" y="888.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">CUDA GPU</text>
+<text x="552.5" y="907.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">JAX XLA</text>
+<rect x="730.0" y="853" width="315.0" height="79" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="887.5" y="888.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">TPU</text>
+<text x="887.5" y="907.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">JAX XLA</text>
+<rect x="1065.0" y="853" width="315.0" height="79" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1222.5" y="888.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Apple Metal</text>
+<text x="1222.5" y="907.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">experimental</text>
+<line x1="720" y1="285" x2="720" y2="305" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="455" x2="720" y2="475" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="625" x2="720" y2="645" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="720" y1="790" x2="720" y2="810" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1400,855 L 1420,855 L 1420,350 L 1400,350" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1388" y="602.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">graceful fallback</text>
+<text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">代理根据算法、数据规模和配置选择 JAX；不满足条件或执行失败时回退原生 sklearn。</text>
+</svg>
