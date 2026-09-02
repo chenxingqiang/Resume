@@ -44,6 +44,79 @@ PALETTES = {
     "slate": ("#f8fafc", "#64748b", "#1e293b"),
 }
 
+PROJECT_INTRODUCTIONS = {
+    "tracesmith": {
+        "en": (
+            "TraceSmith is a cross-platform GPU profiling and deterministic replay system for AI compiler, framework, and driver engineers.",
+            "Its C++17 core captures low-overhead execution events, stores compact SBT traces, and exports timelines for analysis and debugging.",
+        ),
+        "zh": (
+            "TraceSmith 是面向 AI 编译器、深度学习框架与 GPU 驱动工程师的跨平台性能分析和确定性回放系统。",
+            "C++17 核心以低开销采集执行事件，写入紧凑 SBT 轨迹，并导出时间线用于分析、调试与问题复现。",
+        ),
+    },
+    "yirage": {
+        "en": (
+            "YiRage is a multi-backend LLM kernel compiler and runtime centered on graph superoptimization and RuntimeFusion.",
+            "It searches backend-specific fusion plans offline, then injects verified FusionCapsules into vLLM or SGLang decode steps.",
+        ),
+        "zh": (
+            "YiRage 是面向大模型推理的多后端算子编译与运行时系统，核心能力是计算图超优化和 RuntimeFusion。",
+            "系统离线搜索并验证后端特定融合计划，再将 FusionCapsule 注入 vLLM 或 SGLang 的逐步解码流程。",
+        ),
+    },
+    "jax-sklearn": {
+        "en": (
+            "JAX-sklearn provides a drop-in scikit-learn API while transparently accelerating supported estimators with JAX.",
+            "Runtime proxies select JAX or native sklearn by algorithm, data size, and platform, preserving familiar inputs and outputs.",
+        ),
+        "zh": (
+            "JAX-sklearn 在保持 scikit-learn 调用接口不变的前提下，透明地以 JAX 加速受支持的估计器。",
+            "运行时代理依据算法、数据规模与硬件平台选择 JAX 或原生 sklearn，并保持输入输出兼容。",
+        ),
+    },
+    "secret-learn": {
+        "en": (
+            "Secret-Learn exposes sklearn-compatible machine learning across federated, secret-sharing, and split-learning modes.",
+            "It combines JAX acceleration with SecretFlow devices so each workflow can choose where plaintext, shares, and activations reside.",
+        ),
+        "zh": (
+            "Secret-Learn 以 sklearn 兼容接口提供联邦学习、秘密分享和拆分学习三种隐私机器学习模式。",
+            "系统结合 JAX 加速与 SecretFlow 安全设备，使工作流能够明确控制明文、秘密份额和中间激活的驻留位置。",
+        ),
+    },
+    "youtube-recsys": {
+        "en": (
+            "YouTube-DNN-RecSys is a TensorFlow and Spark implementation of the candidate-generation stage of YouTube recommendations.",
+            "It turns behavior histories into TFRecords, learns user and item embeddings, and produces Top-K recall candidates for serving.",
+        ),
+        "zh": (
+            "YouTube-DNN-RecSys 使用 TensorFlow 与 Spark 实现 YouTube 推荐系统中的候选召回阶段。",
+            "系统将用户行为历史转换为 TFRecords，训练用户与物品向量，并为在线服务生成 Top-K 召回候选。",
+        ),
+    },
+    "research-cli": {
+        "en": (
+            "Research CLI is a terminal-first AI agent workflow that connects interactive sessions to models, tools, and MCP services.",
+            "Its core router manages context and provider selection while research modules cover writing, bibliography, analysis, and submission.",
+        ),
+        "zh": (
+            "Research CLI 是终端优先的 AI Agent 工作流，将交互会话连接到模型、工作区工具和 MCP 服务。",
+            "核心路由负责上下文与模型供应商选择，研究模块覆盖论文写作、文献管理、数据分析和投稿准备。",
+        ),
+    },
+    "questions-gen": {
+        "en": (
+            "Questions-Gen is a Qwen3-14B system for generating and evaluating mathematical competition problems through staged training.",
+            "The pipeline combines supervised fine-tuning, GRPO reward optimization, DeepSeek-R1 distillation, validation, and local deployment.",
+        ),
+        "zh": (
+            "Questions-Gen 是基于 Qwen3-14B 的数学竞赛题生成与评估系统，采用分阶段训练策略。",
+            "训练链路结合监督微调、GRPO 奖励优化、DeepSeek-R1 蒸馏、质量验证以及 Hugging Face 和 Ollama 部署。",
+        ),
+    },
+}
+
 
 def _text(x: float, y: float, value: str, size=12, color="#334155",
           weight=400, anchor="start", family="") -> str:
@@ -54,7 +127,11 @@ def _text(x: float, y: float, value: str, size=12, color="#334155",
     )
 
 
-def _header(title: str, subtitle: str) -> list[str]:
+def _header(title: str, subtitle: str, locale: str = "zh") -> list[str]:
+    legend = {
+        "en": ("Primary flow", "Fallback / feedback", "Dashed = architecture zone", "Box = module + responsibility"),
+        "zh": ("主数据流", "回退 / 反馈", "虚线框 = 架构分区", "盒内 = 模块 + 职责"),
+    }[locale]
     return [
         (
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1230" '
@@ -69,11 +146,11 @@ def _header(title: str, subtitle: str) -> list[str]:
         _text(40, 68, subtitle, 13, "#475569"),
         '<rect x="1035" y="18" width="365" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>',
         '<line x1="1052" y1="36" x2="1084" y2="36" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>',
-        _text(1092, 40, "主数据流", 11.5),
+        _text(1092, 40, legend[0], 11.5),
         '<line x1="1052" y1="58" x2="1084" y2="58" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>',
-        _text(1092, 62, "回退 / 反馈", 11.5),
-        _text(1215, 40, "虚线框 = 架构分区", 11.5),
-        _text(1215, 62, "盒内 = 模块 + 职责", 11.5),
+        _text(1092, 62, legend[1], 11.5),
+        _text(1215, 40, legend[2], 11.5),
+        _text(1215, 62, legend[3], 11.5),
     ]
 
 
@@ -104,14 +181,22 @@ def _zone(lines: list[str], zone: Zone, y: int) -> tuple[int, tuple[float, float
 
 
 def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
-                  footer: str, feedback: str = "") -> str:
-    lines = _header(title, subtitle)
-    y = 92
+                  footer: str, feedback: str = "", locale: str = "zh",
+                  introduction: tuple[str, str] = ("", "")) -> str:
+    lines = _header(title, subtitle, locale)
+    overview_label = "PROJECT OVERVIEW" if locale == "en" else "项目介绍"
+    lines.extend([
+        '<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>',
+        _text(56, 103, overview_label, 11.5, "#475569", 700),
+        _text(180, 103, introduction[0], 11.5, "#334155"),
+        _text(180, 124, introduction[1], 11.5, "#334155"),
+    ])
+    y = 150
     boundaries: list[tuple[int, int]] = []
     for zone in zones:
         end, _ = _zone(lines, zone, y)
         boundaries.append((y, end))
-        y = end + 34
+        y = end + 20
     for (_, end), (next_y, _) in zip(boundaries, boundaries[1:]):
         lines.append(
             f'<line x1="720" y1="{end}" x2="720" y2="{next_y}" '
@@ -131,7 +216,7 @@ def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
     return "\n".join(lines)
 
 
-def tracesmith() -> str:
+def tracesmith(locale: str = "zh") -> str:
     return build_diagram(
         "TraceSmith — 系统架构 · GPU Trace 端到端数据流",
         "Application → bindings → capture / state / format → replay & export → GPU backends",
@@ -168,10 +253,12 @@ def tracesmith() -> str:
         ),
         "主链：GPU event → lock-free ring → SBT/state → replay 或 Perfetto；Cluster / GDB 为旁路能力。",
         "replay / debug feedback",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["tracesmith"][locale],
     )
 
 
-def yirage() -> str:
+def yirage(locale: str = "zh") -> str:
     return build_diagram(
         "YiRage (YPK) — 系统架构 · RuntimeFusion 数据流",
         "Inference engine owns scheduling/KV; RF owns fusion identity; search and execute use the same backend",
@@ -206,10 +293,12 @@ def yirage() -> str:
         ),
         "主链：Engine metadata → RF.step → FusionCapsule → BackendRegistry → target hardware。",
         "fallback / re-search",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["yirage"][locale],
     )
 
 
-def jax_sklearn() -> str:
+def jax_sklearn(locale: str = "zh") -> str:
     return build_diagram(
         "JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流",
         "100% sklearn API → runtime injection → proxy dispatch → array conversion → JAX hardware",
@@ -242,10 +331,12 @@ def jax_sklearn() -> str:
         ),
         "代理根据算法、数据规模和配置选择 JAX；不满足条件或执行失败时回退原生 sklearn。",
         "graceful fallback",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["jax-sklearn"][locale],
     )
 
 
-def secret_learn() -> str:
+def secret_learn(locale: str = "zh") -> str:
     return build_diagram(
         "Secret-Learn — 六层架构 · 隐私计算数据流",
         "sklearn-compatible API → privacy mode → JAX / SecretFlow compute → secure devices",
@@ -280,10 +371,12 @@ def secret_learn() -> str:
             ), "slate", 125),
         ),
         "同一 sklearn 调用由 FL / SS / SL 决定数据驻留与执行设备；JAX 加速可公开的本地计算。",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["secret-learn"][locale],
     )
 
 
-def youtube_recsys() -> str:
+def youtube_recsys(locale: str = "zh") -> str:
     return build_diagram(
         "YouTube-DNN-RecSys — 系统架构 · 召回数据流",
         "Python / Spark data preparation → TFRecords → dnn.py → user & item vectors → prediction",
@@ -315,10 +408,12 @@ def youtube_recsys() -> str:
         ),
         "主链：行为历史 → TFRecords → embedding mean-pool → user vector → item table matching → Top-K。",
         "evaluation feedback",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["youtube-recsys"][locale],
     )
 
 
-def research_cli() -> str:
+def research_cli(locale: str = "zh") -> str:
     return build_diagram(
         "Research CLI — 系统架构 · Agent 请求数据流",
         "Terminal UI → core orchestration & routing → tools / MCP / research modules → model providers",
@@ -351,10 +446,12 @@ def research_cli() -> str:
         ),
         "主链：prompt → packages/cli → packages/core router → provider / tools → structured result → terminal。",
         "tool result loop",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["research-cli"][locale],
     )
 
 
-def questions_gen() -> str:
+def questions_gen(locale: str = "zh") -> str:
     return build_diagram(
         "Questions-Gen — 系统架构 · 三阶段训练数据流",
         "Training data → SFT → GRPO → DeepSeek distillation → validation → Hugging Face / Ollama",
@@ -390,14 +487,21 @@ def questions_gen() -> str:
         ),
         "主链：混合题库 → SFT → GRPO reward/novelty → DeepSeek-R1 distill → validate → publish。",
         "quality feedback",
+        locale=locale,
+        introduction=PROJECT_INTRODUCTIONS["questions-gen"][locale],
     )
 
 
-def title_page() -> str:
-    lines = _header(
-        "Open Source Architecture Appendix",
-        "Chen Xingqiang · github.com/chenxingqiang · zone-based end-to-end system architecture",
-    )
+def title_page(locale: str = "zh") -> str:
+    title = {
+        "en": "Open Source Architecture Appendix",
+        "zh": "开源项目架构附录",
+    }[locale]
+    subtitle = {
+        "en": "Chen Xingqiang · github.com/chenxingqiang · one project overview and architecture per page",
+        "zh": "陈星强 · github.com/chenxingqiang · 每页包含项目介绍与系统架构",
+    }[locale]
+    lines = _header(title, subtitle, locale)
     projects = (
         Box("TraceSmith", ("GPU profiling & replay",), "green"),
         Box("YiRage", ("RuntimeFusion compiler",), "blue"),
@@ -408,10 +512,22 @@ def title_page() -> str:
         Box("Questions-Gen", ("three-stage training",), "pink"),
     )
     _zone(lines, Zone("CONTENTS · one architecture per page", projects, "slate", 250), 250)
+    reading = {
+        "en": (
+            "READING GUIDE",
+            "Read top to bottom. Dashed containers are architecture zones; boxes are modules and responsibilities.",
+            "Solid blue arrows show the primary path; dashed purple arrows show fallback or feedback paths.",
+        ),
+        "zh": (
+            "阅读约定",
+            "自上而下读取主数据流；虚线框表示架构分区；盒内仅列模块与职责。",
+            "蓝色实线表示主链路，紫色虚线表示回退或反馈，不以源码文件充当架构层。",
+        ),
+    }[locale]
     lines.extend([
-        _text(720, 570, "阅读约定", 18, "#111827", 700, "middle"),
-        _text(720, 610, "自上而下读取主数据流；虚线框表示架构分区；盒内仅列模块与职责。", 13, "#475569", 400, "middle"),
-        _text(720, 640, "蓝色实线表示主链路，紫色虚线表示回退或反馈，不以源码文件充当架构层。", 13, "#475569", 400, "middle"),
+        _text(720, 570, reading[0], 18, "#111827", 700, "middle"),
+        _text(720, 610, reading[1], 13, "#475569", 400, "middle"),
+        _text(720, 640, reading[2], 13, "#475569", 400, "middle"),
         "</svg>",
     ])
     return "\n".join(lines)
@@ -429,19 +545,23 @@ DIAGRAMS = {
 }
 
 
-def build_all() -> list[Path]:
-    SVG_DIR.mkdir(parents=True, exist_ok=True)
+def build_all(locale: str = "zh") -> list[Path]:
+    if locale not in {"en", "zh"}:
+        raise ValueError(f"Unsupported locale: {locale}")
+    output_dir = SVG_DIR if locale == "zh" else SVG_DIR / locale
+    output_dir.mkdir(parents=True, exist_ok=True)
     written = []
     for name, builder in DIAGRAMS.items():
-        path = SVG_DIR / f"{name}.svg"
-        path.write_text(builder(), encoding="utf-8")
+        path = output_dir / f"{name}.svg"
+        path.write_text(builder(locale), encoding="utf-8")
         written.append(path)
         print(f"Wrote {path}")
     return written
 
 
 def main() -> None:
-    build_all()
+    build_all("zh")
+    build_all("en")
 
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ python3 scripts/build_architecture_appendix.py
 # Copy merged PDFs to docs/
 cp xingqiangchen-en.pdf xingqiangchen-zn.pdf xingqiangchen-zn-adjust.pdf docs/
 cp docs/architecture/architecture-appendix.pdf docs/ 2>/dev/null || true
+cp docs/architecture/architecture-appendix-en.pdf docs/ 2>/dev/null || true
 
 echo ""
 echo "Generated files:"
