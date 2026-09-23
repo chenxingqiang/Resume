@@ -1,82 +1,115 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1230" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 901" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
 <defs>
 <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
 <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
 </defs>
-<rect x="0" y="0" width="1440" height="1230" fill="#ffffff"/>
-<text x="40" y="44" font-size="22" fill="#111827" font-weight="700" text-anchor="start">JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流</text>
-<text x="40" y="68" font-size="13" fill="#475569" font-weight="400" text-anchor="start">100% sklearn API → runtime injection → proxy dispatch → array conversion → JAX hardware</text>
-<rect x="1035" y="18" width="365" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<line x1="1052" y1="36" x2="1084" y2="36" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<text x="1092" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
-<line x1="1052" y1="58" x2="1084" y2="58" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
-<text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
-<text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
-<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
-<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">JAX-sklearn 在保持 scikit-learn 调用接口不变的前提下，透明地以 JAX 加速受支持的估计器。</text>
-<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">运行时代理依据算法、数据规模与硬件平台选择 JAX 或原生 sklearn，并保持输入输出兼容。</text>
-<rect x="40" y="150" width="1360" height="135" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">USER CODE · sklearn-compatible API</text>
-<rect x="60.0" y="193" width="650.0" height="74" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="385.0" y="226.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">import xlearn as sklearn</text>
-<text x="385.0" y="245.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">LinearRegression · KMeans · PCA</text>
-<rect x="730.0" y="193" width="650.0" height="74" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1055.0" y="226.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Estimator Calls</text>
-<text x="1055.0" y="245.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">fit · predict · transform</text>
-<rect x="40" y="305" width="1360" height="150" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="56" y="330" font-size="13" fill="#475569" font-weight="700" text-anchor="start">COMPATIBILITY · xlearn/__init__.py</text>
-<rect x="60.0" y="348" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="388.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">__getattr__</text>
-<text x="273.33333333333337" y="407.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">lazy module loading</text>
-<rect x="506.7" y="348" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="720.0" y="388.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">_auto_jax_accelerate_module</text>
-<text x="720.0" y="407.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">runtime class injection</text>
-<rect x="953.3" y="348" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1166.6666666666667" y="388.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">AcceleratorRegistry</text>
-<text x="1166.6666666666667" y="407.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">algorithm implementation map</text>
-<rect x="40" y="475" width="1360" height="150" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="56" y="500" font-size="13" fill="#475569" font-weight="700" text-anchor="start">JAX ACCELERATION · xlearn/_jax</text>
-<rect x="60.0" y="518" width="426.7" height="89" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="558.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">EstimatorProxy</text>
-<text x="273.33333333333337" y="577.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">fit-time dispatch</text>
-<rect x="506.7" y="518" width="426.7" height="89" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="558.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Universal JAX</text>
-<text x="720.0" y="577.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">JIT · vmap · accelerated estimator</text>
-<rect x="953.3" y="518" width="426.7" height="89" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1166.6666666666667" y="558.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">sklearn Fallback</text>
-<text x="1166.6666666666667" y="577.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">original estimator</text>
-<rect x="40" y="645" width="1360" height="145" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="56" y="670" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA MANAGEMENT · boundary conversion</text>
-<rect x="60.0" y="688" width="426.7" height="84" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="273.33333333333337" y="726.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">NumPy → JAX</text>
-<text x="273.33333333333337" y="745.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">dtype · shape normalization</text>
-<rect x="506.7" y="688" width="426.7" height="84" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="720.0" y="726.0" font-size="13.5" fill="#713f12" font-weight="700" text-anchor="middle">Policy / Thresholds</text>
-<text x="720.0" y="745.0" font-size="11.5" fill="#713f12" font-weight="400" text-anchor="middle">dataset size · platform · config</text>
-<rect x="953.3" y="688" width="426.7" height="84" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1166.6666666666667" y="726.0" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">JAX → NumPy</text>
-<text x="1166.6666666666667" y="745.0" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">sklearn-compatible outputs</text>
-<rect x="40" y="810" width="1360" height="140" rx="10" fill="#f8fafc" fill-opacity="0.42" stroke="#64748b" stroke-dasharray="7,5"/>
-<text x="56" y="835" font-size="13" fill="#475569" font-weight="700" text-anchor="start">HARDWARE ABSTRACTION · JAX backend</text>
-<rect x="60.0" y="853" width="315.0" height="79" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="217.5" y="888.5" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">CPU</text>
-<text x="217.5" y="907.5" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">jaxlib</text>
-<rect x="395.0" y="853" width="315.0" height="79" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="552.5" y="888.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">CUDA GPU</text>
-<text x="552.5" y="907.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">JAX XLA</text>
-<rect x="730.0" y="853" width="315.0" height="79" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="887.5" y="888.5" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">TPU</text>
-<text x="887.5" y="907.5" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">JAX XLA</text>
-<rect x="1065.0" y="853" width="315.0" height="79" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1222.5" y="888.5" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Apple Metal</text>
-<text x="1222.5" y="907.5" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">experimental</text>
-<line x1="720" y1="285" x2="720" y2="305" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="455" x2="720" y2="475" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="625" x2="720" y2="645" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="790" x2="720" y2="810" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1400,855 L 1420,855 L 1420,350 L 1400,350" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1388" y="602.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">graceful fallback</text>
-<text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">代理根据算法、数据规模和配置选择 JAX；不满足条件或执行失败时回退原生 sklearn。</text>
+<rect x="0" y="0" width="1720" height="901" fill="#ffffff"/>
+<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流</text>
+<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">xlearn/__init__.py injects proxies; xlearn/_jax dispatches to JAX or the original sklearn estimator</text>
+<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<text x="1304" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
+<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1304" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
+<text x="1490" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
+<text x="1490" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
+<rect x="28" y="84" width="1560" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="42" y="106" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
+<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">JAX-sklearn 在保持 scikit-learn 调用接口不变的前提下，透明地以 JAX 加速受支持的估计器。</text>
+<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">运行时代理依据算法、数据规模与硬件平台选择 JAX 或原生 sklearn，并保持输入输出兼容。</text>
+<rect x="28" y="156" width="1560" height="118" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="42" y="178" font-size="13" fill="#475569" font-weight="700" text-anchor="start">USER CODE · sklearn 兼容接口</text>
+<rect x="40.0" y="190.0" width="505.3" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="292.66666666666663" y="219.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">import xlearn as sklearn</text>
+<text x="292.66666666666663" y="235.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">100% call surface</text>
+<rect x="555.3" y="190.0" width="505.3" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="807.9999999999999" y="212.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Estimators</text>
+<text x="807.9999999999999" y="228.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">linear_model · cluster</text>
+<text x="807.9999999999999" y="243.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">decomposition · preprocessing</text>
+<rect x="1070.7" y="190.0" width="505.3" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="1323.3333333333333" y="219.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Calls</text>
+<text x="1323.3333333333333" y="235.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">fit · predict · transform</text>
+<rect x="28" y="292" width="1560" height="103" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="42" y="314" font-size="13" fill="#475569" font-weight="700" text-anchor="start">COMPATIBILITY · xlearn/__init__.py</text>
+<rect x="40.0" y="326.0" width="299.2" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="189.6" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">__getattr__</text>
+<text x="189.6" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">惰性导入子模块</text>
+<rect x="349.2" y="326.0" width="299.2" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="498.79999999999995" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">_auto_jax_accelerate_module</text>
+<text x="498.79999999999995" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">替换估计器类</text>
+<rect x="658.4" y="326.0" width="299.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="808.0" y="348.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">AcceleratorRegistry</text>
+<text x="808.0" y="364.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">_accelerator.py</text>
+<rect x="967.6" y="326.0" width="299.2" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1117.1999999999998" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">create_intelligent_proxy</text>
+<text x="1117.1999999999998" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">_proxy.py</text>
+<rect x="1276.8" y="326.0" width="299.2" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1426.3999999999999" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">monkey_patch_estimator</text>
+<text x="1426.3999999999999" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">安装代理类</text>
+<rect x="28" y="413" width="1560" height="162" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="42" y="435" font-size="13" fill="#475569" font-weight="700" text-anchor="start">JAX ACCELERATION · xlearn/_jax</text>
+<rect x="40.0" y="447.0" width="376.5" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="228.25" y="469.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">EstimatorProxy</text>
+<text x="228.25" y="485.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">fit-time dispatch</text>
+<rect x="426.5" y="447.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="614.75" y="469.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">create_accelerated_estimator</text>
+<text x="614.75" y="485.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">_accelerator.py</text>
+<rect x="813.0" y="447.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1001.25" y="469.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">_universal_jax.py</text>
+<text x="1001.25" y="485.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">JIT · vmap</text>
+<rect x="1199.5" y="447.0" width="376.5" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1387.75" y="469.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">original_class</text>
+<text x="1387.75" y="485.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">sklearn 回退</text>
+<rect x="40.0" y="506.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="228.25" y="528.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">_gp.py</text>
+<text x="228.25" y="544.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">Gaussian process</text>
+<rect x="426.5" y="506.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="614.75" y="528.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">_mlp.py</text>
+<text x="614.75" y="544.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">neural net</text>
+<rect x="813.0" y="506.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1001.25" y="528.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">_svm.py</text>
+<text x="1001.25" y="544.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">SVM kernels</text>
+<rect x="1199.5" y="506.0" width="376.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1387.75" y="528.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">_tree.py</text>
+<text x="1387.75" y="544.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">tree models</text>
+<rect x="28" y="593" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="42" y="615" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA MANAGEMENT · 数组与策略</text>
+<rect x="40.0" y="627.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="228.25" y="649.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">_data_conversion.py</text>
+<text x="228.25" y="665.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">NumPy ↔ JAX</text>
+<text x="228.25" y="680.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">dtype · shape</text>
+<rect x="426.5" y="627.0" width="376.5" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="614.75" y="649.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">_config.py</text>
+<text x="614.75" y="665.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">enable_jax</text>
+<text x="614.75" y="680.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">jax_platform</text>
+<rect x="813.0" y="627.0" width="376.5" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1001.25" y="656.5" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">jax_auto_threshold</text>
+<text x="1001.25" y="672.5" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">complexity &gt;= 1e8</text>
+<rect x="1199.5" y="627.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1387.75" y="649.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">detect_hardware</text>
+<text x="1387.75" y="665.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">install command</text>
+<text x="1387.75" y="680.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">platform probe</text>
+<rect x="28" y="729" width="1560" height="118" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="42" y="751" font-size="13" fill="#475569" font-weight="700" text-anchor="start">HARDWARE · JAX 后端</text>
+<rect x="40.0" y="763.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="228.25" y="792.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">CPU</text>
+<text x="228.25" y="808.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">jax-cpu · jaxlib</text>
+<rect x="426.5" y="763.0" width="376.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="614.75" y="785.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">CUDA GPU</text>
+<text x="614.75" y="801.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">jax-gpu</text>
+<text x="614.75" y="816.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">jax-cuda11</text>
+<rect x="813.0" y="763.0" width="376.5" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="1001.25" y="792.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">TPU</text>
+<text x="1001.25" y="808.5" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">jax-tpu</text>
+<rect x="1199.5" y="763.0" width="376.5" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1387.75" y="785.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Apple Metal</text>
+<text x="1387.75" y="801.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">jax-metal</text>
+<text x="1387.75" y="816.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">float32 · experimental</text>
+<line x1="808.0" y1="274" x2="808.0" y2="292" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="395" x2="808.0" y2="413" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="575" x2="808.0" y2="593" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="711" x2="808.0" y2="729" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1608,765 L 1676,765 L 1676,328 L 1608,328" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1642" y="546.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="middle">回退</text>
+<text x="28" y="877" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：sklearn 调用 → 注入代理 → JAX 估计器。小数据、缺算子或执行失败时回到 original_class。</text>
 </svg>

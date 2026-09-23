@@ -25,7 +25,9 @@ def _texts(root: ET.Element) -> str:
 
 def test_casemaker_visual_language():
     root = _root("tracesmith")
-    assert root.attrib["viewBox"] == "0 0 1440 1230"
+    width, height = root.attrib["viewBox"].split()[2:]
+    assert width == "1720"
+    assert int(height) >= 1100
     assert "sans-serif" in root.attrib.get("font-family", "")
     bg = root.find("svg:rect", NS)
     assert bg is not None and bg.attrib["fill"] == "#ffffff"
@@ -37,6 +39,8 @@ def test_casemaker_visual_language():
         if r.attrib.get("stroke-dasharray") == "7,5"
     ]
     assert len(zones) >= 5
+    for text in root.findall(".//svg:text", NS):
+        assert float(text.attrib["y"]) < int(height) - 4
 
 
 def test_tracesmith_official_modules():
@@ -50,7 +54,16 @@ def test_tracesmith_official_modules():
         "Replay Module",
         "Cluster Module",
         "CUPTIProfiler",
+        "MCPTIProfiler",
+        "AscendProfiler",
+        "GPUTopology",
+        "InstructionStream",
+        "PerfettoProtoExporter",
+        "SBTWriter",
+        "RingBuffer",
         "ReplayEngine",
+        "FrameCapture",
+        "RSPHandler",
         "_tracesmith.so",
         "trace.sbt",
         "GPU BACKENDS",
@@ -67,8 +80,15 @@ def test_yirage_official_stack():
         "RF.step",
         "FusionCapsule",
         "BackendRegistry",
+        "yirage.serving",
+        "yirage.core",
+        "MuGraph",
+        "seed_verify",
         "vLLM",
         "superoptimize",
+        "CUDA",
+        "MACA",
+        "Triton",
         "NVIDIA GPU",
     ):
         assert token in text, token
@@ -84,31 +104,57 @@ def test_jax_sklearn_five_layers():
         "HARDWARE",
         "EstimatorProxy",
         "AcceleratorRegistry",
+        "_universal_jax.py",
+        "_data_conversion.py",
+        "complexity >= 1e8",
+        "_gp.py",
+        "_mlp.py",
+        "_svm.py",
+        "_tree.py",
     ):
         assert token in text, token
 
 
 def test_secret_learn_privacy_modes():
     text = _texts(_root("secret-learn"))
-    for token in ("APPLICATION", "SKLEARN API", "PRIVACY MODES", "FEDERATED", "SECRET SHARING", "SPLIT LEARNING", "SPU", "PYU"):
+    for token in (
+        "APPLICATION", "SKLEARN API", "PRIVACY MODES", "FEDERATED",
+        "SECRET SHARING", "SPLIT LEARNING", "SPU", "PYU", "HEU", "TEE",
+        "federated_learning", "ABY3", "Paillier", "FLLinearRegression",
+        "SLMLPClassifier", "Linear Models",
+    ):
         assert token in text, token
 
 
 def test_youtube_two_tower():
     text = _texts(_root("youtube-recsys"))
-    for token in ("DATA PROCESSING", "STORAGE", "MODEL TRAINING", "dnn.py", "TFRecords", "PREDICTION"):
+    for token in (
+        "DATA PROCESSING", "STORAGE", "MODEL TRAINING", "dnn.py", "TFRecords",
+        "PREDICTION", "data2tfrecords.py", "MakeDataOne.scala",
+        "visit_items_index", "Average Pooling", "Dense 64",
+        "PredictUserVector.scala", "feature_column.py",
+    ):
         assert token in text, token
 
 
 def test_research_cli_packages():
     text = _texts(_root("research-cli"))
-    for token in ("packages/cli", "packages/core", "modelRouterService", "MCP", "PROVIDERS"):
+    for token in (
+        "packages/cli", "packages/core", "modelRouterService", "MCP", "PROVIDERS",
+        "defaultStrategy", "bibliography-manager", "latex-manager",
+        "journal-matcher", "literature-investigator", "researchChat.ts",
+    ):
         assert token in text, token
 
 
 def test_questions_gen_three_stages():
     text = _texts(_root("questions-gen"))
-    for token in ("Stage 1  SFT", "Stage 2  GRPO", "Stage 3  Distill", "RewardCalculator", "DeepSeekTeacher"):
+    for token in (
+        "Stage 1", "SFT", "Stage 2", "GRPO", "Stage 3", "Distill",
+        "RewardCalculator", "DeepSeekTeacher", "QuestionDataPreparer",
+        "NoveltyConstraint", "model_validator.py", "ollama_manager.py",
+        "0.4 difficulty", "8 problems/group",
+    ):
         assert token in text, token
 
 

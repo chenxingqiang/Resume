@@ -1,82 +1,156 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1230" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1158" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
 <defs>
 <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
 <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
 </defs>
-<rect x="0" y="0" width="1440" height="1230" fill="#ffffff"/>
-<text x="40" y="44" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Research CLI — 系统架构 · Agent 请求数据流</text>
-<text x="40" y="68" font-size="13" fill="#475569" font-weight="400" text-anchor="start">Terminal UI → core orchestration &amp; routing → tools / MCP / research modules → model providers</text>
-<rect x="1035" y="18" width="365" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<line x1="1052" y1="36" x2="1084" y2="36" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<text x="1092" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
-<line x1="1052" y1="58" x2="1084" y2="58" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1092" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
-<text x="1215" y="40" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
-<text x="1215" y="62" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
-<rect x="40" y="82" width="1360" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="56" y="103" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
-<text x="180" y="103" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Research CLI 是终端优先的 AI Agent 工作流，将交互会话连接到模型、工作区工具和 MCP 服务。</text>
-<text x="180" y="124" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">核心路由负责上下文与模型供应商选择，研究模块覆盖论文写作、文献管理、数据分析和投稿准备。</text>
-<rect x="40" y="150" width="1360" height="145" rx="10" fill="#fff7ed" fill-opacity="0.42" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="56" y="175" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CLI FRONTEND · packages/cli</text>
-<rect x="60.0" y="193" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="273.33333333333337" y="231.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Interactive TUI</text>
-<text x="273.33333333333337" y="250.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">research.tsx · sessions</text>
-<rect x="506.7" y="193" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="720.0" y="231.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Commands</text>
-<text x="720.0" y="250.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">mcp · skills · hooks</text>
-<rect x="953.3" y="193" width="426.7" height="84" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1166.6666666666667" y="231.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">ACP</text>
-<text x="1166.6666666666667" y="250.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">acpSession.ts</text>
-<rect x="40" y="315" width="1360" height="155" rx="10" fill="#dbeafe" fill-opacity="0.42" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="56" y="340" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
-<rect x="60.0" y="358" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="401.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Context &amp; Memory</text>
-<text x="273.33333333333337" y="420.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">config.ts · memory.ts</text>
-<rect x="506.7" y="358" width="426.7" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="401.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
-<text x="720.0" y="420.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">provider selection</text>
-<rect x="953.3" y="358" width="426.7" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="1166.6666666666667" y="401.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Routing Strategy</text>
-<text x="1166.6666666666667" y="420.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">default · classifier · approval</text>
-<rect x="40" y="490" width="1360" height="155" rx="10" fill="#dcfce7" fill-opacity="0.42" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="56" y="515" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS &amp; INTEGRATIONS</text>
-<rect x="60.0" y="533" width="315.0" height="94" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="217.5" y="576.0" font-size="13.5" fill="#1e293b" font-weight="700" text-anchor="middle">Workspace Tools</text>
-<text x="217.5" y="595.0" font-size="11.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem · shell</text>
-<rect x="395.0" y="533" width="315.0" height="94" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="552.5" y="576.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">MCP</text>
-<text x="552.5" y="595.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">external service adapters</text>
-<rect x="730.0" y="533" width="315.0" height="94" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="887.5" y="576.0" font-size="13.5" fill="#701a75" font-weight="700" text-anchor="middle">Research Modules</text>
-<text x="887.5" y="595.0" font-size="11.5" fill="#701a75" font-weight="400" text-anchor="middle">writing · bibliography · analysis</text>
-<rect x="1065.0" y="533" width="315.0" height="94" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="1222.5" y="576.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">SDK / A2A / VS Code</text>
-<text x="1222.5" y="595.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">embedded clients</text>
-<rect x="40" y="665" width="1360" height="145" rx="10" fill="#fdf4ff" fill-opacity="0.42" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="56" y="690" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS · provider config</text>
-<rect x="60.0" y="708" width="426.7" height="84" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="273.33333333333337" y="746.0" font-size="13.5" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
-<text x="273.33333333333337" y="765.0" font-size="11.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="506.7" y="708" width="426.7" height="84" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="720.0" y="746.0" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI / Anthropic</text>
-<text x="720.0" y="765.0" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="953.3" y="708" width="426.7" height="84" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1166.6666666666667" y="746.0" font-size="13.5" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu / DeepSeek / Qwen</text>
-<text x="1166.6666666666667" y="765.0" font-size="11.5" fill="#7c2d12" font-weight="400" text-anchor="middle">hosted models</text>
-<rect x="40" y="830" width="1360" height="130" rx="10" fill="#ecfeff" fill-opacity="0.42" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="56" y="855" font-size="13" fill="#475569" font-weight="700" text-anchor="start">RESULT STREAM</text>
-<rect x="60.0" y="873" width="650.0" height="69" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="385.0" y="903.5" font-size="13.5" fill="#155e75" font-weight="700" text-anchor="middle">Tool Results</text>
-<text x="385.0" y="922.5" font-size="11.5" fill="#155e75" font-weight="400" text-anchor="middle">structured observations</text>
-<rect x="730.0" y="873" width="650.0" height="69" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1055.0" y="903.5" font-size="13.5" fill="#14532d" font-weight="700" text-anchor="middle">Assistant Response</text>
-<text x="1055.0" y="922.5" font-size="11.5" fill="#14532d" font-weight="400" text-anchor="middle">streamed to terminal</text>
-<line x1="720" y1="295" x2="720" y2="315" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="470" x2="720" y2="490" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="645" x2="720" y2="665" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="720" y1="810" x2="720" y2="830" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1400,875 L 1420,875 L 1420,360 L 1400,360" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1388" y="617.5" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="end">tool result loop</text>
-<text x="40" y="1202" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：prompt → packages/cli → packages/core router → provider / tools → structured result → terminal。</text>
+<rect x="0" y="0" width="1720" height="1158" fill="#ffffff"/>
+<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Research CLI — 系统架构 · Agent 请求数据流</text>
+<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">packages/cli → packages/core routing → tools / MCP / research modules → model providers</text>
+<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<text x="1304" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
+<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1304" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
+<text x="1490" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
+<text x="1490" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
+<rect x="28" y="84" width="1560" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="42" y="106" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
+<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Research CLI 是终端优先的 AI Agent 工作流，将交互会话连接到模型、工作区工具和 MCP 服务。</text>
+<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">核心路由负责上下文与模型供应商选择，研究模块覆盖论文写作、文献管理、数据分析和投稿准备。</text>
+<rect x="28" y="156" width="1560" height="118" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="42" y="178" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CLI FRONTEND · packages/cli</text>
+<rect x="40.0" y="190.0" width="376.5" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="228.25" y="219.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">research.tsx</text>
+<text x="228.25" y="235.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">交互终端</text>
+<rect x="426.5" y="190.0" width="376.5" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="614.75" y="212.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">commands/</text>
+<text x="614.75" y="228.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">mcp.ts</text>
+<text x="614.75" y="243.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">skills.tsx · hooks.tsx</text>
+<rect x="813.0" y="190.0" width="376.5" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1001.25" y="212.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">ui/commands/research</text>
+<text x="1001.25" y="228.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">arxivCommand</text>
+<text x="1001.25" y="243.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">paper · investigate · submit</text>
+<rect x="1199.5" y="190.0" width="376.5" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1387.75" y="212.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">acpSession.ts</text>
+<text x="1387.75" y="228.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">ACP session</text>
+<text x="1387.75" y="243.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">stdio transport</text>
+<rect x="28" y="292" width="1560" height="261" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="42" y="314" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
+<rect x="40.0" y="326.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#2563eb"/>
+<text x="50.0" y="344" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="start">会话</text>
+<rect x="48.0" y="354.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="421.5" y="376.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">researchChat.ts</text>
+<text x="421.5" y="392.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">researchRequest.ts</text>
+<rect x="48.0" y="411.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="421.5" y="433.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">research-config-manager.ts</text>
+<text x="421.5" y="449.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">学术配置</text>
+<rect x="48.0" y="468.0" width="747.0" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="421.5" y="490.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">config / memory</text>
+<text x="421.5" y="506.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">上下文</text>
+<rect x="813.0" y="326.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
+<text x="823.0" y="344" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">路由</text>
+<rect x="821.0" y="354.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1006.25" y="376.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
+<text x="1006.25" y="392.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routing/modelRouterService.ts</text>
+<rect x="1197.5" y="354.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1382.75" y="376.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">defaultStrategy</text>
+<text x="1382.75" y="392.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routingStrategy.ts</text>
+<rect x="821.0" y="411.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1006.25" y="440.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">classifierStrategy</text>
+<text x="1006.25" y="456.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">gemma · numerical</text>
+<rect x="1197.5" y="411.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1382.75" y="433.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">compositeStrategy</text>
+<text x="1382.75" y="449.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">approval · fallback</text>
+<text x="1382.75" y="464.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">override</text>
+<rect x="28" y="571" width="1560" height="276" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="42" y="593" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS 与 RESEARCH MODULES</text>
+<rect x="40.0" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#64748b"/>
+<text x="50.0" y="623" font-size="12" fill="#1e293b" font-weight="700" text-anchor="start">Workspace</text>
+<rect x="48.0" y="633.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="189.6" y="655.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">edit.ts · grep.ts</text>
+<text x="189.6" y="671.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem changes</text>
+<rect x="48.0" y="690.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="189.6" y="712.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">shell / ls</text>
+<text x="189.6" y="728.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">本地执行</text>
+<rect x="349.2" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
+<text x="359.2" y="623" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">MCP</text>
+<rect x="357.2" y="633.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="498.79999999999995" y="655.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client.ts</text>
+<text x="498.79999999999995" y="671.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">服务会话</text>
+<rect x="357.2" y="690.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="498.79999999999995" y="712.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client-manager.ts</text>
+<text x="498.79999999999995" y="728.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">资源路由</text>
+<rect x="658.4" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
+<text x="668.4" y="623" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">analysis/</text>
+<rect x="666.4" y="633.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="655.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">bibliography-manager</text>
+<text x="808.0" y="671.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">citations</text>
+<rect x="666.4" y="690.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="712.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">experiment-code-generator</text>
+<text x="808.0" y="728.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">Python · R · Julia</text>
+<rect x="666.4" y="747.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="769.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">research-data-analyzer</text>
+<text x="808.0" y="785.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">统计与机器学习</text>
+<rect x="967.6" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
+<text x="977.5999999999999" y="623" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">bibliography/</text>
+<rect x="975.6" y="633.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="655.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">arxiv-mcp-client</text>
+<text x="1117.1999999999998" y="671.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">arXiv search</text>
+<rect x="975.6" y="690.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="712.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">google-scholar-client</text>
+<text x="1117.1999999999998" y="728.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">scholar search</text>
+<rect x="975.6" y="747.0" width="283.2" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="769.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">literature-investigator</text>
+<text x="1117.1999999999998" y="785.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">keyword-generator</text>
+<text x="1117.1999999999998" y="800.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">reference-classifier</text>
+<rect x="1276.8" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#db2777"/>
+<text x="1286.8" y="623" font-size="12" fill="#831843" font-weight="700" text-anchor="start">submission/</text>
+<rect x="1284.8" y="633.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="655.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">latex-manager</text>
+<text x="1426.3999999999999" y="671.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">project compile</text>
+<rect x="1284.8" y="690.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="712.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">journal-matcher</text>
+<text x="1426.3999999999999" y="728.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">期刊匹配</text>
+<rect x="1284.8" y="747.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="769.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">arxiv-latex-extractor</text>
+<text x="1426.3999999999999" y="785.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">模板提取</text>
+<rect x="28" y="865" width="1560" height="103" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="42" y="887" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS · 模型供应商</text>
+<rect x="40.0" y="899.0" width="210.9" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="145.42857142857144" y="928.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
+<rect x="260.9" y="899.0" width="210.9" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="366.28571428571433" y="928.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI</text>
+<rect x="481.7" y="899.0" width="210.9" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="587.1428571428571" y="928.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Anthropic</text>
+<rect x="702.6" y="899.0" width="210.9" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="808.0" y="928.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu ERNIE</text>
+<rect x="923.4" y="899.0" width="210.9" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1028.857142857143" y="928.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">DeepSeek</text>
+<rect x="1144.3" y="899.0" width="210.9" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1249.7142857142856" y="928.5" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Qwen</text>
+<rect x="1365.1" y="899.0" width="210.9" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1470.5714285714284" y="921.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Groq / Mistral</text>
+<text x="1470.5714285714284" y="937.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cohere · Moonshot</text>
+<rect x="28" y="986" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="42" y="1008" font-size="13" fill="#475569" font-weight="700" text-anchor="start">EMBEDDED RUNTIMES · 嵌入运行时</text>
+<rect x="40.0" y="1020.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="228.25" y="1049.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">packages/sdk</text>
+<text x="228.25" y="1065.5" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">库嵌入</text>
+<rect x="426.5" y="1020.0" width="376.5" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="614.75" y="1042.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">packages/a2a-server</text>
+<text x="614.75" y="1058.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">agent executor</text>
+<text x="614.75" y="1073.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">HTTP task API</text>
+<rect x="813.0" y="1020.0" width="376.5" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1001.25" y="1049.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">vscode-ide-companion</text>
+<text x="1001.25" y="1065.5" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">IDE companion</text>
+<rect x="1199.5" y="1020.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1387.75" y="1049.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">packages/devtools</text>
+<text x="1387.75" y="1065.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">开发工具</text>
+<line x1="808.0" y1="274" x2="808.0" y2="292" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="553" x2="808.0" y2="571" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="847" x2="808.0" y2="865" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<line x1="808.0" y1="968" x2="808.0" y2="986" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
+<path d="M 1608,1022 L 1676,1022 L 1676,328 L 1608,328" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
+<text x="1642" y="675.0" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="middle">回路</text>
+<text x="28" y="1134" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：prompt → research.tsx → modelRouterService → provider；工具和研究模块返回观察结果。</text>
 </svg>
