@@ -1,22 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1158" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
-<defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
-<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
-</defs>
-<rect x="0" y="0" width="1720" height="1158" fill="#ffffff"/>
-<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Research CLI — Agent Request Architecture</text>
-<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">packages/cli → packages/core routing → tools / MCP / research modules → model providers</text>
-<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<text x="1304" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Primary flow</text>
-<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1304" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Fallback / feedback</text>
-<text x="1490" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Dashed = architecture zone</text>
-<text x="1490" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Box = module + responsibility</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1128" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="1720" height="1128" fill="#ffffff"/>
+<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Research CLI — Agent System Architecture</text>
+<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">CLI, core session and routing, tools and research modules, model providers, and embedded runtimes</text>
+<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="1204" y="36" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Dashed frame = architecture zone</text>
+<text x="1204" y="56" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Solid frame = subsystem</text>
+<text x="1456" y="46" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Box = module and responsibility</text>
 <rect x="28" y="84" width="1560" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
 <text x="42" y="106" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">PROJECT OVERVIEW</text>
-<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Research CLI is a terminal-first AI agent workflow that connects interactive sessions to models, tools, and MCP services.</text>
-<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Its core router manages context and provider selection while research modules cover writing, bibliography, analysis, and submission.</text>
+<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Research CLI is a terminal-first AI agent for code, tools, MCP services, and academic research workflows.</text>
+<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">The architecture separates the CLI, core session and routing, tools and research modules, model providers, and embedded runtimes.</text>
 <rect x="28" y="156" width="1560" height="118" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
 <text x="42" y="178" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CLI FRONTEND · packages/cli</text>
 <rect x="40.0" y="190.0" width="376.5" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
@@ -34,123 +27,117 @@
 <text x="1387.75" y="212.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">acpSession.ts</text>
 <text x="1387.75" y="228.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">ACP session</text>
 <text x="1387.75" y="243.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">stdio transport</text>
-<rect x="28" y="292" width="1560" height="261" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="42" y="314" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
-<rect x="40.0" y="326.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#2563eb"/>
-<text x="50.0" y="344" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="start">Session</text>
-<rect x="48.0" y="354.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="421.5" y="376.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">researchChat.ts</text>
-<text x="421.5" y="392.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">researchRequest.ts</text>
-<rect x="48.0" y="411.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="421.5" y="433.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">research-config-manager.ts</text>
-<text x="421.5" y="449.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">academic settings</text>
-<rect x="48.0" y="468.0" width="747.0" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="421.5" y="490.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">config / memory</text>
-<text x="421.5" y="506.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">context window</text>
-<rect x="813.0" y="326.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
-<text x="823.0" y="344" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">Routing</text>
-<rect x="821.0" y="354.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1006.25" y="376.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
-<text x="1006.25" y="392.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routing/modelRouterService.ts</text>
-<rect x="1197.5" y="354.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1382.75" y="376.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">defaultStrategy</text>
-<text x="1382.75" y="392.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routingStrategy.ts</text>
-<rect x="821.0" y="411.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1006.25" y="440.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">classifierStrategy</text>
-<text x="1006.25" y="456.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">gemma · numerical</text>
-<rect x="1197.5" y="411.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1382.75" y="433.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">compositeStrategy</text>
-<text x="1382.75" y="449.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">approval · fallback</text>
-<text x="1382.75" y="464.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">override</text>
-<rect x="28" y="571" width="1560" height="276" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="42" y="593" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS &amp; RESEARCH MODULES</text>
-<rect x="40.0" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#64748b"/>
-<text x="50.0" y="623" font-size="12" fill="#1e293b" font-weight="700" text-anchor="start">Workspace</text>
-<rect x="48.0" y="633.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="189.6" y="655.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">edit.ts · grep.ts</text>
-<text x="189.6" y="671.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem changes</text>
-<rect x="48.0" y="690.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="189.6" y="712.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">shell / ls</text>
-<text x="189.6" y="728.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">local execution</text>
-<rect x="349.2" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
-<text x="359.2" y="623" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">MCP</text>
-<rect x="357.2" y="633.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="498.79999999999995" y="655.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client.ts</text>
-<text x="498.79999999999995" y="671.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">server sessions</text>
-<rect x="357.2" y="690.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="498.79999999999995" y="712.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client-manager.ts</text>
-<text x="498.79999999999995" y="728.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">resource routing</text>
-<rect x="658.4" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
-<text x="668.4" y="623" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">analysis/</text>
-<rect x="666.4" y="633.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="808.0" y="655.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">bibliography-manager</text>
-<text x="808.0" y="671.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">citations</text>
-<rect x="666.4" y="690.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="808.0" y="712.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">experiment-code-generator</text>
-<text x="808.0" y="728.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">Python · R · Julia</text>
-<rect x="666.4" y="747.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="808.0" y="769.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">research-data-analyzer</text>
-<text x="808.0" y="785.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">statistics · ML</text>
-<rect x="967.6" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
-<text x="977.5999999999999" y="623" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">bibliography/</text>
-<rect x="975.6" y="633.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1117.1999999999998" y="655.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">arxiv-mcp-client</text>
-<text x="1117.1999999999998" y="671.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">arXiv search</text>
-<rect x="975.6" y="690.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1117.1999999999998" y="712.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">google-scholar-client</text>
-<text x="1117.1999999999998" y="728.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">scholar search</text>
-<rect x="975.6" y="747.0" width="283.2" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1117.1999999999998" y="769.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">literature-investigator</text>
-<text x="1117.1999999999998" y="785.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">keyword-generator</text>
-<text x="1117.1999999999998" y="800.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">reference-classifier</text>
-<rect x="1276.8" y="605.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#db2777"/>
-<text x="1286.8" y="623" font-size="12" fill="#831843" font-weight="700" text-anchor="start">submission/</text>
-<rect x="1284.8" y="633.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
-<text x="1426.3999999999999" y="655.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">latex-manager</text>
-<text x="1426.3999999999999" y="671.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">project compile</text>
-<rect x="1284.8" y="690.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
-<text x="1426.3999999999999" y="712.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">journal-matcher</text>
-<text x="1426.3999999999999" y="728.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">venue selection</text>
-<rect x="1284.8" y="747.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
-<text x="1426.3999999999999" y="769.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">arxiv-latex-extractor</text>
-<text x="1426.3999999999999" y="785.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">template extract</text>
-<rect x="28" y="865" width="1560" height="103" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="42" y="887" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS</text>
-<rect x="40.0" y="899.0" width="210.9" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="145.42857142857144" y="928.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
-<rect x="260.9" y="899.0" width="210.9" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="366.28571428571433" y="928.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI</text>
-<rect x="481.7" y="899.0" width="210.9" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="587.1428571428571" y="928.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Anthropic</text>
-<rect x="702.6" y="899.0" width="210.9" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="808.0" y="928.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu ERNIE</text>
-<rect x="923.4" y="899.0" width="210.9" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1028.857142857143" y="928.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">DeepSeek</text>
-<rect x="1144.3" y="899.0" width="210.9" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1249.7142857142856" y="928.5" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Qwen</text>
-<rect x="1365.1" y="899.0" width="210.9" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1470.5714285714284" y="921.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Groq / Mistral</text>
-<text x="1470.5714285714284" y="937.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cohere · Moonshot</text>
-<rect x="28" y="986" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="42" y="1008" font-size="13" fill="#475569" font-weight="700" text-anchor="start">EMBEDDED RUNTIMES</text>
-<rect x="40.0" y="1020.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="228.25" y="1049.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">packages/sdk</text>
-<text x="228.25" y="1065.5" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">library embedding</text>
-<rect x="426.5" y="1020.0" width="376.5" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="614.75" y="1042.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">packages/a2a-server</text>
-<text x="614.75" y="1058.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">agent executor</text>
-<text x="614.75" y="1073.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">HTTP task API</text>
-<rect x="813.0" y="1020.0" width="376.5" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1001.25" y="1049.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">vscode-ide-companion</text>
-<text x="1001.25" y="1065.5" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">IDE companion</text>
-<rect x="1199.5" y="1020.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1387.75" y="1049.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">packages/devtools</text>
-<text x="1387.75" y="1065.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">development tools</text>
-<line x1="808.0" y1="274" x2="808.0" y2="292" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="553" x2="808.0" y2="571" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="847" x2="808.0" y2="865" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="968" x2="808.0" y2="986" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1608,1022 L 1676,1022 L 1676,328 L 1608,328" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1642" y="675.0" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="middle">loop</text>
-<text x="28" y="1134" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">Primary path: prompt → research.tsx → modelRouterService → provider, with tools and research modules supplying observations.</text>
+<rect x="28" y="286" width="1560" height="261" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="42" y="308" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE ORCHESTRATION · packages/core</text>
+<rect x="40.0" y="320.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#2563eb"/>
+<text x="50.0" y="338" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="start">Session</text>
+<rect x="48.0" y="348.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="421.5" y="370.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">researchChat.ts</text>
+<text x="421.5" y="386.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">researchRequest.ts</text>
+<rect x="48.0" y="405.0" width="747.0" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="421.5" y="427.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">research-config-manager.ts</text>
+<text x="421.5" y="443.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">academic settings</text>
+<rect x="48.0" y="462.0" width="747.0" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="421.5" y="484.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">config / memory</text>
+<text x="421.5" y="500.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">context window</text>
+<rect x="813.0" y="320.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
+<text x="823.0" y="338" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">Routing</text>
+<rect x="821.0" y="348.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1006.25" y="370.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">modelRouterService</text>
+<text x="1006.25" y="386.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routing/modelRouterService.ts</text>
+<rect x="1197.5" y="348.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1382.75" y="370.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">defaultStrategy</text>
+<text x="1382.75" y="386.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">routingStrategy.ts</text>
+<rect x="821.0" y="405.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1006.25" y="434.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">classifierStrategy</text>
+<text x="1006.25" y="450.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">gemma · numerical</text>
+<rect x="1197.5" y="405.0" width="370.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1382.75" y="427.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">compositeStrategy</text>
+<text x="1382.75" y="443.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">approval · fallback</text>
+<text x="1382.75" y="458.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">override</text>
+<rect x="28" y="559" width="1560" height="276" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="42" y="581" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS &amp; RESEARCH MODULES</text>
+<rect x="40.0" y="593.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#64748b"/>
+<text x="50.0" y="611" font-size="12" fill="#1e293b" font-weight="700" text-anchor="start">Workspace</text>
+<rect x="48.0" y="621.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="189.6" y="643.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">edit.ts · grep.ts</text>
+<text x="189.6" y="659.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">filesystem changes</text>
+<rect x="48.0" y="678.0" width="283.2" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="189.6" y="700.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">shell / ls</text>
+<text x="189.6" y="716.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">local execution</text>
+<rect x="349.2" y="593.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
+<text x="359.2" y="611" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">MCP</text>
+<rect x="357.2" y="621.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="498.79999999999995" y="643.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client.ts</text>
+<text x="498.79999999999995" y="659.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">server sessions</text>
+<rect x="357.2" y="678.0" width="283.2" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="498.79999999999995" y="700.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">mcp-client-manager.ts</text>
+<text x="498.79999999999995" y="716.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">resource routing</text>
+<rect x="658.4" y="593.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
+<text x="668.4" y="611" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">analysis/</text>
+<rect x="666.4" y="621.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="643.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">bibliography-manager</text>
+<text x="808.0" y="659.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">citations</text>
+<rect x="666.4" y="678.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="700.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">experiment-code-generator</text>
+<text x="808.0" y="716.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">Python · R · Julia</text>
+<rect x="666.4" y="735.0" width="283.2" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="808.0" y="757.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">research-data-analyzer</text>
+<text x="808.0" y="773.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">statistics · ML</text>
+<rect x="967.6" y="593.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
+<text x="977.5999999999999" y="611" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">bibliography/</text>
+<rect x="975.6" y="621.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="643.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">arxiv-mcp-client</text>
+<text x="1117.1999999999998" y="659.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">arXiv search</text>
+<rect x="975.6" y="678.0" width="283.2" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="700.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">google-scholar-client</text>
+<text x="1117.1999999999998" y="716.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">scholar search</text>
+<rect x="975.6" y="735.0" width="283.2" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1117.1999999999998" y="757.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">literature-investigator</text>
+<text x="1117.1999999999998" y="773.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">keyword-generator</text>
+<text x="1117.1999999999998" y="788.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">reference-classifier</text>
+<rect x="1276.8" y="593.0" width="299.2" height="224.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#db2777"/>
+<text x="1286.8" y="611" font-size="12" fill="#831843" font-weight="700" text-anchor="start">submission/</text>
+<rect x="1284.8" y="621.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="643.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">latex-manager</text>
+<text x="1426.3999999999999" y="659.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">project compile</text>
+<rect x="1284.8" y="678.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="700.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">journal-matcher</text>
+<text x="1426.3999999999999" y="716.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">venue selection</text>
+<rect x="1284.8" y="735.0" width="283.2" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1426.3999999999999" y="757.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">arxiv-latex-extractor</text>
+<text x="1426.3999999999999" y="773.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">template extract</text>
+<rect x="28" y="847" width="1560" height="103" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="42" y="869" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS</text>
+<rect x="40.0" y="881.0" width="210.9" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="145.42857142857144" y="910.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini / Vertex</text>
+<rect x="260.9" y="881.0" width="210.9" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="366.28571428571433" y="910.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI</text>
+<rect x="481.7" y="881.0" width="210.9" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="587.1428571428571" y="910.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Anthropic</text>
+<rect x="702.6" y="881.0" width="210.9" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="808.0" y="910.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu ERNIE</text>
+<rect x="923.4" y="881.0" width="210.9" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1028.857142857143" y="910.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">DeepSeek</text>
+<rect x="1144.3" y="881.0" width="210.9" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1249.7142857142856" y="910.5" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Qwen</text>
+<rect x="1365.1" y="881.0" width="210.9" height="51.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1470.5714285714284" y="903.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Groq / Mistral</text>
+<text x="1470.5714285714284" y="919.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cohere · Moonshot</text>
+<rect x="28" y="962" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="42" y="984" font-size="13" fill="#475569" font-weight="700" text-anchor="start">EMBEDDED RUNTIMES</text>
+<rect x="40.0" y="996.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="228.25" y="1025.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">packages/sdk</text>
+<text x="228.25" y="1041.5" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">library embedding</text>
+<rect x="426.5" y="996.0" width="376.5" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="614.75" y="1018.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">packages/a2a-server</text>
+<text x="614.75" y="1034.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">agent executor</text>
+<text x="614.75" y="1049.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">HTTP task API</text>
+<rect x="813.0" y="996.0" width="376.5" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="1001.25" y="1025.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">vscode-ide-companion</text>
+<text x="1001.25" y="1041.5" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">IDE companion</text>
+<rect x="1199.5" y="996.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="1387.75" y="1025.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">packages/devtools</text>
+<text x="1387.75" y="1041.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">development tools</text>
+<text x="28" y="1104" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">The CLI and ACP form the frontend. Core owns session and model routing. Tools, research modules, providers, and embedded runtimes are separate boundaries.</text>
 </svg>

@@ -1,4 +1,4 @@
-"""Architecture diagrams must follow the casemaker zone-flow drawing style."""
+"""Architecture diagrams describe system structure, not data flow."""
 
 from __future__ import annotations
 
@@ -31,8 +31,9 @@ def test_casemaker_visual_language():
     assert "sans-serif" in root.attrib.get("font-family", "")
     bg = root.find("svg:rect", NS)
     assert bg is not None and bg.attrib["fill"] == "#ffffff"
-    assert root.find("svg:defs/svg:marker[@id='arr']", NS) is not None
-    assert root.find("svg:defs/svg:marker[@id='arrP']", NS) is not None
+    assert root.find("svg:line", NS) is None
+    assert root.find("svg:path", NS) is None
+    assert "架构分区" in _texts(root)
     zones = [
         r
         for r in root.findall("svg:rect", NS)
@@ -67,7 +68,7 @@ def test_tracesmith_official_modules():
         "_tracesmith.so",
         "trace.sbt",
         "GPU BACKENDS",
-        "主数据流",
+        "架构分区",
     ):
         assert token in text, token
 
@@ -156,6 +157,15 @@ def test_questions_gen_three_stages():
         "0.4 difficulty", "8 problems/group",
     ):
         assert token in text, token
+
+
+def test_diagrams_do_not_narrate_data_flow():
+    banned = ("主数据流", "主链", "Primary flow", "Primary path", "Fallback / feedback", "回退 / 反馈", "→")
+    for name in DIAGRAMS:
+        for locale in ("zh", "en"):
+            text = _texts(_root(name, locale))
+            for token in banned:
+                assert token not in text, (name, locale, token)
 
 
 def test_each_project_has_localized_introduction():

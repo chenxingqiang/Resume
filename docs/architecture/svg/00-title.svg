@@ -1,18 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 411" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
-<defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
-<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
-</defs>
 <rect x="0" y="0" width="1720" height="411" fill="#ffffff"/>
 <text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">开源项目架构附录</text>
 <text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">陈星强 · github.com/chenxingqiang · 每页包含项目介绍与模块级系统架构</text>
-<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<text x="1304" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
-<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1304" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
-<text x="1490" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
-<text x="1490" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
+<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="1204" y="36" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
+<text x="1204" y="56" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">实线框 = 子系统</text>
+<text x="1456" y="46" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒子 = 模块与职责</text>
 <rect x="28" y="120" width="1560" height="103" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
 <text x="42" y="142" font-size="13" fill="#475569" font-weight="700" text-anchor="start">目录 CONTENTS · 每页一个项目</text>
 <rect x="40.0" y="154.0" width="210.9" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
@@ -37,6 +30,6 @@
 <text x="1470.5714285714284" y="176.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">Questions-Gen</text>
 <text x="1470.5714285714284" y="192.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">三阶段训练</text>
 <text x="860.0" y="253" font-size="18" fill="#111827" font-weight="700" text-anchor="middle">阅读约定</text>
-<text x="860.0" y="287" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">自上而下阅读。虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。</text>
-<text x="860.0" y="311" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">蓝色实线是主数据流，紫色虚线是回退或反馈，不把源码目录本身当成架构层。</text>
+<text x="860.0" y="287" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。</text>
+<text x="860.0" y="311" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">每页说明系统包含哪些部分，以及各部分的职责边界。</text>
 </svg>

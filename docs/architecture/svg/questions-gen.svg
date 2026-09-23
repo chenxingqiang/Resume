@@ -1,22 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1136" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
-<defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
-<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
-</defs>
-<rect x="0" y="0" width="1720" height="1136" fill="#ffffff"/>
-<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Questions-Gen — 系统架构 · 三阶段训练数据流</text>
-<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">Question data → Qwen3-14B SFT → GRPO reward → DeepSeek-R1 distillation → validation → publish</text>
-<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<text x="1304" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">主数据流</text>
-<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1304" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">回退 / 反馈</text>
-<text x="1490" y="38" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
-<text x="1490" y="60" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒内 = 模块 + 职责</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1100" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="1720" height="1100" fill="#ffffff"/>
+<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">Questions-Gen — 三阶段训练系统架构</text>
+<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">训练语料、SFT、GRPO、蒸馏、验证与发布接口</text>
+<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="1204" y="36" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
+<text x="1204" y="56" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">实线框 = 子系统</text>
+<text x="1456" y="46" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒子 = 模块与职责</text>
 <rect x="28" y="84" width="1560" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
 <text x="42" y="106" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">项目介绍</text>
-<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Questions-Gen 是基于 Qwen3-14B 的数学竞赛题生成与评估系统，采用分阶段训练策略。</text>
-<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">训练链路结合监督微调、GRPO 奖励优化、DeepSeek-R1 蒸馏、质量验证以及 Hugging Face 和 Ollama 部署。</text>
+<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Questions-Gen 是基于 Qwen3-14B 的数学竞赛题生成与评估系统。</text>
+<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">架构包含训练语料、SFT、GRPO、蒸馏、验证和发布接口。</text>
 <rect x="28" y="156" width="1560" height="118" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
 <text x="42" y="178" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TRAINING DATA · 训练数据混合</text>
 <rect x="40.0" y="190.0" width="505.3" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
@@ -31,90 +24,83 @@
 <text x="1323.3333333333333" y="212.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Innovative Types</text>
 <text x="1323.3333333333333" y="228.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">20%</text>
 <text x="1323.3333333333333" y="243.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">real_math_data_processor.py</text>
-<rect x="28" y="292" width="1560" height="103" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="42" y="314" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 1 · SFT · 监督微调</text>
-<rect x="40.0" y="326.0" width="505.3" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="292.66666666666663" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Qwen3-14B</text>
-<text x="292.66666666666663" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">基座模型</text>
-<rect x="555.3" y="326.0" width="505.3" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="807.9999999999999" y="348.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">QuestionsGenTrainer.py</text>
-<text x="807.9999999999999" y="364.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">src/ + questions_gen/core/trainer.py</text>
-<rect x="1070.7" y="326.0" width="505.3" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1323.3333333333333" y="348.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">stage1-fp-merged</text>
-<text x="1323.3333333333333" y="364.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">Hugging Face</text>
-<rect x="28" y="413" width="1560" height="261" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="42" y="435" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 2 · GRPO · 奖励优化</text>
-<rect x="40.0" y="447.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
-<text x="50.0" y="465" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">RewardCalculator.py</text>
-<rect x="48.0" y="475.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="233.25" y="497.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Difficulty</text>
-<text x="233.25" y="513.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.4 difficulty</text>
-<rect x="424.5" y="475.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="609.75" y="497.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Novelty</text>
-<text x="609.75" y="513.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.3</text>
-<rect x="48.0" y="532.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="233.25" y="554.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Rigor</text>
-<text x="233.25" y="570.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.2</text>
-<rect x="424.5" y="532.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="609.75" y="554.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Diversity</text>
-<text x="609.75" y="570.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.1</text>
-<rect x="813.0" y="447.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
-<text x="823.0" y="465" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">优化</text>
-<rect x="821.0" y="475.0" width="747.0" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1194.5" y="497.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">GRPO Groups</text>
-<text x="1194.5" y="513.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">8 problems/group</text>
-<rect x="821.0" y="532.0" width="747.0" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1194.5" y="554.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">NoveltyConstraint.py</text>
-<text x="1194.5" y="570.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">重复约束</text>
-<rect x="821.0" y="589.0" width="747.0" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1194.5" y="611.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">stage2-merged-16bit</text>
-<text x="1194.5" y="627.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">variation generation</text>
-<rect x="28" y="692" width="1560" height="118" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="42" y="714" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 3 · Distill · 知识蒸馏</text>
-<rect x="40.0" y="726.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="292.66666666666663" y="755.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">DeepSeekTeacher.py</text>
-<text x="292.66666666666663" y="771.5" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">DeepSeek-R1</text>
-<rect x="555.3" y="726.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="807.9999999999999" y="748.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Teacher Signals</text>
-<text x="807.9999999999999" y="764.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">难度与严谨性</text>
-<text x="807.9999999999999" y="779.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">创新与教学价值</text>
-<rect x="1070.7" y="726.0" width="505.3" height="66.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
-<text x="1323.3333333333333" y="755.5" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">final-merged-16bit</text>
-<text x="1323.3333333333333" y="771.5" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">Hugging Face</text>
-<rect x="28" y="828" width="1560" height="118" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
-<text x="42" y="850" font-size="13" fill="#475569" font-weight="700" text-anchor="start">VALIDATION · questions_gen/validation</text>
-<rect x="40.0" y="862.0" width="505.3" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="292.66666666666663" y="891.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">model_validator.py</text>
-<text x="292.66666666666663" y="907.5" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">单模型</text>
-<rect x="555.3" y="862.0" width="505.3" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="807.9999999999999" y="884.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">batch_validator.py</text>
-<text x="807.9999999999999" y="900.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">algebra · calculus</text>
-<text x="807.9999999999999" y="915.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">geometry · number theory</text>
-<rect x="1070.7" y="862.0" width="505.3" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1323.3333333333333" y="884.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">quality_evaluator.py</text>
-<text x="1323.3333333333333" y="900.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">clarity · difficulty</text>
-<text x="1323.3333333333333" y="915.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">originality</text>
-<rect x="28" y="964" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
-<text x="42" y="986" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DEPLOYMENT · 发布与接口</text>
-<rect x="40.0" y="998.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="228.25" y="1027.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">main_cli.py</text>
-<text x="228.25" y="1043.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">validate · batch · quality</text>
-<rect x="426.5" y="998.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="614.75" y="1027.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">hf_utils.py</text>
-<text x="614.75" y="1043.5" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">three published stages</text>
-<rect x="813.0" y="998.0" width="376.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="1001.25" y="1027.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">ollama_manager.py</text>
-<text x="1001.25" y="1043.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">本地推理</text>
-<rect x="1199.5" y="998.0" width="376.5" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1387.75" y="1020.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">examples/</text>
-<text x="1387.75" y="1036.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">quick_demo.py</text>
-<text x="1387.75" y="1051.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">demo_model_validation.py</text>
-<line x1="808.0" y1="274" x2="808.0" y2="292" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="395" x2="808.0" y2="413" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="674" x2="808.0" y2="692" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="810" x2="808.0" y2="828" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<line x1="808.0" y1="946" x2="808.0" y2="964" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>
-<path d="M 1608,1000 L 1676,1000 L 1676,328 L 1608,328" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>
-<text x="1642" y="664.0" font-size="11" fill="#7c3aed" font-weight="400" text-anchor="middle">质量</text>
-<text x="28" y="1112" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">主链：混合题库 → SFT → GRPO reward 与 novelty → DeepSeek-R1 蒸馏 → 验证 → Hugging Face / Ollama。</text>
+<rect x="28" y="286" width="1560" height="103" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="42" y="308" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 1 · SFT · 监督微调</text>
+<rect x="40.0" y="320.0" width="505.3" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="292.66666666666663" y="342.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Qwen3-14B</text>
+<text x="292.66666666666663" y="358.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">基座模型</text>
+<rect x="555.3" y="320.0" width="505.3" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="807.9999999999999" y="342.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">QuestionsGenTrainer.py</text>
+<text x="807.9999999999999" y="358.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">src/ + questions_gen/core/trainer.py</text>
+<rect x="1070.7" y="320.0" width="505.3" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1323.3333333333333" y="342.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">stage1-fp-merged</text>
+<text x="1323.3333333333333" y="358.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">Hugging Face</text>
+<rect x="28" y="401" width="1560" height="261" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="42" y="423" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 2 · GRPO · 奖励优化</text>
+<rect x="40.0" y="435.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#16a34a"/>
+<text x="50.0" y="453" font-size="12" fill="#14532d" font-weight="700" text-anchor="start">RewardCalculator.py</text>
+<rect x="48.0" y="463.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="233.25" y="485.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Difficulty</text>
+<text x="233.25" y="501.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.4 difficulty</text>
+<rect x="424.5" y="463.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="609.75" y="485.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Novelty</text>
+<text x="609.75" y="501.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.3</text>
+<rect x="48.0" y="520.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="233.25" y="542.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Rigor</text>
+<text x="233.25" y="558.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.2</text>
+<rect x="424.5" y="520.0" width="370.5" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="609.75" y="542.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Diversity</text>
+<text x="609.75" y="558.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">0.1</text>
+<rect x="813.0" y="435.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
+<text x="823.0" y="453" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">优化</text>
+<rect x="821.0" y="463.0" width="747.0" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1194.5" y="485.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">GRPO Groups</text>
+<text x="1194.5" y="501.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">8 problems/group</text>
+<rect x="821.0" y="520.0" width="747.0" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1194.5" y="542.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">NoveltyConstraint.py</text>
+<text x="1194.5" y="558.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">重复约束</text>
+<rect x="821.0" y="577.0" width="747.0" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1194.5" y="599.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">stage2-merged-16bit</text>
+<text x="1194.5" y="615.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">variation generation</text>
+<rect x="28" y="674" width="1560" height="118" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="42" y="696" font-size="13" fill="#475569" font-weight="700" text-anchor="start">Stage 3 · Distill · 知识蒸馏</text>
+<rect x="40.0" y="708.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="292.66666666666663" y="737.5" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">DeepSeekTeacher.py</text>
+<text x="292.66666666666663" y="753.5" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">DeepSeek-R1</text>
+<rect x="555.3" y="708.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="807.9999999999999" y="730.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Teacher Signals</text>
+<text x="807.9999999999999" y="746.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">难度与严谨性</text>
+<text x="807.9999999999999" y="761.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">创新与教学价值</text>
+<rect x="1070.7" y="708.0" width="505.3" height="66.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="1323.3333333333333" y="737.5" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">final-merged-16bit</text>
+<text x="1323.3333333333333" y="753.5" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">Hugging Face</text>
+<rect x="28" y="804" width="1560" height="118" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="42" y="826" font-size="13" fill="#475569" font-weight="700" text-anchor="start">VALIDATION · questions_gen/validation</text>
+<rect x="40.0" y="838.0" width="505.3" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="292.66666666666663" y="867.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">model_validator.py</text>
+<text x="292.66666666666663" y="883.5" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">单模型</text>
+<rect x="555.3" y="838.0" width="505.3" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="807.9999999999999" y="860.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">batch_validator.py</text>
+<text x="807.9999999999999" y="876.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">algebra · calculus</text>
+<text x="807.9999999999999" y="891.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">geometry · number theory</text>
+<rect x="1070.7" y="838.0" width="505.3" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1323.3333333333333" y="860.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">quality_evaluator.py</text>
+<text x="1323.3333333333333" y="876.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">clarity · difficulty</text>
+<text x="1323.3333333333333" y="891.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">originality</text>
+<rect x="28" y="934" width="1560" height="118" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="42" y="956" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DEPLOYMENT · 发布与接口</text>
+<rect x="40.0" y="968.0" width="376.5" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="228.25" y="997.5" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">main_cli.py</text>
+<text x="228.25" y="1013.5" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">validate · batch · quality</text>
+<rect x="426.5" y="968.0" width="376.5" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="614.75" y="997.5" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">hf_utils.py</text>
+<text x="614.75" y="1013.5" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">three published stages</text>
+<rect x="813.0" y="968.0" width="376.5" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="1001.25" y="997.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">ollama_manager.py</text>
+<text x="1001.25" y="1013.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">本地推理</text>
+<rect x="1199.5" y="968.0" width="376.5" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="1387.75" y="990.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">examples/</text>
+<text x="1387.75" y="1006.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">quick_demo.py</text>
+<text x="1387.75" y="1021.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">demo_model_validation.py</text>
+<text x="28" y="1076" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">SFT、GRPO 和蒸馏是三个模型阶段。RewardCalculator 与 NoveltyConstraint 属于 GRPO。验证和发布是独立接口。</text>
 </svg>

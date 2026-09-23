@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate clean, zone-based project architecture SVGs.
 
-The visual grammar follows the toolchain-palladium-casemaker reference:
-white canvas, dashed subsystem zones, compact responsibility boxes, one
-blue end-to-end flow, and an optional dashed purple feedback path.
+The visual grammar uses a white canvas, dashed architecture zones, subsystem
+frames, and module boxes. Diagrams describe structure and responsibilities,
+not data flow.
 """
 
 from __future__ import annotations
@@ -58,71 +58,71 @@ PROJECT_INTRODUCTIONS = {
     "tracesmith": {
         "en": (
             "TraceSmith is a cross-platform GPU profiling and deterministic replay system for AI compiler, framework, and driver engineers.",
-            "Its C++17 core captures low-overhead execution events, stores compact SBT traces, and exports timelines for analysis and debugging.",
+            "Its architecture separates applications, the pybind11 binding, a C++17 core, GPU backends, and output formats.",
         ),
         "zh": (
             "TraceSmith 是面向 AI 编译器、深度学习框架与 GPU 驱动工程师的跨平台性能分析和确定性回放系统。",
-            "C++17 核心以低开销采集执行事件，写入紧凑 SBT 轨迹，并导出时间线用于分析、调试与问题复现。",
+            "架构分为应用入口、pybind11 绑定、C++17 核心库、GPU 后端和输出格式。",
         ),
     },
     "yirage": {
         "en": (
             "YiRage is a multi-backend LLM kernel compiler and runtime centered on graph superoptimization and RuntimeFusion.",
-            "It searches backend-specific fusion plans offline, then injects verified FusionCapsules into vLLM or SGLang decode steps.",
+            "The architecture separates the inference engine, RuntimeFusion, search plans, the backend manager, backend implementations, and hardware targets.",
         ),
         "zh": (
             "YiRage 是面向大模型推理的多后端算子编译与运行时系统，核心能力是计算图超优化和 RuntimeFusion。",
-            "系统离线搜索并验证后端特定融合计划，再将 FusionCapsule 注入 vLLM 或 SGLang 的逐步解码流程。",
+            "架构分为推理引擎、RuntimeFusion、搜索计划、后端管理器、后端实现和硬件目标。",
         ),
     },
     "jax-sklearn": {
         "en": (
             "JAX-sklearn provides a drop-in scikit-learn API while transparently accelerating supported estimators with JAX.",
-            "Runtime proxies select JAX or native sklearn by algorithm, data size, and platform, preserving familiar inputs and outputs.",
+            "The architecture has a user API, a compatibility layer, JAX implementations, a data policy, and hardware backends.",
         ),
         "zh": (
             "JAX-sklearn 在保持 scikit-learn 调用接口不变的前提下，透明地以 JAX 加速受支持的估计器。",
-            "运行时代理依据算法、数据规模与硬件平台选择 JAX 或原生 sklearn，并保持输入输出兼容。",
+            "架构分为用户 API、兼容层、JAX 实现、数据策略和硬件后端。",
         ),
     },
     "secret-learn": {
         "en": (
             "Secret-Learn exposes sklearn-compatible machine learning across federated, secret-sharing, and split-learning modes.",
-            "It combines JAX acceleration with SecretFlow devices so each workflow can choose where plaintext, shares, and activations reside.",
+            "The architecture comprises the sklearn API, three privacy modes, JAX acceleration, SecretFlow devices, and infrastructure.",
         ),
         "zh": (
             "Secret-Learn 以 sklearn 兼容接口提供联邦学习、秘密分享和拆分学习三种隐私机器学习模式。",
-            "系统结合 JAX 加速与 SecretFlow 安全设备，使工作流能够明确控制明文、秘密份额和中间激活的驻留位置。",
+            "架构包括 sklearn API、三种隐私模式、JAX 加速、SecretFlow 安全设备和基础设施。",
         ),
     },
     "youtube-recsys": {
         "en": (
             "YouTube-DNN-RecSys is a TensorFlow and Spark implementation of the candidate-generation stage of YouTube recommendations.",
-            "It turns behavior histories into TFRecords, learns user and item embeddings, and produces Top-K recall candidates for serving.",
+            "The architecture comprises data processing, storage, the dnn.py model, prediction services, and support utilities.",
         ),
         "zh": (
             "YouTube-DNN-RecSys 使用 TensorFlow 与 Spark 实现 YouTube 推荐系统中的候选召回阶段。",
-            "系统将用户行为历史转换为 TFRecords，训练用户与物品向量，并为在线服务生成 Top-K 召回候选。",
+            "架构分为数据处理、存储、dnn.py 模型、预测服务和辅助工具。",
         ),
     },
     "research-cli": {
         "en": (
-            "Research CLI is a terminal-first AI agent workflow that connects interactive sessions to models, tools, and MCP services.",
-            "Its core router manages context and provider selection while research modules cover writing, bibliography, analysis, and submission.",
+            "Research CLI is a terminal-first AI agent for code, tools, MCP services, and academic research workflows.",
+            "The architecture separates the CLI, core session and routing, tools and research modules, model providers, and embedded runtimes.",
         ),
         "zh": (
-            "Research CLI 是终端优先的 AI Agent 工作流，将交互会话连接到模型、工作区工具和 MCP 服务。",
-            "核心路由负责上下文与模型供应商选择，研究模块覆盖论文写作、文献管理、数据分析和投稿准备。",
+            "Research CLI 是面向代码、工具、MCP 服务和学术研究工作的终端 Agent。",
+            "架构分为 CLI、核心会话与路由、工具和研究模块、模型供应商、嵌入运行时。",
         ),
     },
     "questions-gen": {
         "en": (
-            "Questions-Gen is a Qwen3-14B system for generating and evaluating mathematical competition problems through staged training.",
-            "The pipeline combines supervised fine-tuning, GRPO reward optimization, DeepSeek-R1 distillation, validation, and local deployment.",
+            "Questions-Gen is a Qwen3-14B system for generating and evaluating mathematical competition problems.",
+            "The architecture contains the training corpus, SFT, GRPO, distillation, validation, and deployment interfaces.",
         ),
         "zh": (
-            "Questions-Gen 是基于 Qwen3-14B 的数学竞赛题生成与评估系统，采用分阶段训练策略。",
-            "训练链路结合监督微调、GRPO 奖励优化、DeepSeek-R1 蒸馏、质量验证以及 Hugging Face 和 Ollama 部署。",
+            "Questions-Gen 是基于 Qwen3-14B 的数学竞赛题生成与评估系统。",
+            "架构包含训练语料、SFT、GRPO、蒸馏、验证和发布接口。",
         ),
     },
 }
@@ -151,28 +151,21 @@ def P(title: str, boxes: tuple[Box, ...], palette: str = "slate", columns: int =
 
 def _header(title: str, subtitle: str, locale: str, page_h: int) -> list[str]:
     legend = {
-        "en": ("Primary flow", "Fallback / feedback", "Dashed = architecture zone", "Box = module + responsibility"),
-        "zh": ("主数据流", "回退 / 反馈", "虚线框 = 架构分区", "盒内 = 模块 + 职责"),
+        "en": ("Dashed frame = architecture zone", "Solid frame = subsystem", "Box = module and responsibility"),
+        "zh": ("虚线框 = 架构分区", "实线框 = 子系统", "盒子 = 模块与职责"),
     }[locale]
     return [
         (
             f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {PAGE_W} {page_h}" '
             'font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">'
         ),
-        "<defs>",
-        '<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>',
-        '<marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>',
-        "</defs>",
         f'<rect x="0" y="0" width="{PAGE_W}" height="{page_h}" fill="#ffffff"/>',
         _text(28, 42, title, 22, "#111827", 700),
         _text(28, 66, subtitle, 13, "#475569"),
-        '<rect x="1248" y="16" width="444" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>',
-        '<line x1="1264" y1="34" x2="1296" y2="34" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>',
-        _text(1304, 38, legend[0], 11.5),
-        '<line x1="1264" y1="56" x2="1296" y2="56" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>',
-        _text(1304, 60, legend[1], 11.5),
-        _text(1490, 38, legend[2], 11.5),
-        _text(1490, 60, legend[3], 11.5),
+        '<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>',
+        _text(1204, 36, legend[0], 11.5),
+        _text(1204, 56, legend[1], 11.5),
+        _text(1456, 46, legend[2], 11.5),
     ]
 
 
@@ -265,14 +258,14 @@ def _draw_zone(lines: list[str], zone: Zone, y: int) -> int:
 
 
 def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
-                  footer: str, feedback: str = "", locale: str = "zh",
+                  footer: str, locale: str = "zh",
                   introduction: tuple[str, str] = ("", "")) -> str:
     y = 156
     placed: list[tuple[Zone, int, int]] = []
     for zone in zones:
         height = _zone_height(zone)
         placed.append((zone, y, height))
-        y += height + 18
+        y += height + 12
     footer_y = y + 12
     page_h = footer_y + 24
     lines = _header(title, subtitle, locale, page_h)
@@ -283,24 +276,8 @@ def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
         _text(210, 106, introduction[0], 11.5, "#334155"),
         _text(210, 128, introduction[1], 11.5, "#334155"),
     ])
-    boundaries = []
-    for zone, zone_y, height in placed:
+    for zone, zone_y, _height in placed:
         _draw_zone(lines, zone, zone_y)
-        boundaries.append((zone_y, zone_y + height))
-    center = ZONE_X + ZONE_W / 2
-    for (_, end), (next_y, _) in zip(boundaries, boundaries[1:]):
-        lines.append(
-            f'<line x1="{center}" y1="{end}" x2="{center}" y2="{next_y}" '
-            'stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr)"/>'
-        )
-    if feedback and len(boundaries) > 2:
-        start_y = boundaries[-1][0] + 36
-        end_y = boundaries[1][0] + 36
-        lines.append(
-            f'<path d="M 1608,{start_y} L 1676,{start_y} L 1676,{end_y} L 1608,{end_y}" '
-            'fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-dasharray="5,3" marker-end="url(#arrP)"/>'
-        )
-        lines.append(_text(1642, (start_y + end_y) / 2, feedback, 11, "#7c3aed", 400, "middle"))
     lines.append(_text(28, footer_y, footer, 11.5, "#475569"))
     lines.append("</svg>")
     return "\n".join(lines)
@@ -308,8 +285,9 @@ def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
 
 def tracesmith(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "TraceSmith — GPU Profiling & Replay Architecture", "TraceSmith — 系统架构 · GPU Trace 端到端数据流"),
-        "Application → _tracesmith.so → Capture / State / Format → Replay → GPU backends → trace outputs",
+        L(locale, "TraceSmith — GPU Profiling & Replay Architecture", "TraceSmith — GPU Profiling 与 Replay 系统架构"),
+        L(locale, "Applications, pybind11 binding, C++17 core, GPU backends, and output formats",
+          "应用入口、pybind11 绑定、C++17 核心库、GPU 后端与输出格式"),
         (
             Zone(L(locale, "APPLICATION · user entry", "APPLICATION · 用户入口"), "orange", (
                 (B("C++ Application", L(locale, "in-process capture", "嵌入业务进程"), palette="orange"),
@@ -399,16 +377,17 @@ def tracesmith(locale: str = "zh") -> str:
                  B("Comm Matrix", L(locale, "heatmap JSON", "热力图 JSON"), palette="yellow")),
             )),
         ),
-        L(locale, "Primary path: GPU event → RingBuffer → SBT/state → replay or Perfetto. Cluster, config, and GDB are adjacent capabilities.",
-          "主链：GPU event → RingBuffer → SBT/state → replay 或 Perfetto。Cluster、配置与 GDB 是并列能力。"),
-        L(locale, "replay", "回放"), locale, PROJECT_INTRODUCTIONS["tracesmith"][locale],
+        L(locale, "The C++17 core contains capture, state, format, replay, cluster, configuration, and GDB. Applications, bindings, backends, and outputs are its boundaries.",
+          "C++17 核心包含采集、状态、格式、回放、集群、配置和 GDB。应用、绑定、后端和输出格式是它的边界。"),
+        locale, PROJECT_INTRODUCTIONS["tracesmith"][locale],
     )
 
 
 def yirage(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "YiRage (YPK) — RuntimeFusion Architecture", "YiRage (YPK) — 系统架构 · RuntimeFusion 数据流"),
-        "Engine owns schedule + KV; RF owns fusion identity; BackendRegistry searches and executes the same backend",
+        L(locale, "YiRage (YPK) — RuntimeFusion Architecture", "YiRage (YPK) — RuntimeFusion 系统架构"),
+        L(locale, "Inference engine, RuntimeFusion, search plan, backend manager, implementations, and hardware",
+          "推理引擎、RuntimeFusion、搜索计划、后端管理器、后端实现与硬件目标"),
         (
             Zone(L(locale, "INFERENCE ENGINE · scheduling owner", "INFERENCE ENGINE · 调度与 KV 所有者"), "orange", (
                 (B("vLLM", "continuous batch", "PagedAttention", palette="orange"),
@@ -418,8 +397,8 @@ def yirage(locale: str = "zh") -> str:
             Zone("RuntimeFusion · RF.step(inputs, meta)", "green", (
                 (B("RF.step", "select 0..N capsules", "per decode step", palette="blue"),
                  B("FusionCapsule", "MLP gate_up + down", "yirage.core", palette="green"),
-                 B("FusionCapsule", "segment pipeline", "gate_up → down", palette="green"),
-                 B("Native Fallback", "skip → engine native ops", palette="yellow")),
+                 B("FusionCapsule", "segment pipeline", "gate_up + down", palette="green"),
+                 B("Native Fallback", "engine native operators", palette="yellow")),
             )),
             Zone(L(locale, "SEARCH & PLAN · offline / warm-up", "SEARCH & PLAN · 离线搜索与预热"), "yellow", (
                 (B("superoptimize", "KN / TB graph search", palette="yellow"),
@@ -429,7 +408,7 @@ def yirage(locale: str = "zh") -> str:
                  B("Serving Tiers", "seed_verify · full_tb", "full_tb_ray", palette="purple")),
             )),
             Zone(L(locale, "PYTHON API & BACKEND MANAGER", "PYTHON API 与 BACKEND MANAGER"), "blue", (
-                (B("KNGraph / TBGraph", "transpiler → kernels", palette="blue"),
+                (B("KNGraph / TBGraph", "kernel transpiler", palette="blue"),
                  B("BackendRegistry", "search + execute", "same backend", palette="blue"),
                  B("yirage.core", "Cython runtime", palette="slate"),
                  B("yirage.serving", "RF · Capsule · cert", palette="green"),
@@ -455,16 +434,17 @@ def yirage(locale: str = "zh") -> str:
                  B("AWS Neuron", "Intel XPU", palette="yellow")),
             )),
         ),
-        L(locale, "Primary path: decode metadata → RF.step → FusionCapsule → BackendRegistry → selected backend and hardware.",
-          "主链：decode metadata → RF.step → FusionCapsule → BackendRegistry → 同一后端与硬件。"),
-        L(locale, "fallback", "回退"), locale, PROJECT_INTRODUCTIONS["yirage"][locale],
+        L(locale, "The engine owns scheduling and KV. RuntimeFusion owns FusionCapsules. BackendRegistry binds search and execution to the same backend.",
+          "推理引擎拥有调度与 KV。RuntimeFusion 拥有 FusionCapsule。BackendRegistry 将搜索和执行绑定到同一后端。"),
+        locale, PROJECT_INTRODUCTIONS["yirage"][locale],
     )
 
 
 def jax_sklearn(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "JAX-sklearn (xlearn) — Transparent Acceleration Architecture", "JAX-sklearn (xlearn) — 五层架构 · 透明加速数据流"),
-        "xlearn/__init__.py injects proxies; xlearn/_jax dispatches to JAX or the original sklearn estimator",
+        L(locale, "JAX-sklearn (xlearn) — Transparent Acceleration Architecture", "JAX-sklearn (xlearn) — 透明加速系统架构"),
+        L(locale, "User API, compatibility layer, JAX implementations, data policy, and hardware backends",
+          "用户 API、兼容层、JAX 实现、数据策略与硬件后端"),
         (
             Zone(L(locale, "USER CODE · sklearn-compatible API", "USER CODE · sklearn 兼容接口"), "orange", (
                 (B("import xlearn as sklearn", "100% call surface", palette="orange"),
@@ -501,16 +481,17 @@ def jax_sklearn(locale: str = "zh") -> str:
                  B("Apple Metal", "jax-metal", "float32 · experimental", palette="purple")),
             )),
         ),
-        L(locale, "Primary path: sklearn call → injected proxy → JAX estimator. Small data, missing ops, or errors return through original_class.",
-          "主链：sklearn 调用 → 注入代理 → JAX 估计器。小数据、缺算子或执行失败时回到 original_class。"),
-        L(locale, "fallback", "回退"), locale, PROJECT_INTRODUCTIONS["jax-sklearn"][locale],
+        L(locale, "The compatibility layer places EstimatorProxy between the sklearn API and either a JAX implementation or the original estimator.",
+          "兼容层把 EstimatorProxy 放在 sklearn API 与 JAX 实现或原生估计器之间。"),
+        locale, PROJECT_INTRODUCTIONS["jax-sklearn"][locale],
     )
 
 
 def secret_learn(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "Secret-Learn — Privacy-Preserving ML Architecture", "Secret-Learn — 六层架构 · 隐私计算数据流"),
-        "secretlearn API → FL / SS / SL placement → JAX acceleration → SecretFlow devices",
+        L(locale, "Secret-Learn — Privacy-Preserving ML Architecture", "Secret-Learn — 隐私机器学习系统架构"),
+        L(locale, "Applications, sklearn API, FL / SS / SL modes, JAX acceleration, secure devices, and infrastructure",
+          "应用场景、sklearn API、FL / SS / SL 模式、JAX 加速、安全设备与基础设施"),
         (
             Zone(L(locale, "APPLICATION · multi-party use cases", "APPLICATION · 多方使用场景"), "orange", (
                 (B("Healthcare", L(locale, "hospital collaboration", "跨院协作"), L(locale, "patient privacy", "患者隐私"), palette="orange"),
@@ -582,16 +563,17 @@ def secret_learn(locale: str = "zh") -> str:
                  B("sklearn", "NumPy · SciPy", palette="blue")),
             )),
         ),
-        L(locale, "Primary path: one sklearn call selects FL, SS, or SL, then runs on PYU, HEU, SPU, or TEE.",
-          "主链：同一次 sklearn 调用选择 FL、SS 或 SL，再落到 PYU、HEU、SPU 或 TEE。"),
-        "", locale, PROJECT_INTRODUCTIONS["secret-learn"][locale],
+        L(locale, "FL, SS, and SL are three placements of the same sklearn API. JAX and SecretFlow devices PYU, HEU, SPU, and TEE form the compute boundary.",
+          "FL、SS、SL 是同一 sklearn API 的三种部署形态。JAX 与 SecretFlow 的 PYU、HEU、SPU、TEE 构成计算边界。"),
+        locale, PROJECT_INTRODUCTIONS["secret-learn"][locale],
     )
 
 
 def youtube_recsys(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "YouTube-DNN-RecSys — Candidate Generation Architecture", "YouTube-DNN-RecSys — 系统架构 · 召回数据流"),
-        "Python / Spark samples → TFRecords → dnn.py user tower → Spark or Python prediction",
+        L(locale, "YouTube-DNN-RecSys — Candidate Generation Architecture", "YouTube-DNN-RecSys — 候选召回系统架构"),
+        L(locale, "Data processing, storage, dnn.py model, prediction services, and support utilities",
+          "数据处理、存储、dnn.py 模型、预测服务与辅助工具"),
         (
             Zone(L(locale, "DATA PROCESSING · offline sample build", "DATA PROCESSING · 数据处理层"), "orange", panels=(
                 P(L(locale, "Python Pipeline", "Python 数据处理"), (
@@ -617,7 +599,7 @@ def youtube_recsys(locale: str = "zh") -> str:
                  B("Softmax Output", "500 classes", "cross entropy · Top-K", palette="orange")),
             )),
             Zone(L(locale, "PREDICTION · serving paths", "PREDICTION · 预测服务层"), "purple", (
-                (B("PredictUserVector.scala", "SavedModel", "embedding_average → user_vector", palette="purple"),
+                (B("PredictUserVector.scala", "SavedModel", "user vector head", palette="purple"),
                  B("ItemEmbeddingPredictor.scala", "item embedding table", "FeatureBuilder", palette="purple"),
                  B("load_dnn_model.py", "SavedModel load", L(locale, "online / batch inference", "在线与批量推理"), palette="blue")),
             )),
@@ -629,16 +611,17 @@ def youtube_recsys(locale: str = "zh") -> str:
                  B("Configuration", "vars.prod.properties", "vars.sit.properties", palette="slate")),
             )),
         ),
-        L(locale, "Primary path: behavior history → TFRecords → embedding average pool → user vector → item table → Top-K.",
-          "主链：行为历史 → TFRecords → embedding average pool → user vector → item table → Top-K。"),
-        L(locale, "eval", "评估"), locale, PROJECT_INTRODUCTIONS["youtube-recsys"][locale],
+        L(locale, "The model contains input, item embedding, average pooling, the user tower, and softmax. Python and Spark each provide data and prediction components.",
+          "模型包含输入、物品 embedding、平均池化、用户塔和 softmax。Python 与 Spark 各自提供数据和预测组件。"),
+        locale, PROJECT_INTRODUCTIONS["youtube-recsys"][locale],
     )
 
 
 def research_cli(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "Research CLI — Agent Request Architecture", "Research CLI — 系统架构 · Agent 请求数据流"),
-        "packages/cli → packages/core routing → tools / MCP / research modules → model providers",
+        L(locale, "Research CLI — Agent System Architecture", "Research CLI — Agent 系统架构"),
+        L(locale, "CLI, core session and routing, tools and research modules, model providers, and embedded runtimes",
+          "CLI、核心会话与路由、工具和研究模块、模型供应商、嵌入运行时"),
         (
             Zone("CLI FRONTEND · packages/cli", "orange", (
                 (B("research.tsx", L(locale, "interactive TUI", "交互终端"), palette="orange"),
@@ -700,16 +683,17 @@ def research_cli(locale: str = "zh") -> str:
                  B("packages/devtools", L(locale, "development tools", "开发工具"), palette="slate")),
             )),
         ),
-        L(locale, "Primary path: prompt → research.tsx → modelRouterService → provider, with tools and research modules supplying observations.",
-          "主链：prompt → research.tsx → modelRouterService → provider；工具和研究模块返回观察结果。"),
-        L(locale, "loop", "回路"), locale, PROJECT_INTRODUCTIONS["research-cli"][locale],
+        L(locale, "The CLI and ACP form the frontend. Core owns session and model routing. Tools, research modules, providers, and embedded runtimes are separate boundaries.",
+          "CLI 与 ACP 构成前端。核心负责会话和模型路由。工具、研究模块、供应商和嵌入运行时是各自独立的边界。"),
+        locale, PROJECT_INTRODUCTIONS["research-cli"][locale],
     )
 
 
 def questions_gen(locale: str = "zh") -> str:
     return build_diagram(
-        L(locale, "Questions-Gen — Three-Stage Training Architecture", "Questions-Gen — 系统架构 · 三阶段训练数据流"),
-        "Question data → Qwen3-14B SFT → GRPO reward → DeepSeek-R1 distillation → validation → publish",
+        L(locale, "Questions-Gen — Three-Stage Training Architecture", "Questions-Gen — 三阶段训练系统架构"),
+        L(locale, "Training corpus, SFT, GRPO, distillation, validation, and deployment interfaces",
+          "训练语料、SFT、GRPO、蒸馏、验证与发布接口"),
         (
             Zone(L(locale, "TRAINING DATA · documented mixture", "TRAINING DATA · 训练数据混合"), "orange", (
                 (B("Historical", "50%", "QuestionDataPreparer.py", palette="orange"),
@@ -751,9 +735,9 @@ def questions_gen(locale: str = "zh") -> str:
                  B("examples/", "quick_demo.py", "demo_model_validation.py", palette="yellow")),
             )),
         ),
-        L(locale, "Primary path: mixed problem set → SFT → GRPO reward and novelty → DeepSeek-R1 distillation → validate → Hugging Face / Ollama.",
-          "主链：混合题库 → SFT → GRPO reward 与 novelty → DeepSeek-R1 蒸馏 → 验证 → Hugging Face / Ollama。"),
-        L(locale, "quality", "质量"), locale, PROJECT_INTRODUCTIONS["questions-gen"][locale],
+        L(locale, "SFT, GRPO, and distillation are three model stages. RewardCalculator and NoveltyConstraint belong to GRPO. Validation and deployment are separate interfaces.",
+          "SFT、GRPO 和蒸馏是三个模型阶段。RewardCalculator 与 NoveltyConstraint 属于 GRPO。验证和发布是独立接口。"),
+        locale, PROJECT_INTRODUCTIONS["questions-gen"][locale],
     )
 
 
@@ -780,13 +764,13 @@ def title_page(locale: str = "zh") -> str:
     reading = {
         "en": (
             "READING GUIDE",
-            "Read top to bottom. Dashed frames are architecture zones; inner frames are subsystems; boxes are concrete modules.",
-            "Solid blue arrows are the primary path. Dashed purple arrows are fallback or feedback, not extra architecture layers.",
+            "Dashed frames are architecture zones, solid inner frames are subsystems, and boxes are concrete modules.",
+            "Each page states which parts the system contains and where their responsibility boundaries lie.",
         ),
         "zh": (
             "阅读约定",
-            "自上而下阅读。虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。",
-            "蓝色实线是主数据流，紫色虚线是回退或反馈，不把源码目录本身当成架构层。",
+            "虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。",
+            "每页说明系统包含哪些部分，以及各部分的职责边界。",
         ),
     }[locale]
     base = 150 + zone_h
