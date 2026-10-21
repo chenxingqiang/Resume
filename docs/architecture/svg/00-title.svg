@@ -1,35 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 411" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
-<rect x="0" y="0" width="1720" height="411" fill="#ffffff"/>
-<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">开源项目架构附录</text>
-<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">陈星强 · github.com/chenxingqiang · 每页包含项目介绍与模块级系统架构</text>
-<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="1204" y="36" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框 = 架构分区</text>
-<text x="1204" y="56" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">实线框 = 子系统</text>
-<text x="1456" y="46" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">盒子 = 模块与职责</text>
-<rect x="28" y="120" width="1560" height="103" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
-<text x="42" y="142" font-size="13" fill="#475569" font-weight="700" text-anchor="start">目录 CONTENTS · 每页一个项目</text>
-<rect x="40.0" y="154.0" width="210.9" height="51.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="145.42857142857144" y="176.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">TraceSmith</text>
-<text x="145.42857142857144" y="192.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">GPU 采集与回放</text>
-<rect x="260.9" y="154.0" width="210.9" height="51.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="366.28571428571433" y="176.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">YiRage</text>
-<text x="366.28571428571433" y="192.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">RuntimeFusion</text>
-<rect x="481.7" y="154.0" width="210.9" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="587.1428571428571" y="176.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">JAX-sklearn</text>
-<text x="587.1428571428571" y="192.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">透明 JAX 加速</text>
-<rect x="702.6" y="154.0" width="210.9" height="51.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="808.0" y="176.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Secret-Learn</text>
-<text x="808.0" y="192.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">联邦 · 秘密分享 · 拆分</text>
-<rect x="923.4" y="154.0" width="210.9" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1028.857142857143" y="176.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">YouTube-DNN</text>
-<text x="1028.857142857143" y="192.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">候选召回</text>
-<rect x="1144.3" y="154.0" width="210.9" height="51.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1249.7142857142856" y="176.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">Research CLI</text>
-<text x="1249.7142857142856" y="192.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">Agent 工作流</text>
-<rect x="1365.1" y="154.0" width="210.9" height="51.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
-<text x="1470.5714285714284" y="176.0" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">Questions-Gen</text>
-<text x="1470.5714285714284" y="192.0" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">三阶段训练</text>
-<text x="860.0" y="253" font-size="18" fill="#111827" font-weight="700" text-anchor="middle">阅读约定</text>
-<text x="860.0" y="287" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。</text>
-<text x="860.0" y="311" font-size="13" fill="#475569" font-weight="400" text-anchor="middle">每页说明系统包含哪些部分，以及各部分的职责边界。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">开源项目架构附录</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">陈星强 · github.com/chenxingqiang · 与简历正文相同的 US Letter 页面</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">虚线框 = 架构分区 · 实线框 = 子系统 · 盒子 = 模块与职责</text>
+<rect x="24" y="96" width="768" height="54" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="38" y="114" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">阅读约定</text>
+<text x="38" y="130" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">虚线框是架构分区，内层实线框是子系统，小盒子是具体模块。</text>
+<text x="38" y="145" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">每页说明系统包含哪些部分，以及各部分的职责边界。</text>
+<rect x="24" y="162" width="768" height="150" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="38" y="184" font-size="13" fill="#475569" font-weight="700" text-anchor="start">目录 CONTENTS</text>
+<rect x="36.0" y="196.0" width="140.8" height="47.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="106.4" y="216" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">TraceSmith</text>
+<text x="106.4" y="231" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">GPU 采集与回放</text>
+<rect x="186.8" y="196.0" width="140.8" height="47.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="257.20000000000005" y="216" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">YiRage</text>
+<text x="257.20000000000005" y="231" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">RuntimeFusion</text>
+<rect x="337.6" y="196.0" width="140.8" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="408.0" y="216" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">JAX-sklearn</text>
+<text x="408.0" y="231" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">透明 JAX 加速</text>
+<rect x="488.4" y="196.0" width="140.8" height="47.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="558.8000000000001" y="216" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Secret-Learn</text>
+<text x="558.8000000000001" y="231" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">联邦 · 秘密分享 · 拆分</text>
+<rect x="639.2" y="196.0" width="140.8" height="47.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="709.6" y="216" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">YouTube-DNN</text>
+<text x="709.6" y="231" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">候选召回</text>
+<rect x="36.0" y="251.0" width="140.8" height="47.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="106.4" y="271" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">Research CLI</text>
+<text x="106.4" y="286" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">Agent 工作流</text>
+<rect x="186.8" y="251.0" width="140.8" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="257.20000000000005" y="271" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">Questions-Gen</text>
+<text x="257.20000000000005" y="286" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">三阶段训练</text>
 </svg>

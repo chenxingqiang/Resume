@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">YouTube-DNN-RecSys — 候选召回系统架构</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">数据处理、存储、dnn.py 模型、预测服务与辅助工具</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">虚线框 = 架构分区 · 实线框 = 子系统 · 盒子 = 模块与职责</text>
+<text x="792" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="end">2/2</text>
+<rect x="24" y="96" width="768" height="109" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="38" y="118" font-size="13" fill="#475569" font-weight="700" text-anchor="start">UTILITIES · 工具与辅助层 · 续</text>
+<rect x="36.0" y="130.0" width="367.0" height="61.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="219.5" y="150" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Configuration</text>
+<text x="219.5" y="165" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">vars.prod.properties</text>
+<text x="219.5" y="179" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">vars.sit.properties</text>
+<text x="24" y="1048" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">模型包含输入、物品 embedding、平均池化、用户塔和 softmax。Python 与 Spark 各自提供数据和预测组件。</text>
+</svg>

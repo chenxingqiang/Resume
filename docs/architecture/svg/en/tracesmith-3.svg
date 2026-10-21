@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">TraceSmith — GPU Profiling &amp; Replay Architecture</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">Applications, pybind11 binding, C++17 core, GPU backends, and output formats</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">Dashed frame = architecture zone · Solid frame = subsystem · Box = module and responsibility</text>
+<text x="792" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="end">3/3</text>
+<rect x="24" y="96" width="768" height="150" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="38" y="118" font-size="13" fill="#475569" font-weight="700" text-anchor="start">OUTPUTS · trace artifacts</text>
+<rect x="36.0" y="130.0" width="140.8" height="47.0" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+<text x="106.4" y="150" font-size="12" fill="#7f1d1d" font-weight="700" text-anchor="middle">trace.sbt</text>
+<text x="106.4" y="165" font-size="10.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">binary format</text>
+<rect x="186.8" y="130.0" width="140.8" height="47.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="257.20000000000005" y="150" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">trace.json</text>
+<text x="257.20000000000005" y="165" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">Perfetto JSON</text>
+<rect x="337.6" y="130.0" width="140.8" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="408.0" y="150" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">trace.perfetto</text>
+<text x="408.0" y="165" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">Protobuf</text>
+<rect x="488.4" y="130.0" width="140.8" height="47.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="558.8000000000001" y="150" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">graph.dot</text>
+<text x="558.8000000000001" y="165" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">Graphviz</text>
+<rect x="639.2" y="130.0" width="140.8" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="709.6" y="150" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">ASCII Timeline</text>
+<text x="709.6" y="165" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">terminal</text>
+<rect x="36.0" y="185.0" width="140.8" height="47.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="106.4" y="205" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Comm Matrix</text>
+<text x="106.4" y="220" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">heatmap JSON</text>
+<text x="24" y="1033" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">The C++17 core contains capture, state, format, replay, cluster, configuration, and GDB. Applications, bindings,</text>
+<text x="24" y="1048" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">backends, and outputs are its boundaries.</text>
+</svg>

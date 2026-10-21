@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">TraceSmith — GPU Profiling 与 Replay 系统架构</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">应用入口、pybind11 绑定、C++17 核心库、GPU 后端与输出格式</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">虚线框 = 架构分区 · 实线框 = 子系统 · 盒子 = 模块与职责</text>
+<text x="792" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="end">2/3</text>
+<rect x="24" y="96" width="768" height="678" rx="10" fill="#dbeafe" fill-opacity="0.38" stroke="#2563eb" stroke-dasharray="7,5"/>
+<text x="38" y="118" font-size="13" fill="#475569" font-weight="700" text-anchor="start">CORE LIBRARY · C++17 · 续</text>
+<rect x="36.0" y="130.0" width="241.3" height="371.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
+<text x="46.0" y="148" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">Replay Module</text>
+<rect x="44.0" y="163.0" width="225.3" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="183" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">ReplayEngine</text>
+<text x="156.66666666666669" y="198" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">回放编排</text>
+<rect x="44.0" y="216.0" width="225.3" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="236" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">StreamScheduler</text>
+<text x="156.66666666666669" y="251" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">操作顺序</text>
+<rect x="44.0" y="269.0" width="225.3" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="289" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">OperationExecutor</text>
+<text x="156.66666666666669" y="304" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">执行回放</text>
+<rect x="44.0" y="322.0" width="225.3" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="342" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">DeterminismChecker</text>
+<text x="156.66666666666669" y="357" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">结果比对</text>
+<rect x="44.0" y="375.0" width="225.3" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="395" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">FrameCapture</text>
+<text x="156.66666666666669" y="410" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">RenderDoc-style</text>
+<rect x="287.3" y="130.0" width="241.3" height="371.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#64748b"/>
+<text x="297.33333333333337" y="148" font-size="12" fill="#1e293b" font-weight="700" text-anchor="start">Common Module</text>
+<rect x="295.3" y="163.0" width="225.3" height="61.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="183" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Types</text>
+<text x="408.00000000000006" y="198" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">TraceEvent · EventType</text>
+<text x="408.00000000000006" y="212" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">KernelParams</text>
+<rect x="295.3" y="230.0" width="225.3" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="250" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">RingBuffer</text>
+<text x="408.00000000000006" y="265" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">lock-free SPSC</text>
+<rect x="295.3" y="283.0" width="225.3" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="303" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">StackCapture</text>
+<text x="408.00000000000006" y="318" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">libunwind</text>
+<rect x="295.3" y="336.0" width="225.3" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="356" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">XRayImporter</text>
+<text x="408.00000000000006" y="371" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">LLVM XRay</text>
+<rect x="295.3" y="389.0" width="225.3" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="409" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Timestamps</text>
+<text x="408.00000000000006" y="424" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">ns precision</text>
+<rect x="295.3" y="442.0" width="225.3" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="408.00000000000006" y="462" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">TraceMetadata</text>
+<text x="408.00000000000006" y="477" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">DeviceInfo</text>
+<rect x="538.7" y="130.0" width="241.3" height="371.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#dc2626"/>
+<text x="548.6666666666667" y="148" font-size="12" fill="#7f1d1d" font-weight="700" text-anchor="start">Format Module</text>
+<rect x="546.7" y="163.0" width="225.3" height="47.0" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+<text x="659.3333333333334" y="183" font-size="12" fill="#7f1d1d" font-weight="700" text-anchor="middle">SBTWriter</text>
+<text x="659.3333333333334" y="198" font-size="10.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">二进制写入</text>
+<rect x="546.7" y="216.0" width="225.3" height="47.0" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+<text x="659.3333333333334" y="236" font-size="12" fill="#7f1d1d" font-weight="700" text-anchor="middle">SBTReader</text>
+<text x="659.3333333333334" y="251" font-size="10.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">二进制读取</text>
+<rect x="546.7" y="269.0" width="225.3" height="61.0" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+<text x="659.3333333333334" y="289" font-size="12" fill="#7f1d1d" font-weight="700" text-anchor="middle">.sbt</text>
+<text x="659.3333333333334" y="304" font-size="10.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">header + events</text>
+<text x="659.3333333333334" y="318" font-size="10.5" fill="#7f1d1d" font-weight="400" text-anchor="middle">counters</text>
+<rect x="36.0" y="509.0" width="367.0" height="251.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#64748b"/>
+<text x="46.0" y="527" font-size="12" fill="#1e293b" font-weight="700" text-anchor="start">Configuration</text>
+<rect x="44.0" y="542.0" width="172.5" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="130.25" y="562" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">ProfilerConfig</text>
+<text x="130.25" y="577" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">缓冲与溢出</text>
+<rect x="222.5" y="542.0" width="172.5" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="308.75" y="562" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">ReplayConfig</text>
+<text x="308.75" y="577" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">模式与速度</text>
+<rect x="44.0" y="595.0" width="172.5" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="130.25" y="615" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">StackCaptureConfig</text>
+<text x="130.25" y="630" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">调用栈策略</text>
+<rect x="222.5" y="595.0" width="172.5" height="47.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="308.75" y="615" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">NCCLTrackerConfig</text>
+<text x="308.75" y="630" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">集合通信策略</text>
+<rect x="413.0" y="509.0" width="367.0" height="251.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#db2777"/>
+<text x="423.0" y="527" font-size="12" fill="#831843" font-weight="700" text-anchor="start">GDB Module</text>
+<rect x="421.0" y="542.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="562" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">RSPHandler</text>
+<text x="596.5" y="577" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">GDB protocol</text>
+<rect x="421.0" y="595.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="615" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">ProcessController</text>
+<text x="596.5" y="630" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">ptrace / Mach</text>
+<rect x="421.0" y="648.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="668" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">GPUDebugEngine</text>
+<text x="596.5" y="683" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">断点与回放</text>
+<rect x="421.0" y="701.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="721" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">tracesmith-gdbserver</text>
+<text x="596.5" y="736" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">v0.10.0</text>
+<rect x="24" y="786" width="768" height="180" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="38" y="808" font-size="13" fill="#475569" font-weight="700" text-anchor="start">GPU BACKENDS · 系统接口</text>
+<rect x="36.0" y="820.0" width="97.7" height="62.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="84.85714285714286" y="840" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">NVIDIA</text>
+<text x="84.85714285714286" y="855" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">CUDA</text>
+<text x="84.85714285714286" y="870" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">CUPTI SDK</text>
+<rect x="143.7" y="820.0" width="97.7" height="62.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="192.57142857142858" y="840" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Apple</text>
+<text x="192.57142857142858" y="855" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Metal</text>
+<text x="192.57142857142858" y="870" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Metal API</text>
+<rect x="251.4" y="820.0" width="97.7" height="62.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="300.2857142857143" y="840" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">MetaX MACA</text>
+<text x="300.2857142857143" y="855" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">MCPTI SDK</text>
+<rect x="359.1" y="820.0" width="97.7" height="62.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="407.99999999999994" y="840" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">NCCL</text>
+<text x="407.99999999999994" y="855" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">分布式</text>
+<rect x="466.9" y="820.0" width="97.7" height="62.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="515.7142857142857" y="840" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Nsight</text>
+<text x="515.7142857142857" y="855" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Systems</text>
+<text x="515.7142857142857" y="870" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">nsys</text>
+<rect x="574.6" y="820.0" width="97.7" height="62.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="623.4285714285714" y="840" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">mcTracer</text>
+<text x="623.4285714285714" y="855" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">MetaX</text>
+<rect x="682.3" y="820.0" width="97.7" height="62.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="731.1428571428571" y="840" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">xctrace</text>
+<text x="731.1428571428571" y="855" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Apple</text>
+<rect x="36.0" y="890.0" width="97.7" height="62.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="84.85714285714286" y="910" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">libunwind</text>
+<text x="84.85714285714286" y="925" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">主机调用栈</text>
+<rect x="143.7" y="890.0" width="97.7" height="62.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="192.57142857142858" y="910" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Perfetto</text>
+<text x="192.57142857142858" y="925" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">SDK</text>
+<text x="192.57142857142858" y="940" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">轨迹导出</text>
+</svg>
