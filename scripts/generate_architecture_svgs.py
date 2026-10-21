@@ -14,8 +14,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SVG_DIR = ROOT / "docs" / "architecture" / "svg"
-PAGE_W = 1720
-ZONE_X, ZONE_W = 28, 1560
+# US Letter at 96 px/in. CairoSVG maps these user units to 612 x 792 pt,
+# the same letterpaper size as resume.cls.
+PAGE_W = 816
+PAGE_H = 1056
+ZONE_X, ZONE_W = 24, 768
+INNER_X = ZONE_X + 12
+INNER_W = ZONE_W - 24
 
 
 @dataclass(frozen=True)
@@ -149,141 +154,410 @@ def P(title: str, boxes: tuple[Box, ...], palette: str = "slate", columns: int =
     return Panel(title, boxes, palette, columns)
 
 
-def _header(title: str, subtitle: str, locale: str, page_h: int) -> list[str]:
-    legend = {
+def _char_width(ch: str, size: float, bold: bool) -> float:
+    if ord(ch) > 255:
+        return size * 1.05
+    return size * (0.66 if bold else 0.58)
+
+
+def _text_width(value: str, size: float, bold: bool = False) -> float:
+    return sum(_char_width(ch, size, bold) for ch in value)
+
+
+def _wrap(value: str, size: float, max_width: float, bold: bool = False) -> list[str]:
+    max_width = max(max_width, size)
+    if not value:
+        return []
+    if _text_width(value, size, bold) <= max_width:
+        return [value]
+    words: list[str] = []
+    for token in value.split(" "):
+        if _text_width(token, size, bold) <= max_width:
+            words.append(token)
+            continue
+        buf = ""
+        for ch in token:
+            trial = buf + ch
+            if buf and _text_width(trial, size, bold) > max_width:
+                words.append(buf)
+                buf = ch
+            else:
+                buf = trial
+        if buf:
+            words.append(buf)
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        trial = word if not current else f"{current} {word}"
+        if current and _text_width(trial, size, bold) > max_width:
+            lines.append(current)
+            current = word
+        else:
+            current = trial
+    if current:
+        lines.append(current)
+    return lines
+
+
+def _keeps_words(value: str, size: float, limit: float, bold: bool = False) -> bool:
+    parts = _wrap(value, size, limit, bold)
+    if len(parts) > 2:
+        return False
+    if " ".join(parts) == value:
+        return True
+    # A mid-token break is only acceptable when the string cannot fit the page.
+    return _text_width(value, size, bold) > INNER_W - 40
+
+
+def _boxes_readable(boxes: tuple[Box, ...] | list[Box], box_w: float) -> bool:
+    limit = box_w - 16
+    for box in boxes:
+        if not _keeps_words(box.title, 12, limit, True):
+            return False
+        for line in box.lines:
+            if not _keeps_words(line, 10.5, limit):
+                return False
+    return True
+
+
+def _box_height_at(box: Box, box_w: float) -> int:
+    limit = max(20, box_w - 16)
+    title_n = len(_wrap(box.title, 12, limit, True))
+    body_n = sum(len(_wrap(line, 10.5, limit)) for line in box.lines)
+    return 8 + 15 * title_n + 14 * body_n + 10
+
+
+def _pack_box_rows(boxes: tuple[Box, ...], width: float) -> list[tuple[Box, ...]]:
+    if not boxes:
+        return []
+    columns = 1
+    for count in range(1, len(boxes) + 1):
+        box_w = (width - 10 * (count - 1)) / count
+        if _boxes_readable(boxes, box_w):
+            columns = count
+        else:
+            break
+    return [boxes[start:start + columns] for start in range(0, len(boxes), columns)]
+
+
+def _panel_inner_columns(panel: Panel, panel_w: float) -> int:
+    requested = max(1, min(panel.columns, len(panel.boxes)))
+    inner = panel_w - 16
+    cols = requested
+    while cols > 1:
+        box_w = (inner - 6 * (cols - 1)) / cols
+        if _boxes_readable(panel.boxes, box_w):
+            return cols
+        cols -= 1
+    return 1
+
+
+def _panel_height_at(panel: Panel, panel_w: float) -> int:
+    title_n = max(1, len(_wrap(panel.title, 12, panel_w - 20, True)))
+    cols = _panel_inner_columns(panel, panel_w)
+    inner = panel_w - 16
+    box_w = (inner - 6 * (cols - 1)) / cols
+    height = 12 + 15 * title_n + 6
+    for start in range(0, len(panel.boxes), cols):
+        chunk = panel.boxes[start:start + cols]
+        height += max(_box_height_at(box, box_w) for box in chunk) + 6
+    return height + 6
+
+
+def _fit_panel_columns(panels: tuple[Panel, ...], preferred: int) -> int:
+    cols = min(max(1, preferred), len(panels))
+    while cols > 1:
+        panel_w = (INNER_W - 10 * (cols - 1)) / cols
+        readable = True
+        for panel in panels:
+            box_w = (panel_w - 16 - 6 * (_panel_inner_columns(panel, panel_w) - 1)) / _panel_inner_columns(panel, panel_w)
+            if not _boxes_readable(panel.boxes, box_w):
+                readable = False
+                break
+            if len(_wrap(panel.title, 12, panel_w - 20, True)) > 2:
+                readable = False
+                break
+        if readable:
+            return cols
+        cols -= 1
+    return 1
+
+
+@dataclass(frozen=True)
+class RowBlock:
+    boxes: tuple[Box, ...]
+
+
+@dataclass(frozen=True)
+class PanelBlock:
+    panels: tuple[Panel, ...]
+
+
+Block = RowBlock | PanelBlock
+
+
+@dataclass(frozen=True)
+class Segment:
+    zone: Zone
+    blocks: tuple[Block, ...]
+    continued: bool
+    y: int
+    height: int
+    row_columns: int
+
+
+def _row_box_width(columns: int) -> float:
+    return (INNER_W - 10 * (columns - 1)) / columns
+
+
+def _block_height(block: Block, row_columns: int = 1) -> int:
+    if isinstance(block, RowBlock):
+        box_w = _row_box_width(row_columns)
+        return max(_box_height_at(box, box_w) for box in block.boxes)
+    panel_w = (INNER_W - 10 * (len(block.panels) - 1)) / len(block.panels)
+    return max(_panel_height_at(panel, panel_w) for panel in block.panels)
+
+
+def _zone_blocks(zone: Zone) -> list[Block]:
+    blocks: list[Block] = []
+    for boxes in zone.rows:
+        for row in _pack_box_rows(boxes, INNER_W):
+            blocks.append(RowBlock(row))
+    if zone.panels:
+        cols = _fit_panel_columns(zone.panels, zone.panel_columns)
+        for start in range(0, len(zone.panels), cols):
+            blocks.append(PanelBlock(zone.panels[start:start + cols]))
+    return blocks
+
+
+def _frame_height(blocks: list[Block] | tuple[Block, ...], row_columns: int) -> int:
+    return 34 + sum(_block_height(block, row_columns) + 8 for block in blocks) + 6
+
+
+def _legend(locale: str) -> str:
+    items = {
         "en": ("Dashed frame = architecture zone", "Solid frame = subsystem", "Box = module and responsibility"),
         "zh": ("虚线框 = 架构分区", "实线框 = 子系统", "盒子 = 模块与职责"),
     }[locale]
+    return " · ".join(items)
+
+
+def _header_metrics(title: str, subtitle: str) -> tuple[list[str], list[str]]:
+    return _wrap(title, 16, PAGE_W - 48, True), _wrap(subtitle, 11.5, PAGE_W - 48)
+
+
+def _header_height(title: str, subtitle: str) -> int:
+    title_lines, sub_lines = _header_metrics(title, subtitle)
+    return 28 + 22 * len(title_lines) + 4 + 16 * len(sub_lines) + 26
+
+
+def _intro_lines(introduction: tuple[str, str]) -> list[str]:
+    lines: list[str] = []
+    for paragraph in introduction:
+        lines.extend(_wrap(paragraph, 11.5, INNER_W))
+    return lines
+
+
+def _intro_height(introduction: tuple[str, str]) -> int:
+    lines = _intro_lines(introduction)
+    if not lines:
+        return 0
+    return 20 + 15 * len(lines) + 16
+
+
+def _paginate(zones: tuple[Zone, ...], top_first: int, top_next: int, bottom: int) -> list[list[Segment]]:
+    pages: list[list[Segment]] = [[]]
+    y = top_first
+
+    def new_page() -> None:
+        nonlocal y
+        pages.append([])
+        y = top_next
+
+    for zone in zones:
+        blocks = _zone_blocks(zone)
+        row_columns = max((len(block.boxes) for block in blocks if isinstance(block, RowBlock)), default=1)
+        index = 0
+        continued = False
+        while index < len(blocks):
+            chosen: list[Block] = []
+            while index < len(blocks):
+                trial = chosen + [blocks[index]]
+                height = _frame_height(trial, row_columns)
+                if y + height <= bottom or not chosen:
+                    if not chosen and y + height > bottom and pages[-1]:
+                        new_page()
+                        continue
+                    chosen.append(blocks[index])
+                    index += 1
+                    if y + height > bottom:
+                        break
+                else:
+                    break
+            height = _frame_height(chosen, row_columns)
+            pages[-1].append(Segment(zone, tuple(chosen), continued, y, height, row_columns))
+            y += height + 12
+            continued = True
+            if index < len(blocks):
+                new_page()
+    return [page for page in pages if page]
+
+
+def _svg_open() -> list[str]:
     return [
         (
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {PAGE_W} {page_h}" '
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" '
+            f'viewBox="0 0 {PAGE_W} {PAGE_H}" '
             'font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">'
         ),
-        f'<rect x="0" y="0" width="{PAGE_W}" height="{page_h}" fill="#ffffff"/>',
-        _text(28, 42, title, 22, "#111827", 700),
-        _text(28, 66, subtitle, 13, "#475569"),
-        '<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>',
-        _text(1204, 36, legend[0], 11.5),
-        _text(1204, 56, legend[1], 11.5),
-        _text(1456, 46, legend[2], 11.5),
+        f'<rect x="0" y="0" width="{PAGE_W}" height="{PAGE_H}" fill="#ffffff"/>',
     ]
 
 
-def _box_height(box: Box) -> int:
-    return 36 + 15 * len(box.lines)
+def _draw_header(lines: list[str], title: str, subtitle: str, locale: str,
+                 page_index: int, page_count: int) -> int:
+    title_lines, sub_lines = _header_metrics(title, subtitle)
+    y = 36
+    for line in title_lines:
+        lines.append(_text(24, y, line, 16, "#111827", 700))
+        y += 22
+    y += 2
+    for line in sub_lines:
+        lines.append(_text(24, y, line, 11.5, "#475569"))
+        y += 16
+    y += 2
+    lines.append(_text(24, y, _legend(locale), 11, "#64748b"))
+    if page_count > 1:
+        lines.append(_text(PAGE_W - 24, y, f"{page_index}/{page_count}", 11, "#64748b", 400, "end"))
+    return y + 18
 
 
-def _panel_height(panel: Panel) -> int:
-    columns = max(1, panel.columns)
-    height = 30
-    for start in range(0, len(panel.boxes), columns):
-        chunk = panel.boxes[start:start + columns]
-        height += max(_box_height(box) for box in chunk) + 6
-    return height + 8
-
-
-def _zone_height(zone: Zone) -> int:
-    height = 36
-    for boxes in zone.rows:
-        height += max(_box_height(box) for box in boxes) + 8
-    columns = max(1, zone.panel_columns)
-    for start in range(0, len(zone.panels), columns):
-        chunk = zone.panels[start:start + columns]
-        height += max(_panel_height(panel) for panel in chunk) + 8
-    return height + 8
+def _draw_intro(lines: list[str], introduction: tuple[str, str], label: str, y: int) -> int:
+    body = _intro_lines(introduction)
+    if not body:
+        return y
+    height = 16 + 15 * len(body) + 8
+    lines.append(
+        f'<rect x="{ZONE_X}" y="{y}" width="{ZONE_W}" height="{height}" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>'
+    )
+    cursor = y + 18
+    lines.append(_text(ZONE_X + 14, cursor, label, 11.5, "#475569", 700))
+    cursor += 16
+    for line in body:
+        lines.append(_text(ZONE_X + 14, cursor, line, 11.5, "#334155"))
+        cursor += 15
+    return y + height + 12
 
 
 def _draw_box(lines: list[str], box: Box, x: float, y: float, w: float, h: float) -> None:
     fill, stroke, color = PALETTES[box.palette]
+    limit = max(20, w - 16)
     lines.append(
         f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="8" fill="{fill}" stroke="{stroke}"/>'
     )
-    block = 14 + 15 * len(box.lines)
-    title_y = y + (h - block) / 2 + 11
-    lines.append(_text(x + w / 2, title_y, box.title, 12, color, 700, "middle"))
-    for index, line in enumerate(box.lines):
-        lines.append(_text(x + w / 2, title_y + 16 + index * 15, line, 10.5, color, 400, "middle"))
+    cursor = y + 20
+    for line in _wrap(box.title, 12, limit, True):
+        lines.append(_text(x + w / 2, cursor, line, 12, color, 700, "middle"))
+        cursor += 15
+    for line in box.lines:
+        for part in _wrap(line, 10.5, limit):
+            lines.append(_text(x + w / 2, cursor, part, 10.5, color, 400, "middle"))
+            cursor += 14
 
 
-def _draw_row(lines: list[str], boxes: tuple[Box, ...], x: float, y: float, width: float) -> int:
+def _draw_row_block(lines: list[str], block: RowBlock, y: int, columns: int) -> int:
     gap = 10
-    height = max(_box_height(box) for box in boxes)
-    box_w = (width - gap * (len(boxes) - 1)) / len(boxes)
-    for index, box in enumerate(boxes):
-        _draw_box(lines, box, x + index * (box_w + gap), y, box_w, height)
+    box_w = _row_box_width(columns)
+    height = max(_box_height_at(box, box_w) for box in block.boxes)
+    for index, box in enumerate(block.boxes):
+        _draw_box(lines, box, INNER_X + index * (box_w + gap), y, box_w, height)
     return height
 
 
-def _draw_panel(lines: list[str], panel: Panel, x: float, y: float, w: float, h: float) -> None:
-    _, stroke, color = PALETTES[panel.palette]
-    lines.append(
-        f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="{stroke}"/>'
-    )
-    lines.append(_text(x + 10, y + 18, panel.title, 12, color, 700))
-    columns = max(1, panel.columns)
-    gap = 6
-    inner_x, inner_w = x + 8, w - 16
-    box_w = (inner_w - gap * (columns - 1)) / columns
-    cursor_y = y + 28
-    for start in range(0, len(panel.boxes), columns):
-        chunk = panel.boxes[start:start + columns]
-        row_h = max(_box_height(box) for box in chunk)
-        for index, box in enumerate(chunk):
-            _draw_box(lines, box, inner_x + index * (box_w + gap), cursor_y, box_w, row_h)
-        cursor_y += row_h + 6
+def _draw_panel_block(lines: list[str], block: PanelBlock, y: int) -> int:
+    height = _block_height(block)
+    gap = 10
+    panel_w = (INNER_W - gap * (len(block.panels) - 1)) / len(block.panels)
+    for index, panel in enumerate(block.panels):
+        x = INNER_X + index * (panel_w + gap)
+        _, stroke, color = PALETTES[panel.palette]
+        lines.append(
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{panel_w:.1f}" height="{height:.1f}" rx="8" '
+            f'fill="#ffffff" fill-opacity="0.94" stroke="{stroke}"/>'
+        )
+        title_lines = _wrap(panel.title, 12, panel_w - 20, True) or [panel.title]
+        cursor = y + 18
+        for line in title_lines:
+            lines.append(_text(x + 10, cursor, line, 12, color, 700))
+            cursor += 15
+        cols = _panel_inner_columns(panel, panel_w)
+        inner = panel_w - 16
+        box_w = (inner - 6 * (cols - 1)) / cols
+        cursor = y + 12 + 15 * len(title_lines) + 6
+        for start in range(0, len(panel.boxes), cols):
+            chunk = panel.boxes[start:start + cols]
+            row_h = max(_box_height_at(box, box_w) for box in chunk)
+            for box_index, box in enumerate(chunk):
+                _draw_box(
+                    lines, box,
+                    x + 8 + box_index * (box_w + 6), cursor, box_w, row_h,
+                )
+            cursor += row_h + 6
+    return height
 
 
-def _draw_zone(lines: list[str], zone: Zone, y: int) -> int:
-    height = _zone_height(zone)
-    fill, stroke, _ = PALETTES[zone.palette]
+def _draw_segment(lines: list[str], segment: Segment, locale: str) -> None:
+    fill, stroke, _ = PALETTES[segment.zone.palette]
     lines.append(
-        f'<rect x="{ZONE_X}" y="{y}" width="{ZONE_W}" height="{height}" rx="10" '
+        f'<rect x="{ZONE_X}" y="{segment.y}" width="{ZONE_W}" height="{segment.height}" rx="10" '
         f'fill="{fill}" fill-opacity="0.38" stroke="{stroke}" stroke-dasharray="7,5"/>'
     )
-    lines.append(_text(ZONE_X + 14, y + 22, zone.label, 13, "#475569", 700))
-    cursor = y + 34
-    inner_x, inner_w = ZONE_X + 12, ZONE_W - 24
-    for boxes in zone.rows:
-        cursor += _draw_row(lines, boxes, inner_x, cursor, inner_w) + 8
-    columns = max(1, zone.panel_columns)
-    for start in range(0, len(zone.panels), columns):
-        chunk = zone.panels[start:start + columns]
-        row_h = max(_panel_height(panel) for panel in chunk)
-        gap = 10
-        panel_w = (inner_w - gap * (len(chunk) - 1)) / len(chunk)
-        for index, panel in enumerate(chunk):
-            _draw_panel(lines, panel, inner_x + index * (panel_w + gap), cursor, panel_w, row_h)
-        cursor += row_h + 8
-    return height
+    label = segment.zone.label
+    if segment.continued:
+        label += L(locale, " · continued", " · 续")
+    lines.append(_text(ZONE_X + 14, segment.y + 22, label, 13, "#475569", 700))
+    cursor = segment.y + 34
+    for block in segment.blocks:
+        if isinstance(block, RowBlock):
+            cursor += _draw_row_block(lines, block, cursor, segment.row_columns) + 8
+        else:
+            cursor += _draw_panel_block(lines, block, cursor) + 8
+
+
+def _draw_footer(lines: list[str], footer: str, y: int) -> None:
+    for line in _wrap(footer, 11.5, ZONE_W):
+        lines.append(_text(24, y, line, 11.5, "#475569"))
+        y += 15
 
 
 def build_diagram(title: str, subtitle: str, zones: tuple[Zone, ...],
                   footer: str, locale: str = "zh",
-                  introduction: tuple[str, str] = ("", "")) -> str:
-    y = 156
-    placed: list[tuple[Zone, int, int]] = []
-    for zone in zones:
-        height = _zone_height(zone)
-        placed.append((zone, y, height))
-        y += height + 12
-    footer_y = y + 12
-    page_h = footer_y + 24
-    lines = _header(title, subtitle, locale, page_h)
-    overview = "PROJECT OVERVIEW" if locale == "en" else "项目介绍"
-    lines.extend([
-        f'<rect x="{ZONE_X}" y="84" width="{ZONE_W}" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>',
-        _text(ZONE_X + 14, 106, overview, 11.5, "#475569", 700),
-        _text(210, 106, introduction[0], 11.5, "#334155"),
-        _text(210, 128, introduction[1], 11.5, "#334155"),
-    ])
-    for zone, zone_y, _height in placed:
-        _draw_zone(lines, zone, zone_y)
-    lines.append(_text(28, footer_y, footer, 11.5, "#475569"))
-    lines.append("</svg>")
-    return "\n".join(lines)
+                  introduction: tuple[str, str] = ("", ""),
+                  overview_label: str = "") -> list[str]:
+    header_h = _header_height(title, subtitle)
+    intro_h = _intro_height(introduction)
+    footer_lines = _wrap(footer, 11.5, ZONE_W) if footer else []
+    footer_h = 15 * max(len(footer_lines) - 1, 0) + 22 if footer_lines else 0
+    pages = _paginate(zones, header_h + intro_h, header_h, PAGE_H - 12 - footer_h)
+    label = overview_label or ("PROJECT OVERVIEW" if locale == "en" else "项目介绍")
+    rendered: list[str] = []
+    page_count = len(pages)
+    for index, segments in enumerate(pages, start=1):
+        lines = _svg_open()
+        content_y = _draw_header(lines, title, subtitle, locale, index, page_count)
+        if index == 1:
+            content_y = _draw_intro(lines, introduction, label, content_y)
+        del content_y
+        for segment in segments:
+            _draw_segment(lines, segment, locale)
+        if index == page_count and footer_lines:
+            _draw_footer(lines, footer, PAGE_H - 8 - 15 * (len(footer_lines) - 1))
+        lines.append("</svg>")
+        rendered.append("\n".join(lines))
+    return rendered
 
 
-def tracesmith(locale: str = "zh") -> str:
+def tracesmith(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "TraceSmith — GPU Profiling & Replay Architecture", "TraceSmith — GPU Profiling 与 Replay 系统架构"),
         L(locale, "Applications, pybind11 binding, C++17 core, GPU backends, and output formats",
@@ -383,7 +657,7 @@ def tracesmith(locale: str = "zh") -> str:
     )
 
 
-def yirage(locale: str = "zh") -> str:
+def yirage(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "YiRage (YPK) — RuntimeFusion Architecture", "YiRage (YPK) — RuntimeFusion 系统架构"),
         L(locale, "Inference engine, RuntimeFusion, search plan, backend manager, implementations, and hardware",
@@ -440,7 +714,7 @@ def yirage(locale: str = "zh") -> str:
     )
 
 
-def jax_sklearn(locale: str = "zh") -> str:
+def jax_sklearn(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "JAX-sklearn (xlearn) — Transparent Acceleration Architecture", "JAX-sklearn (xlearn) — 透明加速系统架构"),
         L(locale, "User API, compatibility layer, JAX implementations, data policy, and hardware backends",
@@ -487,7 +761,7 @@ def jax_sklearn(locale: str = "zh") -> str:
     )
 
 
-def secret_learn(locale: str = "zh") -> str:
+def secret_learn(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "Secret-Learn — Privacy-Preserving ML Architecture", "Secret-Learn — 隐私机器学习系统架构"),
         L(locale, "Applications, sklearn API, FL / SS / SL modes, JAX acceleration, secure devices, and infrastructure",
@@ -569,7 +843,7 @@ def secret_learn(locale: str = "zh") -> str:
     )
 
 
-def youtube_recsys(locale: str = "zh") -> str:
+def youtube_recsys(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "YouTube-DNN-RecSys — Candidate Generation Architecture", "YouTube-DNN-RecSys — 候选召回系统架构"),
         L(locale, "Data processing, storage, dnn.py model, prediction services, and support utilities",
@@ -617,7 +891,7 @@ def youtube_recsys(locale: str = "zh") -> str:
     )
 
 
-def research_cli(locale: str = "zh") -> str:
+def research_cli(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "Research CLI — Agent System Architecture", "Research CLI — Agent 系统架构"),
         L(locale, "CLI, core session and routing, tools and research modules, model providers, and embedded runtimes",
@@ -689,7 +963,7 @@ def research_cli(locale: str = "zh") -> str:
     )
 
 
-def questions_gen(locale: str = "zh") -> str:
+def questions_gen(locale: str = "zh") -> list[str]:
     return build_diagram(
         L(locale, "Questions-Gen — Three-Stage Training Architecture", "Questions-Gen — 三阶段训练系统架构"),
         L(locale, "Training corpus, SFT, GRPO, distillation, validation, and deployment interfaces",
@@ -741,7 +1015,7 @@ def questions_gen(locale: str = "zh") -> str:
     )
 
 
-def title_page(locale: str = "zh") -> str:
+def title_page(locale: str = "zh") -> list[str]:
     projects = (
         B("TraceSmith", L(locale, "GPU profiling & replay", "GPU 采集与回放"), palette="green"),
         B("YiRage", "RuntimeFusion", palette="blue"),
@@ -751,16 +1025,7 @@ def title_page(locale: str = "zh") -> str:
         B("Research CLI", L(locale, "agent workflow", "Agent 工作流"), palette="cyan"),
         B("Questions-Gen", L(locale, "three-stage training", "三阶段训练"), palette="pink"),
     )
-    zone = Zone(L(locale, "CONTENTS · one architecture per page", "目录 CONTENTS · 每页一个项目"), "slate", (projects,))
-    zone_h = _zone_height(zone)
-    page_h = 188 + zone_h + 120
-    lines = _header(
-        L(locale, "Open Source Architecture Appendix", "开源项目架构附录"),
-        L(locale, "Chen Xingqiang · github.com/chenxingqiang · module-level architecture with one project overview per page",
-          "陈星强 · github.com/chenxingqiang · 每页包含项目介绍与模块级系统架构"),
-        locale, page_h,
-    )
-    _draw_zone(lines, zone, 120)
+    zone = Zone(L(locale, "CONTENTS", "目录 CONTENTS"), "slate", (projects,))
     reading = {
         "en": (
             "READING GUIDE",
@@ -773,14 +1038,16 @@ def title_page(locale: str = "zh") -> str:
             "每页说明系统包含哪些部分，以及各部分的职责边界。",
         ),
     }[locale]
-    base = 150 + zone_h
-    lines.extend([
-        _text(PAGE_W / 2, base, reading[0], 18, "#111827", 700, "middle"),
-        _text(PAGE_W / 2, base + 34, reading[1], 13, "#475569", 400, "middle"),
-        _text(PAGE_W / 2, base + 58, reading[2], 13, "#475569", 400, "middle"),
-        "</svg>",
-    ])
-    return "\n".join(lines)
+    return build_diagram(
+        L(locale, "Open Source Architecture Appendix", "开源项目架构附录"),
+        L(locale, "Chen Xingqiang · github.com/chenxingqiang · US Letter, same page size as the resume",
+          "陈星强 · github.com/chenxingqiang · 与简历正文相同的 US Letter 页面"),
+        (zone,),
+        "",
+        locale,
+        (reading[1], reading[2]),
+        reading[0],
+    )
 DIAGRAMS = {
     "00-title": title_page,
     "tracesmith": tracesmith,
@@ -798,12 +1065,19 @@ def build_all(locale: str = "zh") -> list[Path]:
         raise ValueError(f"Unsupported locale: {locale}")
     output_dir = SVG_DIR if locale == "zh" else SVG_DIR / locale
     output_dir.mkdir(parents=True, exist_ok=True)
+    for stale in output_dir.glob("*.svg"):
+        stale.unlink()
     written = []
     for name, builder in DIAGRAMS.items():
-        path = output_dir / f"{name}.svg"
-        path.write_text(builder(locale), encoding="utf-8")
-        written.append(path)
-        print(f"Wrote {path}")
+        pages = builder(locale)
+        if isinstance(pages, str):
+            pages = [pages]
+        for index, svg in enumerate(pages, start=1):
+            suffix = "" if index == 1 else f"-{index}"
+            path = output_dir / f"{name}{suffix}.svg"
+            path.write_text(svg, encoding="utf-8")
+            written.append(path)
+            print(f"Wrote {path}")
     return written
 
 

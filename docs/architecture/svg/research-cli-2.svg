@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">Research CLI — Agent 系统架构</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">CLI、核心会话与路由、工具和研究模块、模型供应商、嵌入运行时</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">虚线框 = 架构分区 · 实线框 = 子系统 · 盒子 = 模块与职责</text>
+<text x="792" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="end">2/2</text>
+<rect x="24" y="96" width="768" height="260" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="38" y="118" font-size="13" fill="#475569" font-weight="700" text-anchor="start">TOOLS 与 RESEARCH MODULES · 续</text>
+<rect x="36.0" y="130.0" width="367.0" height="212.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ca8a04"/>
+<text x="46.0" y="148" font-size="12" fill="#713f12" font-weight="700" text-anchor="start">bibliography/</text>
+<rect x="44.0" y="163.0" width="351.0" height="47.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="219.5" y="183" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">arxiv-mcp-client</text>
+<text x="219.5" y="198" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">arXiv search</text>
+<rect x="44.0" y="216.0" width="351.0" height="47.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="219.5" y="236" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">google-scholar-client</text>
+<text x="219.5" y="251" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">scholar search</text>
+<rect x="44.0" y="269.0" width="351.0" height="61.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="219.5" y="289" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">literature-investigator</text>
+<text x="219.5" y="304" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">keyword-generator</text>
+<text x="219.5" y="318" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">reference-classifier</text>
+<rect x="413.0" y="130.0" width="367.0" height="212.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#db2777"/>
+<text x="423.0" y="148" font-size="12" fill="#831843" font-weight="700" text-anchor="start">submission/</text>
+<rect x="421.0" y="163.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="183" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">latex-manager</text>
+<text x="596.5" y="198" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">project compile</text>
+<rect x="421.0" y="216.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="236" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">journal-matcher</text>
+<text x="596.5" y="251" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">期刊匹配</text>
+<rect x="421.0" y="269.0" width="351.0" height="47.0" rx="8" fill="#fce7f3" stroke="#db2777"/>
+<text x="596.5" y="289" font-size="12" fill="#831843" font-weight="700" text-anchor="middle">arxiv-latex-extractor</text>
+<text x="596.5" y="304" font-size="10.5" fill="#831843" font-weight="400" text-anchor="middle">模板提取</text>
+<rect x="24" y="368" width="768" height="124" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="38" y="390" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL PROVIDERS · 模型供应商</text>
+<rect x="36.0" y="402.0" width="97.7" height="76.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="84.85714285714286" y="422" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Gemini /</text>
+<text x="84.85714285714286" y="437" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Vertex</text>
+<rect x="143.7" y="402.0" width="97.7" height="76.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="192.57142857142858" y="422" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">OpenAI</text>
+<rect x="251.4" y="402.0" width="97.7" height="76.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="300.2857142857143" y="422" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Anthropic</text>
+<rect x="359.1" y="402.0" width="97.7" height="76.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="407.99999999999994" y="422" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Baidu</text>
+<text x="407.99999999999994" y="437" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">ERNIE</text>
+<rect x="466.9" y="402.0" width="97.7" height="76.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="515.7142857142857" y="422" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">DeepSeek</text>
+<rect x="574.6" y="402.0" width="97.7" height="76.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="623.4285714285714" y="422" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">Qwen</text>
+<rect x="682.3" y="402.0" width="97.7" height="76.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="731.1428571428571" y="422" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Groq /</text>
+<text x="731.1428571428571" y="437" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Mistral</text>
+<text x="731.1428571428571" y="452" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Cohere ·</text>
+<text x="731.1428571428571" y="466" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">Moonshot</text>
+<rect x="24" y="504" width="768" height="109" rx="10" fill="#ecfeff" fill-opacity="0.38" stroke="#0891b2" stroke-dasharray="7,5"/>
+<text x="38" y="526" font-size="13" fill="#475569" font-weight="700" text-anchor="start">EMBEDDED RUNTIMES · 嵌入运行时</text>
+<rect x="36.0" y="538.0" width="178.5" height="61.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="125.25" y="558" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">packages/sdk</text>
+<text x="125.25" y="573" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">库嵌入</text>
+<rect x="224.5" y="538.0" width="178.5" height="61.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="313.75" y="558" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">packages/a2a-server</text>
+<text x="313.75" y="573" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">agent executor</text>
+<text x="313.75" y="587" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">HTTP task API</text>
+<rect x="413.0" y="538.0" width="178.5" height="61.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="502.25" y="558" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">vscode-ide-companion</text>
+<text x="502.25" y="573" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">IDE companion</text>
+<rect x="601.5" y="538.0" width="178.5" height="61.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
+<text x="690.75" y="558" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">packages/devtools</text>
+<text x="690.75" y="573" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">开发工具</text>
+<text x="24" y="1048" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">CLI 与 ACP 构成前端。核心负责会话和模型路由。工具、研究模块、供应商和嵌入运行时是各自独立的边界。</text>
+</svg>

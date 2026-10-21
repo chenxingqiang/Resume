@@ -8,23 +8,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SVG_DIR = ROOT / "docs" / "architecture" / "svg"
 PDF_DIR = ROOT / "docs" / "architecture" / "pdf"
 APPENDIX_PDFS = {
     "en": ROOT / "docs" / "architecture" / "architecture-appendix-en.pdf",
     "zh": ROOT / "docs" / "architecture" / "architecture-appendix.pdf",
 }
-
-PROJECTS = [
-    ("00-title", "Appendix Title"),
-    ("tracesmith", "TraceSmith"),
-    ("yirage", "YiRage (YPK)"),
-    ("jax-sklearn", "JAX-sklearn"),
-    ("secret-learn", "Secret-Learn"),
-    ("youtube-recsys", "YouTube-DNN-RecSys"),
-    ("research-cli", "Research CLI"),
-    ("questions-gen", "Questions-Gen"),
-]
 
 RESUME_APPENDIX = {
     "xingqiangchen-en.pdf": "en",
@@ -45,40 +33,49 @@ def ensure_deps() -> None:
         )
 
 
-def generate_svg() -> None:
-    subprocess.check_call(
-        [sys.executable, str(ROOT / "scripts" / "generate_architecture_svgs.py")]
-    )
+def generate_svg() -> dict[str, list[Path]]:
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts.generate_architecture_svgs import build_all
+
+    return {"zh": build_all("zh"), "en": build_all("en")}
 
 
-def convert_svg_to_pdf() -> None:
+def _assert_letter(pdf: Path) -> None:
+    from pypdf import PdfReader
+
+    page = PdfReader(str(pdf)).pages[0]
+    width, height = float(page.mediabox.width), float(page.mediabox.height)
+    if abs(width - 612) > 1.5 or abs(height - 792) > 1.5:
+        raise SystemExit(
+            f"{pdf.name} is {width:.1f} x {height:.1f} pt; expected US Letter 612 x 792"
+        )
+
+
+def convert_svg_to_pdf(pages: dict[str, list[Path]]) -> dict[str, list[Path]]:
     import cairosvg
 
-    for locale in ("zh", "en"):
-        svg_dir = SVG_DIR if locale == "zh" else SVG_DIR / locale
+    pdfs: dict[str, list[Path]] = {}
+    for locale, svgs in pages.items():
         pdf_dir = PDF_DIR if locale == "zh" else PDF_DIR / locale
         pdf_dir.mkdir(parents=True, exist_ok=True)
-        for slug, _ in PROJECTS:
-            svg = svg_dir / f"{slug}.svg"
-            pdf = pdf_dir / f"{slug}.pdf"
-            if not svg.exists():
-                raise FileNotFoundError(f"Missing architecture SVG: {svg}")
+        for stale in pdf_dir.glob("*.pdf"):
+            stale.unlink()
+        converted: list[Path] = []
+        for svg in svgs:
+            pdf = pdf_dir / f"{svg.stem}.pdf"
             cairosvg.svg2pdf(url=str(svg), write_to=str(pdf))
+            _assert_letter(pdf)
+            converted.append(pdf)
             print(f"Converted [{locale}] {svg.name} -> {pdf.name}")
+        pdfs[locale] = converted
+    return pdfs
 
 
-def build_appendices() -> None:
+def build_appendices(pdfs: dict[str, list[Path]]) -> None:
     from pypdf import PdfReader, PdfWriter
 
-    for locale in ("zh", "en"):
-        pdf_dir = PDF_DIR if locale == "zh" else PDF_DIR / locale
-        diagram_pdfs: list[Path] = []
-        for slug, _ in PROJECTS:
-            pdf = pdf_dir / f"{slug}.pdf"
-            if not pdf.exists():
-                raise FileNotFoundError(f"Missing architecture PDF: {pdf}")
-            diagram_pdfs.append(pdf)
-
+    for locale, diagram_pdfs in pdfs.items():
         writer = PdfWriter()
         for pdf in diagram_pdfs:
             reader = PdfReader(str(pdf))
@@ -87,8 +84,8 @@ def build_appendices() -> None:
 
         appendix_pdf = APPENDIX_PDFS[locale]
         appendix_pdf.parent.mkdir(parents=True, exist_ok=True)
-        with appendix_pdf.open("wb") as f:
-            writer.write(f)
+        with appendix_pdf.open("wb") as handle:
+            writer.write(handle)
         print(f"Built [{locale}] appendix: {appendix_pdf} ({len(diagram_pdfs)} pages)")
 
 
@@ -121,9 +118,9 @@ def merge_resumes() -> None:
 
 def main() -> None:
     ensure_deps()
-    generate_svg()
-    convert_svg_to_pdf()
-    build_appendices()
+    pages = generate_svg()
+    pdfs = convert_svg_to_pdf(pages)
+    build_appendices(pdfs)
     merge_resumes()
 
 

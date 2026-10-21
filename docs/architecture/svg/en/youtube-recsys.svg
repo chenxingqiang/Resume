@@ -1,102 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1000" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
-<rect x="0" y="0" width="1720" height="1000" fill="#ffffff"/>
-<text x="28" y="42" font-size="22" fill="#111827" font-weight="700" text-anchor="start">YouTube-DNN-RecSys — Candidate Generation Architecture</text>
-<text x="28" y="66" font-size="13" fill="#475569" font-weight="400" text-anchor="start">Data processing, storage, dnn.py model, prediction services, and support utilities</text>
-<rect x="1188" y="16" width="504" height="54" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="1204" y="36" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Dashed frame = architecture zone</text>
-<text x="1204" y="56" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Solid frame = subsystem</text>
-<text x="1456" y="46" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">Box = module and responsibility</text>
-<rect x="28" y="84" width="1560" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-<text x="42" y="106" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">PROJECT OVERVIEW</text>
-<text x="210" y="106" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">YouTube-DNN-RecSys is a TensorFlow and Spark implementation of the candidate-generation stage of YouTube recommendations.</text>
-<text x="210" y="128" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">The architecture comprises data processing, storage, the dnn.py model, prediction services, and support utilities.</text>
-<rect x="28" y="156" width="1560" height="261" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
-<text x="42" y="178" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA PROCESSING · offline sample build</text>
-<rect x="40.0" y="190.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ea580c"/>
-<text x="50.0" y="208" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="start">Python Pipeline</text>
-<rect x="48.0" y="218.0" width="747.0" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="421.5" y="240.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">data2tfrecords.py</text>
-<text x="421.5" y="256.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">random training data</text>
-<rect x="48.0" y="275.0" width="747.0" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="421.5" y="297.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">TFRecords</text>
-<text x="421.5" y="313.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">train / evaluation</text>
-<rect x="48.0" y="332.0" width="747.0" height="51.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="421.5" y="354.0" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">read_tfrecords.py</text>
-<text x="421.5" y="370.0" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">dataset reader</text>
-<rect x="813.0" y="190.0" width="763.0" height="209.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
-<text x="823.0" y="208" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">Spark Pipeline</text>
-<rect x="821.0" y="218.0" width="747.0" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1194.5" y="240.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">MakeDataOne.scala</text>
-<text x="1194.5" y="256.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">distributed generation</text>
-<rect x="821.0" y="275.0" width="747.0" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1194.5" y="297.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">MakeDataTwo.scala</text>
-<text x="1194.5" y="313.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">TFRecords output</text>
-<rect x="821.0" y="332.0" width="747.0" height="51.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1194.5" y="354.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">HDFS</text>
-<text x="1194.5" y="370.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">dataset storage</text>
-<rect x="28" y="429" width="1560" height="118" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
-<text x="42" y="451" font-size="13" fill="#475569" font-weight="700" text-anchor="start">STORAGE · datasets and checkpoints</text>
-<rect x="40.0" y="463.0" width="763.0" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="421.5" y="485.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">data/tfrecords/</text>
-<text x="421.5" y="501.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">train/train.tfrecords</text>
-<text x="421.5" y="516.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">evaluation/evaluation.tfrecords</text>
-<rect x="813.0" y="463.0" width="763.0" height="66.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-<text x="1194.5" y="485.0" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">data/checkpoints/</text>
-<text x="1194.5" y="501.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt/checkpoint</text>
-<text x="1194.5" y="516.0" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt/eval · modelpath/</text>
-<rect x="28" y="559" width="1560" height="133" rx="10" fill="#fce7f3" fill-opacity="0.38" stroke="#db2777" stroke-dasharray="7,5"/>
-<text x="42" y="581" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL TRAINING · dnn.py</text>
-<rect x="40.0" y="593.0" width="299.2" height="81.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="189.6" y="622.5" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Input</text>
-<text x="189.6" y="638.5" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">visit_items_index × 5</text>
-<text x="189.6" y="653.5" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">continuous_features × 16</text>
-<rect x="349.2" y="593.0" width="299.2" height="81.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="498.79999999999995" y="630.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Item Embedding</text>
-<text x="498.79999999999995" y="646.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">500 items × 16</text>
-<rect x="658.4" y="593.0" width="299.2" height="81.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="808.0" y="630.0" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Average Pooling</text>
-<text x="808.0" y="646.0" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">history vector</text>
-<rect x="967.6" y="593.0" width="299.2" height="81.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="1117.1999999999998" y="615.0" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">DNN Tower</text>
-<text x="1117.1999999999998" y="631.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">Dense 64 + ReLU</text>
-<text x="1117.1999999999998" y="646.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">Dropout · Dense 32 + ReLU</text>
-<text x="1117.1999999999998" y="661.0" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">user vector 16</text>
-<rect x="1276.8" y="593.0" width="299.2" height="81.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="1426.3999999999999" y="622.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Softmax Output</text>
-<text x="1426.3999999999999" y="638.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">500 classes</text>
-<text x="1426.3999999999999" y="653.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">cross entropy · Top-K</text>
-<rect x="28" y="704" width="1560" height="118" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
-<text x="42" y="726" font-size="13" fill="#475569" font-weight="700" text-anchor="start">PREDICTION · serving paths</text>
-<rect x="40.0" y="738.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="292.66666666666663" y="760.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">PredictUserVector.scala</text>
-<text x="292.66666666666663" y="776.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">SavedModel</text>
-<text x="292.66666666666663" y="791.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">user vector head</text>
-<rect x="555.3" y="738.0" width="505.3" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="807.9999999999999" y="760.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">ItemEmbeddingPredictor.scala</text>
-<text x="807.9999999999999" y="776.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">item embedding table</text>
-<text x="807.9999999999999" y="791.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">FeatureBuilder</text>
-<rect x="1070.7" y="738.0" width="505.3" height="66.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-<text x="1323.3333333333333" y="760.0" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">load_dnn_model.py</text>
-<text x="1323.3333333333333" y="776.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">SavedModel load</text>
-<text x="1323.3333333333333" y="791.0" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">online / batch inference</text>
-<rect x="28" y="834" width="1560" height="118" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
-<text x="42" y="856" font-size="13" fill="#475569" font-weight="700" text-anchor="start">UTILITIES · training support</text>
-<rect x="40.0" y="868.0" width="299.2" height="66.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
-<text x="189.6" y="897.5" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">tensor_board.py</text>
-<text x="189.6" y="913.5" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">TensorBoard</text>
-<rect x="349.2" y="868.0" width="299.2" height="66.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-<text x="498.79999999999995" y="897.5" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">feature_column.py</text>
-<text x="498.79999999999995" y="913.5" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">feature spec</text>
-<rect x="658.4" y="868.0" width="299.2" height="66.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="808.0" y="897.5" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">self_defined_network_layer.py</text>
-<text x="808.0" y="913.5" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">custom TF layers</text>
-<rect x="967.6" y="868.0" width="299.2" height="66.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
-<text x="1117.1999999999998" y="890.0" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Spark Base</text>
-<text x="1117.1999999999998" y="906.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">BaseSparkLocal.scala</text>
-<text x="1117.1999999999998" y="921.0" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">BaseSparkOnline.scala</text>
-<rect x="1276.8" y="868.0" width="299.2" height="66.0" rx="8" fill="#f8fafc" stroke="#64748b"/>
-<text x="1426.3999999999999" y="890.0" font-size="12" fill="#1e293b" font-weight="700" text-anchor="middle">Configuration</text>
-<text x="1426.3999999999999" y="906.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">vars.prod.properties</text>
-<text x="1426.3999999999999" y="921.0" font-size="10.5" fill="#1e293b" font-weight="400" text-anchor="middle">vars.sit.properties</text>
-<text x="28" y="976" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">The model contains input, item embedding, average pooling, the user tower, and softmax. Python and Spark each provide data and prediction components.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 816 1056" font-family="WenQuanYi Micro Hei, DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="816" height="1056" fill="#ffffff"/>
+<text x="24" y="36" font-size="16" fill="#111827" font-weight="700" text-anchor="start">YouTube-DNN-RecSys — Candidate Generation Architecture</text>
+<text x="24" y="60" font-size="11.5" fill="#475569" font-weight="400" text-anchor="start">Data processing, storage, dnn.py model, prediction services, and support utilities</text>
+<text x="24" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="start">Dashed frame = architecture zone · Solid frame = subsystem · Box = module and responsibility</text>
+<text x="792" y="78" font-size="11" fill="#64748b" font-weight="400" text-anchor="end">1/2</text>
+<rect x="24" y="96" width="768" height="84" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="38" y="114" font-size="11.5" fill="#475569" font-weight="700" text-anchor="start">PROJECT OVERVIEW</text>
+<text x="38" y="130" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">YouTube-DNN-RecSys is a TensorFlow and Spark implementation of the candidate-generation stage of YouTube</text>
+<text x="38" y="145" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">recommendations.</text>
+<text x="38" y="160" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">The architecture comprises data processing, storage, the dnn.py model, prediction services, and support</text>
+<text x="38" y="175" font-size="11.5" fill="#334155" font-weight="400" text-anchor="start">utilities.</text>
+<rect x="24" y="192" width="768" height="246" rx="10" fill="#fff7ed" fill-opacity="0.38" stroke="#ea580c" stroke-dasharray="7,5"/>
+<text x="38" y="214" font-size="13" fill="#475569" font-weight="700" text-anchor="start">DATA PROCESSING · offline sample build</text>
+<rect x="36.0" y="226.0" width="367.0" height="198.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#ea580c"/>
+<text x="46.0" y="244" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="start">Python Pipeline</text>
+<rect x="44.0" y="259.0" width="351.0" height="47.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="219.5" y="279" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">data2tfrecords.py</text>
+<text x="219.5" y="294" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">random training data</text>
+<rect x="44.0" y="312.0" width="351.0" height="47.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="219.5" y="332" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">TFRecords</text>
+<text x="219.5" y="347" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">train / evaluation</text>
+<rect x="44.0" y="365.0" width="351.0" height="47.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="219.5" y="385" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">read_tfrecords.py</text>
+<text x="219.5" y="400" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">dataset reader</text>
+<rect x="413.0" y="226.0" width="367.0" height="198.0" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#a21caf"/>
+<text x="423.0" y="244" font-size="12" fill="#701a75" font-weight="700" text-anchor="start">Spark Pipeline</text>
+<rect x="421.0" y="259.0" width="351.0" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="596.5" y="279" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">MakeDataOne.scala</text>
+<text x="596.5" y="294" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">distributed generation</text>
+<rect x="421.0" y="312.0" width="351.0" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="596.5" y="332" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">MakeDataTwo.scala</text>
+<text x="596.5" y="347" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">TFRecords output</text>
+<rect x="421.0" y="365.0" width="351.0" height="47.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="596.5" y="385" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">HDFS</text>
+<text x="596.5" y="400" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">dataset storage</text>
+<rect x="24" y="450" width="768" height="109" rx="10" fill="#dcfce7" fill-opacity="0.38" stroke="#16a34a" stroke-dasharray="7,5"/>
+<text x="38" y="472" font-size="13" fill="#475569" font-weight="700" text-anchor="start">STORAGE · datasets and checkpoints</text>
+<rect x="36.0" y="484.0" width="367.0" height="61.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="219.5" y="504" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">data/tfrecords/</text>
+<text x="219.5" y="519" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">train/train.tfrecords</text>
+<text x="219.5" y="533" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">evaluation/evaluation.tfrecords</text>
+<rect x="413.0" y="484.0" width="367.0" height="61.0" rx="8" fill="#ecfeff" stroke="#0891b2"/>
+<text x="596.5" y="504" font-size="12" fill="#155e75" font-weight="700" text-anchor="middle">data/checkpoints/</text>
+<text x="596.5" y="519" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt/checkpoint</text>
+<text x="596.5" y="533" font-size="10.5" fill="#155e75" font-weight="400" text-anchor="middle">ckpt/eval · modelpath/</text>
+<rect x="24" y="571" width="768" height="137" rx="10" fill="#fce7f3" fill-opacity="0.38" stroke="#db2777" stroke-dasharray="7,5"/>
+<text x="38" y="593" font-size="13" fill="#475569" font-weight="700" text-anchor="start">MODEL TRAINING · dnn.py</text>
+<rect x="36.0" y="605.0" width="140.8" height="89.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="106.4" y="625" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">Input</text>
+<text x="106.4" y="640" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">visit_items_index ×</text>
+<text x="106.4" y="654" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">5</text>
+<text x="106.4" y="668" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">continuous_features</text>
+<text x="106.4" y="682" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">× 16</text>
+<rect x="186.8" y="605.0" width="140.8" height="89.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="257.20000000000005" y="625" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Item Embedding</text>
+<text x="257.20000000000005" y="640" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">500 items × 16</text>
+<rect x="337.6" y="605.0" width="140.8" height="89.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="408.0" y="625" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">Average Pooling</text>
+<text x="408.0" y="640" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">history vector</text>
+<rect x="488.4" y="605.0" width="140.8" height="89.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="558.8000000000001" y="625" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">DNN Tower</text>
+<text x="558.8000000000001" y="640" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">Dense 64 + ReLU</text>
+<text x="558.8000000000001" y="654" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">Dropout · Dense 32 +</text>
+<text x="558.8000000000001" y="668" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">ReLU</text>
+<text x="558.8000000000001" y="682" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">user vector 16</text>
+<rect x="639.2" y="605.0" width="140.8" height="89.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="709.6" y="625" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">Softmax Output</text>
+<text x="709.6" y="640" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">500 classes</text>
+<text x="709.6" y="654" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">cross entropy ·</text>
+<text x="709.6" y="668" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">Top-K</text>
+<rect x="24" y="720" width="768" height="109" rx="10" fill="#fdf4ff" fill-opacity="0.38" stroke="#a21caf" stroke-dasharray="7,5"/>
+<text x="38" y="742" font-size="13" fill="#475569" font-weight="700" text-anchor="start">PREDICTION · serving paths</text>
+<rect x="36.0" y="754.0" width="241.3" height="61.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="156.66666666666669" y="774" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">PredictUserVector.scala</text>
+<text x="156.66666666666669" y="789" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">SavedModel</text>
+<text x="156.66666666666669" y="803" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">user vector head</text>
+<rect x="287.3" y="754.0" width="241.3" height="61.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="408.00000000000006" y="774" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">ItemEmbeddingPredictor.scala</text>
+<text x="408.00000000000006" y="789" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">item embedding table</text>
+<text x="408.00000000000006" y="803" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">FeatureBuilder</text>
+<rect x="538.7" y="754.0" width="241.3" height="61.0" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+<text x="659.3333333333334" y="774" font-size="12" fill="#1e3a8a" font-weight="700" text-anchor="middle">load_dnn_model.py</text>
+<text x="659.3333333333334" y="789" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">SavedModel load</text>
+<text x="659.3333333333334" y="803" font-size="10.5" fill="#1e3a8a" font-weight="400" text-anchor="middle">online / batch inference</text>
+<rect x="24" y="841" width="768" height="164" rx="10" fill="#f8fafc" fill-opacity="0.38" stroke="#64748b" stroke-dasharray="7,5"/>
+<text x="38" y="863" font-size="13" fill="#475569" font-weight="700" text-anchor="start">UTILITIES · training support</text>
+<rect x="36.0" y="875.0" width="367.0" height="47.0" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+<text x="219.5" y="895" font-size="12" fill="#7c2d12" font-weight="700" text-anchor="middle">tensor_board.py</text>
+<text x="219.5" y="910" font-size="10.5" fill="#7c2d12" font-weight="400" text-anchor="middle">TensorBoard</text>
+<rect x="413.0" y="875.0" width="367.0" height="47.0" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+<text x="596.5" y="895" font-size="12" fill="#14532d" font-weight="700" text-anchor="middle">feature_column.py</text>
+<text x="596.5" y="910" font-size="10.5" fill="#14532d" font-weight="400" text-anchor="middle">feature spec</text>
+<rect x="36.0" y="930.0" width="367.0" height="61.0" rx="8" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="219.5" y="950" font-size="12" fill="#713f12" font-weight="700" text-anchor="middle">self_defined_network_layer.py</text>
+<text x="219.5" y="965" font-size="10.5" fill="#713f12" font-weight="400" text-anchor="middle">custom TF layers</text>
+<rect x="413.0" y="930.0" width="367.0" height="61.0" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+<text x="596.5" y="950" font-size="12" fill="#701a75" font-weight="700" text-anchor="middle">Spark Base</text>
+<text x="596.5" y="965" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">BaseSparkLocal.scala</text>
+<text x="596.5" y="979" font-size="10.5" fill="#701a75" font-weight="400" text-anchor="middle">BaseSparkOnline.scala</text>
 </svg>
